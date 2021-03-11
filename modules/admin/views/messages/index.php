@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'date',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d h:m:s');;
+                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
                 },
             ],
 
