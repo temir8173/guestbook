@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Html;
+?>
+
 <div class="news__items notif__items" >
 
     <?php foreach ( $messages as $message ) : ?>
@@ -6,7 +10,7 @@
             <ul class="content-list content-list_most-read"> 
                 <li class="content-list__item content-list__item_devided post-info">
                     <div class="post-info__title" ><span><?= $message->email ?></span></div>
-                    <div class="post-info__text" ><span><?= $message->message ?></span></div>
+                    <div class="post-info__text" ><span><?= Html::encode($message->message) ?></span></div>
                     <div class="post-info__meta">
                         <span class="post-info__meta-item">
                             <span class="post-info__meta-counter post-info__meta-counter_small" ><?= Yii::$app->formatter->asDate($message->date, 'php:Y.m.d h:m:s'); ?></span>
