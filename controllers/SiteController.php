@@ -71,6 +71,7 @@ class SiteController extends Controller
                 'error' => 1,
                 'message' => 'Ошибка. Неверный формат данных!',
             );
+            //var_dump(Yii::$app->request->post());die;
             if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
                 $return = array(
                     'error' => 0,
@@ -85,9 +86,37 @@ class SiteController extends Controller
         
     }
 
-    
-    public function actionAbout()
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
+    public function actionLogin()
     {
-        return $this->render('about');
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Logout action.
+     *
+     * @return Response
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
     }
 }

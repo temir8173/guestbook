@@ -8,9 +8,10 @@ use Yii;
  * This is the model class for table "messages".
  *
  * @property int $id
- * @property string $email
- * @property string $message
+ * @property string $name
+ * @property string $text
  * @property int $date
+ * @property int $invitation_id
  */
 class Messages extends \yii\db\ActiveRecord
 {
@@ -28,9 +29,10 @@ class Messages extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'message', 'date'], 'required'],
-            [['date'], 'integer'],
-            [['email', 'message'], 'string', 'max' => 255],
+            [['name', 'text', 'invitation_id'], 'required'],
+            ['invitation_id', 'integer'],
+            [['name', 'text'], 'string', 'max' => 255],
+            [['date'], 'safe'],
         ];
     }
 
@@ -41,9 +43,19 @@ class Messages extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'email' => 'Email',
-            'message' => 'Сообщение',
+            'name' => 'Атыңыз',
+            'text' => 'Сообщение',
             'date' => 'Дата',
+            'invitation_id' => 'invitation_id',
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->date = time();
+            return true;
+        }
+        return false;
     }
 }

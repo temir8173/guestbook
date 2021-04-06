@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Messages;
+use app\models\FieldValues;
 
 /**
- * MessagesSearch represents the model behind the search form of `app\models\Messages`.
+ * FieldValuesSearch represents the model behind the search form of `app\models\FieldValues`.
  */
-class MessagesSearch extends Messages
+class FieldValuesSearch extends FieldValues
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class MessagesSearch extends Messages
     public function rules()
     {
         return [
-            [['id', 'date', 'invitation_id'], 'integer'],
-            [['name', 'text'], 'safe'],
+            [['id', 'invitation_id', 'field_id'], 'integer'],
+            [['value'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class MessagesSearch extends Messages
      */
     public function search($params)
     {
-        $query = Messages::find();
+        $query = FieldValues::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +59,11 @@ class MessagesSearch extends Messages
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
             'invitation_id' => $this->invitation_id,
+            'field_id' => $this->field_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'text', $this->text]);
+        $query->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;
     }

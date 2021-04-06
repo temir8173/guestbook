@@ -1,17 +1,18 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Messages */
+/* @var $model app\models\Invitations */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Invitations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="messages-view">
+<div class="invitations-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,12 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'text',
             [
-                'attribute'=>'date',
+                'attribute'=>'url',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
+                    return "<a href=\"" . Url::base(true) . "/$data->url\" target=\"_blank\">" . Url::base(true) . "/$data->url</a>";
                 },
             ],
         ],

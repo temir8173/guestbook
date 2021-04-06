@@ -14,16 +14,11 @@ class m210311_095914_create_messages_table extends Migration
     {
         $this->createTable('{{%messages}}', [
             'id' => $this->primaryKey(),
-            'email' => $this->string()->notNull(),
-            'message' => $this->string()->notNull(),
+            'name' => $this->string()->notNull(),
+            'text' => $this->string()->notNull(),
             'date' => $this->integer()->notNull(),
+            'invitation_id' => $this->integer()->notNull(),
         ]);
-
-        $this->createIndex(
-            'idx-messages-date',
-            'messages',
-            'date'
-        );
     }
 
     /**

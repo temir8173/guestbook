@@ -10,9 +10,9 @@ $('document').ready(function(){
 		e.preventDefault();
 		e.stopPropagation();
 
-		setTimestamp(form.find('#messages-date'));
+		//setTimestamp(form.find('#messages-date'));
         $(this).find(".err_msg").remove();
-		
+
 		if (!form.hasClass('sending') && DefaultCheckForm(form)) {
 			form.addClass('sending');
 			$(form).ajaxSubmit({
@@ -193,7 +193,7 @@ function setNotice(mess, theme, delay, position) {
 function updateMessagesBox() {
 	$.ajax({
         type: "POST",
-        url: '/ajax/messages',
+        url: $('#messages-box').attr('data-action-url'), //'/ajax/messages',
         data: {
             order: 'DESC',
         },

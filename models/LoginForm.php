@@ -36,6 +36,18 @@ class LoginForm extends Model
     }
 
     /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Атыңыз'),
+            'password' => Yii::t('common', 'Құпия сөз'),
+            'rememberMe' => 'Запомни меня',
+        ];
+    }
+
+    /**
      * Validates the password.
      * This method serves as the inline validation for password.
      *
@@ -46,9 +58,10 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
+            //var_dump($user->validatePassword($this->password));die;
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Неправильное имя или пароль.');
             }
         }
     }
@@ -73,7 +86,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = UserIdentity::findByUsername($this->username);
         }
 
         return $this->_user;

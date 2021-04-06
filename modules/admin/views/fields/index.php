@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MessagesSearch */
+/* @var $searchModel app\models\FieldsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Messages';
+$this->title = 'Fields';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="messages-index">
+<div class="fields-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Messages', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Fields', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,14 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'text',
-            [
-                'attribute'=>'date',
-                'format' => 'raw',
-                'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
-                },
-            ],
+            'type',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

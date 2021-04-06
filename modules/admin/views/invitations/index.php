@@ -1,21 +1,22 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MessagesSearch */
+/* @var $searchModel app\models\InvitationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Messages';
+$this->title = 'Invitations';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="messages-index">
+<div class="invitations-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Messages', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Invitations', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,13 +28,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            'text',
             [
-                'attribute'=>'date',
+                'attribute'=>'url',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
+                    return "<a href=\"" . Url::base(true) . "/$data->url\" target=\"_blank\">" . Url::base(true) . "/$data->url</a>";
+                },
+            ],
+            'name',
+            [
+                'attribute'=>'fields',
+                'filter' => false,
+                'format' => 'raw',
+                'value' => function($data){
+                    return "<a href=".Url::to(['/admin/field-values/index', 'invitation_id' => 1]).">fields</a>";
                 },
             ],
 

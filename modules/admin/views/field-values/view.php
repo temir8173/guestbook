@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Messages */
+/* @var $model app\models\FieldValues */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Field Values', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="messages-view">
+<div class="field-values-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,15 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
-            'text',
-            [
-                'attribute'=>'date',
-                'format' => 'raw',
-                'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
-                },
-            ],
+            'invitation_id',
+            'field_id',
+            'value',
         ],
     ]) ?>
 
