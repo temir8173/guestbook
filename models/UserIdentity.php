@@ -41,22 +41,6 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthKey()
-    {
-        return $this->auth_key;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function validateAuthKey($authKey)
     {
         return $this->auth_key === $authKey;
@@ -70,6 +54,6 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === md5($password);
+        return password_verify($password, $this->password);
     }
 }

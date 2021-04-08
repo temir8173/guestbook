@@ -45,3 +45,17 @@ $this->title = 'Гостевая книга';
 		</div>
 	</div>
 </section>
+
+<section id="messages-result">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<?php
+				echo '<pre>';
+				var_dump(\Yii::$app->user->identity);
+				echo '</pre>';
+				?>
+			</div>
+		</div>
+	</div>
+</section>

@@ -5,9 +5,9 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'Гостевая книга',
-    'language' => 'ru',
-    'sourceLanguage' => 'ru',
+    'name' => 'Шақыру KZ',
+    'language' => 'kk',
+    'sourceLanguage' => 'kk',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -23,7 +23,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\UserIdentity',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -48,9 +48,15 @@ $config = [
         'db' => $db,
         
         'urlManager' => [
+            'class' => 'codemix\localeurls\UrlManager',
+            'languages' => ['kk', 'ru'],
+            'enableDefaultLanguageUrlCode' => false,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'site/index',
+                '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
+                '/<view:\w+>' => '/invitations/default/index',
             ],
         ],
         'i18n' => [
@@ -64,12 +70,32 @@ $config = [
                 ],
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
     ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout' => '@app/views/layouts/admin'
         ],
+        'invitations' => [
+            'class' => 'app\modules\invitations\Module',
+            'layout' => '@app/views/layouts/invitation'
+        ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
+        ],
+    ],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['?'],
+            'root' => [
+                'path' => 'upload/global',
+                'name' => 'Global'
+            ],
+        ]
     ],
     'params' => $params,
 ];

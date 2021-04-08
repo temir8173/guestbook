@@ -14,9 +14,6 @@ use yii\filters\VerbFilter;
  */
 class FieldValuesController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [

@@ -1,19 +1,24 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\user\controllers;
 
 use Yii;
-use app\models\Invitations;
-use app\models\InvitationsSearch;
+use app\models\User;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
- * InvitationsController implements the CRUD actions for Invitations model.
+ * ManageController implements the CRUD actions for User model.
  */
-class InvitationsController extends Controller
+class ManageController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
     public function behaviors()
     {
         return [
@@ -23,26 +28,41 @@ class InvitationsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view', 'update'],
+                        'roles' => ['admin', 'user'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'delete'],
+                        'roles' => ['admin'],
+                    ]
+                ]
+            ]
         ];
     }
 
     /**
-     * Lists all Invitations models.
+     * Lists all User models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new InvitationsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Invitations model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -55,13 +75,13 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Creates a new Invitations model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Invitations();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -73,7 +93,7 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Updates an existing Invitations model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -81,8 +101,10 @@ class InvitationsController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (!\Yii::$app->user->can('updateOwnProfile', ['profileId' => $id])) {
+            throw new ForbiddenHttpException('Access denied');
+        }
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -93,7 +115,7 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Deletes an existing Invitations model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +129,15 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Finds the Invitations model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Invitations the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Invitations::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         }
 

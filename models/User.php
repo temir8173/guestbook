@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "user".
@@ -16,6 +17,10 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    const ROLE_USER = 'user';
+    const ROLE_ADMIN = 'admin';
+
+    public $roles;
     /**
      * {@inheritdoc}
      */
@@ -30,9 +35,67 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'role'], 'required'],
-            [['username', 'password', 'role', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            ['roles', 'safe'],
+            [['username', 'password'], 'required'],
+            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
         ];
+    }
+
+    public function __construct()
+    {
+        //$this->on(self::EVENT_AFTER_UPDATE, [$this, 'saveRoles']);
+    }
+
+    /**
+     * Get user roles from RBAC
+     * @return array
+     */
+    public function getRoles()
+    {
+        $roles = Yii::$app->authManager->getRolesByUser($this->getId());
+        return ArrayHelper::getColumn($roles, 'name', false);
+    }
+
+    /**
+     * Populate roles attribute with data from RBAC after record loaded from DB 
+     */
+    public function afterFind()
+    {
+        $this->roles = $this->getRoles();
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $options = [
+                'cost' => 12,
+            ];
+            $this->password = password_hash($this->password, PASSWORD_BCRYPT, $options);
+            return true;
+        }
+        return false;
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        $this->saveRoles();
+    }
+
+    /**
+     * Revoke old roles and assign new if any
+     */
+    public function saveRoles()
+    {
+        Yii::$app->authManager->revokeAll($this->getId());
+
+        if (is_array($this->roles)) {
+            foreach ($this->roles as $roleName) {
+                if ($role = Yii::$app->authManager->getRole($roleName)) {
+                    Yii::$app->authManager->assign($role, $this->getId());
+                }
+            }
+        }
     }
 
     /**
@@ -45,8 +108,33 @@ class User extends \yii\db\ActiveRecord
             'username' => 'Имя',
             'password' => 'Пароль',
             'role' => 'Роль',
+            'roles' => 'Роли',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function getRolesDropdown()
+    {
+        return [
+            self::ROLE_ADMIN => 'Админ',
+            self::ROLE_USER => 'Пользователь',
         ];
     }
 }

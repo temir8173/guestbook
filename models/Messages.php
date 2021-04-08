@@ -32,7 +32,7 @@ class Messages extends \yii\db\ActiveRecord
             [['name', 'text', 'invitation_id'], 'required'],
             ['invitation_id', 'integer'],
             [['name', 'text'], 'string', 'max' => 255],
-            [['date'], 'safe'],
+            ['date', 'safe'],
         ];
     }
 

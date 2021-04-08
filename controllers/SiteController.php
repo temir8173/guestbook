@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\Messages;
+use app\models\User;
 use yii\helpers\Json;
 
 class SiteController extends Controller
