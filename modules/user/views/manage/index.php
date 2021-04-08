@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'username',
-            'role',
             [
                 'attribute' => 'roles',
                 'value' => function($user) {

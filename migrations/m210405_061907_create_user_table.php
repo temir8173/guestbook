@@ -24,7 +24,7 @@ class m210405_061907_create_user_table extends Migration
         // Create admin user
         $user = new User();
         $user->username = 'admin';
-        $user->password = '$2y$12$k2.s2/9wtI9GPIa5IYuwTeK8tY8up5KTwpS9DkdL53wgLBcI5YSbW';
+        $user->password = '$2y$12$R2pq4l3wFKHUpMAp7irKYeVtyOCy78PxjSSPXVCp1cnBZdufZtrtu ';
         $user->save();
 
     }

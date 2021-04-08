@@ -83,8 +83,11 @@ class ManageController extends Controller
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = password_hash($model->password, PASSWORD_BCRYPT, ['cost' => 12]);
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -105,8 +108,11 @@ class ManageController extends Controller
             throw new ForbiddenHttpException('Access denied');
         }
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = password_hash($model->password, PASSWORD_BCRYPT, ['cost' => 12]);
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

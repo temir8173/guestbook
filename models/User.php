@@ -67,10 +67,6 @@ class User extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $options = [
-                'cost' => 12,
-            ];
-            $this->password = password_hash($this->password, PASSWORD_BCRYPT, $options);
             return true;
         }
         return false;
