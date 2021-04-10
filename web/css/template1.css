@@ -1,0 +1,40 @@
+#header {
+	background-color: #ffd8b1;
+	height: 100vh;
+}
+
+#header .top-box {
+	background-image: url('../images/header-ukrashen.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 95% 90%;
+	height: 100vh;
+	vertical-align: middle;
+	text-align: center;
+	position: relative;
+	top: -20px;
+}
+
+#header .top-box__title {
+	vertical-align: middle;
+	position: relative;
+	top: calc(50% - 32px);
+	font-size: 42px;
+	color: #d6a774;
+}
+
+
+
+@media only screen and (max-width: 992px) {
+	#header {
+		background-color: #ffd8b1;
+		height: 100vh;
+		background-image: url('../images/header-ukrashen.png');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 90% 90%;
+	}
+	#header .top-box {
+		background-image: unset;
+	}
+}

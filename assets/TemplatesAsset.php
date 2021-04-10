@@ -9,7 +9,7 @@ class TemplatesAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/templates.css',
+        'css/template1.css',
     ];
     public $js = [
         'js/jqueryForm.js',

@@ -21,6 +21,7 @@ class DefaultController extends Controller
     		//var_dump($invitation);die;
 
         	if ($invitation !== null) {
+                $this->layout = 'template1';
         		return $this->render('index');
         	} else {
         		throw new \yii\web\HttpException(404,'Страница не найдена');
