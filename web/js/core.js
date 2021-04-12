@@ -80,6 +80,24 @@ $('document').ready(function(){
         }
 	});
 
+    $('a.scrollto').on('click', function() {
+
+        let href = $(this).attr('href'),
+            header_h = (($('#wpadminbar.nojq').length) ? $('#wpadminbar.nojq').height() : 0),
+            header_navbar = 0,
+            scrollTop = $(href).offset().top - header_h - header_navbar;
+
+        $('html, body').animate({
+            scrollTop: scrollTop
+        }, {
+            duration: (scrollTop<2000) ? 650 : 650,   // по умолчанию «400» 
+            easing: "swing" // по умолчанию «swing» 
+        });
+
+        return false;
+    });
+
+    baguetteBox.run('.gallery');
 
 })
 
@@ -208,3 +226,4 @@ function setTimestamp(el) {
 	const timestamp = currentDate.getTime();
 	el.attr('value', Math.floor(timestamp / 1000));
 }
+
