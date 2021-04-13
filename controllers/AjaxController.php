@@ -55,14 +55,14 @@ class AjaxController extends Controller
         ];
     }
 
-        public function actionMessages()
+    public function actionGetMessages()
     {
 
         $messages = Messages::find()->orderBy(['date' => SORT_DESC])->all();
 
         if (Yii::$app->request->isAjax) {
 
-            return $this->renderAjax('/site/_messages', [
+            return $this->renderAjax('@app/modules/invitations/views/default/_messages.php', [
                 'messages' => $messages
             ]);
 
@@ -70,5 +70,28 @@ class AjaxController extends Controller
             throw new \yii\web\HttpException(404,'Страница не найдена');
         }
         
+    }
+
+    public function actionAddMessage()
+    {
+        if (Yii::$app->request->isAjax) {
+
+            $newMessage = new Messages();
+            $return = array(
+                'error' => 1,
+                'message' => 'Ошибка. Неверный формат данных!',
+            );
+
+            if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
+                $return = array(
+                    'error' => 0,
+                    'message' => 'Ваше сообщение было успешно добавлено!',
+                );
+            }
+            return Json::encode($return);
+
+        } else {
+            throw new \yii\web\HttpException(404,'Страница не найдена');
+        }
     }
 }

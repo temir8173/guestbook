@@ -38,7 +38,7 @@ $this->title = 'Гостевая книга';
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div id="messages-box" data-action-url=<?= Url::to(['/ajax/messages']) ?>>
+				<div id="messages-box" data-action-url=<?= Url::to(['/ajax/get-messages']) ?>>
 					<?= $this->render('_messages', ['messages' => $messages]); ?>
 				</div>
 			</div>

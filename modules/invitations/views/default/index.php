@@ -1,3 +1,13 @@
+<?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+
+$this->title = 'Гостевая книга';
+?>
+
 <header id="header">
     <div class="container">
         <div class="row">
@@ -63,15 +73,117 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="gallery">
-				    <a href="images/template1/gallery/1-1.jpg" data-caption="Image caption">
-				        <img src="images/template1/gallery/1-1.jpg" alt="First image">
+				<div class="address__images restaurant-pic">
+				    <a href="upload/restaurants/1.jpg" class="col-md-4" data-caption="Image caption">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/1.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
 				    </a>
-				    <a href="images/template1/gallery/1-2.jpg">
-				        <img src="images/template1/gallery/1-2.jpg" alt="Second image">
+				    <a href="upload/restaurants/2.jpg" class="col-md-4">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/2.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
 				    </a>
-				    ...
+				    <a href="upload/restaurants/3.jpg" class="col-md-4">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/3.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
 				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="afterwards" class="afterwards">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="afterwards__title section-title">Тойдан қалған естелік</h2>
+				<p>! Бұл жерде тойда түсірілген фото және бейне материалдары көре аласыз</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="our-gallery" class="our-gallery">
+	<div class="container my-container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="our-gallery__title section-title">Фотогалерея</h2>
+				<div class="address__images restaurant-pic">
+				    <a href="upload/restaurants/1.jpg" class="col-md-3" data-caption="Image caption">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/1.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				    <a href="upload/restaurants/2.jpg" class="col-md-3">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/2.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				    <a href="upload/restaurants/3.jpg" class="col-md-3">
+				    	<div class="address__image image-container">
+			                <div>
+			                    <img src="upload/restaurants/3.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="wishes" class="wishes">
+	<div class="container">
+		<div class="row">
+			<h2 class="wishes__title section-title">Тілек - лебіздеріңіз</h2>
+			<div class="col-sm-6">
+
+				<div id="messages-box" class="wishes__messages" data-action-url=<?= Url::to(['/ajax/get-messages']) ?>>
+					<?= $this->render('_messages', ['messages' => $messages]); ?>
+				</div>
+
+			</div>
+			<div class="col-sm-6">
+
+				<?php $form = ActiveForm::begin([
+					'action' => Url::to('ajax/add-message'),
+	                'enableClientValidation'=>false, 
+	                'fieldConfig' => ['options' => ['tag' => false ] ],
+	                'options' => [
+	                    'class' => 'wishes__form ajax-form',
+	                ],
+	            ]); ?>
+
+	            	<?= $form->field($newMessage, "name")->textInput(['placeholder' => 'Ваш email', 'class' => 'form-control text required'])->label(false) ?>
+	            	<?= $form->field($newMessage, "text")->textArea(['placeholder' => 'Сообщение', 'class' => 'form-control text required', 'rows' => 5])->label(false) ?>
+	            	<?= $form->field($newMessage, "date")->hiddenInput(['value' => ''])->label(false) ?>
+	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => 1])->label(false) ?>
+
+	            	<div class="wishes__form-btn">
+	                    <?= Html::submitInput('Құттықтау', ['name' => 'submit', 'class' => 'btn btn-primary']) ?>
+	                </div>
+
+	            <?php ActiveForm::end(); ?>
+
 			</div>
 		</div>
 	</div>

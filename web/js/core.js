@@ -97,7 +97,7 @@ $('document').ready(function(){
         return false;
     });
 
-    baguetteBox.run('.gallery');
+    baguetteBox.run('.restaurant-pic');
 
 })
 
