@@ -13,10 +13,11 @@ class TemplatesAsset extends AssetBundle
         'js/baguettebox/baguetteBox.min.css',
     ];
     public $js = [
+        'js/countdown.js',
+        'js/baguettebox/baguetteBox.min.js',
         'js/jqueryForm.js',
         'js/simply-toast.min.js',
         'js/core.js',
-        'js/baguettebox/baguetteBox.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

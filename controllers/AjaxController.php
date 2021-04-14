@@ -58,7 +58,7 @@ class AjaxController extends Controller
     public function actionGetMessages()
     {
 
-        $messages = Messages::find()->orderBy(['date' => SORT_DESC])->all();
+        $messages = Messages::find()->orderBy(['date' => SORT_ASC])->all();
 
         if (Yii::$app->request->isAjax) {
 

@@ -22,7 +22,15 @@ TemplatesAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
     <?php $this->head() ?>
+    <?php 
+        $variables = array (
+            'language' => Yii::$app->language,
+            // Тут обычно какие-то другие переменные
+        );
+        echo '<script type="text/javascript">window.my_data = ' . json_encode($variables) . ';</script>';
+    ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -32,9 +40,9 @@ TemplatesAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left"></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right footer__title">&copy; ShaqiruKZ <?= date('Y') ?></p>
     </div>
 </footer>
 

@@ -77,10 +77,8 @@ section:nth-child(odd) {
 	background-color: #f5f5f5;
 }
 
-.my-container {
-	width: 100%;
-	padding-left: 0;
-	padding-right: 0;
+body {
+	overflow-x: hidden;
 }
 
 .iframe-container {
@@ -164,21 +162,24 @@ section:nth-child(odd) {
 
 #header .top-box__row {
 	position: absolute;
-	bottom: 210px;
-    left: calc(50% - 69px);
+	bottom: 26%;
+    left: 0;
+    width: 100%;
     font-size: 28px;
 	font-family: 'Decor KZ', sans-serif;
 }
 
 #header .top-box__date {
+	position: relative;
+	top: -10px;
+	right: -90px;
 	color: #eea256;
 	font-family: 'Decor KZ', sans-serif;
 }
 
 #header .top-box__time {
 	color: #eea256;
-	font-weight: 300;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .top-box__arrow {
@@ -204,6 +205,70 @@ section:nth-child(odd) {
 .top-box__arrow-img {
     width: 20px;
 }
+
+/* Countdown styles */
+
+.countdown-title {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+ 
+.countdown {
+	position: relative;
+	left: -60px;
+	display: inline-block;
+	text-align: center;
+	font-size: 30px;
+}
+ 
+.countdown-number {
+	display: inline-block;
+	position: relative;
+}
+
+.countdown-number:after {
+	content: '';
+	display: block;
+	width: 1px;
+	height: 40px;
+	background-color: rgba(0,0,0,0.05);
+	position: absolute;
+	top: 14px;
+    right: -4px;
+}
+.countdown-number:last-child:after {
+	display: none;
+}
+ 
+.countdown-time {
+	padding: 0 12px;
+	font-size: 24px;
+	display: inline-block;
+}
+ 
+.countdown-text {
+	display: block;
+	font-size: 11px;
+	color: #777;
+	font-weight: 500;
+}
+
+.deadline-message{
+	display: none;
+	font-size: 24px;
+	font-style: italic;
+}
+ 
+.visible{
+	display: block;
+}
+ 
+.hidden{
+	display: none;
+}
+
 
 
 
@@ -290,6 +355,9 @@ section:nth-child(odd) {
 
 .address__images {
 	margin-top: 30px;
+	display:flex;
+	flex-wrap:wrap; 
+	justify-content:space-between;
 }
 
 .address__images a {
@@ -300,14 +368,62 @@ section:nth-child(odd) {
 
 
 
-/* Afterwards */
+/* Afterwards section */
 
 
 
 
+/* Gallery section */
+
+.gallery-vertical {
+	padding-top: 150%;
+	box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
+}
+
+.gallery-horizontal {
+	padding-top: 66.6%;
+	box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
+}
+
+.my-container {
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.my-container>.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.my-container>.row>div>div {
+	padding: 0;
+}
+
+.our-gallery .image-container div:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	box-shadow: inset 0px 0px 20px rgb(0 0 0 / 50%);
+}
+
+.our-gallery .image-container div {
+	transition: all 0.3s;
+}
+
+.our-gallery .image-container div:hover {
+	opacity: 0.8;
+}
 
 
-/* Wishes */
+
+/* Wishes section */
+
+.wishes {
+	padding-bottom: 100px;
+}
 
 .wishes__title {
 	margin-bottom: 50px;
@@ -345,9 +461,9 @@ section:nth-child(odd) {
 .notif__items {
   position: relative;
   border-radius: 4px;
-  padding: 30px 20px 25px 45px;
-  max-height: 480px;
+  max-height: 100%;
   overflow: auto;
+  z-index: 3;
 }
 
 .notif__items::-webkit-scrollbar {
@@ -367,25 +483,27 @@ section:nth-child(odd) {
   border-radius: 20px;
 }
 
-
-form input[type=text].error, 
-form input[type=password].error, 
-form input[type=email].error, 
-form select.error, 
-form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
-
-.err_msg {
-  display: block;
-  text-align: left;
-  font-size: 11px;
-  font-weight: 300;
-  color: #C9688C;
-  bottom: -20px;
-  z-index: 99;
-}
-
 .wishes__messages {
 	padding: 50px 30px 100px 40px;
+	width: 100%;
+	padding-top: 100%;
+	position: relative;
+}
+
+.wishes__messages>div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	padding: 70px 30px 100px 95px;
+}
+
+.wishes__messages img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
 }
 
 .wishes__messages:before {
@@ -394,16 +512,107 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
 	position: absolute;
 	top: -50px;
 	left: -70px;
-	width: 115%;
-	height: 113%;
+	width: 119%;
+	height: 115%;
 	background-image: url('../images/template1/wishes-outline.png');
 	background-size: cover;
+	z-index: 2
+}
+
+.wishes__form {
+	width: 80%;
+	margin: 100px auto;
+}
+
+.wishes__form .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.wishes__form .form-group.field-messages-name {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.wishes__form input[type=text], 
+.wishes__form input[type=password], 
+.wishes__form input[type=email], 
+.wishes__form select, 
+.wishes__form textarea { 
+	border: 2px solid #d893aa !important;
+	border-radius: 0;
+	background-color: unset;
+    box-shadow: none;
+}
+.wishes__form input[type=text], 
+.wishes__form input[type=password], 
+.wishes__form input[type=email] {
+	border: none!important;
+    border-bottom: 2px solid #d893aa!important;
+}
+form input[type=text].error, 
+form input[type=password].error, 
+form input[type=email].error {
+	border: none!important;
+    border-bottom: 2px solid rgba(204,0,0,0.4)!important;
+}
+form select.error, 
+form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
+.wishes__form input[type=text]:focus, .wishes__form textarea:focus {
+	box-shadow: none;
+	opacity: 0.8;
+}
+
+.wishes__form-btn {
+	text-align: right;
+}
+.wishes__form-btn input {
+	border-radius: 0!important;
+	background-color: #d893aa;
+	color: #fff;
+	padding: 6px 20px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+.wishes__form-btn input:hover {
+	color: #fff!important;
+	opacity: 0.8;
+}
+.wishes__form-btn .btn:hover, .wishes__form-btn .btn:focus, .wishes__form-btn .btn:active:focus {
+    color: #fff;
+    text-decoration: none;
+    outline: unset;
+    outline-offset: unset;
 }
 
 .wishes__form textarea {
 	resize: vertical;
 }
 
+.err_msg {
+  display: block;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(204,0,0,0.4);
+  position: absolute;
+  bottom: -17px;
+  z-index: 99;
+}
+
+.footer {
+	padding: 10px 0;
+	background-color: #02786A;
+}
+
+.footer__title {
+	font-size: 18px;
+	font-family: 'Open Sans', sans-serif;
+	color: #fff;
+	margin-bottom: 0;
+}
 
 
 
@@ -414,8 +623,25 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
 
 
 
-
-
+@media only screen and (max-width: 1200px) {
+	.wishes__messages:before {
+		width: 121%;
+	}
+	section {
+	    padding: 40px 0;
+	}
+	.wishes {
+	    padding-bottom: 70px;
+	}
+	.speech .container:before {
+	    top: -116px;
+	    right: -80px;
+	    width: 215px;
+	}
+	.section-title {
+		font-size: 60px;
+	}
+}
 @media only screen and (max-width: 992px) {
 	#header {
 		background-color: #ffd8b1;
@@ -425,7 +651,65 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
 		background-repeat: no-repeat;
 		background-size: 90% 90%;
 	}
-	#header .top-box {
-		background-image: unset;
+	.b1{order:0;}
+	.b2{order:3;}
+	.b3{order:1;}
+	.b4{order:4;}
+	.b5{order:2;}
+	#header .top-box__date {
+		font-size: 24px;
+		right: -35px;
+	}
+	.countdown-time {
+		font-size: 21px;
+	}
+	#header .top-box__title {
+		font-size: 51px;
+		line-height: 1;
+	    top: calc(50% - 80px);
+	}
+	.speech__text {
+		padding: 0;
+		font-size: 28px;
+	}
+	.speech .container:after {
+		top: 8%;
+		right: -75px;
+	}
+	.speech__owners {
+		font-size: 28px;
+	}
+	section {
+	    padding: 25px 0;
+	}
+	.section-title {
+	    font-size: 51px;
+	}
+	.address__place {
+		font-size: 32px;
+	}
+	.address__place>span {
+		font-size: 26px;
+	}
+	.wishes__messages:before {
+	    width: 134%;
+	    height: 120%;
+	}
+	.wishes__messages>div {
+	    padding: 35px 0px 50px 59px;
+	}
+	.content-list__item .post-info__title {
+	    font-size: 17px;
+	    line-height: 1.2;
+	}
+	.content-list__item .post-info__text {
+	    font-size: 13px;
+	    line-height: 1.2;
+	}
+	.post-info__meta {
+		font-size: 10px;
+	}
+	.content-list__item .post-info__meta-item {
+	    font-size: 10px;
 	}
 }

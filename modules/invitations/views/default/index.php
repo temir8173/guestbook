@@ -15,8 +15,30 @@ $this->title = 'Гостевая книга';
                 <div class="top-box">
                     <h1 class="top-box__title">Руслан<br>Үйлену той</h1>
                     <div class="top-box__row">
+
+                    	<div id="countdown" class="top-box__time countdown">
+							<div class="countdown-number">
+								<span class="days countdown-time"></span>
+								<span class="countdown-text">Күн</span>
+							</div>
+							<div class="countdown-number">
+								<span class="hours countdown-time"></span>
+								<span class="countdown-text">Сағат</span>
+							</div>
+							<div class="countdown-number">
+								<span class="minutes countdown-time"></span>
+								<span class="countdown-text">Минут</span>
+							</div>
+							<div class="countdown-number">
+								<span class="seconds countdown-time"></span>
+								<span class="countdown-text">Секунд</span>
+							</div>
+						</div>
+						<div id="deadline-message" class="deadline-message">
+						
+						</div>
+
                     	<span class="top-box__date">19. 06. 2021</span>
-                    	<span class="top-box__time">asd</span>
                     </div>
                     <a href="#speech" class="top-box__arrow scrollto"> <!--&#11167;-->
 						<img class="top-box__arrow-img" src="http://new.wkau.kz/wp-content/themes/wkau-theme/assets/images/digital-un/angle-arrow-pointing-down.svg" alt="...">
@@ -74,7 +96,7 @@ $this->title = 'Гостевая книга';
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="address__images restaurant-pic">
-				    <a href="upload/restaurants/1.jpg" class="col-md-4" data-caption="Image caption">
+				    <a href="upload/restaurants/1.jpg" class="col-sm-4" data-caption="Image caption">
 				    	<div class="address__image image-container">
 			                <div>
 			                    <img src="upload/restaurants/1.jpg" alt="First image">
@@ -82,7 +104,7 @@ $this->title = 'Гостевая книга';
 			                
 			            </div>
 				    </a>
-				    <a href="upload/restaurants/2.jpg" class="col-md-4">
+				    <a href="upload/restaurants/2.jpg" class="col-sm-4">
 				    	<div class="address__image image-container">
 			                <div>
 			                    <img src="upload/restaurants/2.jpg" alt="First image">
@@ -90,7 +112,7 @@ $this->title = 'Гостевая книга';
 			                
 			            </div>
 				    </a>
-				    <a href="upload/restaurants/3.jpg" class="col-md-4">
+				    <a href="upload/restaurants/3.jpg" class="col-sm-4">
 				    	<div class="address__image image-container">
 			                <div>
 			                    <img src="upload/restaurants/3.jpg" alt="First image">
@@ -118,34 +140,120 @@ $this->title = 'Гостевая книга';
 <section id="our-gallery" class="our-gallery">
 	<div class="container my-container">
 		<div class="row">
-			<div class="col-sm-12">
-				<h2 class="our-gallery__title section-title">Фотогалерея</h2>
-				<div class="address__images restaurant-pic">
-				    <a href="upload/restaurants/1.jpg" class="col-md-3" data-caption="Image caption">
-				    	<div class="address__image image-container">
+			<h2 class="our-gallery__title section-title">Фотогалерея</h2>
+			<div class="address__images restaurant-pic">
+
+				<div class="col-md-2 col-xs-4 b1">
+					<a href="upload/gallery/1.jpg">
+				    	<div class="our-gallery__image image-container gallery-vertical">
 			                <div>
-			                    <img src="upload/restaurants/1.jpg" alt="First image">
+			                    <img src="upload/gallery/1.jpg" alt="First image">
 			                </div>
 			                
 			            </div>
 				    </a>
-				    <a href="upload/restaurants/2.jpg" class="col-md-3">
-				    	<div class="address__image image-container">
+					<a href="upload/gallery/2.jpg" >
+				    	<div class="our-gallery__image image-container gallery-vertical">
 			                <div>
-			                    <img src="upload/restaurants/2.jpg" alt="First image">
-			                </div>
-			                
-			            </div>
-				    </a>
-				    <a href="upload/restaurants/3.jpg" class="col-md-3">
-				    	<div class="address__image image-container">
-			                <div>
-			                    <img src="upload/restaurants/3.jpg" alt="First image">
+			                    <img src="upload/gallery/2.jpg" alt="First image">
 			                </div>
 			                
 			            </div>
 				    </a>
 				</div>
+
+				<div class="col-md-3 col-xs-6 b2">
+					<a href="upload/gallery/3.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/3.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/4.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/4.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/5.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/5.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				</div>
+
+				<div class="col-md-2 col-xs-4 b3">
+					<a href="upload/gallery/6.jpg" >
+				    	<div class="our-gallery__image image-container gallery-vertical">
+			                <div>
+			                    <img src="upload/gallery/6.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/7.jpg" >
+				    	<div class="our-gallery__image image-container gallery-vertical">
+			                <div>
+			                    <img src="upload/gallery/7.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				</div>
+
+				<div class="col-md-3 col-xs-6 b4">
+					<a href="upload/gallery/8.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/8.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/9.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/9.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/10.jpg">
+				    	<div class="our-gallery__image image-container gallery-horizontal">
+			                <div>
+			                    <img src="upload/gallery/10.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				</div>
+
+				<div class="col-md-2  col-xs-4 b5">
+					<a href="upload/gallery/11.jpg" >
+				    	<div class="our-gallery__image image-container gallery-vertical">
+			                <div>
+			                    <img src="upload/gallery/11.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+					<a href="upload/gallery/12.jpg" >
+				    	<div class="our-gallery__image image-container gallery-vertical">
+			                <div>
+			                    <img src="upload/gallery/12.jpg" alt="First image">
+			                </div>
+			                
+			            </div>
+				    </a>
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -157,29 +265,43 @@ $this->title = 'Гостевая книга';
 			<h2 class="wishes__title section-title">Тілек - лебіздеріңіз</h2>
 			<div class="col-sm-6">
 
-				<div id="messages-box" class="wishes__messages" data-action-url=<?= Url::to(['/ajax/get-messages']) ?>>
-					<?= $this->render('_messages', ['messages' => $messages]); ?>
+				<div class="wishes__messages">
+					<div id="messages-box" data-action-url=<?= Url::to(['/invitations/default/get-messages']) ?>>
+						<?= $this->render('_messages', ['messages' => $messages]); ?>
+					</div>
 				</div>
 
 			</div>
 			<div class="col-sm-6">
 
 				<?php $form = ActiveForm::begin([
-					'action' => Url::to('ajax/add-message'),
+					'action' => Url::to('/invitations/default/add-message'),
 	                'enableClientValidation'=>false, 
-	                'fieldConfig' => ['options' => ['tag' => false ] ],
 	                'options' => [
 	                    'class' => 'wishes__form ajax-form',
 	                ],
 	            ]); ?>
 
-	            	<?= $form->field($newMessage, "name")->textInput(['placeholder' => 'Ваш email', 'class' => 'form-control text required'])->label(false) ?>
-	            	<?= $form->field($newMessage, "text")->textArea(['placeholder' => 'Сообщение', 'class' => 'form-control text required', 'rows' => 5])->label(false) ?>
+	            	<?= $form->field($newMessage, "name")->textInput([
+	            		'placeholder' => Yii::t('common', 'Атыңыз'), 
+	            		'class' => 'form-control text required',
+	            		'data' => [
+	            			'error-msg' => Yii::t('common', 'Міндетті түрде тотыру қажет'),
+	            		],
+	            	])->label(false) ?>
+	            	<?= $form->field($newMessage, "text")->textArea([
+	            		'placeholder' => Yii::t('common', 'Тілегіңіз'), 
+	            		'class' => 'form-control text required', 
+	            		'rows' => 5,
+	            		'data' => [
+	            			'error-msg' => Yii::t('common', 'Міндетті түрде тотыру қажет'),
+	            		],
+	            	])->label(false) ?>
 	            	<?= $form->field($newMessage, "date")->hiddenInput(['value' => ''])->label(false) ?>
 	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => 1])->label(false) ?>
 
 	            	<div class="wishes__form-btn">
-	                    <?= Html::submitInput('Құттықтау', ['name' => 'submit', 'class' => 'btn btn-primary']) ?>
+	                    <?= Html::submitInput('Құттықтау', ['name' => 'submit', 'class' => 'btn']) ?>
 	                </div>
 
 	            <?php ActiveForm::end(); ?>

@@ -3,9 +3,7 @@ $('document').ready(function(){
 
     $('body').on('submit', '.ajax-form', function(e){
     	
-		var form = $(this),
-			error_email = 'Не правильно указан email адрес';
-            error_wrong = 'Заполните обязательное поле';
+		var form = $(this);
 
 		e.preventDefault();
 		e.stopPropagation();
@@ -51,7 +49,7 @@ $('document').ready(function(){
 								form.removeClass('sending');
 								
 							}, 1000);
-							setTimestamp(form.find('#messages-date'));
+							//setTimestamp(form.find('#messages-date'));
 						}
 					}
 
@@ -71,12 +69,11 @@ $('document').ready(function(){
 			})
 		} else {
 
-            if ( form.find(".email").hasClass("error") && form.find(".email").val() != "" ) {
-                form.find(".email").after("<span class='err_msg'>" + error_email + "</span>");
-                form.find(".error").not(".email").after("<span class='err_msg'>" + error_wrong + "</span>");
-            } else {
-                form.find(".error").after("<span class='err_msg'>" + error_wrong + "</span>");
-            }
+			form.find(".error").each(function( index ) {
+				$(this).after("<span class='err_msg'>" + $(this).attr('data-error-msg') + "</span>");
+			});
+
+            
         }
 	});
 
@@ -98,6 +95,11 @@ $('document').ready(function(){
     });
 
     baguetteBox.run('.restaurant-pic');
+
+    $('.notif__items').scrollTop($('.notif__items')[0].scrollHeight);
+
+    var deadline = "June 19 2021 19:00:00 GMT+0500"; //new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000); // for endless timer
+	initializeClock('countdown', deadline);
 
 })
 
@@ -217,6 +219,7 @@ function updateMessagesBox() {
         },
         success: function(data){
             $('#messages-box').html(data);
+    		$('.notif__items').scrollTop($('.notif__items')[0].scrollHeight);
         }
     });
 }
