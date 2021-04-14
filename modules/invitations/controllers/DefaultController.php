@@ -28,10 +28,10 @@ class DefaultController extends Controller
         	if ($invitation !== null) {
 
                 $newMessage = new Messages();
-                $messages = Messages::find()->orderBy(['date' => SORT_ASC])->all();
+                $messages = Messages::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
 
                 $this->layout = 'template1';
-        		return $this->render( 'index', compact('messages', 'newMessage'));
+        		return $this->render( 'index', compact('invitation', 'messages', 'newMessage'));
         	}
 
             
@@ -42,9 +42,9 @@ class DefaultController extends Controller
     }
 
 
-    public function actionGetMessages()
+    public function actionGetMessages($invitation_id = 0)
     {
-        $messages = Messages::find()->orderBy(['date' => SORT_ASC])->all();
+        $messages = Messages::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
 
         if (Yii::$app->request->isAjax) {
 

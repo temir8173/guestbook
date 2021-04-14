@@ -713,3 +713,63 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	    font-size: 10px;
 	}
 }
+@media only screen and (max-width: 992px) {
+	#header .top-box__title {
+		font-size: 48px;
+		line-height: 0.9;
+		top: calc(50% - 110px);
+	}
+	#header .top-box__row {
+		bottom: 27%;
+	}
+	#header .top-box__time {
+		display: block;
+	    left: 0;
+	    margin-bottom: 25px;
+	}
+	#header .top-box__date {
+		display: block;
+    	right: 0;
+	}
+	.speech__text {
+		margin: 80px 0 30px 0;
+	}
+	.speech__owners {
+		position: relative;
+	    bottom: unset;
+	    left: 0;
+	}
+	.speech .container:before {
+		top: -95px;
+	    right: -95px;
+	    width: 200px;
+	    opacity: 0.3;
+	}
+	.address__title {
+	    margin-top: 25px;
+	}
+	.address__place {
+		margin-bottom: 25px;
+		font-size: 30px;
+	}
+	.wishes__messages:before {
+	    width: 118%;
+	    height: 113%;
+	}
+	.wishes__messages>div {
+	    padding: 35px 35px 90px 80px;
+	}
+	.wishes__form {
+	    width: 80%;
+	    margin: 50px auto;
+	}
+	.wishes__form .form-group.field-messages-name {
+		margin-bottom: 30px;
+	}
+	.wishes__form-btn input {
+		width: 100%;
+	}
+	.wishes {
+	    padding-bottom: 20px;
+	}
+}

@@ -266,7 +266,7 @@ $this->title = 'Гостевая книга';
 			<div class="col-sm-6">
 
 				<div class="wishes__messages">
-					<div id="messages-box" data-action-url=<?= Url::to(['/invitations/default/get-messages']) ?>>
+					<div id="messages-box" data-action-url=<?= Url::to(['/invitations/default/get-messages', 'invitation_id' => $invitation->id]) ?>>
 						<?= $this->render('_messages', ['messages' => $messages]); ?>
 					</div>
 				</div>
@@ -298,7 +298,7 @@ $this->title = 'Гостевая книга';
 	            		],
 	            	])->label(false) ?>
 	            	<?= $form->field($newMessage, "date")->hiddenInput(['value' => ''])->label(false) ?>
-	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => 1])->label(false) ?>
+	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => $invitation->id])->label(false) ?>
 
 	            	<div class="wishes__form-btn">
 	                    <?= Html::submitInput('Құттықтау', ['name' => 'submit', 'class' => 'btn']) ?>
