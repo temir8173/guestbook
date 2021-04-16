@@ -17,7 +17,7 @@ class InvitationsSearch extends Invitations
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'event_date', 'created_date', 'updated_date', 'status'], 'integer'],
             [['url', 'name'], 'safe'],
         ];
     }
@@ -59,6 +59,10 @@ class InvitationsSearch extends Invitations
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'event_date' => $this->event_date,
+            'created_date' => $this->created_date,
+            'updated_date' => $this->updated_date,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'url', $this->url])

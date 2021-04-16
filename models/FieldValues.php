@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "field_values".
  *
  * @property int $id
- * @property int $invitation_id
+ * @property int $section_id
  * @property int $field_id
  * @property string $value
  */
@@ -28,8 +28,8 @@ class FieldValues extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['invitation_id', 'field_id', 'value'], 'required'],
-            [['invitation_id', 'field_id'], 'integer'],
+            [['section_id', 'field_id', 'value'], 'required'],
+            [['section_id', 'field_id'], 'integer'],
             [['value'], 'string', 'max' => 255],
         ];
     }
@@ -41,7 +41,7 @@ class FieldValues extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'invitation_id' => 'Invitation ID',
+            'section_id' => 'Section ID',
             'field_id' => 'Field ID',
             'value' => 'Value',
         ];

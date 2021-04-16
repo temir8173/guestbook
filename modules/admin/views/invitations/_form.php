@@ -1,10 +1,9 @@
 <?php
 
-use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\ElFinder;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Invitations */
@@ -15,18 +14,35 @@ use mihaildev\elfinder\ElFinder;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?=
-	$form->field($model, 'name');
-	?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <span></span><?= $form->field($model, 'url', [
-    	'template' => '
+    <?= $form->field($model, 'url', [
+        'template' => '
             <div class="input-group">
                 <span class="input-group-addon">'.Url::base(true).'/</span>
                 {input}
             </div>
             {error}',
     ]); ?>
+
+    <?= $form->field($model, 'event_date')->widget(DatePicker::class, [
+        'options' => [
+            'value' => ($model->event_date != null) ? Yii::$app->formatter->asDate($model->event_date) : $model->event_date,
+        ],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'dd.mm.yyyy',
+            'todayHighlight' => true,
+        ]
+    ]); ?>
+
+    <?= $form->field($model, 'template')->dropDownList(['saf' => 'template1', 'test' => 'template2']) ?>
+
+    <?= $form->field($model, 'created_date')->hiddenInput()->label(false) ?>
+
+    <?= $form->field($model, 'updated_date')->hiddenInput()->label(false) ?>
+
+    <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

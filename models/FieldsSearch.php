@@ -17,7 +17,7 @@ class FieldsSearch extends Fields
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'section_example_id'], 'integer'],
             [['name', 'type'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class FieldsSearch extends Fields
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'section_example_id' => $this->section_example_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

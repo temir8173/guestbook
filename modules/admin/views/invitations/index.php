@@ -37,6 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'name',
             [
+                'attribute'=>'event_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate($data->event_date);
+                },
+            ],
+            [
+                'attribute'=>'created_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate($data->created_date);
+                },
+            ],
+            [
                 'attribute'=>'fields',
                 'filter' => false,
                 'format' => 'raw',
@@ -44,6 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return "<a href=".Url::to(['/admin/field-values/index', 'invitation_id' => 1]).">fields</a>";
                 },
             ],
+            //'updated_date',
+            //'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

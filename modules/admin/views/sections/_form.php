@@ -4,19 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fields */
+/* @var $model app\models\SectionExamples */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="fields-form">
+<div class="section-examples-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'section_example_id')->textInput() ?>
-
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

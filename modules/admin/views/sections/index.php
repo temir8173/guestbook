@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\FieldsSearch */
+/* @var $searchModel app\models\SectionExamplesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Fields';
+$this->title = 'Section Examples';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="fields-index">
+<div class="section-examples-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Fields', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Section Examples', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -28,8 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'section_example_id',
-            'type',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

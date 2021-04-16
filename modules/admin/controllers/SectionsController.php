@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Invitations;
-use app\models\InvitationsSearch;
+use app\models\SectionExamples;
+use app\models\SectionExamplesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * InvitationsController implements the CRUD actions for Invitations model.
+ * SectionsController implements the CRUD actions for SectionExamples model.
  */
-class InvitationsController extends Controller
+class SectionsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Lists all Invitations models.
+     * Lists all SectionExamples models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new InvitationsSearch();
+        $searchModel = new SectionExamplesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Displays a single Invitations model.
+     * Displays a single SectionExamples model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,17 +58,15 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Creates a new Invitations model.
+     * Creates a new SectionExamples model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Invitations();
+        $model = new SectionExamples();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //my_dump(Yii::$app->request->post());die;
-            //echo '<pre>'; var_dump(Yii::$app->request->post()); echo '</pre>'; die;
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -78,7 +76,7 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Updates an existing Invitations model.
+     * Updates an existing SectionExamples model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,7 +96,7 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Deletes an existing Invitations model.
+     * Deletes an existing SectionExamples model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,15 +110,15 @@ class InvitationsController extends Controller
     }
 
     /**
-     * Finds the Invitations model based on its primary key value.
+     * Finds the SectionExamples model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Invitations the loaded model
+     * @return SectionExamples the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Invitations::findOne($id)) !== null) {
+        if (($model = SectionExamples::findOne($id)) !== null) {
             return $model;
         }
 

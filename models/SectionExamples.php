@@ -5,21 +5,19 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "fields".
+ * This is the model class for table "section_examples".
  *
  * @property int $id
  * @property string $name
- * @property int $section_example_id
- * @property string $type
  */
-class Fields extends \yii\db\ActiveRecord
+class SectionExamples extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'fields';
+        return 'section_examples';
     }
 
     /**
@@ -28,9 +26,8 @@ class Fields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'section_example_id', 'type'], 'required'],
-            [['section_example_id'], 'integer'],
-            [['name', 'type'], 'string', 'max' => 255],
+            [['name', 'view'], 'required'],
+            [['name', 'view'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,9 +38,8 @@ class Fields extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'view' => 'Вид',
             'name' => 'Name',
-            'section_example_id' => 'Section Example ID',
-            'type' => 'Type',
         ];
     }
 }

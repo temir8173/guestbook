@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\InvitationsSearch */
+/* @var $model app\models\SectionExamplesSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="invitations-search">
+<div class="section-examples-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,17 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'url') ?>
-
     <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'event_date') ?>
-
-    <?= $form->field($model, 'created_date') ?>
-
-    <?php // echo $form->field($model, 'updated_date') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

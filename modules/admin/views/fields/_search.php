@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
+    <?= $form->field($model, 'section_example_id') ?>
+
     <?= $form->field($model, 'type') ?>
 
     <div class="form-group">

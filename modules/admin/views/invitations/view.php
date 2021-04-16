@@ -31,12 +31,40 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
             [
                 'attribute'=>'url',
                 'format' => 'raw',
                 'value' => function($data){
                     return "<a href=\"" . Url::base(true) . "/$data->url\" target=\"_blank\">" . Url::base(true) . "/$data->url</a>";
+                },
+            ],
+            'name',
+            [
+                'attribute'=>'event_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate($data->event_date);
+                },
+            ],
+            [
+                'attribute'=>'created_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDateTime($data->created_date);
+                },
+            ],
+            [
+                'attribute'=>'updated_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDateTime($data->updated_date);
+                },
+            ],
+            [
+                'attribute'=>'status',
+                'format' => 'raw',
+                'value' => function($data){
+                    return ( $data->status == 1 ) ? 'Төленді' : 'Төленбеді';
                 },
             ],
         ],
