@@ -1,19 +1,19 @@
 <?php
 
 use yii\db\Migration;
-use app\models\SectionExamples;
+use app\models\SectionTemplates;
 
 /**
- * Handles the creation of table `{{%section_examples}}`.
+ * Handles the creation of table `{{%section_templates}}`.
  */
-class m210416_171835_create_section_examples_table extends Migration
+class m210418_094555_create_section_templates_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%section_examples}}', [
+        $this->createTable('{{%section_templates}}', [
             'id' => $this->primaryKey(),
             'view' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
@@ -29,14 +29,11 @@ class m210416_171835_create_section_examples_table extends Migration
         ];
 
         foreach ($sections as $view => $section) {
-            $sectionExample = new SectionExamples();
+            $sectionExample = new SectionTemplates();
             $sectionExample->view = $view;
             $sectionExample->name = $section;
             $sectionExample->save();
         }
-
-        // Create admin user
-        
     }
 
     /**
@@ -44,6 +41,6 @@ class m210416_171835_create_section_examples_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%section_examples}}');
+        $this->dropTable('{{%section_templates}}');
     }
 }

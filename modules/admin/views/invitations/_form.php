@@ -37,12 +37,36 @@ use kartik\date\DatePicker;
     ]); ?>
 
     <?= $form->field($model, 'template')->dropDownList(['saf' => 'template1', 'test' => 'template2']) ?>
-
     <?= $form->field($model, 'created_date')->hiddenInput()->label(false) ?>
-
     <?= $form->field($model, 'updated_date')->hiddenInput()->label(false) ?>
-
     <?= $form->field($model, 'status')->textInput() ?>
+
+    <?php foreach ( $sectionTemplates as $index => $sectionTemplate ) : ?>
+
+
+        <section class="invitations-form__section">
+
+            <h2><span><?= $index+1 ?></span>. Секция - <?= $sectionTemplate->name ?></h2>
+
+            <?php // echo $form->field($sections[$index], "[$index]invitation_id")->hiddenInput(['value' => $model->id])->label(false) ?>
+            <?= $form->field($sections[$index], "[$index]section_template_id")->hiddenInput(['value' => $sectionTemplate->id])->label(false) ?>
+            <?= $form->field($sections[$index], "[$index]order")->  textInput(['value' => $index+1])->label(false) ?>
+            <?= $form->field($sections[$index], "[$index]status")->radioList([1 => 'иә', 0 => 'жоқ'])->label() ?>
+
+            <?php $j = 0; foreach ($sectionTemplate->fields as $field) { ?>
+
+                <?php if (is_array($fieldValues[$sectionTemplate->id])) { ?>
+                    
+                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]field_id")->textInput(['value' => $field->id])->label() ?>
+                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]value")->textInput()->label($field->name) ?>
+
+                <?php } ?>
+
+            <?php $j++; } ?>
+
+        </section>
+
+    <?php endforeach; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

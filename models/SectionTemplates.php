@@ -10,14 +10,14 @@ use Yii;
  * @property int $id
  * @property string $name
  */
-class SectionExamples extends \yii\db\ActiveRecord
+class SectionTemplates extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'section_examples';
+        return 'section_templates';
     }
 
     /**
@@ -41,5 +41,15 @@ class SectionExamples extends \yii\db\ActiveRecord
             'view' => 'Вид',
             'name' => 'Name',
         ];
+    }
+
+    public function getFields()
+    {
+        return $this->hasMany(Fields::className(), ['section_template_id' => 'id']);
+    }
+
+    public function getSections()
+    {
+        return $this->hasMany(Sections::className(), ['section_template_id' => 'id']);
     }
 }

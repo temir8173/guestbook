@@ -80,4 +80,9 @@ class Invitations extends ActiveRecord
         return false;
     }
 
+    public function getSections()
+    {
+        return $this->hasMany(Sections::className(), ['invitation_id' => 'id']);
+    }
+
 }

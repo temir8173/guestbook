@@ -8,6 +8,10 @@ use app\models\InvitationsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\SectionTemplates;
+use app\models\FieldValues;
+use app\models\Sections;
+use yii\base\Model;
 
 /**
  * InvitationsController implements the CRUD actions for Invitations model.
@@ -65,16 +69,48 @@ class InvitationsController extends Controller
     public function actionCreate()
     {
         $model = new Invitations();
+        $sectionTemplates = SectionTemplates::find()->with('fields')->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            //my_dump(Yii::$app->request->post());die;
-            //echo '<pre>'; var_dump(Yii::$app->request->post()); echo '</pre>'; die;
+        // создаем массив моделей секций
+        $sections = [new Sections()];
+        for($i = 1; $i < count($sectionTemplates); $i++) {
+            $sections[] = new Sections();
+        }
+        // Считаем колво полей
+        $fieldsTotal = 0;
+        $fieldValues = [];
+        foreach ($sectionTemplates as $sectionTemplate) {
+            for($i = 0; $i < count($sectionTemplate->fields); $i++) {
+                $fieldValues[$sectionTemplate->id][] = new FieldValues();
+            }
+        }
+
+        // сохраняем в бд если пришел пост запрос
+        if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
+
+            $model->save();
+
+            foreach ($sections as $section) {
+                $section->invitation_id = $model->id;
+                $section->save();
+                if ( $fieldValues[$section->section_template_id] !== null ) {
+
+                    if ( Model::loadMultiple($fieldValues[$section->section_template_id], Yii::$app->request->post()) ) {
+                        foreach ($fieldValues[$section->section_template_id] as $fieldValue) {
+                            $fieldValue->section_id = $section->id;
+                            $fieldValue->save();
+                        }
+                    }
+                }
+                
+                
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+
+        return $this->render('create', compact('model', 'sectionTemplates', 'sections', 'fieldValues'));
     }
 
     /**
@@ -86,15 +122,33 @@ class InvitationsController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = Invitations::find()->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); //$this->findModel($id);
+
+        $sectionTemplates = SectionTemplates::find()
+        ->with('fields')
+        ->joinWith('sections')
+        ->where(['sections.invitation_id' => $id])
+        ->orderby(['sections.order' => SORT_ASC])
+        ->all();
+
+        //my_dump($model->sections[0]->sectionTemplate->fields);die;
+
+        // создаем массив моделей секций
+        $sections = $model->sections;
+        // создаем массив моделей полей
+        $fieldValues = [];
+        foreach ($sections as $section) {
+            if ($section->fieldValues !== null) {
+                $fieldValues[$section->section_template_id] = $section->fieldValues;
+            }
+        }
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', compact('model', 'sectionTemplates', 'sections', 'fieldValues'));
     }
 
     /**

@@ -16,7 +16,7 @@ class m210416_171809_create_sections_table extends Migration
             'id' => $this->primaryKey(),
             'invitation_id' => $this->integer()->notNull(),
             'order' => $this->integer()->notNull(),
-            'section_example_id' => $this->integer()->notNull(),
+            'section_template_id' => $this->integer()->notNull(),
             'status' => $this->integer()->notNull(),
         ]);
     }

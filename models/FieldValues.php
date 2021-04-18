@@ -41,9 +41,9 @@ class FieldValues extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'section_id' => 'Section ID',
-            'field_id' => 'Field ID',
-            'value' => 'Value',
+            'section_id' => 'Секция',
+            'field_id' => 'Өріс',
+            'value' => 'Өріс мәні',
         ];
     }
 }

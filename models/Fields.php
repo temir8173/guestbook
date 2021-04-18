@@ -14,6 +14,14 @@ use Yii;
  */
 class Fields extends \yii\db\ActiveRecord
 {
+
+    public $types = [
+        'text' => 'Текст',
+        'textarea' => 'Область текста',
+        'image' => 'Сурет',
+        'link' => 'Cілтеме',
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -28,8 +36,8 @@ class Fields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'section_example_id', 'type'], 'required'],
-            [['section_example_id'], 'integer'],
+            [['name', 'section_template_id', 'type'], 'required'],
+            [['section_template_id'], 'integer'],
             [['name', 'type'], 'string', 'max' => 255],
         ];
     }
@@ -41,9 +49,14 @@ class Fields extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'section_example_id' => 'Section Example ID',
-            'type' => 'Type',
+            'name' => 'Аты',
+            'section_template_id' => 'Секция',
+            'type' => 'Түрі',
         ];
+    }
+
+    public function getSectionTemplate()
+    {
+        return $this->hasOne(SectionTemplates::className(), ['id' => 'section_template_id']);
     }
 }
