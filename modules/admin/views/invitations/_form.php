@@ -36,7 +36,7 @@ use kartik\date\DatePicker;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'template')->dropDownList(['saf' => 'template1', 'test' => 'template2']) ?>
+    <?= $form->field($model, 'template')->dropDownList($model->templates) ?>
     <?= $form->field($model, 'created_date')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'updated_date')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'status')->textInput() ?>
@@ -55,7 +55,7 @@ use kartik\date\DatePicker;
 
             <?php $j = 0; foreach ($sectionTemplate->fields as $field) { ?>
 
-                <?php if (is_array($fieldValues[$sectionTemplate->id])) { ?>
+                <?php if (!empty($fieldValues[$sectionTemplate->id])) { ?>
                     
                     <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]field_id")->textInput(['value' => $field->id])->label() ?>
                     <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]value")->textInput()->label($field->name) ?>

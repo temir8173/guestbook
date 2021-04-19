@@ -20,6 +20,10 @@ use yii\behaviors\TimestampBehavior;
  */
 class Invitations extends ActiveRecord
 {
+    public $templates = [
+        'template1' => 'template1', 
+        'template2' => 'template2'
+    ];
     /**
      * {@inheritdoc}
      */

@@ -93,7 +93,7 @@ class InvitationsController extends Controller
             foreach ($sections as $section) {
                 $section->invitation_id = $model->id;
                 $section->save();
-                if ( $fieldValues[$section->section_template_id] !== null ) {
+                if ( !empty($fieldValues[$section->section_template_id]) ) {
 
                     if ( Model::loadMultiple($fieldValues[$section->section_template_id], Yii::$app->request->post()) ) {
                         foreach ($fieldValues[$section->section_template_id] as $fieldValue) {
@@ -122,7 +122,7 @@ class InvitationsController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = Invitations::find()->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); //$this->findModel($id);
+        $model = Invitations::find()->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); 
 
         $sectionTemplates = SectionTemplates::find()
         ->with('fields')
@@ -130,8 +130,6 @@ class InvitationsController extends Controller
         ->where(['sections.invitation_id' => $id])
         ->orderby(['sections.order' => SORT_ASC])
         ->all();
-
-        //my_dump($model->sections[0]->sectionTemplate->fields);die;
 
         // создаем массив моделей секций
         $sections = $model->sections;
@@ -142,7 +140,6 @@ class InvitationsController extends Controller
                 $fieldValues[$section->section_template_id] = $section->fieldValues;
             }
         }
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

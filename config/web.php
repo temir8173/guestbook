@@ -73,6 +73,13 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'datetimeFormat' => 'dd.MM.yyyy h:i:s',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'EUR',
+       ],
     ],
     'modules' => [
         'admin' => [

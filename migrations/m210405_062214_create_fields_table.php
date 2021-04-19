@@ -15,7 +15,7 @@ class m210405_062214_create_fields_table extends Migration
         $this->createTable('{{%fields}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'section_example_id' => $this->integer()->notNull(),
+            'section_template_id' => $this->integer()->notNull(),
             'type' => $this->string()->notNull(),
         ]);
     }

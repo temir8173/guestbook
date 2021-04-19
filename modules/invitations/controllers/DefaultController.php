@@ -20,8 +20,10 @@ class DefaultController extends Controller
     public function actionIndex($view = '')
     {
     	if ( $view !== '' ) {
-    		$invitation = Invitations::find()->where(['url' => $view])->one();
-    		//var_dump($invitation);die;
+    		$invitation = Invitations::find()
+            ->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')
+            ->where(['url' => $view])
+            ->one();
 
 
 
@@ -30,8 +32,8 @@ class DefaultController extends Controller
                 $newMessage = new Messages();
                 $messages = Messages::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
 
-                $this->layout = 'template1';
-        		return $this->render( 'index', compact('invitation', 'messages', 'newMessage'));
+                $this->layout = $invitation->template;
+        		return $this->render( "@app/modules/invitations/views/default/$invitation->template/index", compact('invitation', 'messages', 'newMessage'));
         	}
 
             

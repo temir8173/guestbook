@@ -15,7 +15,7 @@ use app\models\SectionTemplates;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'section_example_id')->dropDownList(SectionTemplates::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' =>'-- таңдаңыз --']) ?>
+    <?= $form->field($model, 'section_template_id')->dropDownList(SectionTemplates::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' =>'-- таңдаңыз --']) ?>
 
     <?= $form->field($model, 'type')->dropDownList($model->types) ?>
 
