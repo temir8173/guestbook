@@ -47,10 +47,11 @@ class DefaultController extends Controller
     public function actionGetMessages($invitation_id = 0)
     {
         $messages = Messages::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
+        $invitation = Invitations::findOne($invitation_id);
 
         if (Yii::$app->request->isAjax) {
 
-            return $this->renderAjax('_messages', [
+            return $this->renderAjax("@app/modules/invitations/views/default/$invitation->template/_messages", [
                 'messages' => $messages
             ]);
 

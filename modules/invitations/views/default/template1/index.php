@@ -16,7 +16,7 @@ $this->title = $invitation->name;
                     <h1 class="top-box__title"><?= $invitation->name ?></h1>
                     <div class="top-box__row">
 
-                    	<div id="countdown" class="top-box__time countdown" data-event-date="<?= Yii::$app->formatter->asDate($invitation->event_date) ?>">
+                    	<div id="countdown" class="top-box__time countdown" data-event-date="<?= Yii::$app->formatter->asDate($invitation->event_date, 'php:j F Y') ?>">
 							<div class="countdown-number">
 								<span class="days countdown-time"></span>
 								<span class="countdown-text">Күн</span>
@@ -53,7 +53,7 @@ $this->title = $invitation->name;
 
 	<?php if ($section->status == 1) : ?>
 
-		<?= $this->render('_'.$section->sectionTemplate->view, compact('invitation', 'messages', 'newMessage')); ?>
+		<?= $this->render('_'.$section->sectionTemplate->view, compact('invitation', 'messages', 'newMessage', 'section')); ?>
 
 	<?php endif; ?>
 

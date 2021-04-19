@@ -280,6 +280,7 @@ body {
 	text-align: center;
 	padding: 0 35px;
 	font-family: 'Assylbek Shelley', sans-serif;
+	min-height: 90vh;
 }
 
 .speech .container {
@@ -300,7 +301,7 @@ body {
 	content: url('../images/template1/couple.png');
 	width: 48%;
 	position: absolute;
-	top: 20%;
+	top: 16%;
 	right: 0;
 	opacity: 0.1;
 }

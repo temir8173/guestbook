@@ -28,9 +28,9 @@ class FieldValues extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['section_id', 'field_id', 'value'], 'required'],
+            [['section_id', 'field_id', 'value', 'url'], 'required'],
             [['section_id', 'field_id'], 'integer'],
-            [['value'], 'string', 'max' => 255],
+            [['value', 'url'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +44,12 @@ class FieldValues extends \yii\db\ActiveRecord
             'section_id' => 'Секция',
             'field_id' => 'Өріс',
             'value' => 'Өріс мәні',
+            'url' => 'Өріс url',
         ];
+    }
+
+    public function getField()
+    {
+        return $this->hasOne(Fields::className(), ['id' => 'field_id']);
     }
 }

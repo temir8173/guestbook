@@ -3,14 +3,14 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\SectionExamples;
-use app\models\SectionExamplesSearch;
+use app\models\SectionTemplates;
+use app\models\SectionTemplatesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SectionsController implements the CRUD actions for SectionExamples model.
+ * SectionsController implements the CRUD actions for SectionTemplates model.
  */
 class SectionsController extends Controller
 {
@@ -30,12 +30,12 @@ class SectionsController extends Controller
     }
 
     /**
-     * Lists all SectionExamples models.
+     * Lists all SectionTemplates models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SectionExamplesSearch();
+        $searchModel = new SectionTemplatesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Displays a single SectionExamples model.
+     * Displays a single SectionTemplates model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class SectionsController extends Controller
     }
 
     /**
-     * Creates a new SectionExamples model.
+     * Creates a new SectionTemplates model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SectionExamples();
+        $model = new SectionTemplates();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Updates an existing SectionExamples model.
+     * Updates an existing SectionTemplates model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class SectionsController extends Controller
     }
 
     /**
-     * Deletes an existing SectionExamples model.
+     * Deletes an existing SectionTemplates model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class SectionsController extends Controller
     }
 
     /**
-     * Finds the SectionExamples model based on its primary key value.
+     * Finds the SectionTemplates model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return SectionExamples the loaded model
+     * @return SectionTemplates the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SectionExamples::findOne($id)) !== null) {
+        if (($model = SectionTemplates::findOne($id)) !== null) {
             return $model;
         }
 

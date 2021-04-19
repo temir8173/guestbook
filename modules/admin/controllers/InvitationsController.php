@@ -141,7 +141,30 @@ class InvitationsController extends Controller
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }*/
+        // сохраняем в бд если пришел пост запрос
+        if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
+
+            $model->save();
+
+            foreach ($sections as $section) {
+                $section->invitation_id = $model->id;
+                $section->save();
+                if ( !empty($fieldValues[$section->section_template_id]) ) {
+
+                    if ( Model::loadMultiple($fieldValues[$section->section_template_id], Yii::$app->request->post()) ) {
+                        foreach ($fieldValues[$section->section_template_id] as $fieldValue) {
+                            $fieldValue->section_id = $section->id;
+                            $fieldValue->save();
+                        }
+                    }
+                }
+                
+                
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

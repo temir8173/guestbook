@@ -57,4 +57,14 @@ class Sections extends \yii\db\ActiveRecord
     {
         return $this->hasMany(FieldValues::className(), ['section_id' => 'id']);
     }
+
+    public function getFieldValueByUrl($url)
+    {
+        return FieldValues::find()
+        ->joinWith('field f')
+        ->where(['section_id' => $this->id])
+        ->andWhere(['f.url' => $url])
+        ->one()
+        ->value;
+    }
 }
