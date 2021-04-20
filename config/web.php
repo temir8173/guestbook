@@ -57,6 +57,8 @@ $config = [
                 '/' => 'site/index',
                 '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
                 '/<view:\w+>' => '/invitations/default/index',
+                '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
+                '/manage/' => '/manage/invitations/index',
             ],
         ],
         'i18n' => [
@@ -84,7 +86,7 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
-            'layout' => '@app/views/layouts/admin'
+            'layout' => '@app/views/layouts/admin',
         ],
         'invitations' => [
             'class' => 'app\modules\invitations\Module',
@@ -92,6 +94,10 @@ $config = [
         ],
         'user' => [
             'class' => 'app\modules\user\Module',
+        ],
+        'manage' => [
+            'class' => 'app\modules\manage\Module',
+            'layout' => '@app/modules/manage/views/layouts/manage',
         ],
     ],
     'controllerMap' => [

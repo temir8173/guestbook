@@ -38,7 +38,7 @@ class MessagesSearch extends Messages
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, int $invitation_id = 0)
     {
         $query = Messages::find();
 
@@ -60,7 +60,7 @@ class MessagesSearch extends Messages
         $query->andFilterWhere([
             'id' => $this->id,
             'date' => $this->date,
-            'invitation_id' => $this->invitation_id,
+            'invitation_id' => ($invitation_id === 0) ? $this->invitation_id : $invitation_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

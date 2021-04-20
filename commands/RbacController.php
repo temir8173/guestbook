@@ -4,6 +4,7 @@ namespace app\commands;
 use Yii;
 use yii\console\Controller;
 use app\rbac\UserProfileOwnerRule;
+use app\rbac\UserInvitationOwnerRule;
 use app\modules\admin\rbac\Rbac as AdminRbac;
  
 class RbacController extends Controller
@@ -23,6 +24,13 @@ class RbacController extends Controller
         $updateOwnProfile = $auth->createPermission('updateOwnProfile');
         $updateOwnProfile->ruleName = $userProfileOwnerRule->name;
         $auth->add($updateOwnProfile);
+
+        $userInvitationOwnerRule = new UserInvitationOwnerRule();
+        $auth->add($userInvitationOwnerRule);
+         
+        $manageInvitation = $auth->createPermission('manageInvitation');
+        $manageInvitation->ruleName = $userInvitationOwnerRule->name;
+        $auth->add($manageInvitation);
  
         $user = $auth->createRole('user');
         $user->description = 'User';
@@ -33,6 +41,7 @@ class RbacController extends Controller
         $auth->add($admin);
          
         $auth->addChild($user, $updateOwnProfile);
+        $auth->addChild($user, $manageInvitation);
         $auth->addChild($admin, $user);
         $auth->addChild($admin, $adminPanel);
         

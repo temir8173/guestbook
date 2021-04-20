@@ -68,10 +68,11 @@ class Invitations extends ActiveRecord
             'id' => 'ID',
             'url' => 'Url',
             'name' => 'Name',
-            'event_date' => 'Event Date',
+            'event_date' => 'Өткізілетін уақыты',
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
-            'status' => 'Status',
+            'template' => 'Шаблон',
+            'status' => 'Статус',
         ];
     }
 
