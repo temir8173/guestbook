@@ -60,11 +60,28 @@ class Sections extends \yii\db\ActiveRecord
 
     public function getFieldValueByUrl($url)
     {
-        return FieldValues::find()
+        $fieldValue = FieldValues::find()
         ->joinWith('field f')
         ->where(['section_id' => $this->id])
         ->andWhere(['f.url' => $url])
-        ->one()
-        ->value;
+        ->one();
+
+        if ( $fieldValue !== null )
+            return $fieldValue->value; 
+        else 
+            return false;
+
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            foreach ($this->fieldValues as $fieldValue) {
+                $fieldValue->delete();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

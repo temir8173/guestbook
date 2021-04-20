@@ -57,8 +57,14 @@ use kartik\date\DatePicker;
 
                 <?php if (!empty($fieldValues[$sectionTemplate->id])) { ?>
                     
-                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]field_id")->textInput(['value' => $field->id])->label() ?>
-                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$j]value")->textInput()->label($field->name) ?>
+                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]field_id")->hiddenInput(['value' => $field->id])->label(false) ?>
+                    <?php
+                        if ($field->type == 'text' || $field->type == 'link') {
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textInput()->label($field->name);
+                        } elseif ($field->type == 'textarea') {
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
+                        }
+                    ?>
 
                 <?php } ?>
 

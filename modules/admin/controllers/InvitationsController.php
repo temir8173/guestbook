@@ -95,11 +95,11 @@ class InvitationsController extends Controller
                 $section->save();
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
-                    if ( Model::loadMultiple($fieldValues[$section->section_template_id], Yii::$app->request->post()) ) {
-                        foreach ($fieldValues[$section->section_template_id] as $fieldValue) {
-                            $fieldValue->section_id = $section->id;
-                            $fieldValue->save();
-                        }
+                    foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
+                        $fieldValue->section_id = $section->id;
+                        $fieldValue->field_id = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['field_id'];
+                        $fieldValue->value = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['value'];
+                        $fieldValue->save();
                     }
                 }
                 
@@ -136,17 +136,22 @@ class InvitationsController extends Controller
         // создаем массив моделей полей
         $fieldValues = [];
         foreach ($sections as $section) {
-            if ($section->fieldValues !== null) {
-                $fieldValues[$section->section_template_id] = $section->fieldValues;
+            
+            if ($section->sectionTemplate->fields !== null) {
+                if (empty($section->fieldValues)) {
+                    for($i = 0; $i < count($section->sectionTemplate->fields); $i++) {
+                        $fieldValues[$section->section_template_id][] = new FieldValues();
+                    }
+                } else {
+                    $fieldValues[$section->section_template_id] = $section->fieldValues;
+                }
             }
+
         }
 
-        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }*/
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
-
+            
             $model->save();
 
             foreach ($sections as $section) {
@@ -154,11 +159,11 @@ class InvitationsController extends Controller
                 $section->save();
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
-                    if ( Model::loadMultiple($fieldValues[$section->section_template_id], Yii::$app->request->post()) ) {
-                        foreach ($fieldValues[$section->section_template_id] as $fieldValue) {
-                            $fieldValue->section_id = $section->id;
-                            $fieldValue->save();
-                        }
+                    foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
+                        $fieldValue->section_id = $section->id;
+                        $fieldValue->field_id = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['field_id'];
+                        $fieldValue->value = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['value'];
+                        $fieldValue->save();
                     }
                 }
                 

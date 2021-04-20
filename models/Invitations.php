@@ -89,4 +89,24 @@ class Invitations extends ActiveRecord
         return $this->hasMany(Sections::className(), ['invitation_id' => 'id']);
     }
 
+    public function getMessages()
+    {
+        return $this->hasMany(Messages::className(), ['invitation_id' => 'id']);
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            foreach ($this->sections as $section) {
+                $section->delete();
+            }
+            foreach ($this->messages as $message) {
+                $message->delete();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -2,9 +2,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<h2 class="love-story__title section-title">Love story</h2>
+				<h2 class="love-story__title section-title"><?= $section->getFieldValueByUrl('lovestory-section-name') ?></h2>
 				<div class="love-story__video-container iframe-container">
-					<iframe width="100%" height="500px" src="https://www.youtube.com/embed/qwCmhIeSRhM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe width="100%" height="500px" src="<?= $section->getFieldValueByUrl('lovestory-video-url') ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
 		</div>

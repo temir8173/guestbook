@@ -18,7 +18,7 @@ class FieldsSearch extends Fields
     {
         return [
             [['id', 'section_template_id'], 'integer'],
-            [['name', 'type'], 'safe'],
+            [['name', 'type', 'url'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class FieldsSearch extends Fields
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'type', $this->type]);
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

@@ -16,7 +16,7 @@ class m210405_062227_create_field_values_table extends Migration
             'id' => $this->primaryKey(),
             'section_id' => $this->integer()->notNull(),
             'field_id' => $this->integer()->notNull(),
-            'value' => $this->string()->notNull(),
+            'value' => $this->text()->notNull(),
         ]);
     }
 

@@ -28,9 +28,8 @@ class FieldValues extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['section_id', 'field_id', 'value', 'url'], 'required'],
+            [['section_id', 'field_id', 'value'], 'required'],
             [['section_id', 'field_id'], 'integer'],
-            [['value', 'url'], 'string', 'max' => 255],
         ];
     }
 

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\SectionTemplates;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\FieldsSearch */
@@ -26,12 +27,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'section_example_id',
-            'type',
+            [
+                'attribute' => 'id',
+                'headerOptions' => ['style' => 'width: 3%'],
+                'filter' => false,
+            ],
+            [
+                'attribute' => 'name',
+                'headerOptions' => ['style' => 'width: 25%'],
+            ],
+            [
+                'attribute'=>'section_template_id',
+                'headerOptions' => ['style' => 'width: 25%'],
+                'format' => 'raw',
+                'value' => function($data){
+                    return ($data->section_template_id !== null) ? SectionTemplates::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
+                },
+                'filter' => SectionTemplates::find()->select(['name', 'id'])->indexBy('id')->column(),
+            ],
+            [
+                'attribute' => 'url',
+                'headerOptions' => ['style' => 'width: 20%'],
+            ],
+            [
+                'attribute' => 'type',
+                'headerOptions' => ['style' => 'width: 20%'],
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия', 
+                'headerOptions' => ['style' => 'width: 7%'],
+            ],
         ],
     ]); ?>
 

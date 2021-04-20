@@ -36,9 +36,9 @@ class Fields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'section_template_id', 'type'], 'required'],
+            [['name', 'section_template_id', 'type', 'url'], 'required'],
             [['section_template_id'], 'integer'],
-            [['name', 'type'], 'string', 'max' => 255],
+            [['name', 'type', 'url'], 'string', 'max' => 255],
         ];
     }
 

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\SectionTemplates;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Fields */
@@ -31,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'section_example_id',
+            [
+                'attribute'=>'section_template_id',
+                'format' => 'raw',
+                'value' => function($data){
+                    return ($data->section_template_id !== null) ? SectionTemplates::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
+                },
+            ],
             'type',
         ],
     ]) ?>
