@@ -9,34 +9,36 @@ use yii\grid\GridView;
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="container">
+    <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
 
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'username',
-            [
-                'attribute' => 'roles',
-                'value' => function($user) {
-                    /* @var $user User */
-                    return implode(', ', $user->getRoles());                    
-                }
+                'id',
+                'username',
+                [
+                    'attribute' => 'roles',
+                    'value' => function($user) {
+                        /* @var $user User */
+                        return implode(', ', $user->getRoles());                    
+                    }
+                ],
+                //'access_token',
+
+                ['class' => 'yii\grid\ActionColumn'],
             ],
-            //'access_token',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        ]); ?>
 
 
+    </div>
 </div>

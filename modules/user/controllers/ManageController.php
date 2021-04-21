@@ -34,7 +34,7 @@ class ManageController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index', 'view', 'update'],
-                        'roles' => ['admin', 'user'],
+                        'roles' => ['admin'],
                     ],
                     [
                         'allow' => true,

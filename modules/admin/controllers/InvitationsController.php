@@ -84,7 +84,6 @@ class InvitationsController extends Controller
                 $fieldValues[$sectionTemplate->id][] = new FieldValues();
             }
         }
-
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
 
@@ -96,10 +95,13 @@ class InvitationsController extends Controller
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
                     foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
-                        $fieldValue->section_id = $section->id;
-                        $fieldValue->field_id = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['field_id'];
-                        $fieldValue->value = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['value'];
-                        $fieldValue->save();
+                        if ( Yii::$app->request->post('FieldValues') !== null ) {
+                            $queryParams = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key];
+                            $fieldValue->section_id = $section->id;
+                            $fieldValue->field_id = $queryParams['field_id'];
+                            $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
+                            $fieldValue->save();
+                        }
                     }
                 }
                 
@@ -138,12 +140,12 @@ class InvitationsController extends Controller
         foreach ($sections as $section) {
             
             if ($section->sectionTemplate->fields !== null) {
-                if (empty($section->fieldValues)) {
-                    for($i = 0; $i < count($section->sectionTemplate->fields); $i++) {
+                for($i = 0; $i < count($section->sectionTemplate->fields); $i++) {
+                    if (isset($section->fieldValues[$i])) {
+                        $fieldValues[$section->section_template_id][] = $section->fieldValues[$i];
+                    } else {
                         $fieldValues[$section->section_template_id][] = new FieldValues();
                     }
-                } else {
-                    $fieldValues[$section->section_template_id] = $section->fieldValues;
                 }
             }
 

@@ -58,7 +58,7 @@ $config = [
                 '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
                 '/<view:\w+>' => '/invitations/default/index',
                 '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
-                '/manage/' => '/manage/invitations/index',
+                //'/manage/' => '/manage/invitations/index',
             ],
         ],
         'i18n' => [

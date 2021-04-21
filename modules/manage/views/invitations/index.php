@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::a('Тілектерге', ['/manage/messages/index', 'invitation_id' => $data->id], ['class' => 'profile-link']);
+                    return Html::a('Басқару', ['/manage/messages/index', 'invitation_id' => $data->id], ['class' => 'profile-link']);
                 },
             ]
             /*[

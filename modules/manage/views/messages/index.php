@@ -15,30 +15,42 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Messages', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'headerOptions' => ['style' => 'width: 5%'],
+            ],
 
-            'id',
-            'name',
-            'text',
+            [
+                'attribute'=>'id',
+                'headerOptions' => ['style' => 'width: 5%'],
+            ],
+            [
+                'attribute'=>'name',
+                'headerOptions' => ['style' => 'width: 20%'],
+            ],
+            [
+                'attribute'=>'text',
+                'headerOptions' => ['style' => 'width: 47%'],
+            ],
             [
                 'attribute'=>'date',
+                'headerOptions' => ['style' => 'width: 15%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
+                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');
                 },
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'headerOptions' => ['style' => 'width: 7%'],
+            ],
         ],
     ]); ?>
 
