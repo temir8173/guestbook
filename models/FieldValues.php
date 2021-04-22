@@ -15,6 +15,11 @@ use Yii;
 class FieldValues extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile
+     */
+    public $imageFiles;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -30,6 +35,7 @@ class FieldValues extends \yii\db\ActiveRecord
         return [
             [['section_id', 'field_id', 'value'], 'required'],
             [['section_id', 'field_id'], 'integer'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

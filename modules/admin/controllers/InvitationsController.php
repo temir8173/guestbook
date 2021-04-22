@@ -162,9 +162,10 @@ class InvitationsController extends Controller
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
                     foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
+                        $queryParams = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key];
                         $fieldValue->section_id = $section->id;
-                        $fieldValue->field_id = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['field_id'];
-                        $fieldValue->value = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key]['value'];
+                        $fieldValue->field_id = $queryParams['field_id'];
+                        $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
                         $fieldValue->save();
                     }
                 }

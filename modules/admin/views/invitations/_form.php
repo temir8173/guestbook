@@ -12,7 +12,7 @@ use kartik\date\DatePicker;
 
 <div class="invitations-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -63,7 +63,9 @@ use kartik\date\DatePicker;
                             echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textInput()->label($field->name);
                         } elseif ($field->type == 'textarea') {
                             echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
-                        }
+                        } elseif ($field->type == 'image') {
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], '[$sectionTemplate->id][$j]imageFiles[]')->fileInput(['multiple' => true])->label($field->name);
+                        } 
                     ?>
 
                 <?php } ?>
