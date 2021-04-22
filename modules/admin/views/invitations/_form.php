@@ -64,7 +64,20 @@ use kartik\date\DatePicker;
                         } elseif ($field->type == 'textarea') {
                             echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
                         } elseif ($field->type == 'image') {
-                            echo $form->field($fieldValues[$sectionTemplate->id][$j], '[$sectionTemplate->id][$j]imageFiles[]')->fileInput(['multiple' => true])->label($field->name);
+                            ?>
+                            <div class="container">
+                                <div class="row">
+                                    <?php foreach ($fieldValues[$sectionTemplate->id][$j]->imagesNames as $key => $imageName) { ?>
+                                    <div class="col-sm-3">
+                                        <img src="/uploads/<?= $imageName ?>" alt="">
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                                <?= $fieldValues[$sectionTemplate->id][$j]->value ?>
+                                    
+                            </div>
+                            <?php
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]imageFiles[]")->fileInput(['multiple' => true])->label($field->name);
                         } 
                     ?>
 

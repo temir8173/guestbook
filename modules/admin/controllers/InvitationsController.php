@@ -12,6 +12,7 @@ use app\models\SectionTemplates;
 use app\models\FieldValues;
 use app\models\Sections;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 /**
  * InvitationsController implements the CRUD actions for Invitations model.
@@ -124,7 +125,7 @@ class InvitationsController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = Invitations::find()->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); 
+        $model = Invitations::find()->with('sections', 'sections.fieldValues', 'sections.fieldValues.field', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); 
 
         $sectionTemplates = SectionTemplates::find()
         ->with('fields')
@@ -166,6 +167,10 @@ class InvitationsController extends Controller
                         $fieldValue->section_id = $section->id;
                         $fieldValue->field_id = $queryParams['field_id'];
                         $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
+                        if ($fieldValue->field->type == 'image') {
+                            $fieldValue->imageFiles = UploadedFile::getInstances($fieldValue, "[$section->section_template_id][$key]imageFiles");
+                            $fieldValue->uploadImages();
+                        }
                         $fieldValue->save();
                     }
                 }

@@ -11,6 +11,8 @@ use app\models\LoginForm;
 use app\models\Messages;
 use app\models\User;
 use yii\helpers\Json;
+use app\models\ImagesUploadForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -63,7 +65,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $newMessage = new Messages();
+
+        $model = new ImagesUploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('index', ['model' => $model]);
+
+
+        /*$newMessage = new Messages();
         $messages = Messages::find()->orderBy(['date' => SORT_DESC])->all();
 
         if (Yii::$app->request->isAjax) {
@@ -83,7 +99,7 @@ class SiteController extends Controller
 
         } else {
             return $this->render('index', compact('messages', 'newMessage'));
-        }
+        }*/
         
     }
 

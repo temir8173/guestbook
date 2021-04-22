@@ -3,3 +3,9 @@
 	padding: 15px;
 	margin-bottom: 20px;
 }
+.invitations-form__section img {
+	width: 100%;
+}
+.invitations-form__section .container {
+	max-width: 100%;
+}

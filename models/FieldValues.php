@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "field_values".
@@ -35,7 +36,6 @@ class FieldValues extends \yii\db\ActiveRecord
         return [
             [['section_id', 'field_id', 'value'], 'required'],
             [['section_id', 'field_id'], 'integer'],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -56,5 +56,22 @@ class FieldValues extends \yii\db\ActiveRecord
     public function getField()
     {
         return $this->hasOne(Fields::className(), ['id' => 'field_id']);
+    }
+
+    public function uploadImages()
+    {
+        $imagesUpload = new ImagesUploadForm();
+        $imagesUpload->imageFiles = $this->imageFiles;
+        $this->value = Json::encode($imagesUpload->upload());
+    }
+
+    public function getImagesNames()
+    {
+        if ($this->field->type == 'image') {
+            return Json::decode($this->value);
+        }
+        else {
+            return false;
+        }
     }
 }

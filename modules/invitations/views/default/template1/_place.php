@@ -14,26 +14,26 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="address__images restaurant-pic">
-				    <a href="upload/restaurants/1.jpg" class="col-sm-4" data-caption="Image caption">
+				    <a href="uploads/place/1.jpg" class="col-sm-4" data-caption="Image caption">
 				    	<div class="address__image image-container">
 			                <div>
-			                    <img src="upload/restaurants/1.jpg" alt="First image">
+			                    <img src="uploads/place/1.jpg" alt="First image">
 			                </div>
 			                
 			            </div>
 				    </a>
-				    <a href="upload/restaurants/2.jpg" class="col-sm-4">
+				    <a href="uploads/place/2.jpg" class="col-sm-4">
 				    	<div class="address__image image-container">
 			                <div>
-			                    <img src="upload/restaurants/2.jpg" alt="First image">
+			                    <img src="uploads/place/2.jpg" alt="First image">
 			                </div>
 			                
 			            </div>
 				    </a>
-				    <a href="upload/restaurants/3.jpg" class="col-sm-4">
+				    <a href="uploads/place/3.jpg" class="col-sm-4">
 				    	<div class="address__image image-container">
 			                <div>
-			                    <img src="upload/restaurants/3.jpg" alt="First image">
+			                    <img src="uploads/place/3.jpg" alt="First image">
 			                </div>
 			                
 			            </div>
