@@ -199,11 +199,14 @@ class InvitationsController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionDeleteImage($id)
+    public function actionDeleteImage()
     {
-        $this->findModel($id)->delete();
+        if (Yii::$app->request->isAjax) {
+            $params = Yii::$app->request->post();
+            $fieldValue = FieldValues::findOne($params['id']);
+            $fieldValue->deleteImage($params['index']);
+        }
 
-        return $this->redirect(['index']);
     }
 
     /**

@@ -108,29 +108,6 @@ body {
 	font-family: 'Assylbek Shelley', sans-serif;
 }
 
-.image-container {
-  width: 100%;
-  padding-top: 65%;
-  background-color: #ccc;
-  position: relative;
-}
-
-.image-container div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  background-color: #ccc;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
-}
-
 
 
 /* Header styles*/

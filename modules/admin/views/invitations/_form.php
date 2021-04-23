@@ -67,13 +67,26 @@ use kartik\date\DatePicker;
                             ?>
                             <div class="container">
                                 <div class="row">
+                                    <div class="invitations-form__images restaurant-pic">
                                     <?php if ( is_array($fieldValues[$sectionTemplate->id][$j]->imagesNames) ) { ?>
                                         <?php foreach ($fieldValues[$sectionTemplate->id][$j]->imagesNames as $key => $imageName) { ?>
-                                        <div class="col-sm-3">
-                                            <img src="/uploads/<?= $imageName ?>" alt="">
+                                        <div class="col-sm-2">
+                                            <span class="image-span">
+                                                <span class="image-del" data-action-url="<?= Url::to(['/admin/invitations/delete-image']) ?>" data-id="<?= $fieldValues[$sectionTemplate->id][$j]->id ?>" data-index="<?= $key ?>">x</span>
+
+                                                <a href="/uploads/<?= $imageName ?>" class="invitations-form__image-link">
+                                                    <div class="our-gallery__image image-container gallery-vertical">
+                                                        <div>
+                                                            <img src="/uploads/<?= $imageName ?>" alt="">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </a>
+                                            </span>
                                         </div>
                                         <?php } ?>
                                     <?php } ?>
+                                    </div>
                                 </div>
                                 <?= $fieldValues[$sectionTemplate->id][$j]->value ?>
                                     

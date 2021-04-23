@@ -9,7 +9,7 @@ use yii\helpers\Html;
         <div class="default-block__content default-block__content_most-read" >
             <ul class="content-list content-list_most-read"> 
                 <li class="content-list__item content-list__item_devided post-info">
-                    <div class="post-info__title" ><span><?= $message->name ?></span></div>
+                    <div class="post-info__title" ><span><?= Html::encode($message->name) ?></span></div>
                     <div class="post-info__text" ><span><?= Html::encode($message->text) ?></span></div>
                     <div class="post-info__meta">
                         <span class="post-info__meta-item">

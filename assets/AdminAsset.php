@@ -12,7 +12,9 @@ class AdminAsset extends AssetBundle
         'css/admin.css',
     ];
     public $js = [
+        'js/admin.js',
     ];
     public $depends = [
+        'app\assets\AppAsset',
     ];
 }

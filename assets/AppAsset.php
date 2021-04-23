@@ -21,8 +21,11 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'js/baguettebox/baguetteBox.min.css',
     ];
     public $js = [
+        'js/countdown.js',
+        'js/baguettebox/baguetteBox.min.js',
         'js/jqueryForm.js',
         'js/simply-toast.min.js',
         'js/core.js',
