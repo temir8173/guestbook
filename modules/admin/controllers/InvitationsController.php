@@ -166,10 +166,11 @@ class InvitationsController extends Controller
                         $queryParams = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key];
                         $fieldValue->section_id = $section->id;
                         $fieldValue->field_id = $queryParams['field_id'];
-                        $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
                         if ($fieldValue->field->type == 'image') {
                             $fieldValue->imageFiles = UploadedFile::getInstances($fieldValue, "[$section->section_template_id][$key]imageFiles");
                             $fieldValue->uploadImages();
+                        } else {
+                            $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
                         }
                         $fieldValue->save();
                     }
@@ -192,6 +193,13 @@ class InvitationsController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    public function actionDeleteImage($id)
     {
         $this->findModel($id)->delete();
 

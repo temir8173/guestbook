@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
+use app\components\Helper;
 
 /**
  * This is the model class for table "field_values".
@@ -62,16 +64,22 @@ class FieldValues extends \yii\db\ActiveRecord
     {
         $imagesUpload = new ImagesUploadForm();
         $imagesUpload->imageFiles = $this->imageFiles;
-        $this->value = Json::encode($imagesUpload->upload());
+        $newImagesNames = $imagesUpload->upload();
+        $this->value = Json::htmlEncode(ArrayHelper::merge($this->ImagesNames, $newImagesNames));
     }
 
     public function getImagesNames()
     {
-        if ($this->field->type == 'image') {
+        if (Helper::isJson($this->value)) {
             return Json::decode($this->value);
         }
         else {
-            return false;
+            return [];
         }
+    }
+
+    public function deleteImage()
+    {
+        
     }
 }

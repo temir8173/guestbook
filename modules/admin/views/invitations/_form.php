@@ -67,10 +67,12 @@ use kartik\date\DatePicker;
                             ?>
                             <div class="container">
                                 <div class="row">
-                                    <?php foreach ($fieldValues[$sectionTemplate->id][$j]->imagesNames as $key => $imageName) { ?>
-                                    <div class="col-sm-3">
-                                        <img src="/uploads/<?= $imageName ?>" alt="">
-                                    </div>
+                                    <?php if ( is_array($fieldValues[$sectionTemplate->id][$j]->imagesNames) ) { ?>
+                                        <?php foreach ($fieldValues[$sectionTemplate->id][$j]->imagesNames as $key => $imageName) { ?>
+                                        <div class="col-sm-3">
+                                            <img src="/uploads/<?= $imageName ?>" alt="">
+                                        </div>
+                                        <?php } ?>
                                     <?php } ?>
                                 </div>
                                 <?= $fieldValues[$sectionTemplate->id][$j]->value ?>
