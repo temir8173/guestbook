@@ -74,7 +74,7 @@ $config = [
             ],
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'app\components\AuthManager',
         ],
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',

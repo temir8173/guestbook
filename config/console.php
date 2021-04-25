@@ -27,7 +27,7 @@ $config = [
         ],
         'db' => $db,
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class' => 'app\components\AuthManager',
         ],
     ],
     'params' => $params,

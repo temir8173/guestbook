@@ -27,11 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'username',
                 [
-                    'attribute' => 'roles',
-                    'value' => function($user) {
-                        /* @var $user User */
-                        return implode(', ', $user->getRoles());                    
-                    }
+                    'attribute' => 'role',
                 ],
                 //'access_token',
 

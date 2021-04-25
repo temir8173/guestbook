@@ -35,9 +35,10 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['roles', 'safe'],
+            [['roles'], 'safe'],
             [['username', 'password'], 'required'],
             [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            [['role'], 'string', 'max' => 64],
             [['username'], 'unique'],
         ];
     }
@@ -86,7 +87,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function afterFind()
     {
-        $this->roles = $this->getRoles();
+        //$this->roles = $this->getRoles();
     }
 
     public function beforeSave($insert)
@@ -103,7 +104,7 @@ class User extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        $this->saveRoles();
+        //$this->saveRoles();
     }
 
     /**

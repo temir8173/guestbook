@@ -1,19 +1,30 @@
 <?php
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 ?>
 
-<section>
+<header id="header">
+
+	<div class="top-menu">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8">
+					<a href="/" class="top-logo">SHAQIRU.KZ</a>
+					<a href="tel:+77078758173" class="top-phone">+7 707 875 8173</a>
+				</div>
+				<div class="col-xs-4">
+					<span class="top-cabinet ">
+						<a href="<?= Url::to(['manage/invitations']) ?>" class="pull-right">Жеке кабинет</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container">
-		
 
-		<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+		<h1 class="front-title">Онлайн шақыру парақшалары</h1>
 
-		    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
-
-		    <button>Submit</button>
-
-		<?php ActiveForm::end() ?>
 	</div>	
 	
-</section>
+</header>

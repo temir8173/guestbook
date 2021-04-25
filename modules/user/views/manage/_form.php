@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'roles')->checkboxList($model->getRolesDropdown()) ?>
+    <?= $form->field($model, 'role')->dropDownList($model->getRolesDropdown()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

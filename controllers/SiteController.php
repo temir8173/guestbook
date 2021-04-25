@@ -66,17 +66,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $model = new ImagesUploadForm();
+        $this->layout = 'front-page';
 
-        if (Yii::$app->request->isPost) {
-            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
-            if ($model->upload()) {
-                // file is uploaded successfully
-                return;
-            }
-        }
-
-        return $this->render('index', ['model' => $model]);
+        return $this->render('index');
 
 
         /*$newMessage = new Messages();

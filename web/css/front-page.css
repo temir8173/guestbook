@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+
+a {
+	transition: 0.2s;
+}
+a:hover, a:focus {
+	opacity: 0.8;
+	text-decoration: none;
+}
+
+@media (min-width: 1200px) {
+	.container {
+	    width: 970px;
+	}
+}
+
+#header {
+	height: 100vh;
+}
+
+#header:before {
+	content: '';
+	background-image: url('../images/header1.jpg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	opacity: 0.1;
+	height: 100vh;
+	width: 50vw;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#header:after {
+	content: '';
+	background-image: url('../images/header2.jpg');
+	background-size: 100% 100%;
+	background-position: 100%;
+	background-repeat: no-repeat;
+	opacity: 0.1;
+	height: 100vh;
+	width: 50vw;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.top-menu {
+	height: 50px;
+	z-index: 999;
+}
+.top-menu div {
+	z-index: 999;
+}
+a.top-logo {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 18px;
+	line-height: 50px;
+	color: #ce771a;
+	margin-right: 50px;
+}
+a.top-phone {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	line-height: 50px;
+	color: #777;
+}
+
+.top-cabinet {
+	height: 50px;
+	color: #333;
+}
+.top-cabinet a {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 50px;
+	color: #333;
+}
+
+.front-title {
+	font-family: 'Ubuntu Condensed', sans-serif;
+	font-size: 48px;
+	text-align: center;
+	display: block;
+	margin: 30vh auto;
+    color: #666;
+
+}

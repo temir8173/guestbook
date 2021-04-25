@@ -18,11 +18,9 @@ class UserInvitationOwnerRule extends Rule
      */
     public function execute($user, $item, $params)
     {
-        $roles = \Yii::$app->user->identity->roles;
-        foreach ($roles as $role) {
-            if ($role == 'admin') {
-                return true;
-            }
+        $role = \Yii::$app->user->identity->role;
+        if ($role == 'admin') {
+            return true;
         }
 
         if (isset($params['invitationId']))

@@ -78,7 +78,7 @@ $('document').ready(function(){
 
 	function validFileType(file) {
 		for(var i = 0; i < fileTypes.length; i++) {
-			if(file.type === fileTypes[i]) {
+			if(file.type === fileTypes[i] && file.size < 1048576*2) {
 				return true;
 			}
 		}
@@ -124,7 +124,7 @@ $('document').ready(function(){
 					listItem.append(para);
 
 				} else {
-					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың түрі дұрыс емес. Қайтадан таңдаңыз.';
+					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың түрі дұрыс емес немесе өлшемі 2МБ-тан көп. Қайтадан таңдаңыз.';
 					listItem.append(para);
 				}
 

@@ -52,6 +52,15 @@ textarea {
   min-height: 100px;
 }
 
+.language {
+    margin-left: 15px;
+}
+
+.language>a {
+    color: #fff!important;
+    padding: 13px!important;
+}
+
 .image-container {
   width: 100%;
   padding-top: 65%;
