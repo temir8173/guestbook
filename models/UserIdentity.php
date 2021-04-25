@@ -54,6 +54,6 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return password_verify($password, $this->password);
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 }

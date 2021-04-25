@@ -17,13 +17,35 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_date
  * @property int $updated_date
  * @property int $status
+ * @property int $user_id
  */
 class Invitations extends ActiveRecord
 {
-    public $templates = [
-        'template1' => 'template1', 
-        'template2' => 'template2'
-    ];
+
+    const STATUS_UNPAID = 0;
+    const STATUS_PAID = 1;
+
+    const TEMPLATE_1 = 'template1';
+    const TEMPLATE_2 = 'template2';
+    const TEMPLATE_RUSLAN = 'template-ruslan';
+
+    public static function getTemplates()
+    {
+        return [
+            self::TEMPLATE_1 => 'template1', 
+            self::TEMPLATE_2 => 'template2',
+            self::TEMPLATE_RUSLAN => 'Шаблон - Руслан',
+        ];
+    }
+
+    public static function getStatusLabels()
+    {
+        return [
+            self::STATUS_UNPAID => 'Төленбеген',
+            self::STATUS_PAID => 'Төленген',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -50,8 +72,8 @@ class Invitations extends ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'name', 'template', 'event_date', 'status'], 'required'],
-            [['status'], 'integer'],
+            [['url', 'name', 'template', 'event_date', 'status', 'user_id'], 'required'],
+            [['status', 'user_id'], 'integer'],
             [['url', 'name', 'template'], 'string', 'max' => 255],
             [['url'], 'unique'],
             [['status'], 'default', 'value'=> 0],
@@ -67,12 +89,13 @@ class Invitations extends ActiveRecord
         return [
             'id' => 'ID',
             'url' => 'Url',
-            'name' => 'Name',
+            'name' => 'Аты',
             'event_date' => 'Өткізілетін уақыты',
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
             'template' => 'Шаблон',
             'status' => 'Статус',
+            'user_id' => 'Пайдаланушы',
         ];
     }
 
@@ -83,16 +106,6 @@ class Invitations extends ActiveRecord
             return true;
         }
         return false;
-    }
-
-    public function getSections()
-    {
-        return $this->hasMany(Sections::className(), ['invitation_id' => 'id']);
-    }
-
-    public function getMessages()
-    {
-        return $this->hasMany(Messages::className(), ['invitation_id' => 'id']);
     }
 
     public function beforeDelete()
@@ -108,6 +121,16 @@ class Invitations extends ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public function getSections()
+    {
+        return $this->hasMany(Sections::className(), ['invitation_id' => 'id']);
+    }
+
+    public function getMessages()
+    {
+        return $this->hasMany(Messages::className(), ['invitation_id' => 'id']);
     }
 
 }

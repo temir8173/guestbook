@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\HtmlPurifier;
 
 /**
  * This is the model class for table "sections".
@@ -66,10 +67,14 @@ class Sections extends \yii\db\ActiveRecord
         ->andWhere(['f.url' => $url])
         ->one();
 
-        if ( $fieldValue !== null )
-            return $fieldValue->value; 
-        else 
+        if ( $fieldValue !== null ) {
+            if ($fieldValue->field->type == 'image')
+                return $fieldValue->imagesNames;
+            else
+                return $fieldValue->value;
+        } else {
             return false;
+        }
 
     }
 

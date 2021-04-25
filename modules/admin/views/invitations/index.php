@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+use app\models\Invitations;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\InvitationsSearch */
@@ -49,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->created_date);
                 },
+                'filter' => false,
             ],
             /*[
                 'attribute'=>'fields',
@@ -59,6 +61,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],*/
             //'updated_date',
+            [
+                'attribute'=>'updated_date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return Yii::$app->formatter->asDate($data->updated_date);
+                },
+                'filter' => false,
+            ],
+            [
+                'attribute'=>'status',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->statusLabels[$data->status];
+                },
+                'filter' => Invitations::getStatusLabels(),
+            ],
             //'status',
 
             ['class' => 'yii\grid\ActionColumn'],

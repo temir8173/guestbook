@@ -88,11 +88,11 @@ class InvitationsController extends Controller
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
 
-            $model->save();
+            $instituteValidete = $model->save();
 
             foreach ($sections as $section) {
                 $section->invitation_id = $model->id;
-                $section->save();
+                if($instituteValidete) $section->save();
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
                     foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
@@ -100,8 +100,19 @@ class InvitationsController extends Controller
                             $queryParams = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key];
                             $fieldValue->section_id = $section->id;
                             $fieldValue->field_id = $queryParams['field_id'];
-                            $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
-                            $fieldValue->save();
+                            $fieldValue->field_id = $queryParams['field_id'];
+                            if ($fieldValue->field->type == 'image') {
+                                $fieldValue->imageFiles = UploadedFile::getInstances($fieldValue, "[$section->section_template_id][$key]imageFiles");
+                                $fieldValue->uploadImages();
+                            } elseif ($fieldValue->field->type == 'youtube') {
+                                $parts = parse_url($queryParams['value']); 
+                                if (!empty($parts['query']))
+                                    parse_str($parts['query'], $query);
+                                $fieldValue->value = (isset($query['v'])) ? 'https://www.youtube.com/embed/'.$query['v'] : $queryParams['value'];
+                            } else {
+                                $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
+                            }
+                            if($instituteValidete) $fieldValue->save();
                         }
                     }
                 }
@@ -109,7 +120,7 @@ class InvitationsController extends Controller
                 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($instituteValidete) return $this->redirect(['view', 'id' => $model->id]);
         }
 
 
@@ -169,6 +180,11 @@ class InvitationsController extends Controller
                         if ($fieldValue->field->type == 'image') {
                             $fieldValue->imageFiles = UploadedFile::getInstances($fieldValue, "[$section->section_template_id][$key]imageFiles");
                             $fieldValue->uploadImages();
+                        } elseif ($fieldValue->field->type == 'youtube') {
+                            $parts = parse_url($queryParams['value']); 
+                            if (!empty($parts['query']))
+                                parse_str($parts['query'], $query);
+                            $fieldValue->value = (isset($query['v'])) ? 'https://www.youtube.com/embed/'.$query['v'] : $queryParams['value'];
                         } else {
                             $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
                         }

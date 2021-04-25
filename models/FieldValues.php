@@ -81,9 +81,23 @@ class FieldValues extends \yii\db\ActiveRecord
     public function deleteImage($index)
     {
         $imagesNames = $this->imagesNames;
-        unlink(Yii::getAlias('@webroot')."/uploads/".$imagesNames[$index]);
+        if (file_exists(Yii::getAlias('@webroot')."/uploads/".$imagesNames[$index]))
+            unlink(Yii::getAlias('@webroot')."/uploads/".$imagesNames[$index]);
         array_splice($imagesNames, $index, 1);
         $this->value = Json::htmlEncode($imagesNames);
         $this->save();
+    }
+
+    public function beforeDelete()
+    {
+        if (parent::beforeDelete()) {
+            foreach ($this->imagesNames as $imagesName) {
+                if (file_exists(Yii::getAlias('@webroot')."/uploads/".$imagesName))
+                    unlink(Yii::getAlias('@webroot')."/uploads/".$imagesName);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

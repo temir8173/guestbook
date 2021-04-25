@@ -7,8 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MessagesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Messages';
-$this->params['breadcrumbs'][] = ['label' => 'Шақыру парақшасы', 'url' => ['/manage/invitations/index']];
+$this->title = $invitation->name . ' - Тілектер';
+$this->params['breadcrumbs'][] = ['label' => 'Менің шақыру парақтарым', 'url' => ['/manage/invitations/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="messages-index">
@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'template'=>'{update} {delete}',
                 'headerOptions' => ['style' => 'width: 7%'],
             ],
         ],

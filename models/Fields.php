@@ -20,6 +20,7 @@ class Fields extends \yii\db\ActiveRecord
         'textarea' => 'Область текста',
         'image' => 'Сурет',
         'link' => 'Cілтеме',
+        'youtube' => 'Youtube сілтемесі',
     ];
 
     /**

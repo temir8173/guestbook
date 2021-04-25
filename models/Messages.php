@@ -53,9 +53,14 @@ class Messages extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->date = time();
+            if ($this->isNewRecord) $this->date = time();
             return true;
         }
         return false;
+    }
+
+    public function getInvitation()
+    {
+        return $this->hasOne(Invitations::className(), ['id' => 'invitation_id']);
     }
 }

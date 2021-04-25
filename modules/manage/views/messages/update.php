@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Messages */
 
-$this->title = 'Update Messages: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Тілекті өзгерту: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Менің шақыру парақтарым', 'url' => ['/manage/invitations/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->invitation->name . ' - Тілектер', 'url' => ['index', 'invitation_id' => $model->invitation->id]];
+$this->params['breadcrumbs'][] = 'Өзгерту';
 ?>
 <div class="messages-update">
 

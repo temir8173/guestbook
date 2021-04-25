@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
+use app\models\Invitations;
 
 /**
  * MessagesController implements the CRUD actions for Messages model.
@@ -37,6 +38,7 @@ class MessagesController extends Controller
             $invitation_id = -1;
             throw new ForbiddenHttpException('Access denied');
         }
+        $invitation = Invitations::findOne($invitation_id);
         $searchModel = new MessagesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $invitation_id);
         $dataProvider->pagination = ['pageSize' => 50];
@@ -44,19 +46,7 @@ class MessagesController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Messages model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+            'invitation' => $invitation,
         ]);
     }
 
@@ -65,7 +55,7 @@ class MessagesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new Messages();
 
@@ -76,7 +66,7 @@ class MessagesController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Updates an existing Messages model.
@@ -90,7 +80,7 @@ class MessagesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'invitation_id' => $model->invitation->id]);
         }
 
         return $this->render('update', [
@@ -107,9 +97,11 @@ class MessagesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $invitation_id = $model->invitation->id;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'invitation_id' => $invitation_id]);
     }
 
     /**
@@ -121,7 +113,7 @@ class MessagesController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Messages::findOne($id)) !== null) {
+        if (($model = Messages::find()->where(['id' => $id])->with('invitation')->one()) !== null) {
             return $model;
         }
 

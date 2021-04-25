@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\InvitationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Invitations';
+$this->title = 'Менің шақыру парақтарым';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="invitations-index">

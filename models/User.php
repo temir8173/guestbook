@@ -38,12 +38,37 @@ class User extends \yii\db\ActiveRecord
             ['roles', 'safe'],
             [['username', 'password'], 'required'],
             [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            [['username'], 'unique'],
         ];
     }
 
     public function __construct()
     {
         //$this->on(self::EVENT_AFTER_UPDATE, [$this, 'saveRoles']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Имя',
+            'password' => 'Пароль',
+            'role' => 'Роль',
+            'roles' => 'Роли',
+            'auth_key' => 'Auth Key',
+            'access_token' => 'Access Token',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -67,6 +92,9 @@ class User extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+            if ($this->password !== $this->getOldAttribute('password')) {
+                $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password, 12);
+            }
             return true;
         }
         return false;
@@ -92,30 +120,6 @@ class User extends \yii\db\ActiveRecord
                 }
             }
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Имя',
-            'password' => 'Пароль',
-            'role' => 'Роль',
-            'roles' => 'Роли',
-            'auth_key' => 'Auth Key',
-            'access_token' => 'Access Token',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

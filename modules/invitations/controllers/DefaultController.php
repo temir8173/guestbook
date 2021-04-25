@@ -23,6 +23,7 @@ class DefaultController extends Controller
     		$invitation = Invitations::find()
             ->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')
             ->where(['url' => $view])
+            ->andWhere(['status' => 1])
             ->one();
 
 
@@ -62,7 +63,7 @@ class DefaultController extends Controller
 
     public function actionAddMessage()
     {
-        if (1||Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax) {
 
             $newMessage = new Messages();
             $return = array(
