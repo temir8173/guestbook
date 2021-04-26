@@ -41,7 +41,7 @@ $this->title = $invitation->name;
                     	<span class="top-box__date"><?= Yii::$app->formatter->asDate($invitation->event_date) ?></span>
                     </div>
                     <a href="#speech" class="top-box__arrow scrollto">
-						<img class="top-box__arrow-img" src="http://new.wkau.kz/wp-content/themes/wkau-theme/assets/images/digital-un/angle-arrow-pointing-down.svg" alt="...">
+						<img class="top-box__arrow-img" src="/images/template1/angle-arrow-pointing-down.svg" alt="...">
 					</a>
                 </div>
             </div>

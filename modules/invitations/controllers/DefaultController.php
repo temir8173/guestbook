@@ -19,6 +19,9 @@ class DefaultController extends Controller
      */
     public function actionIndex($view = '')
     {
+        if (\Yii::$app->language != 'kk') {
+            return $this->redirect(['/'.\Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
+        }
     	if ( $view !== '' ) {
     		$invitation = Invitations::find()
             ->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')
@@ -33,6 +36,7 @@ class DefaultController extends Controller
                 $newMessage = new Messages();
                 $messages = Messages::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
 
+                Yii::$app->formatter->locale = 'en-US';
                 $this->layout = $invitation->template;
         		return $this->render( "@app/modules/invitations/views/default/$invitation->template/index", compact('invitation', 'messages', 'newMessage'));
         	}

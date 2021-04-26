@@ -754,7 +754,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 		font-size: 30px;
 	}
 	.wishes__messages:before {
-	    width: 118%;
+	    width: 124%;
 	    height: 113%;
 	}
 	.wishes__form {
@@ -783,10 +783,11 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	}
 	.speech .container:before {
 	    top: -95px;
-	    right: 0;
-	    width: 110px;
+	    right: 0px;
+	    width: 90px;
 	    opacity: 0.2;
-	    height: 350px;
+	    height: 260px;
+	    background-size: cover;
 	}
 	.speech .container:after {
 		top: 20%;

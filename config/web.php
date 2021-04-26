@@ -57,6 +57,7 @@ $config = [
                 '/' => 'site/index',
                 '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
                 '/<view:\w+>' => '/invitations/default/index',
+                '/ru/<view:\w+>' => '/<view:\w+>',
                 '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
                 '/manage/invitations' => '/manage/invitations/index',
                 //'/manage/' => '/manage/invitations/index',

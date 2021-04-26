@@ -15,7 +15,7 @@ class m210311_095914_create_messages_table extends Migration
         $this->createTable('{{%messages}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'text' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
             'date' => $this->integer()->notNull(),
             'invitation_id' => $this->integer()->notNull(),
         ]);
