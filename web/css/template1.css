@@ -118,15 +118,29 @@ body {
 }
 
 #header .top-box {
-	background-image: url('../images/template1/header-ukrashen.png');
-	background-position: 50% 40%;
-	background-repeat: no-repeat;
-	background-size: 95% 85%;
+	//background-image: url('../images/template1/header-ukrashen.png');
+	//background-position: 50% 40%;
+	//background-repeat: no-repeat;
+	//background-size: 95% 85%;
 	height: 100vh;
 	vertical-align: middle;
 	text-align: center;
 	position: relative;
 	top: -20px;
+}
+
+#header .top-box::before {
+	content: '';
+	display: block;
+	background-image: url('../images/template1/header-ukrashen.png');
+	background-position: 50% 40%;
+	background-repeat: no-repeat;
+	background-size: 95% 85%;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0;
 }
 
 #header .top-box__title {
@@ -275,7 +289,11 @@ body {
     height: 400px;
 }
 .speech .container:after {
-	content: url('../images/template1/couple.png');
+	content: '';
+	background-image: url('../images/template1/couple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100%;
 	width: 48%;
 	position: absolute;
 	top: 16%;
@@ -690,8 +708,13 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	.content-list__item .post-info__meta-item {
 	    font-size: 10px;
 	}
+	.speech .container:before {
+	    top: -80px;
+	    right: -80px;
+	    width: 170px;
+	}
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 768px) {
 	#header .top-box__title {
 		font-size: 48px;
 		line-height: 0.9;
@@ -710,7 +733,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
     	right: 0;
 	}
 	.speech__text {
-		margin: 80px 0 30px 0;
+		margin: 40px 0 30px 0;
 	}
 	.speech__owners {
 		position: relative;
@@ -734,9 +757,6 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	    width: 118%;
 	    height: 113%;
 	}
-	.wishes__messages>div {
-	    padding: 35px 35px 90px 80px;
-	}
 	.wishes__form {
 	    width: 80%;
 	    margin: 50px auto;
@@ -749,5 +769,53 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	}
 	.wishes {
 	    padding-bottom: 20px;
+	}
+	.wishes__messages>div {
+	    padding: 11% 35px 90px 18%;
+	}
+	.speech__text {
+		min-height: unset;
+	    font-size: 26px;
+	    line-height: 1.3;
+	}
+	.section-title {
+		font-size: 42px;
+	}
+	.speech .container:before {
+	    top: -95px;
+	    right: 0;
+	    width: 110px;
+	    opacity: 0.2;
+	    height: 350px;
+	}
+	.speech .container:after {
+		top: 20%;
+	    right: 0%;
+	    width: 90%;
+    	height: 66%;
+	}
+	#header .top-box::before {
+		display: none;
+	}
+	#header .top-box::after {
+		content: '';
+    	display: block;
+	    background-image: url(../images/template1/header-ukrashen1.png);
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    background-size: 100% 70%;
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    top: 0px;
+	    left: 0;
+	}
+	#header .top-box__title {
+	    font-size: 42px;
+	    line-height: 0.9;
+	    top: calc(50% - 55px);
+	    max-width: 75%;
+	    text-align: center;
+	    margin: 10px auto;
 	}
 }
