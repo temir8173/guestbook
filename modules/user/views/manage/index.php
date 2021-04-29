@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'role',
                 ],
+                'email',
                 //'access_token',
 
                 ['class' => 'yii\grid\ActionColumn'],

@@ -34,7 +34,16 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            //'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mail.ru',
+                'username' => 'XXXXXX',
+                'password' => 'XXXXXX',
+                'port' => '465',
+                'encryption' => 'ssl',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -60,6 +69,7 @@ $config = [
                 '/ru/<view:\w+>' => '/<view:\w+>',
                 '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
                 '/manage/invitations' => '/manage/invitations/index',
+                '/reset-password' => 'site/reset-password',
                 //'/manage/' => '/manage/invitations/index',
             ],
         ],
