@@ -41,9 +41,9 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('common', 'Атыңыз'),
+            'username' => Yii::t('common', 'Логин немесе email'),
             'password' => Yii::t('common', 'Құпия сөз'),
-            'rememberMe' => 'Запомни меня',
+            'rememberMe' => 'Мені жүйеде сақтау',
         ];
     }
 
@@ -61,7 +61,7 @@ class LoginForm extends Model
             //var_dump($user->validatePassword($this->password));die;
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Неправильное имя или пароль.');
+                $this->addError($attribute, 'Аты немесе құпия сөз дұрыс емес.');
             }
         }
     }

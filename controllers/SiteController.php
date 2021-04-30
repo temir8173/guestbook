@@ -143,10 +143,10 @@ class SiteController extends Controller
  
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-                return $this->goHome();
+                Yii::$app->session->setFlash('success', 'Келесі нұсқаулар алу үшін электрондық поштаны тексеріңіз.');
+                //return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Өкінішке орай, енгізілген аккаунттың құпия сөзін қалпына келтіре алмаймыз.');
             }
         }
  

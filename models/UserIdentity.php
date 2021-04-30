@@ -34,7 +34,11 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
     public static function findByUsername($username)
     {
 
-        return static::findOne(['username' => $username]);
+        return static::find()
+        ->where(['username' => $username])
+        ->orWhere(['email' => $username])
+        ->andWhere(['status' => self::STATUS_ACTIVE])
+        ->one();
 
     }
 

@@ -20,13 +20,28 @@ class PasswordResetRequestForm extends Model
         return [
             ['email', 'trim'],
             ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
-                'targetClass' => '\app\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
-            ],
+            ['email', 'validateUserExist'],
         ];
+    }
+
+    public function validateUserExist($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user) {
+                $this->addError($attribute, 'Бұндай пайдаланушы тіркелмеген.');
+            }
+        }
+    }
+
+    /**
+     * Finds user by [[username]]
+     *
+     * @return User|null
+     */
+    public function getUser()
+    {
+        return UserIdentity::findByUsername($this->email);
     }
  
     /**
@@ -37,10 +52,7 @@ class PasswordResetRequestForm extends Model
     public function sendEmail()
     {
         /* @var $user User */
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
-            'email' => $this->email,
-        ]);
+        $user = $this->getUser();
  
         if (!$user) {
             return false;
@@ -60,7 +72,7 @@ class PasswordResetRequestForm extends Model
                 ['user' => $user]
             )
             ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
+            ->setTo($user->email)
             ->setSubject('Password reset for ' . Yii::$app->name)
             ->send();
     }
