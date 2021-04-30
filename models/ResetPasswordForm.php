@@ -12,6 +12,7 @@ class ResetPasswordForm extends Model
 {
  
     public $password;
+    public $password_repeat;
  
     /**
      * @var \app\models\User
@@ -32,7 +33,7 @@ class ResetPasswordForm extends Model
             throw new \yii\web\HttpException(404,'Страница не найдена');
         }
  
-        $this->_user = User::findByPasswordResetToken($token);
+        $this->_user = UserIdentity::findByPasswordResetToken($token);
  
         if (!$this->_user) {
             throw new \yii\web\HttpException(404,'Страница не найдена');
@@ -48,8 +49,21 @@ class ResetPasswordForm extends Model
     {
         return [
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 8],
+            ['password', 'validatePrevPassword'],
+            ['password_repeat', 'required'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
         ];
+    }
+
+    public function validatePrevPassword($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->_user;
+            if ($user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Жаңа құпия сөз ескіден өзгеше болуы керек.');
+            }
+        }
     }
  
     /**
@@ -61,6 +75,8 @@ class ResetPasswordForm extends Model
     {
         $user = $this->_user;
         $user->password = $this->password;
+        $user->email_confirm_token = null;
+        $user->status = UserIdentity::STATUS_ACTIVE;
         $user->removePasswordResetToken();
         return $user->save(false);
     }

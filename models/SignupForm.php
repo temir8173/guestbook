@@ -25,14 +25,14 @@ class SignupForm extends Model
             ['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Бұндай ат бос емес!'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 3, 'max' => 255],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Бұл email бос емес!'],
             [['password', 'password_repeat'], 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 8],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
         ];
@@ -56,7 +56,55 @@ class SignupForm extends Model
         $user->password = $this->password;
         $user->role = 'user';
         $user->generateAuthKey();
-        return $user->save() ? $user : null;
+        $user->email_confirm_token = Yii::$app->security->generateRandomString();
+        $user->status = UserIdentity::STATUS_WAIT;
+        //return $user->save() ? $user : null;
+        if(!$user->save()){
+            throw new \RuntimeException('Saving error.');
+        }
+
+        $this->sentEmailConfirm($user);
+    }
+
+    public function sentEmailConfirm(UserIdentity $user)
+    {
+        $email = $user->email;
+
+        $sent = Yii::$app->mailer
+            ->compose(
+                ['html' => 'user-signup-comfirm-html', 'text' => 'user-signup-comfirm-text'],
+                ['user' => $user])
+            ->setTo($email)
+            ->setFrom(Yii::$app->params['senderEmail'])
+            ->setSubject('Confirmation of registration')
+            ->send();
+
+        if (!$sent) {
+            throw new \RuntimeException('Sending error.');
+        }
+    }
+
+
+    public function confirmation($t): void
+    {
+        if (empty($t)) {
+            throw new \DomainException('Empty confirm token.');
+        }
+
+        $user = UserIdentity::findOne(['email_confirm_token' => $t]);
+        if (!$user) {
+            throw new \DomainException('User is not found.');
+        }
+
+        $user->email_confirm_token = null;
+        $user->status = UserIdentity::STATUS_ACTIVE;
+        if (!$user->save()) {
+            throw new \RuntimeException('Saving error.');
+        }
+
+        if (!Yii::$app->getUser()->login($user)){
+            throw new \RuntimeException('Error authentication.');
+        }
     }
  
 }

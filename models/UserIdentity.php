@@ -37,7 +37,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
         return static::find()
         ->where(['username' => $username])
         ->orWhere(['email' => $username])
-        ->andWhere(['status' => self::STATUS_ACTIVE])
+        ->andWhere(['>', 'status', self::STATUS_DELETED])
         ->one();
 
     }

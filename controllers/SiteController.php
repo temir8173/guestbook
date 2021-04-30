@@ -122,19 +122,39 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
-        $model = new SignupForm();
- 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+        $form = new SignupForm();
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            //$signupService = new SignupService();
+
+            try{
+                $form->signup();
+                Yii::$app->session->setFlash('success', 'Check your email to confirm the registration.');
+                //$form->sentEmailConfirm($user);
+                return $this->goHome();
+            } catch (\RuntimeException $e){
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
             }
         }
- 
+
         return $this->render('signup', [
-            'model' => $model,
+            'model' => $form,
         ]);
+    }
+
+    public function actionSignupConfirm($t)
+    {
+        $form = new SignupForm();
+
+        try{
+            $form->confirmation($t);
+            Yii::$app->session->setFlash('success', 'You have successfully confirmed your registration.');
+        } catch (\Exception $e){
+            Yii::$app->errorHandler->logException($e);
+            Yii::$app->session->setFlash('error', $e->getMessage());
+        }
+
+        return $this->goHome();
     }
 
     public function actionRequestPasswordReset()

@@ -173,11 +173,11 @@ class User extends \yii\db\ActiveRecord
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
-     
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
+        
+        return static::find()
+        ->where(['password_reset_token' => $token])
+        ->andWhere(['>', 'status', self::STATUS_DELETED])
+        ->one();
     }
      
     public static function isPasswordResetTokenValid($token)
