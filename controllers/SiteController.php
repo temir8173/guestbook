@@ -122,6 +122,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
+        $this->layout = 'front-page';
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -144,6 +145,7 @@ class SiteController extends Controller
             }
         }
 
+        $this->layout = 'front-page';
         return $this->render('signup', [
             'model' => $form,
         ]);
@@ -177,6 +179,7 @@ class SiteController extends Controller
             }
         }
  
+        $this->layout = 'front-page';
         return $this->render('requestPasswordReset', [
             'model' => $model,
         ]);
@@ -202,6 +205,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
  
+        $this->layout = 'front-page';
         return $this->render('resetPassword', [
             'model' => $model,
         ]);

@@ -60,13 +60,15 @@ AppAsset::register($this);
     NavBar::end();*/
     ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        
-    </div>
+    <?php if (isset($this->params['breadcrumbs'])) : ?>
+        <div class="container">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            
+        </div>
+    <?php endif; ?>
     <?= $content ?>
 </div>
 

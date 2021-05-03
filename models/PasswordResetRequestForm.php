@@ -35,6 +35,16 @@ class PasswordResetRequestForm extends Model
     }
 
     /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => Yii::t('common', 'Email немесе логин'),
+        ];
+    }
+
+    /**
      * Finds user by [[username]]
      *
      * @return User|null

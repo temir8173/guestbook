@@ -44,6 +44,20 @@ class SignupForm extends Model
             $this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
         }
     }
+
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Логин'),
+            'email' => 'Email',
+            'password' => Yii::t('common', 'Құпия сөз'),
+            'password_repeat' => Yii::t('common', 'Құпия сөзді растау'),
+            'rememberMe' => 'Мені жүйеде сақтау',
+        ];
+    }
  
     /**
      * Signs user up.

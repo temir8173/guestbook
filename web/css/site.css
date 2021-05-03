@@ -47,6 +47,23 @@ body {
     height: 100%;
 }
 
+.has-error .form-control {
+  border-color: rgba(240,0,0,0.4);
+}
+.has-error .form-control:focus {
+  border-color: rgba(240,0,0,0.4);
+}
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label{
+  color: rgba(240,0,0,0.6);
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+  outline: none;
+}
+.btn-primary:active:hover, .btn-primary.active:hover, .open > .dropdown-toggle.btn-primary:hover, .btn-primary:active:focus, .btn-primary.active:focus, .open > .dropdown-toggle.btn-primary:focus, .btn-primary:active.focus, .btn-primary.active.focus, .open > .dropdown-toggle.btn-primary.focus {
+  border-color: #204d74;
+}
+
 textarea {
   resize: vertical;
   min-height: 100px;
@@ -297,4 +314,86 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
   font-family: 'Open Sans', sans-serif;
   color: #fff;
   margin-bottom: 0;
+}
+
+.login-section {
+  padding-top: 50px;
+}
+
+.site-login h1 {
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  display: block;
+  max-width: 400px;
+  margin: 0px auto;
+  margin-bottom: 20px;
+}
+
+.shadow-box {
+  width: 100%;
+  max-width: 400px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  margin: 0 auto;
+  padding: 50px 40px 40px 40px;
+  box-sizing: border-box;
+}
+
+.login-form input {
+  border-radius: 2px;
+}
+
+.login-form label {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 2px;
+  font-size: 15px;
+}
+
+.login-form .help-block {
+  margin-top: 2px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-button {
+  width: 100%;
+  background: #165FAA;
+  border: 1px solid #165FAA;
+  color: #fff;
+  line-height: 1em;
+  height: 34px;
+  padding: 10px 0;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  margin-top: 15px;
+  border-radius: 2px;
+}
+
+.login-button:hover {
+  opacity: 0.8;
+  outline: none;
+}
+.login-forgot {
+  display: inline-block;
+  color:#999;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.signup-info {
+  display: inline-block;
+    color: #666;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.site-request-password-reset .login-button {
+  margin-top: 0;
 }

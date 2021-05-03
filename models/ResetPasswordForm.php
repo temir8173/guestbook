@@ -2,6 +2,7 @@
  
 namespace app\models;
  
+use Yii;
 use yii\base\Model;
 use yii\base\InvalidParamException;
  
@@ -49,11 +50,18 @@ class ResetPasswordForm extends Model
     {
         return [
             ['password', 'required'],
-            ['password', 'string', 'min' => 8],
             ['password', 'validatePrevPassword'],
+            ['password', 'validateOwnPassword'],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
         ];
+    }
+
+    public function validateOwnPassword($attribute, $params)
+    {
+        if ( !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $this->$attribute) ) {
+            $this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
+        }
     }
 
     public function validatePrevPassword($attribute, $params)
@@ -64,6 +72,17 @@ class ResetPasswordForm extends Model
                 $this->addError($attribute, 'Жаңа құпия сөз ескіден өзгеше болуы керек.');
             }
         }
+    }
+
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('common', 'Құпия сөз'),
+            'password_repeat' => Yii::t('common', 'Құпия сөзді растау'),
+        ];
     }
  
     /**
