@@ -95,8 +95,15 @@ $config = [
             'datetimeFormat' => 'dd.MM.yyyy h:i:s',
             'decimalSeparator' => '.',
             'thousandSeparator' => ' ',
-            'currencyCode' => 'EUR',
+            'currencyCode' => 'KZT',
        ],
+       'reCaptcha' => [
+            'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
+            'siteKeyV2' => 'test',
+            'secretV2' => 'test',
+            'siteKeyV3' => 'your siteKey v3',
+            'secretV3' => 'your secret key v3',
+        ],
     ],
     'modules' => [
         'admin' => [
