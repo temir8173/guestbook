@@ -215,16 +215,6 @@ class InvitationsController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionDeleteImage()
-    {
-        if (Yii::$app->request->isAjax) {
-            $params = Yii::$app->request->post();
-            $fieldValue = FieldValues::findOne($params['id']);
-            $fieldValue->deleteImage($params['index']);
-        }
-
-    }
-
     /**
      * Finds the Invitations model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

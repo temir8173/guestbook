@@ -12,7 +12,6 @@ use app\assets\AppAsset;
 use app\assets\AdminAsset;
 use app\widgets\MultiLang\MultiLang;
 
-AppAsset::register($this);
 AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>

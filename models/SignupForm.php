@@ -15,6 +15,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $password_repeat;
+    public $reCaptcha;
  
     /**
      * @inheritdoc
@@ -35,6 +36,9 @@ class SignupForm extends Model
             ['password', 'validateOwnPassword'],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+            //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
+            'uncheckedMessage' => 'Робот емес екендігіңізді растаңыз.'],
         ];
     }
 
@@ -56,6 +60,7 @@ class SignupForm extends Model
             'password' => Yii::t('common', 'Құпия сөз'),
             'password_repeat' => Yii::t('common', 'Құпия сөзді растау'),
             'rememberMe' => 'Мені жүйеде сақтау',
+            'reCaptcha' => 'Робот емес екендігіңізді растаңыз',
         ];
     }
  

@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\Messages;
+use app\models\FieldValues;
 use yii\helpers\Json;
 
 class AjaxController extends Controller
@@ -93,5 +94,15 @@ class AjaxController extends Controller
         } else {
             throw new \yii\web\HttpException(404,'Страница не найдена');
         }
+    }
+
+    public function actionDeleteImage()
+    {
+        if (Yii::$app->request->isAjax) {
+            $params = Yii::$app->request->post();
+            $fieldValue = FieldValues::findOne($params['id']);
+            $fieldValue->deleteImage($params['index']);
+        }
+
     }
 }

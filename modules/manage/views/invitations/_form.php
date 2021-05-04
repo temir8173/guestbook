@@ -40,8 +40,8 @@ use app\models\User;
     <?= $form->field($model, 'template')->dropDownList($model->templates) ?>
     <?= $form->field($model, 'created_date')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'updated_date')->hiddenInput()->label(false) ?>
-    <?= $form->field($model, 'status')->dropDownList($model->statusLabels) ?>
-    <?= $form->field($model, 'user_id')->dropDownList(User::find()->select(['username', 'id'])/*->where(['role' => 'user'])*/->indexBy('id')->column(), ['prompt' =>'-- таңдаңыз --']) ?>
+    <?= $form->field($model, 'status')->hiddenInput(['value' => 0])->label(false) ?>
+    <?= $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->id])->label(false) ?>
 
     <?php foreach ( $sectionTemplates as $index => $sectionTemplate ) : ?>
 

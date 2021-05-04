@@ -75,6 +75,8 @@ class SiteController extends Controller
             //$this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
             var_dump('sdafsdfsdf');die;
         }
+
+        // var_dump(Yii::$app->user->id);die;
         
         $this->layout = 'front-page';
 

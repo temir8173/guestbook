@@ -11,6 +11,7 @@ use yii\base\Model;
 class PasswordResetRequestForm extends Model
 {
     public $email;
+    public $reCaptcha;
  
     /**
      * @inheritdoc
@@ -21,6 +22,9 @@ class PasswordResetRequestForm extends Model
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'validateUserExist'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+            //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
+            'uncheckedMessage' => 'Please confirm that you are not a bot.'],
         ];
     }
 
@@ -41,6 +45,7 @@ class PasswordResetRequestForm extends Model
     {
         return [
             'email' => Yii::t('common', 'Email немесе логин'),
+            'reCaptcha' => 'Робот емес екендігіңізді растаңыз',
         ];
     }
 
