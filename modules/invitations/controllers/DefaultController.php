@@ -32,7 +32,7 @@ class DefaultController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'add-message', 'get-messages'],
                         'roles' => ['?', 'user'],
                     ],
                     [

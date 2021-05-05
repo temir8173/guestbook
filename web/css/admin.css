@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+h1 {
+	font-family: 'Ubuntu Condensed', sans-serif;
+	margin-bottom: 20px;
+}
+body {
+	font-family: 'Open Sans', sans-serif;
+}
 .invitations-form__section {
 	border: 3px solid #ccc;
 	padding: 15px;
@@ -43,4 +54,46 @@
 }
 .preview {
 	margin-top: 20px;
+}
+
+.custom-grid {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.custom-grid .form-control {
+	border-radius: 2px;
+	height: 28px;
+}
+
+.custom-grid  .table > tbody > tr.paid {
+	background-color: #1BA345;
+}
+.custom-grid  .table > tbody > tr.unpaid {
+	background-color: #DE3E44;
+}
+
+.custom-grid  .table > thead > tr > td {
+	padding: 12px 8px;
+}
+
+.custom-grid .table-bordered > thead > tr > th, .custom-grid .table-bordered > thead > tr > td {
+	border-bottom: 1px;
+}
+
+.create-invitation-btn {
+	border-radius: 2px;
+	padding: 5px 10px;
+    font-size: 13px;
+}
+
+.save-invitation-btn {
+	border-radius: 2px;
+	padding: 6px 30px;
+    font-size: 16px;
+}
+
+.breadcrumb {
+	padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 12px;
 }

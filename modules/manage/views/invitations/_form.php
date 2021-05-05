@@ -122,7 +122,7 @@ use mihaildev\ckeditor\CKEditor;
     <?php endforeach; ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сақтау', ['class' => 'btn btn-info save-invitation-btn']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

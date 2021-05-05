@@ -90,3 +90,20 @@ a.top-phone {
     color: #666;
 
 }
+@media only screen and (max-width: 768px) {
+	#header:before {
+		display: none;
+	}
+	#header:after {
+	    background-size: 200% 100%;
+	    background-position: 59%;
+	    width: 100vw;
+	}
+	.front-title {
+	    font-size: 36px;
+	    margin: 36vh auto;
+	}
+	a.top-logo {
+		display: none;
+	}
+}

@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 			<div class="col-sm-6">
 
 				<?php $form = ActiveForm::begin([
-					'action' => Url::to('invitations/default/add-message'),
+					'action' => Url::to('/invitations/default/add-message'),
 	                'enableClientValidation'=>false, 
 	                'options' => [
 	                    'class' => 'wishes__form ajax-form',

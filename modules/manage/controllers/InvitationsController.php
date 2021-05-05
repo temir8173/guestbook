@@ -107,7 +107,7 @@ class InvitationsController extends Controller
                 
             }
 
-            if($instituteValidete) return $this->redirect(['view', 'id' => $model->id]);
+            if($instituteValidete) return $this->redirect(['index']);
         }
 
 
@@ -182,7 +182,7 @@ class InvitationsController extends Controller
                 
             }
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', compact('model', 'sectionTemplates', 'sections', 'fieldValues'));
