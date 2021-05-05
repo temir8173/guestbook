@@ -2,9 +2,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-				<p class="speech__text">
+				<div class="speech__text">
 					<?= $section->getFieldValueByUrl('invite-words') ?>
-				</p>
+				</div>
 				<span class="speech__owners"><?= $section->getFieldValueByUrl('wedding-owners') ?></span>
 			</div>
 			<div class="col-sm-6">

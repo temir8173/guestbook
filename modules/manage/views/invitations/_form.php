@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\models\User;
+use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Invitations */
@@ -65,7 +66,13 @@ use app\models\User;
                         if ($field->type == 'text' || $field->type == 'link' || $field->type == 'youtube') {
                             echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textInput()->label($field->name);
                         } elseif ($field->type == 'textarea') {
-                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->widget(CKEditor::className(),[
+                                'editorOptions' => [
+                                    'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                                    'inline' => false, //по умолчанию false
+                                ],
+                            ])->label($field->name);
+                            // echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
                         } elseif ($field->type == 'image') {
                     ?>
                             <div class="container">
