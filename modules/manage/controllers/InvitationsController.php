@@ -153,7 +153,7 @@ class InvitationsController extends Controller
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
             
-            $model->save();
+            $instituteValidete = $model->save();
 
             foreach ($sections as $section) {
                 $section->invitation_id = $model->id;
@@ -182,7 +182,7 @@ class InvitationsController extends Controller
                 
             }
 
-            return $this->redirect(['index']);
+            if($instituteValidete) return $this->redirect(['index']);
         }
 
         return $this->render('update', compact('model', 'sectionTemplates', 'sections', 'fieldValues'));

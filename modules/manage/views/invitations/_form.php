@@ -41,7 +41,7 @@ use mihaildev\ckeditor\CKEditor;
     <?= $form->field($model, 'template')->dropDownList($model->templates) ?>
     <?= $form->field($model, 'created_date')->hiddenInput()->label(false) ?>
     <?= $form->field($model, 'updated_date')->hiddenInput()->label(false) ?>
-    <?= $form->field($model, 'status')->hiddenInput(['value' => 0])->label(false) ?>
+    <?= $form->field($model, 'status')->hiddenInput(['value' => $model->isNewRecord ? 0 : $model->status])->label(false) ?>
     <?= $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->id])->label(false) ?>
 
     <?php foreach ( $sectionTemplates as $index => $sectionTemplate ) : ?>

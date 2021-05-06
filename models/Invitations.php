@@ -94,7 +94,7 @@ class Invitations extends ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
             'template' => 'Шаблон',
-            'status' => 'Төленді',
+            'status' => 'Төлем',
             'user_id' => 'Пайдаланушы',
         ];
     }
