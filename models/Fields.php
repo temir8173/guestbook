@@ -15,12 +15,20 @@ use Yii;
 class Fields extends \yii\db\ActiveRecord
 {
 
+    const TYPE_TEXT = 'text';
+    const TYPE_TEXTAREA = 'textarea';
+    const TYPE_IMAGE = 'image';
+    const TYPE_LINK = 'link';
+    const TYPE_YOUTUBE = 'youtube';
+    const TYPE_MAP = 'map';
+
     public $types = [
-        'text' => 'Текст',
-        'textarea' => 'Область текста',
-        'image' => 'Сурет',
-        'link' => 'Cілтеме',
-        'youtube' => 'Youtube сілтемесі',
+        self::TYPE_TEXT => 'Текст',
+        self::TYPE_TEXTAREA => 'Область текста',
+        self::TYPE_IMAGE => 'Сурет',
+        self::TYPE_LINK => 'Cілтеме',
+        self::TYPE_YOUTUBE => 'Youtube сілтемесі',
+        self::TYPE_MAP => 'Карта 2gis',
     ];
 
     /**

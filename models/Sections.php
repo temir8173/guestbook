@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\HtmlPurifier;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "sections".
@@ -70,8 +71,10 @@ class Sections extends \yii\db\ActiveRecord
         if ( $fieldValue !== null ) {
             if ($fieldValue->field->type == 'image')
                 return $fieldValue->imagesNames;
+            else if ($fieldValue->field->type == 'map')
+                return Html::encode($fieldValue->value);
             else
-                return $fieldValue->value;
+                return HtmlPurifier::process($fieldValue->value);
         } else {
             return false;
         }

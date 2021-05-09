@@ -111,6 +111,18 @@ use mihaildev\ckeditor\CKEditor;
                             <div class="preview container">
                                 <p>Файлдар таңдалмаған</p>
                             </div>
+                    <?php } elseif ($field->type == 'map') { ?>
+
+                        Координаты маркера: <div id="location">LatLng(54.98, 82.89)</div>
+                        <div id="map" class="address__map-container iframe-container"></div>
+                        <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+
+                        <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")
+                        ->hiddenInput([
+                            'id' => 'coorsInput',
+                        ])
+                        ->label(false); ?>
+                            
                     <?php } ?>
 
                 <?php } ?>

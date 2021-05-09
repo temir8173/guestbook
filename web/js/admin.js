@@ -153,8 +153,63 @@ $('document').ready(function(){
 		});
 	}
 
+	var locationInfo = document.getElementById('location'),
+	    coorsInput = document.getElementById('coorsInput');
+
+	DG.then(function () {
+	    var map, marker;
+
+	    map = DG.map('map', {
+	        center: [51.23, 51.38],
+	        zoom: 11
+	    });
+
+	    if (coorsInput.value !== '') {
+	    	setMarker(JSON.parse(coorsInput.value));
+	    } else {
+	    	map.locate({setView: true, watch: true})
+		    .on('locationfound', function(e) {
+		    	setMarker([e.latitude, e.longitude]);
+		    })
+		    .on('locationerror', function(e) {
+		    	setMarker([51.23, 51.38]);
+		    });
+	    }
+
+	    function setMarker(coors) {
+	        marker = DG.marker(coors, {
+	            draggable: true
+	        }).addTo(map);
+	        marker.on('drag', function(e) {
+	            var lat = e.target._latlng.lat.toFixed(3),
+	                lng = e.target._latlng.lng.toFixed(3);
+
+	            locationInfo.innerHTML = lat + ', ' + lng;
+		        coorsInput.value = JSON.stringify({lat: e.latlng.lat,  lng: e.latlng.lng});
+	        });
+
+		    map.on('click', function(e) {
+		        marker.setLatLng([e.latlng.lat, e.latlng.lng]);
+		        locationInfo.innerHTML = e.latlng.lat + ', ' + e.latlng.lng;
+		        coorsInput.value = JSON.stringify({lat: e.latlng.lat,  lng: e.latlng.lng});
+		        //clickedElement.innerHTML = 'карту, координаты ' + e.latlng.lat + ', ' + e.latlng.lng;
+		    });
+		}
+
+	    //alert(JSON.parse(coorsInput.value).lat);
+
+	    /*marker = DG.marker([51.23, 51.38], {
+	        draggable: true
+	    }).addTo(map);*/
+
+	    
+
+	    // DG.marker([51.23, 51.38]).addTo(map).bindPopup('Мерейтой Орал қаласында өтеді');
+	});
+
 })
 
 
 
 //.invitations-form__image-link>span
+

@@ -6,18 +6,21 @@
 				<p class="address__place"><?= $section->getFieldValueByUrl('place-restaurant') ?> <br><span><?= $section->getFieldValueByUrl('place-address') ?></span></p>
 			</div>
 			<div class="col-sm-6">
-			<div id="map" class="address__map-container iframe-container"></div>
+			<div id="map" class="address__map-container iframe-container" data-coors="<?= $section->getFieldValueByUrl('place-map-widget') ?>"></div>
 			<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 			<script type="text/javascript">
 				var map;
+				var coors = document.getElementById('map').getAttribute("data-coors");
 
 				DG.then(function () {
 					map = DG.map('map', {
-						center: [51.23, 51.38],
+						center: [JSON.parse(coors).lat + 0.04, JSON.parse(coors).lng],
 						zoom: 11
 					});
 
-					DG.marker([51.23, 51.38]).addTo(map).bindPopup('Мерейтой Орал қаласында өтеді');
+					DG.marker(JSON.parse(coors)).addTo(map).bindPopup(
+						'<p class="address__place"><?= $section->getFieldValueByUrl('place-restaurant') ?> <br><span><?= $section->getFieldValueByUrl('place-address') ?></span></p>'
+						).openPopup();
 				});
 			</script>
 				
