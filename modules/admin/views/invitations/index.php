@@ -9,7 +9,7 @@ use app\models\Invitations;
 /* @var $searchModel app\models\InvitationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Invitations';
+$this->title = 'Шақыру билеттері';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="invitations-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Invitations', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Жаңа', ['create'], ['class' => 'btn btn-success create-invitation-btn']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -25,12 +25,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+            'class' => 'custom-grid'
+        ],
+        'rowOptions'=>function($model){
+            if($model->status === 0){
+                return ['class' => 'danger'];
+            } else {
+                return ['class' => ''];
+            }
+        },
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'headerOptions' => ['style' => 'width: 3%'],
+            ],
 
-            'id',
+            [
+                'attribute'=>'id',
+                'headerOptions' => ['style' => 'width: 3%'],
+                'filter' => false,
+            ],
             [
                 'attribute'=>'url',
+                'headerOptions' => ['style' => 'width: 20%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return "<a href=\"" . Url::base(true) . "/$data->url\" target=\"_blank\">" . Url::base(true) . "/$data->url</a>";
@@ -39,13 +57,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'attribute'=>'event_date',
+                'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->event_date);
                 },
+                'filter' => false,
             ],
             [
                 'attribute'=>'created_date',
+                'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->created_date);
@@ -63,6 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_date',
             [
                 'attribute'=>'updated_date',
+                'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->updated_date);
@@ -71,6 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'status',
+                'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return $data->statusLabels[$data->status];
@@ -79,7 +102,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             //'status',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template'=>'{update} {delete}',
+                'headerOptions' => ['style' => 'width: 5%'],
+            ],
         ],
     ]); ?>
 

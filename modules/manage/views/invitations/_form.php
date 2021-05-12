@@ -54,8 +54,10 @@ use mihaildev\ckeditor\CKEditor;
             <?php // echo $form->field($sections[$index], "[$index]invitation_id")->hiddenInput(['value' => $model->id])->label(false) ?>
             <?= $form->field($sections[$index], "[$index]section_template_id")->hiddenInput(['value' => $sectionTemplate->id])->label(false) ?>
             <?= $form->field($sections[$index], "[$index]order")->hiddenInput(['value' => $model->isNewRecord ? $index+1 : $sections[$index]->order])->label(false) ?>
-            <?php $sections[$index]->isNewRecord==1 ? $sections[$index]->status=1:$sections[$index]->status;?>
-            <?= $form->field($sections[$index], "[$index]status")->radioList([1 => 'иә', 0 => 'жоқ'])->label() ?>
+            <?= $form->field($sections[$index], "[$index]status")->hiddenInput(['value' => $model->isNewRecord ? 1 : $sections[$index]->status, 'id' => 'section-'.$index.'-status'])->label(false) ?>
+            <label class="switch active" data-section-id="section-<?= $index ?>-status">
+              <span class="slider round"></span>
+            </label>
 
             <?php $j = 0; foreach ($sectionTemplate->fields as $field) { ?>
 
@@ -64,9 +66,9 @@ use mihaildev\ckeditor\CKEditor;
                     <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]field_id")->hiddenInput(['value' => $field->id])->label(false) ?>
                     <?php
                         if ($field->type == 'text' || $field->type == 'link' || $field->type == 'youtube') {
-                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textInput()->label($field->name);
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])->textInput()->label($field->name);
                         } elseif ($field->type == 'textarea') {
-                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->widget(CKEditor::className(),[
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])->widget(CKEditor::className(),[
                                 'editorOptions' => [
                                     'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
                                     'inline' => false, //по умолчанию false
@@ -117,7 +119,7 @@ use mihaildev\ckeditor\CKEditor;
                         <div id="map" class="address__map-container iframe-container"></div>
                         <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 
-                        <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")
+                        <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])
                         ->hiddenInput([
                             'id' => 'coorsInput',
                         ])

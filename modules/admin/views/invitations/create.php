@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Invitations */
 
-$this->title = 'Create Invitations';
-$this->params['breadcrumbs'][] = ['label' => 'Invitations', 'url' => ['index']];
+$this->title = 'Жаңа шақыру билеті';
+$this->params['breadcrumbs'][] = ['label' => 'Шақыру билеттері', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="invitations-create">

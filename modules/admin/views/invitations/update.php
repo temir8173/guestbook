@@ -5,10 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Invitations */
 
-$this->title = 'Update Invitations: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Invitations', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Өңдеу: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Шақыру билеттері', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Өңдеу';
 ?>
 <div class="invitations-update">
 

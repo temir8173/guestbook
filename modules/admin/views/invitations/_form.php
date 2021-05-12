@@ -54,9 +54,10 @@ use mihaildev\ckeditor\CKEditor;
             <?php // echo $form->field($sections[$index], "[$index]invitation_id")->hiddenInput(['value' => $model->id])->label(false) ?>
             <?= $form->field($sections[$index], "[$index]section_template_id")->hiddenInput(['value' => $sectionTemplate->id])->label(false) ?>
             <?= $form->field($sections[$index], "[$index]order")->hiddenInput(['value' => $model->isNewRecord ? $index+1 : $sections[$index]->order])->label(false) ?>
-            <?php $sections[$index]->isNewRecord==1 ? $sections[$index]->status=1:$sections[$index]->status;?>
-            <?= $form->field($sections[$index], "[$index]status")->radioList([1 => 'иә', 0 => 'жоқ'])->label() ?>
-
+            <?= $form->field($sections[$index], "[$index]status")->hiddenInput(['value' => $model->isNewRecord ? 1 : $sections[$index]->status, 'id' => 'section-'.$index.'-status'])->label(false) ?>
+            <label class="switch active" data-section-id="section-<?= $index ?>-status">
+              <span class="slider round"></span>
+            </label>
             <?php $j = 0; foreach ($sectionTemplate->fields as $field) { ?>
 
                 <?php if (!empty($fieldValues[$sectionTemplate->id])) { ?>

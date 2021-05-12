@@ -167,7 +167,7 @@ $('document').ready(function(){
 	    if (coorsInput.value !== '') {
 	    	setMarker(JSON.parse(coorsInput.value));
 	    } else {
-	    	map.locate({setView: true, watch: true})
+	    	map.locate({setView: true})
 		    .on('locationfound', function(e) {
 		    	setMarker([e.latitude, e.longitude]);
 		    })
@@ -207,6 +207,18 @@ $('document').ready(function(){
 	    // DG.marker([51.23, 51.38]).addTo(map).bindPopup('Мерейтой Орал қаласында өтеді');
 	});
 
+	$(".switch").on('click', function(e) {
+		var section_id = $(this).attr('data-section-id');
+		$(this).toggleClass('active');
+		if ( $(this).hasClass('active') ) {
+			$("#"+section_id).val(1);
+			$(this).parents(".invitations-form__section").removeClass('inactive');
+		} else {
+			$("#"+section_id).val(0);
+			$(this).parents(".invitations-form__section").addClass('inactive');
+		}
+		// alert('test');
+	});
 })
 
 

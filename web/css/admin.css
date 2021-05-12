@@ -20,6 +20,9 @@ body {
 	padding: 15px;
 	margin-bottom: 20px;
 }
+.invitations-form__section.inactive {
+	opacity: 0.3;
+}
 .invitations-form__section img {
 	width: 100%;
 }
@@ -86,6 +89,10 @@ body {
 	border-bottom: 1px;
 }
 
+.custom-grid .table > thead > tr > th {
+	vertical-align: middle;
+}
+
 .create-invitation-btn {
 	border-radius: 2px;
 	padding: 5px 10px;
@@ -106,4 +113,58 @@ body {
 
 .address__map-container {
 	max-width: 600px;
+}
+
+
+/* sdfsdafasdf */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 32px;
+	height: 20px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 3px;
+	bottom: 2px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.switch.active .slider {
+  background-color: #49a543;
+}
+
+.switch.active .slider:before {
+  -webkit-transform: translateX(11px);
+  -ms-transform: translateX(11px);
+  transform: translateX(11px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
