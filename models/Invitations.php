@@ -89,13 +89,13 @@ class Invitations extends ActiveRecord
         return [
             'id' => 'ID',
             'url' => 'Url',
-            'name' => 'Аты',
-            'event_date' => 'Өткізілетін уақыты',
+            'name' => Yii::t('common', 'Аты'),
+            'event_date' => Yii::t('common', 'Өткізілетін уақыты'),
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
             'template' => 'Шаблон',
-            'status' => 'Төлем',
-            'user_id' => 'Пайдаланушы',
+            'status' => Yii::t('common', 'Төлем'),
+            'user_id' => Yii::t('common', 'Пайдаланушы'),
         ];
     }
 

@@ -23,6 +23,7 @@ AdminAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
     <?php $this->head() ?>
 </head>
 <body>
@@ -42,13 +43,14 @@ AdminAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Профиль', 'url' => ['/user/profile']],
+            ['label' => Yii::t('common', 'Шақырулар'), 'url' => ['/manage/invitations']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Кіру', 'url' => ['/site/login']]
+                ['label' => Yii::t('common', 'Кіру'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Шығу (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('common', 'Шығу').' (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

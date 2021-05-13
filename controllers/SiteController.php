@@ -175,7 +175,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Келесі нұсқаулар алу үшін электрондық поштаны тексеріңіз.');
-                //return $this->goHome();
+                return $this->goHome();
             } else {
                 Yii::$app->session->setFlash('error', 'Өкінішке орай, енгізілген аккаунттың құпия сөзін қалпына келтіре алмаймыз.');
             }
@@ -204,7 +204,7 @@ class SiteController extends Controller
  
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('success', 'New password was saved.');
-            return $this->goHome();
+            return $this->goBack();
         }
  
         $this->layout = 'front-page';

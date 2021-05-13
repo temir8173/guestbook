@@ -32,10 +32,12 @@ class ResetPasswordForm extends Model
  
         if (empty($token) || !is_string($token)) {
             throw new \yii\web\HttpException(404,'Страница не найдена');
+        } elseif ($token === 'default') {
+            $this->_user = UserIdentity::findOne(Yii::$app->user->id);
+        } else {
+            $this->_user = UserIdentity::findByPasswordResetToken($token);
         }
- 
-        $this->_user = UserIdentity::findByPasswordResetToken($token);
- 
+
         if (!$this->_user) {
             throw new \yii\web\HttpException(404,'Страница не найдена');
         }
@@ -51,7 +53,8 @@ class ResetPasswordForm extends Model
         return [
             ['password', 'required'],
             ['password', 'validatePrevPassword'],
-            ['password', 'validateOwnPassword'],
+            // ['password', 'validateOwnPassword'],
+            ['password', 'match', 'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', 'message' => 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек'],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
         ];
@@ -97,6 +100,18 @@ class ResetPasswordForm extends Model
         $user->email_confirm_token = null;
         $user->status = UserIdentity::STATUS_ACTIVE;
         $user->removePasswordResetToken();
+        return $user->save(false);
+    }
+    
+    /**
+     * Resets password.
+     *
+     * @return bool if password was reset.
+     */
+    public function resetPasswordByProfile()
+    {
+        $user = $this->_user;
+        $user->password = $this->password;
         return $user->save(false);
     }
  

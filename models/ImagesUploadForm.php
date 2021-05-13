@@ -20,7 +20,7 @@ class ImagesUploadForm extends Model
     
     public function upload()
     {
-        if ($this->validate()) {
+        if ($this->validate() && count($this->imageFiles) < 10) {
             $names = [];
             foreach ($this->imageFiles as $file) {
                 $name = preg_replace("/\s+/", "", $file->baseName) . time() . '.' . $file->extension;

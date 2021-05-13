@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Кіру';
+$this->title = Yii::t('common', 'Кіру');
 ?>
 <div class="login-section">
     
@@ -34,12 +34,12 @@ $this->title = 'Кіру';
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <?= Html::submitButton('Кіру', ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
+                            <?= Html::submitButton(Yii::t('common', 'Кіру'), ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
                         </div>
                     </div>
 
                     <div class="login-forgot">
-                        Құпия сөзіңізді ұмытқан болсаңыз <?= Html::a('мұнда', ['site/request-password-reset']) ?> қалпына келтіре аласыз.
+                        <?= Yii::t('common', 'Құпия сөзіңізді ұмытқан болсаңыз') . Html::a(Yii::t('common', ' осы сілтеме'), ['site/request-password-reset']) . Yii::t('common', ' бойынша қалпына келтіре аласыз') ?>.
                     </div>
 
                 <?php ActiveForm::end(); ?>

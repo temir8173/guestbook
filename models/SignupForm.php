@@ -38,7 +38,7 @@ class SignupForm extends Model
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
             //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
-            'uncheckedMessage' => 'Робот емес екендігіңізді растаңыз.'],
+            'uncheckedMessage' => Yii::t('common', 'Растаңыз')],
         ];
     }
 
@@ -60,7 +60,7 @@ class SignupForm extends Model
             'password' => Yii::t('common', 'Құпия сөз'),
             'password_repeat' => Yii::t('common', 'Құпия сөзді растау'),
             'rememberMe' => 'Мені жүйеде сақтау',
-            'reCaptcha' => 'Робот емес екендігіңізді растаңыз',
+            'reCaptcha' => Yii::t('common', 'Робот емес екендігіңізді растаңыз'),
         ];
     }
  

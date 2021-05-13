@@ -49,9 +49,9 @@ class FieldValues extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'section_id' => 'Секция',
-            'field_id' => 'Өріс',
-            'value' => 'Өріс мәні',
-            'url' => 'Өріс url',
+            'field_id' => Yii::t('common', 'Өріс'),
+            'value' => Yii::t('common', 'Өріс мәні'),
+            'url' => Yii::t('common', 'Өріс url'),
         ];
     }
 

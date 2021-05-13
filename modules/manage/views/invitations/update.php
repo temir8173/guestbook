@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Invitations */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Менің шақыру билеттерім', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Менің шақыру билеттерім'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name];
-$this->params['breadcrumbs'][] = 'Өңдеу';
+$this->params['breadcrumbs'][] = Yii::t('common', 'Өңдеу');
 ?>
 <div class="invitations-update">
 

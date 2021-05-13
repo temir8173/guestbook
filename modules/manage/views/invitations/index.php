@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\InvitationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Менің шақыру билеттерім';
+$this->title = Yii::t('common', 'Менің шақыру билеттерім');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="invitations-index">
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Жаңа шақыру билеті', ['create'], ['class' => 'btn btn-info create-invitation-btn']) ?>
+        <?= Html::a(Yii::t('common', 'Жаңа шақыру билеті'), ['create'], ['class' => 'btn btn-info create-invitation-btn']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => false,
@@ -51,9 +51,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function($data){
                     if ($data->status === 0)
-                        return Html::a(Url::base(true)."/preview/$data->url", ['/invitations/default/preview', 'view' => $data->url], ['class' => 'profile-link', 'target' => '_blank']);
+                        return Html::a(Url::base(true)."/preview/$data->url", ['/invitations/default/preview', 'view' => $data->url], ['class' => 'profile-link', 'data-pjax' => '0', 'target' => '_blank']);
                     else 
-                         return Html::a(Url::base(true)."/$data->url", ['/invitations/default/index', 'view' => $data->url], ['class' => 'profile-link', 'target' => '_blank']);
+                         return Html::a(Url::base(true)."/$data->url", ['/invitations/default/index', 'view' => $data->url], ['class' => 'profile-link', 'data-pjax' => '0', 'target' => '_blank']);
                 },
             ],
             [
@@ -69,15 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return ($data->status) ? 'Иә' : 'Жоқ';
+                    return ($data->status) ? Yii::t('common', 'Иә') : Yii::t('common', 'Жоқ');
                 },
             ],
             [
-                'attribute' => 'Тілектер',
+                'attribute' => Yii::t('common', 'Тілектер'),
                 'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return Html::a('Басқару', ['/manage/messages/index', 'invitation_id' => $data->id], ['class' => 'profile-link']);
+                    return Html::a(Yii::t('common', 'Басқару'), ['/manage/messages/index', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
                 },
             ],
 
@@ -88,6 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
+    <?php \yii\widgets\Pjax::end(); ?>
 
 
 </div>

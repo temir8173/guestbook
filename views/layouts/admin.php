@@ -23,6 +23,7 @@ AdminAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
     <?php $this->head() ?>
 </head>
 <body>
@@ -40,7 +41,10 @@ echo MultiLang::widget(['cssClass'=>'pull-right language']);
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-        ['label' => 'Профиль', 'url' => ['/user/profile']],
+        ['label' => 'Барлық шақырулар', 'url' => ['/admin/invitations']],
+        ['label' => 'Тілектер', 'url' => ['/admin/messages']],
+        ['label' => 'Секциялар', 'url' => ['/admin/sections']],
+        ['label' => 'Өрістер', 'url' => ['/admin/fields']],
         Yii::$app->user->isGuest ? (
             ['label' => 'Кіру', 'url' => ['/site/login']]
         ) : (

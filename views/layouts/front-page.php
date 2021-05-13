@@ -59,6 +59,13 @@ FrontPageAsset::register($this);
     NavBar::end();*/
     ?>
 
+    <div class="container">
+        
+    </div>
+
+<div class="container">
+    <?= Alert::widget() ?>
+</div>
 <?= $content ?>
 
 <?php $this->endBody() ?>

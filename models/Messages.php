@@ -44,9 +44,9 @@ class Messages extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Атыңыз',
-            'text' => 'Сообщение',
-            'date' => 'Дата',
+            'name' => Yii::t('common', 'Тілек білдіруші'),
+            'text' => Yii::t('common', 'Мәтіні'),
+            'date' => Yii::t('common', 'Уақыты'),
             'invitation_id' => 'invitation_id',
         ];
     }

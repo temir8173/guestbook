@@ -67,6 +67,7 @@ body {
 
 .custom-grid {
 	font-family: 'Open Sans', sans-serif;
+	overflow-x:auto;
 }
 
 .custom-grid .form-control {
@@ -167,4 +168,50 @@ body {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+	.custom-grid>table>thead>tr>th {
+		min-width: 50px;
+	}
+	.language {
+		float: none!important;
+		margin-left: 0;
+	}
+	.language .btn {
+		padding: 6px 0 !important;
+	}
+	.language .dropdown-menu {
+		left: 0;
+		border-radius: 2px;
+	}
+	.breadcrumb {
+		background-color: unset;
+		line-height: 1.8;
+	}
+	.breadcrumb a {
+		margin: 0 5px;
+	}
+	.breadcrumb li:before {
+		padding: 0;
+	}
+	h2 {
+		font-size: 21px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.form-group {
+		margin-bottom: 10px;
+	}
+	.upload-container {
+		padding: 30px;
+		text-align: center;
+		height: unset;
+	}
+	.input-group-addon {
+		padding: 6px 6px;
+	}
+	.form-control {
+		padding: 6px 6px;
+	}
 }

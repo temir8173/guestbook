@@ -78,7 +78,7 @@ $('document').ready(function(){
 
 	function validFileType(file) {
 		for(var i = 0; i < fileTypes.length; i++) {
-			if(file.type === fileTypes[i] && file.size < 1048576*2) {
+			if(file.type === fileTypes[i] && file.size < 1048576*5) {
 				return true;
 			}
 		}
@@ -124,7 +124,7 @@ $('document').ready(function(){
 					listItem.append(para);
 
 				} else {
-					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың түрі дұрыс емес немесе өлшемі 2МБ-тан көп. Қайтадан таңдаңыз.';
+					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың түрі дұрыс емес немесе өлшемі 5МБ-тан көп. Қайтадан таңдаңыз.';
 					listItem.append(para);
 				}
 
@@ -153,14 +153,18 @@ $('document').ready(function(){
 		});
 	}
 
+
+	// 
+
 	var locationInfo = document.getElementById('location'),
-	    coorsInput = document.getElementById('coorsInput');
+	    coorsInput = document.getElementById('coorsInput'),
+		defaultCoors = [51.23, 51.38];
 
 	DG.then(function () {
 	    var map, marker;
 
 	    map = DG.map('map', {
-	        center: [51.23, 51.38],
+	        center: defaultCoors,
 	        zoom: 11
 	    });
 
@@ -170,9 +174,13 @@ $('document').ready(function(){
 	    	map.locate({setView: true})
 		    .on('locationfound', function(e) {
 		    	setMarker([e.latitude, e.longitude]);
+	            locationInfo.innerHTML = e.latitude + ', ' + e.longitude;
+		        coorsInput.value = JSON.stringify({lat: e.latitude,  lng: e.longitude});
 		    })
 		    .on('locationerror', function(e) {
-		    	setMarker([51.23, 51.38]);
+		    	setMarker(defaultCoors);
+	            locationInfo.innerHTML = defaultCoors[0] + ', ' + defaultCoors[1];
+		        coorsInput.value = JSON.stringify({lat: defaultCoors[0],  lng: defaultCoors[1]});
 		    });
 	    }
 
@@ -192,19 +200,9 @@ $('document').ready(function(){
 		        marker.setLatLng([e.latlng.lat, e.latlng.lng]);
 		        locationInfo.innerHTML = e.latlng.lat + ', ' + e.latlng.lng;
 		        coorsInput.value = JSON.stringify({lat: e.latlng.lat,  lng: e.latlng.lng});
-		        //clickedElement.innerHTML = 'карту, координаты ' + e.latlng.lat + ', ' + e.latlng.lng;
 		    });
 		}
 
-	    //alert(JSON.parse(coorsInput.value).lat);
-
-	    /*marker = DG.marker([51.23, 51.38], {
-	        draggable: true
-	    }).addTo(map);*/
-
-	    
-
-	    // DG.marker([51.23, 51.38]).addTo(map).bindPopup('Мерейтой Орал қаласында өтеді');
 	});
 
 	$(".switch").on('click', function(e) {
@@ -217,7 +215,6 @@ $('document').ready(function(){
 			$("#"+section_id).val(0);
 			$(this).parents(".invitations-form__section").addClass('inactive');
 		}
-		// alert('test');
 	});
 })
 

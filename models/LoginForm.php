@@ -61,7 +61,7 @@ class LoginForm extends Model
             //var_dump($user->validatePassword($this->password));die;
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Аты немесе құпия сөз дұрыс емес.');
+                $this->addError($attribute, Yii::t('common', 'Құпия сөз дұрыс емес немесе бұндай пайдаланушы тіркелмеген'));
             }
         }
     }

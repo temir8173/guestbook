@@ -24,7 +24,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'validateUserExist'],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
             //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
-            'uncheckedMessage' => 'Please confirm that you are not a bot.'],
+            'uncheckedMessage' => Yii::t('common', 'Растаңыз')],
         ];
     }
 
@@ -44,8 +44,8 @@ class PasswordResetRequestForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('common', 'Email немесе логин'),
-            'reCaptcha' => 'Робот емес екендігіңізді растаңыз',
+            'email' => Yii::t('common', 'Логин немесе email'),
+            'reCaptcha' => Yii::t('common', 'Робот емес екендігіңізді растаңыз'),
         ];
     }
 

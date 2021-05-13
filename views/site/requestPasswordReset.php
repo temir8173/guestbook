@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
  
-$this->title = 'Құпия сөзді қалпына келтіру';
+$this->title = Yii::t('common', 'Құпия сөзді қалпына келтіру');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
  
@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="site-request-password-reset">
             <h1><?= Html::encode($this->title) ?></h1>
             <div class="shadow-box">
-                <p class="signup-info">Email немесе логиныңызды енгізіңіз. Сізге сілтеме жіберіледі, сілтеме бойынша құпия сөзіңізді қалпына келтіре аласыз.</p>
+                <p class="signup-info"><?= Yii::t('common', 'Email немесе логиныңызды енгізіңіз. Сізге сілтеме жіберіледі, сілтеме бойынша құпия сөзіңізді қалпына келтіре аласыз.') ?></p>
                 <div class="row">
                     <div class="col-lg-12">
              
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 \himiklab\yii2\recaptcha\ReCaptcha2::className(), []
                             ) ?>
                             <div class="form-group">
-                                <?= Html::submitButton('Жіберу', ['class' => 'btn btn-primary login-button']) ?>
+                                <?= Html::submitButton(Yii::t('common', 'Жіберу'), ['class' => 'btn btn-primary login-button']) ?>
                             </div>
                         <?php ActiveForm::end(); ?>
              

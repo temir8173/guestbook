@@ -7,8 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MessagesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = $invitation->name . ' - Тілектер';
-$this->params['breadcrumbs'][] = ['label' => 'Менің шақыру парақтарым', 'url' => ['/manage/invitations/index']];
+$this->title = $invitation->name . ' - ' . Yii::t('common', 'Тілектер');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Менің шақыру билеттерім'), 'url' => ['/manage/invitations/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="messages-index">
@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -52,11 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template'=>'{update} {delete}',
+                'template'=>'{delete}',
                 'headerOptions' => ['style' => 'width: 7%'],
             ],
         ],
     ]); ?>
-
+    <?php \yii\widgets\Pjax::end(); ?>
 
 </div>

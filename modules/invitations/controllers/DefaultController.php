@@ -86,7 +86,7 @@ class DefaultController extends Controller
     public function actionPreview($view = '')
     {
         if (\Yii::$app->language != 'kk') {
-            return $this->redirect(['/preview/'.\Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
+            return $this->redirect(['/'.\Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
         }
     	if ( $view !== '' ) {
     		$invitation = Invitations::find()

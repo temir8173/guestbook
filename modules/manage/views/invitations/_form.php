@@ -49,7 +49,7 @@ use mihaildev\ckeditor\CKEditor;
 
         <section class="invitations-form__section">
 
-            <h2><span><?= $index+1 ?></span>. Секция - <?= $sectionTemplate->name ?></h2>
+            <h2><span><?= $index+1 ?></span>. Секция - <?= Yii::t('common', $sectionTemplate->name) ?></h2>
 
             <?php // echo $form->field($sections[$index], "[$index]invitation_id")->hiddenInput(['value' => $model->id])->label(false) ?>
             <?= $form->field($sections[$index], "[$index]section_template_id")->hiddenInput(['value' => $sectionTemplate->id])->label(false) ?>
@@ -66,20 +66,20 @@ use mihaildev\ckeditor\CKEditor;
                     <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]field_id")->hiddenInput(['value' => $field->id])->label(false) ?>
                     <?php
                         if ($field->type == 'text' || $field->type == 'link' || $field->type == 'youtube') {
-                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])->textInput()->label($field->name);
+                            echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])->textInput()->label(Yii::t('common', $field->name));
                         } elseif ($field->type == 'textarea') {
                             echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value", ['enableClientValidation' => false])->widget(CKEditor::className(),[
                                 'editorOptions' => [
                                     'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
                                     'inline' => false, //по умолчанию false
                                 ],
-                            ])->label($field->name);
+                            ])->label(Yii::t('common', $field->name));
                             // echo $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]value")->textarea()->label($field->name);
                         } elseif ($field->type == 'image') {
                     ?>
                             <div class="container">
                                 <div class="row">
-                                    <h4><?= $field->name ?></h4>
+                                    <h4><?= Yii::t('common', $field->name) ?></h4>
                                     <div class="invitations-form__images restaurant-pic">
                                     <?php if ( is_array($fieldValues[$sectionTemplate->id][$j]->imagesNames) ) { ?>
                                         <?php foreach ($fieldValues[$sectionTemplate->id][$j]->imagesNames as $key => $imageName) { ?>
@@ -103,19 +103,19 @@ use mihaildev\ckeditor\CKEditor;
                                 </div>
                                     
                             </div>
-                            <div id="upload-container-<?= $fieldValues[$sectionTemplate->id][$j]->id ?>" class="upload-container" data-action="">
+                            <div id="upload-container-<?= $sectionTemplate->id ?>-<?= $j ?>" class="upload-container" data-action="">
                                 <img id="upload-image" src="/images/upload.svg">
                                 <div>
-                                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]imageFiles[]", ['template' => "{label}<span> немесе мұнда сүйреп алып келіңіз</span>\n{input}"])->fileInput(['multiple' => true])->label('Файл таңдаңыз'); ?>
+                                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]imageFiles[]", ['template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйреп алып келіңіз')."</span>\n{input}"])->fileInput(['multiple' => true])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
                                     
                                 </div>
                             </div>
                             <div class="preview container">
-                                <p>Файлдар таңдалмаған</p>
+                                <p><?= Yii::t('common', 'Файлдар таңдалмаған') ?></p>
                             </div>
                     <?php } elseif ($field->type == 'map') { ?>
 
-                        Координаты маркера: <div id="location">LatLng(54.98, 82.89)</div>
+                        <?= Yii::t('common', 'Маркер координаталары') ?>: <div id="location">LatLng(54.98, 82.89)</div>
                         <div id="map" class="address__map-container iframe-container"></div>
                         <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 
@@ -136,7 +136,7 @@ use mihaildev\ckeditor\CKEditor;
     <?php endforeach; ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сақтау', ['class' => 'btn btn-info save-invitation-btn']) ?>
+        <?= Html::submitButton(Yii::t('common', 'Сақтау'), ['class' => 'btn btn-info save-invitation-btn']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
