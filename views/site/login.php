@@ -45,6 +45,10 @@ $this->title = Yii::t('common', 'Кіру');
                 <?php ActiveForm::end(); ?>
             </div>
 
+            <div class="shadow-box shadow-box_additionals">
+                <span class="form-additional-message">Ещё нет аккаунта?&nbsp;<?= Html::a(Yii::t('common', 'Тіркеліңіз'), ['site/signup']) ?></span>
+            </div>
+
         </div>
 
     </div>

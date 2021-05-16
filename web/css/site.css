@@ -370,6 +370,11 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
   box-sizing: border-box;
 }
 
+.shadow-box_additionals {
+  margin-top: 15px;
+  padding: 15px 40px;
+}
+
 .login-form input {
   border-radius: 2px;
 }
@@ -433,4 +438,16 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
   box-shadow: 0 1px 2px rgb(222 223 224 / 35%);
   margin-top: 20px;
   padding: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+  .shadow-box {
+    padding: 30px 15px;
+  }
+  .login-form .form-group {
+    margin-bottom: 10px;
+  }
+  .shadow-box_additionals {
+    padding: 15px;
+  }
 }

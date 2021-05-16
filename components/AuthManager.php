@@ -4,10 +4,10 @@ namespace app\components;
  
 use app\models\User;
 use yii\rbac\Assignment;
-use yii\rbac\DbManager;
+use yii\rbac\PhpManager;
 use Yii;
  
-class AuthManager extends DbManager
+class AuthManager extends PhpManager
 {
     public function getAssignments($userId)
     {
