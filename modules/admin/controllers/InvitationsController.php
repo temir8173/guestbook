@@ -74,14 +74,14 @@ class InvitationsController extends Controller
 
         // создаем массив моделей секций
         $sections = [new Sections()];
-        for($i = 1; $i < count($sectionTemplates); $i++) {
+        for($i = 1, $iMax = count($sectionTemplates); $i < $iMax; $i++) {
             $sections[] = new Sections();
         }
         // Считаем колво полей
         $fieldsTotal = 0;
         $fieldValues = [];
         foreach ($sectionTemplates as $sectionTemplate) {
-            for($i = 0; $i < count($sectionTemplate->fields); $i++) {
+            for($i = 0, $iMax = count($sectionTemplate->fields); $i < $iMax; $i++) {
                 $fieldValues[$sectionTemplate->id][] = new FieldValues();
             }
         }
@@ -99,7 +99,6 @@ class InvitationsController extends Controller
                         if ( Yii::$app->request->post('FieldValues') !== null ) {
                             $queryParams = Yii::$app->request->post('FieldValues')[$section->section_template_id][$key];
                             $fieldValue->section_id = $section->id;
-                            $fieldValue->field_id = $queryParams['field_id'];
                             $fieldValue->field_id = $queryParams['field_id'];
                             if ($fieldValue->field->type == 'image') {
                                 $fieldValue->imageFiles = UploadedFile::getInstances($fieldValue, "[$section->section_template_id][$key]imageFiles");
@@ -152,7 +151,7 @@ class InvitationsController extends Controller
         foreach ($sections as $section) {
             
             if ($section->sectionTemplate->fields !== null) {
-                for($i = 0; $i < count($section->sectionTemplate->fields); $i++) {
+                for($i = 0, $iMax = count($section->sectionTemplate->fields); $i < $iMax; $i++) {
                     if (isset($section->fieldValues[$i])) {
                         $fieldValues[$section->section_template_id][] = $section->fieldValues[$i];
                     } else {

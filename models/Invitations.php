@@ -22,12 +22,14 @@ use yii\behaviors\TimestampBehavior;
 class Invitations extends ActiveRecord
 {
 
-    const STATUS_UNPAID = 0;
-    const STATUS_PAID = 1;
+    public const PRICE = 5000;
 
-    const TEMPLATE_1 = 'template1';
-    const TEMPLATE_2 = 'template2';
-    const TEMPLATE_RUSLAN = 'template-ruslan';
+    public const STATUS_UNPAID = 0;
+    public const STATUS_PAID = 1;
+
+    public const TEMPLATE_1 = 'template1';
+    public const TEMPLATE_2 = 'template2';
+    public const TEMPLATE_RUSLAN = 'template-ruslan';
 
     public static function getTemplates()
     {
@@ -106,6 +108,24 @@ class Invitations extends ActiveRecord
             return true;
         }
         return false;
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $order = new Orders();
+            $order->user_id = Yii::$app->user->id;
+            $order->invitation_id = $this->id;
+            $order->price = self::PRICE;
+            $order->create_time = time();
+            $order->paid_time = '';
+            $order->status = 0;
+            $order->save();
+        } else {
+            // var_dump('expression');die;
+            // Нет, старая (update)
+        }
+        parent::afterSave($insert, $changedAttributes);
     }
 
     public function beforeDelete()

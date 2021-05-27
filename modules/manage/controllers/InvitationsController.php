@@ -75,11 +75,11 @@ class InvitationsController extends Controller
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
 
-            $instituteValidete = $model->save();
+            $instituteValidate = $model->save();
 
             foreach ($sections as $section) {
                 $section->invitation_id = $model->id;
-                if($instituteValidete) $section->save();
+                if($instituteValidate) $section->save();
                 if ( !empty($fieldValues[$section->section_template_id]) ) {
 
                     foreach ($fieldValues[$section->section_template_id] as $key => $fieldValue) {
@@ -99,7 +99,7 @@ class InvitationsController extends Controller
                             } else {
                                 $fieldValue->value = (isset($queryParams['value'])) ? $queryParams['value'] : '';
                             }
-                            if($instituteValidete) $fieldValue->save();
+                            if($instituteValidate) $fieldValue->save();
                         }
                     }
                 }
@@ -107,7 +107,7 @@ class InvitationsController extends Controller
                 
             }
 
-            if($instituteValidete) return $this->redirect(['index']);
+            if($instituteValidate) return $this->redirect(['index']);
         }
 
 
@@ -153,7 +153,7 @@ class InvitationsController extends Controller
         // сохраняем в бд если пришел пост запрос
         if ( $model->load(Yii::$app->request->post()) && Model::loadMultiple($sections, Yii::$app->request->post()) ) {
             
-            $instituteValidete = $model->save();
+            $instituteValidate = $model->save();
 
             foreach ($sections as $section) {
                 $section->invitation_id = $model->id;
@@ -182,7 +182,7 @@ class InvitationsController extends Controller
                 
             }
 
-            if($instituteValidete) return $this->redirect(['index']);
+            if($instituteValidate) return $this->redirect(['index']);
         }
 
         return $this->render('update', compact('model', 'sectionTemplates', 'sections', 'fieldValues'));

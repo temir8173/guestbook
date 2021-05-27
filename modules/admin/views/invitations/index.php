@@ -28,13 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'options' => [
             'class' => 'custom-grid'
         ],
-        'rowOptions'=>function($model){
-            if($model->status === 0){
-                return ['class' => 'danger'];
-            } else {
-                return ['class' => ''];
-            }
-        },
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
@@ -95,8 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
-                'value' => function($data){
-                    return $data->statusLabels[$data->status];
+                'value' => function (\app\models\Invitations $model) {
+                    return \app\helpers\InvitationsHelper::statusLabel($model->status);
                 },
                 'filter' => Invitations::getStatusLabels(),
             ],
