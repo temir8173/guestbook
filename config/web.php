@@ -1,7 +1,18 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+use app\components\AuthManager;
+use yii\helpers\ArrayHelper;
+
+$params = ArrayHelper::merge(
+    require __DIR__ . '/params.php',
+    require __DIR__ . '/params-local.php'
+);
+$db = ArrayHelper::merge(
+    require __DIR__ . '/db.php',
+    require __DIR__ . '/db-local.php'
+);
+$urlManager = require __DIR__ . '/_url-manager.php';
+$i18n = require __DIR__ . '/_i18n.php';
 
 $config = [
     'id' => 'basic',
@@ -38,9 +49,9 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.mail.ru',
-                'username' => 'test',
-                'password' => 'test@Qq',
+                'host' => 'your-host',
+                'username' => 'username',
+                'password' => 'pwd',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
@@ -56,40 +67,10 @@ $config = [
         ],
         'db' => $db,
         
-        'urlManager' => [
-            'class' => 'codemix\localeurls\UrlManager',
-            'languages' => ['kk', 'ru'],
-            'enableDefaultLanguageUrlCode' => false,
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '/' => 'site/index',
-                '/reset-password' => 'site/reset-password',
-                '/request-password-reset' => 'site/request-password-reset',
-                '/signup' => 'site/signup',
-                '/login' => 'site/login',
-                '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
-                '/<view:\w+>' => '/invitations/default/index',
-                '/preview/<view:\w+>' => '/invitations/default/preview',
-                '/ru/<view:\w+>' => '/<view:\w+>',
-                '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
-                '/manage/invitations' => '/manage/invitations/index',
-                //'/manage/' => '/manage/invitations/index',
-            ],
-        ],
-        'i18n' => [
-            'translations' => [
-                'common*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
-                    'fileMap' => [
-                        'app' => 'app.php',
-                    ]
-                ],
-            ],
-        ],
+        'urlManager' => $urlManager,
+        'i18n' => $i18n,
         'authManager' => [
-            'class' => 'app\components\AuthManager',
+            'class' => AuthManager::class,
         ],
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',
@@ -98,10 +79,10 @@ $config = [
             'thousandSeparator' => ' ',
             'currencyCode' => 'KZT',
        ],
-       'reCaptcha' => [
+        'reCaptcha' => [
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-            'siteKeyV2' => 'test',
-            'secretV2' => 'test',
+            'siteKeyV2' => 'some-siteKey',
+            'secretV2' => 'some-siteKey',
             'siteKeyV3' => 'your siteKey v3',
             'secretV3' => 'your secret key v3',
         ],
@@ -153,4 +134,7 @@ if (YII_ENV_DEV) {
     ];
 }
 
-return $config;
+return ArrayHelper::merge(
+    $config,
+    require __DIR__ . '/web-local.php'
+);
