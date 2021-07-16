@@ -3,13 +3,18 @@
 namespace app\components;
  
 use app\models\User;
+use yii\base\InvalidConfigException;
 use yii\rbac\Assignment;
 use yii\rbac\PhpManager;
 use Yii;
- 
+use yii\web\IdentityInterface;
+
 class AuthManager extends PhpManager
 {
-    public function getAssignments($userId)
+    /**
+     * @throws InvalidConfigException
+     */
+    public function getAssignments($userId): array
     {
         if ($userId && $user = $this->getUser($userId)) {
             $assignment = new Assignment();
@@ -19,11 +24,14 @@ class AuthManager extends PhpManager
         }
         return [];
     }
- 
-    public function getAssignment($roleName, $userId)
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function getAssignment($roleName, $userId): ?Assignment
     {
         if ($userId && $user = $this->getUser($userId)) {
-            if ($user->role == $roleName) {
+            if ($user->role === $roleName) {
                 $assignment = new Assignment();
                 $assignment->userId = $userId;
                 $assignment->roleName = $user->role;
@@ -33,12 +41,12 @@ class AuthManager extends PhpManager
         return null;
     }
  
-    public function getUserIdsByRole($roleName)
+    public function getUserIdsByRole($roleName): array
     {
         return User::find()->where(['role' => $roleName])->select('id')->column();
     }
  
-    public function assign($role, $userId)
+    public function assign($role, $userId): ?Assignment
     {
         if ($userId && $user = $this->getUser($userId)) {
             $assignment = new Assignment([
@@ -51,19 +59,25 @@ class AuthManager extends PhpManager
         }
         return null;
     }
- 
-    public function revoke($role, $userId)
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function revoke($role, $userId): bool
     {
         if ($userId && $user = $this->getUser($userId)) {
-            if ($user->role == $role->name) {
+            if ($user->role === $role->name) {
                 $this->setRole($user, null);
                 return true;
             }
         }
         return false;
     }
- 
-    public function revokeAll($userId)
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function revokeAll($userId): bool
     {
         if ($userId && $user = $this->getUser($userId)) {
             $this->setRole($user, null);
@@ -71,26 +85,27 @@ class AuthManager extends PhpManager
         }
         return false;
     }
- 
+
     /**
      * @param integer $userId
-     * @return null|\yii\web\IdentityInterface|User
+     * @return null|IdentityInterface|User
+     * @throws InvalidConfigException
      */
-    private function getUser($userId)
+    private function getUser(int $userId)
     {
         $webUser = Yii::$app->get('user', false);
-        if ($webUser && !$webUser->getIsGuest() && $webUser->getId() == $userId) {
+        if ($webUser && !$webUser->getIsGuest() && $webUser->getId() === $userId) {
             return $webUser->getIdentity();
-        } else {
-            return User::findOne($userId);
         }
+
+        return User::findOne($userId);
     }
  
     /**
      * @param User $user
-     * @param string $roleName
+     * @param ?string $roleName
      */
-    private function setRole(User $user, $roleName)
+    private function setRole(User $user, ?string $roleName): void
     {
         $user->role = $roleName;
         $user->updateAttributes(['role' => $roleName]);

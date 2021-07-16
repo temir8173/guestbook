@@ -1,6 +1,8 @@
 <?php
 namespace app\rbac;
  
+use app\models\User;
+use Yii;
 use yii\rbac\Rule;
 use yii\rbac\Item;
  
@@ -15,13 +17,13 @@ class UserProfileOwnerRule extends Rule
      *
      * @return boolean a value indicating whether the rule permits the role or permission it is associated with.
      */
-    public function execute($user, $item, $params)
+    public function execute($user, $item, $params): bool
     {
-        $role = \Yii::$app->user->identity->role;
-        if ($role == 'admin') {
+        $role = Yii::$app->user->identity->role;
+        if ($role === User::ROLE_ADMIN) {
             return true;
         }
         
-        return isset($params['profileId']) ? \Yii::$app->user->id == $params['profileId'] : false;
+        return isset($params['profileId']) && Yii::$app->user->id === (int)$params['profileId'];
     }
 }

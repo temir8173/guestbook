@@ -36,7 +36,7 @@ FrontPageAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo MultiLang::widget(['cssClass'=>'pull-right language']);
+    echo multiLang::widget(['cssClass'=>'pull-right language']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

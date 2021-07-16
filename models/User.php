@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
@@ -21,14 +22,14 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord
 {
-    const ROLE_USER = 'user';
-    const ROLE_ADMIN = 'admin';
+    public const ROLE_USER = 'user';
+    public const ROLE_ADMIN = 'admin';
 
-    const STATUS_DELETED = 0;
-    const STATUS_WAIT = 5;
-    const STATUS_ACTIVE = 10;
+    public const STATUS_DELETED = 0;
+    public const STATUS_WAIT = 5;
+    public const STATUS_ACTIVE = 10;
 
     public $roles;
     /**
@@ -65,11 +66,6 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
-    public function __construct()
-    {
-        //$this->on(self::EVENT_AFTER_UPDATE, [$this, 'saveRoles']);
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -84,14 +80,6 @@ class User extends \yii\db\ActiveRecord
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
         ];
-    }
-
-    /**
-     * Populate roles attribute with data from RBAC after record loaded from DB 
-     */
-    public function afterFind()
-    {
-        //$this->roles = $this->getRoles();
     }
 
     public function beforeSave($insert)

@@ -1,6 +1,8 @@
 <?php
 namespace app\commands;
  
+use Exception;
+use yii\base\Exception as BaseException;
 use Yii;
 use yii\console\Controller;
 use app\rbac\UserProfileOwnerRule;
@@ -9,6 +11,10 @@ use app\modules\admin\rbac\Rbac as AdminRbac;
  
 class RbacController extends Controller
 {
+    /**
+     * @throws BaseException
+     * @throws Exception
+     */
     public function actionInit()
     {
         $auth = Yii::$app->getAuthManager();

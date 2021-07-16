@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 class UserIdentity extends User implements \yii\web\IdentityInterface
 {
@@ -29,7 +30,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      * Finds user by username
      *
      * @param string $username
-     * @return static|null
+     * @return array|ActiveRecord|null
      */
     public static function findByUsername($username)
     {
@@ -44,8 +45,9 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
 
     /**
      * {@inheritdoc}
+     * @return bool
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): bool
     {
         return $this->auth_key === $authKey;
     }
@@ -56,7 +58,7 @@ class UserIdentity extends User implements \yii\web\IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
+    public function validatePassword(string $password): bool
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }

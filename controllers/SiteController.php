@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use Yii;
+use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -16,6 +18,8 @@ use app\models\ImagesUploadForm;
 use yii\web\UploadedFile;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
+use yii\web\ErrorAction;
+use yii\captcha\CaptchaAction;
 
 class SiteController extends Controller
 {
@@ -26,7 +30,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -37,7 +41,7 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -52,10 +56,10 @@ class SiteController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
@@ -75,13 +79,10 @@ class SiteController extends Controller
             //$this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
             var_dump('sdafsdfsdf');die;
         }
-
-        // var_dump(Yii::$app->user->id);die;
         
         $this->layout = 'front-page';
 
         return $this->render('index');
-
 
         /*$newMessage = new Messages();
         $messages = Messages::find()->orderBy(['date' => SORT_DESC])->all();
@@ -101,10 +102,10 @@ class SiteController extends Controller
             }
             return Json::encode($return);
 
-        } else {
-            return $this->render('index', compact('messages', 'newMessage'));
-        }*/
-        
+        }
+
+        return $this->render('index', compact('messages', 'newMessage'));*/
+
     }
 
     /**
@@ -176,9 +177,9 @@ class SiteController extends Controller
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Келесі нұсқаулар алу үшін электрондық поштаны тексеріңіз.');
                 return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Өкінішке орай, енгізілген аккаунттың құпия сөзін қалпына келтіре алмаймыз.');
             }
+
+            Yii::$app->session->setFlash('error', 'Өкінішке орай, енгізілген аккаунттың құпия сөзін қалпына келтіре алмаймыз.');
         }
  
         $this->layout = 'front-page';
@@ -186,12 +187,12 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
- 
+
     /**
      * Resets password.
      *
-     * @param string $token
-     * @return mixed
+     * @param $t
+     * @return Response|string
      * @throws BadRequestHttpException
      */
     public function actionResetPassword($t)

@@ -15,6 +15,8 @@ class RolesController extends Controller
 {
     /**
      * Adds role to user
+     * @throws Exception
+     * @throws \Exception
      */
     public function actionAssign()
     {
@@ -26,9 +28,10 @@ class RolesController extends Controller
         $authManager->assign($role, $user->id);
         $this->stdout('Done!' . PHP_EOL);
     }
- 
+
     /**
      * Removes role from user
+     * @throws Exception
      */
     public function actionRevoke()
     {
@@ -39,7 +42,7 @@ class RolesController extends Controller
             ArrayHelper::map(Yii::$app->authManager->getRolesByUser($user->id), 'name', 'description'))
         );
         $authManager = Yii::$app->getAuthManager();
-        if ($roleName == 'all') {
+        if ($roleName === 'all') {
             $authManager->revokeAll($user->id);
         } else {
             $role = $authManager->getRole($roleName);
@@ -50,10 +53,10 @@ class RolesController extends Controller
  
     /**
      * @param string $username
-     * @throws \yii\console\Exception
      * @return User the loaded model
+     * @throws Exception
      */
-    private function findModel($username)
+    private function findModel(string $username): User
     {
         if (!$model = User::findOne(['username' => $username])) {
             throw new Exception('User is not found');

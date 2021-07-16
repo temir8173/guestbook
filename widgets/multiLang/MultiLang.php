@@ -1,10 +1,10 @@
 <?php
 
-namespace app\widgets\MultiLang;
+namespace app\widgets\multiLang;
 
-use yii\helpers\Html;
+use yii\bootstrap\Widget;
 
-class MultiLang extends \yii\bootstrap\Widget
+class MultiLang extends Widget
 {
     public $cssClass;
     public function init(){}
