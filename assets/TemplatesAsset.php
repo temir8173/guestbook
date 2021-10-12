@@ -15,5 +15,6 @@ class TemplatesAsset extends AssetBundle
     ];
     public $depends = [
         'app\assets\AppAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }
