@@ -30,6 +30,7 @@ class Invitations extends ActiveRecord
     public const TEMPLATE_1 = 'template1';
     public const TEMPLATE_2 = 'template2';
     public const TEMPLATE_RUSLAN = 'template-ruslan';
+    public const TEMPLATE_NABAT = 'template-nabat';
 
     public static function getTemplates()
     {
@@ -37,6 +38,7 @@ class Invitations extends ActiveRecord
             self::TEMPLATE_1 => 'template1', 
             self::TEMPLATE_2 => 'template2',
             self::TEMPLATE_RUSLAN => 'Шаблон - Руслан',
+            self::TEMPLATE_NABAT => 'Шаблон - Набат',
         ];
     }
 

@@ -4,18 +4,17 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class AdminAsset extends AssetBundle
+class NabatAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/admin.css',
+        'css/bootstrap.min.css',
+        'css/nabat.css',
     ];
     public $js = [
-        'js/admin.js',
     ];
     public $depends = [
         'app\assets\AppAsset',
-        'yii\bootstrap\BootstrapAsset',
     ];
 }
