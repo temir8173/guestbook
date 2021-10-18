@@ -1,8 +1,228 @@
+@font-face {
+    font-family: Oswald;
+    src: url(/fonts/Oswald/Oswald-VariableFont_wght.ttf);
+}
 
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Bold.ttf);
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Geometria;
+    src: url(/fonts/Geometria/geometria_extrabold.otf);
+    font-style: normal;
+    font-weight: 900;
+}
+
+.container {
+    max-width: 1170px;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+body ol, ul {
+    padding-left: 0;
+}
+body li {
+    list-style: none;
+}
+body a {
+    color: unset;
+    text-decoration: unset;
+    -webkit-transform: 0.2s all;
+    -moz-transform: 0.2s all;
+    -ms-transform: 0.2s all;
+    -o-transform: 0.2s all;
+    transform: 0.2s all;
+}
+body a:hover {
+    color: unset;
+    opacity: 0.8;
+}
+
+section {
+    padding: 70px 0;
+    position: relative;
+}
+
+.section-inner {
+    padding: 70px 0;
+}
+
+/* header */
+
+header nav ul {
+    display: flex;
+}
+header nav ul>li {
+    font-family: Montserrat, Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+    background: transparent;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    color: #030303;
+    padding: 20px 30px;
+}
+
+header .top-phone {
+    font-family: Montserrat,Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+    padding: 20px 30px;
+    color: #333;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Top section */
+
+#top {
+    padding-top: 15px;
+}
+
+.top-left-box {
+    /*display: flex;
+    align-items: center;
+    flex-direction: column;*/
+    padding-bottom: 30px;
+}
+
+.top-left-box a {
+    text-decoration: none;
+    display: inline-block;
+    outline: none;
+    color: white;
+    letter-spacing: 2px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 15px 30px;
+    border-radius: 2px;
+    box-shadow: 0 0 40px 40px #FF5C7F inset, 0 0 0 0 #FF5C7F;
+    transition: 150ms ease-in-out;
+}
+.top-left-box a:hover {
+    box-shadow: 0 0 10px 0 #FF5C7F inset, 0 0 10px 4px #FF5C7F;
+    color: #FF5C7F;
+}
+
+#top h1 {
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 30px;
+    font-size: 80px;
+    font-weight: 700;
+    color: #000;
+}
+
+#top p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    margin-bottom: 80px;
+    font-size: 32px;
+}
+
+.img-container {
+    -webkit-box-shadow: -1px 2px 14px 0px rgba(13, 166, 189, 0.2);
+    -moz-box-shadow: -1px 2px 14px 0px rgba(13, 166, 189, 0.2);
+    box-shadow: -1px 2px 14px 0px rgba(13, 166, 189, 0.2);
+    position: relative;
+}
 
 .img-container img {
     width: 100%;
 }
-.container {
-    max-width: 1170px;
+
+/* About product */
+
+#about-product {
+    background-color: #b3d3e0;
+    background-size: cover;
+    padding: 0;
+}
+
+#about-product .section-inner {
+    padding-top: 100px;
+}
+
+#about-product h2 {
+    font-family: "Oswald", sans-serif;
+    font-size: 72px;
+}
+
+#about-product .about-title {
+    font-family: "Oswald", sans-serif;
+    font-size: 32px;
+}
+
+.about-bg {
+    background-image: url(/images/front-bg1.png);
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: 150% 50%;
+    filter: none;
+}
+
+.section-image {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.about-box {
+    position: relative;
+    padding: 20px 15px;
+}
+
+
+
+.about-row {
+    margin: 100px 0 150px;
+}
+
+.about-box-number {
+    font-family: "Geometria",sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: #23303f;
+    line-height: .8;
+    /*position: absolute;
+    right: 0;*/
+    opacity: 0.1;
+    user-select: none;
+}
+
+.about-row .img-container:before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 14px);
+    height: calc(100% + 14px);
+    border: 1px solid #d9c909;
+    top: -7px;
+    left: -7px;
+    box-shadow: 0 0 10px rgb(206 167 92 / 40%), inset 0 0 10px rgb(206 167 92 / 40%);
 }
