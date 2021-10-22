@@ -49,7 +49,7 @@ use yii\helpers\Html;
             </div>
             <div class="col-md-8 order-1 order-md-2">
                 <div class="img-container">
-                    <img src="images/front-top.png" alt="">
+                    <img src="images/Idealnoe-priglashenie-na-svadbu1.jpg" alt="">
                 </div>
             </div>
         </div>
