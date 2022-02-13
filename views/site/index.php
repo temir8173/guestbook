@@ -64,23 +64,22 @@ use yii\helpers\Html;
                 <div class="container">
 
                     <div class="row mb-md-5">
-                        <h2><?= Yii::t('common', 'Шақыру парақшасы дегеніміз не?') ?></h2>
+                        <h2><?= Yii::t('common', 'Шақыру парақшалары') ?></h2>
                         <p></p>
                     </div>
 
 
 
                     <div class="row about-row">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="img-container">
                                 <img src="images/front-top.png" alt="">
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div class="col-md-5 d-flex flex-column justify-content-between">
                             <div class="about-box-text">
-                                <p class="about-title"><?= Yii::t('common', 'Біз не ұсынамыз?') ?></p>
-                                <p><?= Yii::t('common', 'Шақыру парақшасы - той-жиынға қонақтарды шақыру үшін арналған сайт-парақша.
-                                Сайт парақшаның басты артықшылығы - дәстүрлі қағаз шақырулар шығарудың қажеттілігі жоқ')
+                                <p class="about-title"><?= Yii::t('common', 'Бұл не?') ?></p>
+                                <p><?= Yii::t('common', 'Шақыру парақшасы - қонақтарды той-жиынға шақыру үшін арналған сайт-парақша')
                                     ?></p>
 
                             </div>
@@ -95,14 +94,14 @@ use yii\helpers\Html;
 
                     <div class="row about-row">
 
-                        <div class="col-md-6 order-md-2">
+                        <div class="col-md-7 order-md-2">
                             <div class="img-container">
                                 <img src="images/about1.png" alt="">
                             </div>
                         </div>
 
 
-                        <div class="col-md-6 order-md-1 d-flex flex-column justify-content-between">
+                        <div class="col-md-5 order-md-1 d-flex flex-column justify-content-between">
                             <div class="about-box-text">
                                 <p class="about-title"><?= Yii::t('common', 'Өткізілетін орын') ?></p>
                                 <p><?= Yii::t('common', 'Шақыру-парақшасында жиынның өткізілетін жері туралы мағлұмат қоя аласыз') ?></p>
@@ -118,15 +117,15 @@ use yii\helpers\Html;
 
 
                     <div class="row about-row">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="img-container">
                                 <img src="images/about2.png" alt="">
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div class="col-md-5 d-flex flex-column justify-content-between">
                             <div class="about-box-text">
                                 <p class="about-title"><?= Yii::t('common', 'Естелік') ?></p>
-                                <p><?= Yii::t('common', 'Тойдан көптеген бейне және фото естеліктер қалады емес пе? Міне, ендеше шақыру парақшасында сондай естеліктер сақталған бұлтты жүйелерге сілтеме қоюға болатын ыңғайлы мүмкіндік бар')
+                                <p><?= Yii::t('common', 'Тойдан көптеген естеліктер қалады емес пе? Қонақтар осы парақша арқылы бейне/фото материалдарға қол жеткізе алады')
                                     ?></p>
 
                             </div>
@@ -139,16 +138,16 @@ use yii\helpers\Html;
 
                     <div class="row about-row">
 
-                        <div class="col-md-6 order-md-2">
+                        <div class="col-md-7 order-md-2">
                             <div class="img-container">
                                 <img src="images/about3.png" alt="">
                             </div>
                         </div>
 
-                        <div class="col-md-6 order-md-1 d-flex flex-column justify-content-between">
+                        <div class="col-md-5 order-md-1 d-flex flex-column justify-content-between">
                             <div class="about-box-text">
                                 <p class="about-title"><?= Yii::t('common', 'Love story') ?></p>
-                                <p><?= Yii::t('common', 'Сондай-ақ өміріңіздегі ұмытылмас сәттеріңіздің бейнесін қоя аласыз') ?></p>
+                                <p><?= Yii::t('common', 'Сондай-ақ өміріңіздегі ұмытылмас сәттеріңізбен жақын-жуықтарыңызбен бөлісе аласыз') ?></p>
 
                             </div>
                             <div class="about-box-position  d-flex justify-content-start">
@@ -159,12 +158,12 @@ use yii\helpers\Html;
                     </div>
 
                     <div class="row about-row">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <div class="img-container">
                                 <img src="images/about4.png" alt="">
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                        <div class="col-md-5 d-flex flex-column justify-content-between">
                             <div class="about-box-text">
                                 <p class="about-title"><?= Yii::t('common', 'Тілектер') ?></p>
                                 <p><?= Yii::t('common', 'Қонақтар өздерінің тілек-лебіздерін білдіре алады') ?></p>

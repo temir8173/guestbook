@@ -215,7 +215,7 @@ section h2:after {
 
 #about-product .about-title {
     font-family: "Oswald", sans-serif;
-    font-size: 32px;
+    font-size: 48px;
 }
 
 #about-product:before {
@@ -286,7 +286,8 @@ section h2:after {
 
 .about-box-text {
     padding: 15px 30px;
-    line-height: 1.8;
+    line-height: 1.5;
+    font-size: 24px;
 }
 
 #shaqiru-templates {
@@ -407,7 +408,7 @@ section h2:after {
         font-size: 56px;
     }
     .about-row {
-        margin: 15px 0;
+        margin: 50px 0;
     }
     .about-row:after {
         content: '';

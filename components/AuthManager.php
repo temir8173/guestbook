@@ -5,11 +5,11 @@ namespace app\components;
 use app\models\User;
 use yii\base\InvalidConfigException;
 use yii\rbac\Assignment;
-use yii\rbac\PhpManager;
+use yii\rbac\DbManager;
 use Yii;
 use yii\web\IdentityInterface;
 
-class AuthManager extends PhpManager
+class AuthManager extends DbManager
 {
     /**
      * @throws InvalidConfigException

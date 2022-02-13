@@ -1,7 +1,11 @@
 <?php
 
 use app\components\AuthManager;
+use app\models\UserIdentity;
+use himiklab\yii2\recaptcha\ReCaptchaConfig;
+use mihaildev\elfinder\PathController;
 use yii\helpers\ArrayHelper;
+use yii\swiftmailer\Mailer;
 
 $params = ArrayHelper::merge(
     require __DIR__ . '/params.php',
@@ -34,14 +38,14 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\UserIdentity',
+            'identityClass' => UserIdentity::class,
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
+            'class' => Mailer::class,
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
@@ -80,7 +84,7 @@ $config = [
             'currencyCode' => 'KZT',
        ],
         'reCaptcha' => [
-            'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
+            'class' => ReCaptchaConfig::class,
             'siteKeyV2' => 'some-siteKey',
             'secretV2' => 'some-siteKey',
             'siteKeyV3' => 'your siteKey v3',
@@ -106,7 +110,7 @@ $config = [
     ],
     'controllerMap' => [
         'elfinder' => [
-            'class' => 'mihaildev\elfinder\PathController',
+            'class' => PathController::class,
             'access' => ['?'],
             'root' => [
                 'path' => 'upload/global',

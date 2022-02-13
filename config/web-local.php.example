@@ -17,12 +17,12 @@ return [
                 'encryption' => 'ssl',
             ],
         ],
+        'reCaptcha' => [
+            'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
+            'siteKeyV2' => 'some-siteKey',
+            'secretV2' => 'some-siteKey',
+            'siteKeyV3' => 'your siteKey v3',
+            'secretV3' => 'your secret key v3',
+        ],
 	],
-	'reCaptcha' => [
-        'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-        'siteKeyV2' => 'some-siteKey',
-        'secretV2' => 'some-siteKey',
-        'siteKeyV3' => 'your siteKey v3',
-        'secretV3' => 'your secret key v3',
-    ],
 ];

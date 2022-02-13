@@ -9,6 +9,7 @@ use app\models\Messages;
 use yii\helpers\Json;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\HttpException;
 
 /**
  * Default controller for the `Invitations` module
@@ -22,13 +23,13 @@ class DefaultController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
@@ -48,6 +49,7 @@ class DefaultController extends Controller
     /**
      * Renders the index view for the module
      * @return string
+     * @throws HttpException
      */
     public function actionIndex($view = '')
     {
@@ -77,7 +79,7 @@ class DefaultController extends Controller
 
         }
 
-        throw new \yii\web\HttpException(404,'Страница не найдена');
+        throw new HttpException(404,'Страница не найдена');
     }
     /**
      * Renders the preview
@@ -110,7 +112,7 @@ class DefaultController extends Controller
 
         }
 
-        throw new \yii\web\HttpException(404,'Страница не найдена');
+        throw new HttpException(404,'Страница не найдена');
     }
 
 
@@ -126,7 +128,7 @@ class DefaultController extends Controller
             ]);
 
         } else {
-            throw new \yii\web\HttpException(404,'Страница не найдена');
+            throw new HttpException(404,'Страница не найдена');
         }
     }
 
@@ -149,7 +151,7 @@ class DefaultController extends Controller
             return Json::encode($return);
 
         } else {
-            throw new \yii\web\HttpException(404,'Страница не найдена');
+            throw new HttpException(404,'Страница не найдена');
         }
     }
 }
