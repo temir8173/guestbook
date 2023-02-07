@@ -87,8 +87,6 @@ class SiteController extends Controller
 
     public function actionTemplates(): string
     {
-        $this->layout = 'front-page';
-
         return $this->render('templates');
     }
 

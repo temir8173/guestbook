@@ -28,41 +28,6 @@ FrontPageAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    <?php
-    /*NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo multiLang::widget(['cssClass'=>'pull-right language']);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Управление сообщениями', 'url' => ['/admin/messages/index']],
-            ['label' => 'Главная', 'url' => ['/']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Войти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выйти (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();*/
-    ?>
-
-    <div class="container">
-        
-    </div>
-
 <div class="container">
     <?= Alert::widget() ?>
 </div>

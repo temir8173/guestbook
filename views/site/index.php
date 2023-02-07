@@ -11,6 +11,7 @@ use yii\helpers\Html;
                     <ul>
                         <li><a href="#about-product"><?= Yii::t('common', 'Біз туралы') ?></a></li>
                         <li><a href="#contacts"><?= Yii::t('common', 'Байланыс') ?></a></li>
+                        <li><?= Html::a(Yii::t('common', 'Үлгілер'), 'templates') ?></li>
                     </ul>
                 </nav>
             </div>
