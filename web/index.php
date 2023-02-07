@@ -11,7 +11,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/../config/web.php';
-
+//var_dump('ttt');die;
 function my_dump($var) {
 	echo '<pre>'; var_dump($var); echo '</pre>';
 }

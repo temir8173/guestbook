@@ -10,6 +10,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         '/' => 'site/index',
+        '/templates' => 'site/templates',
         '/reset-password' => 'site/reset-password',
         '/request-password-reset' => 'site/request-password-reset',
         '/signup' => 'site/signup',

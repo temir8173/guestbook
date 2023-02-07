@@ -15,6 +15,6 @@ class FrontPageAsset extends AssetBundle
     public $js = [
     ];
     public $depends = [
-        'app\assets\AppAsset',
+        AppAsset::class,
     ];
 }
