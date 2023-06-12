@@ -1,9 +1,10 @@
 $('document').ready(function(){
 
+	console.log('asdasd');
 
     $('body').on('submit', '.ajax-form', function(e){
-    	
-		var form = $(this);
+
+		const form = $(this);
 
 		e.preventDefault();
 		e.stopPropagation();
@@ -17,28 +18,27 @@ $('document').ready(function(){
 				dataType: 'json',
 				success: function(data){
 
-					if (data.error != undefined){
-
-						if (data.message != undefined) {
-							if ( data.message == 'without_notice' )
+					if (data.error !== undefined){
+						if (data.message !== undefined) {
+							if ( data.message === 'without_notice' )
 								form.removeClass('sending');
-							else if (data.message != '')
-								setNotice(data.message, (data.error == 0) ? 'success' : 'warning');
+							else if (data.message !== '')
+								setNotice(data.message, (data.error === 0) ? 'success' : 'warning');
 						} else {
-							setNotice((data.error == 0) ? 'Отправлено' : 'Ошибка', (data.error == 0) ? 'success' : 'warning');
+							setNotice((data.error === 0) ? 'Отправлено' : 'Ошибка', (data.error == 0) ? 'success' : 'warning');
 						}
-						if (data.error == 0) {
+						if (data.error === 0) {
 							/* Обновляем список сообщений без перезагрузки стр-цы */
 							updateMessagesBox();
-							if (data.reload != undefined){
+							if (data.reload !== undefined){
 								location.reload()
-							}	
-							if (data.redirect != undefined){
+							}
+							if (data.redirect !== undefined){
 								setTimeout(function(){
 									location.href = data.redirect;
 								}, 2000);
-								
-							} if (data.callback != undefined){
+
+							} if (data.callback !== undefined){
 								window[data.callback](data);
 							} else {
 								if (!form.hasClass('notreset')) {
@@ -47,7 +47,7 @@ $('document').ready(function(){
 							}
 							setTimeout(function(){
 								form.removeClass('sending');
-								
+
 							}, 1000);
 							//setTimestamp(form.find('#messages-date'));
 						}
@@ -55,15 +55,15 @@ $('document').ready(function(){
 
 				},
 				complete: function(response){
-					
+
 					setTimeout(function(){
 						form.removeClass('sending');
-						
+
 					}, 1000);
 
 				},
 				error: function(requestObject, error, errorThrown){
-					
+
 					setNotice('Системная ошибка', 'warning');
 				}
 			})
@@ -73,7 +73,7 @@ $('document').ready(function(){
 				$(this).after("<span class='err_msg'>" + $(this).attr('data-error-msg') + "</span>");
 			});
 
-            
+
         }
 	});
 
@@ -87,8 +87,8 @@ $('document').ready(function(){
         $('html, body').animate({
             scrollTop: scrollTop
         }, {
-            duration: (scrollTop<2000) ? 650 : 650,   // по умолчанию «400» 
-            easing: "swing" // по умолчанию «swing» 
+            duration: (scrollTop<2000) ? 650 : 650,   // по умолчанию «400»
+            easing: "swing" // по умолчанию «swing»
         });
 
         return false;
@@ -108,7 +108,7 @@ $('document').ready(function(){
 })
 
 function DefaultCheckForm(from) {
-	var check = true;
+	let check = true;
 	from.find('input.required, textarea.required, select.required').each(function(){
 		if(!DefualtCheckfield($(this))){
 			check = false;
@@ -118,7 +118,7 @@ function DefaultCheckForm(from) {
 		})
 	})
 	from.find('input.checked, textarea.checked, select.checked').each(function(){
-		if($(this).val() != '' && !DefualtCheckfield($(this))){
+		if($(this).val() !== '' && !DefualtCheckfield($(this))){
 			check = false;
 		}
 		$(this).change(function(){
@@ -126,8 +126,8 @@ function DefaultCheckForm(from) {
 		})
 	})
 	from.find('div.chosen-check').each(function(){
-		check_group = false;
-		options_group = $(this);
+		let check_group = false;
+		let options_group = $(this);
 		options_group.find('input').each(function(){
 			if ( $(this).is(':checked') || $(this).hasClass('input-percentage')){
 				check_group = true;
@@ -141,11 +141,11 @@ function DefaultCheckForm(from) {
 			$(this).addClass('error');
 			check = false;
 		}
-		
+
 	})
 	return check;
 }
- 
+
 function DefualtCheckfield(el) {
 
 	if ((el.hasClass('name') || el.hasClass('text')) && el.val().length < 1 ){
@@ -157,7 +157,7 @@ function DefualtCheckfield(el) {
 	}  else if (el.hasClass('id') &&  parseInt(el.val()) <= 0) {
 		el.addClass('error');
 		return false;
-	}  else if (el.hasClass('int') &&  ( el.val() == '' || parseInt(el.val()) <= 0) ) {
+	}  else if (el.hasClass('int') &&  ( el.val() === '' || parseInt(el.val()) <= 0) ) {
 		el.addClass('error');
 		return false;
 	}  else if (el.hasClass('password') &&  el.val().replace(/â€¢/g, '').length <= 4) {
@@ -173,8 +173,8 @@ function DefualtCheckfield(el) {
 }
 
 function IsEmail(email) {
-  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  return regex.test(email);
+	const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
 }
 
 function ValidURL(str) {
@@ -183,10 +183,10 @@ function ValidURL(str) {
 
 function setNotice(mess, theme, delay, position) {
 
-	if (delay == undefined) {
+	if (delay === undefined) {
 		delay = 6000;
 	}
-	if (position == undefined) {
+	if (position === undefined) {
 		position = 'top';
 	}
 
@@ -207,7 +207,7 @@ function setNotice(mess, theme, delay, position) {
 		spacing: 10
 	}
 
-	if ($.simplyToast != undefined) {
+	if ($.simplyToast !== undefined) {
 		$.simplyToast(mess, theme, options);
 	} else {
 		alert(mess);

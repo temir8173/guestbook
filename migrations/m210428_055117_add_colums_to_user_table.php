@@ -24,6 +24,12 @@ class m210428_055117_add_colums_to_user_table extends Migration
             $user->save();
         }
         $this->alterColumn('{{%user}}','email', $this->string()->notNull());
+
+        // Create admin user
+        $user = new User();
+        $user->username = 'admin';
+        $user->password = '$2y$12$R2pq4l3wFKHUpMAp7irKYeVtyOCy78PxjSSPXVCp1cnBZdufZtrtu ';
+        $user->save();
     }
 
     /**

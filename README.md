@@ -1,1 +1,3 @@
-# Добро пожаловать на мой репозиторий
+composer install
+yii migrate
+yii migrate --migrationPath=@yii/rbac/migrations

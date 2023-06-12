@@ -13,6 +13,7 @@ return [
         '/reset-password' => 'site/reset-password',
         '/request-password-reset' => 'site/request-password-reset',
         '/signup' => 'site/signup',
+        '/signup-confirm' => 'site/signup-confirm',
         '/login' => 'site/login',
         '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
         '/<view:[\w-]+>' => '/invitations/default/index',

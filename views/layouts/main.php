@@ -9,7 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use app\widgets\MultiLang\MultiLang;
+use app\widgets\multiLang\MultiLang;
 
 AppAsset::register($this);
 ?>
@@ -30,7 +30,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    /*NavBar::begin([
+    NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -57,7 +57,7 @@ AppAsset::register($this);
             )
         ],
     ]);
-    NavBar::end();*/
+    NavBar::end();
     ?>
 
     <?php if (isset($this->params['breadcrumbs'])) : ?>
