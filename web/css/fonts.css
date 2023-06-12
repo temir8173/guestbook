@@ -1,0 +1,126 @@
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-Thin.ttf);
+    font-style: normal;
+    font-weight: 100;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-ThinItalic.ttf);
+    font-style: italic;
+    font-weight: 100;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-LightItalic.ttf);
+    font-style: italic;
+    font-weight: 300;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-Regular.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto/Roboto-Italic.ttf);
+    font-style: italic;
+    font-weight: 400;
+}
+@font-face {
+    font-family: Open Sans Condensed;
+    src: url(/fonts/OpenSansCondensed/OpenSansCondensed-Light.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Open Sans Condensed;
+    src: url(/fonts/OpenSansCondensed/OpenSansCondensed-LightItalic.ttf);
+    font-style: italic;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Open Sans Condensed;
+    src: url(/fonts/OpenSansCondensed/OpenSansCondensed-Bold.ttf);
+    font-style: normal;
+    font-weight: bold;
+}
+@font-face {
+    font-family: Open Sans;
+    src: url(/fonts/OpenSans/OpenSans-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Open Sans;
+    src: url(/fonts/OpenSans/OpenSans-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: Open Sans;
+    src: url(/fonts/OpenSans/OpenSans-SemiBold.ttf);
+    font-style: normal;
+    font-weight: 500;
+}
+@font-face {
+    font-family: Open Sans;
+    src: url(/fonts/OpenSans/OpenSans-Bold.ttf);
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Oswald;
+    src: url(/fonts/Oswald/Oswald-VariableFont_wght.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Oswald;
+    src: url(/fonts/Oswald/static/Oswald-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+/*
+@font-face {
+    font-family: Oswald;
+    src: url(/fonts/Oswald/Oswald-VariableFont_wght.ttf);
+    font-style: normal;
+    font-weight: 600;
+}*/
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Regular.ttf);
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Bold.ttf);
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(/fonts/Montserrat/Montserrat-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Geometria;
+    src: url(/fonts/Geometria/geometria_extrabold.otf);
+    font-style: normal;
+    font-weight: 900;
+}

@@ -1,15 +1,17 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 /* @var $content string */
 
 use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+<<<<<<< HEAD
 use app\widgets\multiLang\MultiLang;
+=======
+>>>>>>> 37503487fa6defa99d62db44cbee2f13b6493ab2
 
 AppAsset::register($this);
 ?>
@@ -29,41 +31,12 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo multiLang::widget(['cssClass'=>'pull-right language']);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Управление сообщениями', 'url' => ['/admin/messages/index']],
-            ['label' => 'Главная', 'url' => ['/']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Войти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выйти (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    <?= $this->render('@app/views/layouts/main/_header.php') ?>
 
     <?php if (isset($this->params['breadcrumbs'])) : ?>
         <div class="container">
             <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'links' => $this->params['breadcrumbs'] ?? [],
             ]) ?>
             <?= Alert::widget() ?>
             
@@ -72,13 +45,7 @@ AppAsset::register($this);
     <?= $content ?>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+<?= $this->render('@app/views/layouts/main/_footer.php') ?>
 
 <?php $this->endBody() ?>
 </body>

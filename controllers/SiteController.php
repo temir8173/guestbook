@@ -70,7 +70,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
 
         //"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
@@ -83,29 +83,11 @@ class SiteController extends Controller
         $this->layout = 'front-page';
 
         return $this->render('index');
+    }
 
-        /*$newMessage = new Messages();
-        $messages = Messages::find()->orderBy(['date' => SORT_DESC])->all();
-
-        if (Yii::$app->request->isAjax) {
-
-            $return = array(
-                'error' => 1,
-                'message' => 'Ошибка. Неверный формат данных!',
-            );
-            //var_dump(Yii::$app->request->post());die;
-            if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
-                $return = array(
-                    'error' => 0,
-                    'message' => 'Ваше сообщение было успешно добавлено!',
-                );
-            }
-            return Json::encode($return);
-
-        }
-
-        return $this->render('index', compact('messages', 'newMessage'));*/
-
+    public function actionTemplates(): string
+    {
+        return $this->render('templates');
     }
 
     /**
