@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Messages */
+/* @var $model app\models\Wish */
 
 $this->title = 'Update Messages: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];

@@ -2,21 +2,21 @@
 
 namespace common\helpers;
 
-use app\models\Invitations;
+use app\models\Invitation;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 namespace app\modules\admin;
 
-use app\models\Invitations;
+use app\models\Invitation;
 
 class InvitationsHelper
 {
     public static function statusList(): array
     {
         return [
-            Invitations::STATUS_UNPAID => 'Төленбеді',
-            Invitations::STATUS_PAID => 'Төленді',
+            Invitation::STATUS_UNPAID => 'Төленбеді',
+            Invitation::STATUS_PAID => 'Төленді',
         ];
     }
 

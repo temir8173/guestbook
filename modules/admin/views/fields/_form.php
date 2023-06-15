@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\SectionTemplates;
+use app\models\Section;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fields */
+/* @var $model app\models\Field */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -17,7 +17,7 @@ use app\models\SectionTemplates;
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'section_template_id')->dropDownList(SectionTemplates::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' =>'-- таңдаңыз --']) ?>
+    <?= $form->field($model, 'section_template_id')->dropDownList(Section::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' =>'-- таңдаңыз --']) ?>
 
     <?= $form->field($model, 'type')->dropDownList($model->types) ?>
 

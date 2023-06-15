@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Invitations;
+use app\models\Field;
 
 /**
- * InvitationsSearch represents the model behind the search form of `app\models\Invitations`.
+ * FieldsSearch represents the model behind the search form of `app\models\Fields`.
  */
-class InvitationsSearch extends Invitations
+class FieldSearch extends Field
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class InvitationsSearch extends Invitations
     public function rules()
     {
         return [
-            [['id', 'event_date', 'created_date', 'updated_date', 'status'], 'integer'],
-            [['url', 'name'], 'safe'],
+            [['id', 'section_template_id'], 'integer'],
+            [['name', 'type', 'url'], 'safe'],
         ];
     }
 
@@ -38,9 +38,9 @@ class InvitationsSearch extends Invitations
      *
      * @return ActiveDataProvider
      */
-    public function search($params, int $userId = 0)
+    public function search($params)
     {
-        $query = Invitations::find();
+        $query = Field::find();
 
         // add conditions that should always apply here
 
@@ -59,15 +59,12 @@ class InvitationsSearch extends Invitations
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'event_date' => $this->event_date,
-            'created_date' => $this->created_date,
-            'updated_date' => $this->updated_date,
-            'user_id' => ($userId === 0) ? $this->user_id : $userId,
-            'status' => $this->status,
+            'section_template_id' => $this->section_template_id,
         ]);
 
-        $query->andFilterWhere(['like', 'url', $this->url])
-            ->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
     }

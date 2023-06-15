@@ -3,8 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Messages;
-use app\models\MessagesSearch;
+use app\models\Wish;
+use app\models\WishSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -32,7 +32,7 @@ class MessagesController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new MessagesSearch();
+        $searchModel = new WishSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,7 +61,7 @@ class MessagesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Messages();
+        $model = new Wish();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -110,12 +110,12 @@ class MessagesController extends Controller
      * Finds the Messages model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Messages the loaded model
+     * @return Wish the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Messages::findOne($id)) !== null) {
+        if (($model = Wish::findOne($id)) !== null) {
             return $model;
         }
 

@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Invitations */
+/* @var $model app\models\Invitation */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Invitations', 'url' => ['index']];

@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=shaqiru_new',
-    'username' => 'root',
-    'password' => 'root',
-    'charset' => 'utf8',
+    'class'    => "yii\db\Connection",
+    'dsn'      => $_ENV['DBDSN'],
+    'username' => $_ENV['DBUSERNAME'],
+    'password' => $_ENV['DBPASSWORD'],
+    'charset'  => "utf8",
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

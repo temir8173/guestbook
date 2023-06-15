@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-use app\models\Invitations;
+use app\models\Invitation;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\InvitationsSearch */
+/* @var $searchModel app\models\InvitationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Шақыру билеттері';
@@ -88,10 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
-                'value' => function (\app\models\Invitations $model) {
+                'value' => function (\app\models\Invitation $model) {
                     return \app\helpers\InvitationsHelper::statusLabel($model->status);
                 },
-                'filter' => Invitations::getStatusLabels(),
+                'filter' => Invitation::getStatusLabels(),
             ],
             //'status',
 

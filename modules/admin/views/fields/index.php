@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\SectionTemplates;
+use app\models\Section;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\FieldsSearch */
+/* @var $searchModel app\models\FieldSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Fields';
@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 25%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return ($data->section_template_id !== null) ? SectionTemplates::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
+                    return ($data->section_template_id !== null) ? Section::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
                 },
-                'filter' => SectionTemplates::find()->select(['name', 'id'])->indexBy('id')->column(),
+                'filter' => Section::find()->select(['name', 'id'])->indexBy('id')->column(),
             ],
             [
                 'attribute' => 'url',

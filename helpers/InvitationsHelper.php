@@ -2,7 +2,7 @@
 
 namespace app\helpers;
 
-use app\models\Invitations;
+use app\models\Invitation;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -11,8 +11,8 @@ class InvitationsHelper
     public static function statusList(): array
     {
         return [
-            Invitations::STATUS_UNPAID => 'Төленбеді',
-            Invitations::STATUS_PAID => 'Төленді',
+            Invitation::STATUS_UNPAID => 'Төленбеді',
+            Invitation::STATUS_PAID => 'Төленді',
         ];
     }
 
@@ -24,10 +24,10 @@ class InvitationsHelper
     public static function statusLabel($status): string
     {
         switch ($status) {
-            case Invitations::STATUS_UNPAID:
+            case Invitation::STATUS_UNPAID:
                 $class = 'label label-danger';
                 break;
-            case Invitations::STATUS_PAID:
+            case Invitation::STATUS_PAID:
                 $class = 'label label-success';
                 break;
             default:

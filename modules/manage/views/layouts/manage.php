@@ -39,7 +39,7 @@ AdminAsset::register($this);
     ]);
     echo MultiLang::widget(['cssClass'=>'pull-right language']);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-right'],
         'items' => [
             ['label' => 'Профиль', 'url' => ['/user/profile']],
             ['label' => Yii::t('common', 'Шақырулар'), 'url' => ['/manage/invitations']],

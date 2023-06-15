@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
@@ -49,12 +50,13 @@ $this->title = $invitation->name;
     </div>
 </header>
 
-<?php foreach ($invitation->sections as $section) : ?>
+<?php
 
-	<?php if ($section->status == 1) : ?>
+$fieldValues = Json::decode($invitation->field_values);
+foreach (Json::decode($invitation->sections) as $section)
+{
+    echo $this->render('_'.$section, compact('invitation', 'messages', 'newMessage', 'fieldValues'));
+    break;
+}
 
-		<?= $this->render('_'.$section->sectionTemplate->view, compact('invitation', 'messages', 'newMessage', 'section')); ?>
-
-	<?php endif; ?>
-
-<?php endforeach; ?>
+?>

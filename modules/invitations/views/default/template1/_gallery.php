@@ -1,7 +1,7 @@
 <section id="our-gallery" class="our-gallery">
 	<div class="container my-container">
 		<div class="row">
-			<h2 class="our-gallery__title section-title"><?= $section->getFieldValueByUrl('gallery-name') ?></h2>
+			<h2 class="our-gallery__title section-title"><?= $fieldValues['gallery_name'] ?? null ?></h2>
 			<div class="address__images restaurant-pic">
 
 				<?php if ( is_array($section->getFieldValueByUrl('gallery-images')) ) { ?>

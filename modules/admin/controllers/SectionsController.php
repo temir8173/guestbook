@@ -3,8 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\SectionTemplates;
-use app\models\SectionTemplatesSearch;
+use app\models\Section;
+use app\models\SectionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class SectionsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new SectionTemplatesSearch();
+        $searchModel = new SectionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -64,7 +64,7 @@ class SectionsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new SectionTemplates();
+        $model = new Section();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -113,12 +113,12 @@ class SectionsController extends Controller
      * Finds the SectionTemplates model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return SectionTemplates the loaded model
+     * @return Section the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SectionTemplates::findOne($id)) !== null) {
+        if (($model = Section::findOne($id)) !== null) {
             return $model;
         }
 

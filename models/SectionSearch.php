@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Fields;
+use app\models\Section;
 
 /**
- * FieldsSearch represents the model behind the search form of `app\models\Fields`.
+ * SectionTemplatesSearch represents the model behind the search form of `app\models\SectionTemplates`.
  */
-class FieldsSearch extends Fields
+class SectionSearch extends Section
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class FieldsSearch extends Fields
     public function rules()
     {
         return [
-            [['id', 'section_template_id'], 'integer'],
-            [['name', 'type', 'url'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'view'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class FieldsSearch extends Fields
      */
     public function search($params)
     {
-        $query = Fields::find();
+        $query = Section::find();
 
         // add conditions that should always apply here
 
@@ -59,12 +59,10 @@ class FieldsSearch extends Fields
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'section_template_id' => $this->section_template_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'url', $this->url]);
+        $query->andFilterWhere(['like', 'view', $this->view])
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

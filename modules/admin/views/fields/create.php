@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fields */
+/* @var $model app\models\Field */
 
 $this->title = 'Create Fields';
 $this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];

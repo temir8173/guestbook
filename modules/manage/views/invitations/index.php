@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\InvitationsSearch */
+/* @var $searchModel app\models\InvitationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('common', 'Менің шақыру билеттерім');

@@ -4,8 +4,8 @@ namespace app\modules\invitations\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Invitations;
-use app\models\Messages;
+use app\models\Invitation;
+use app\models\Wish;
 use yii\helpers\Json;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -57,7 +57,7 @@ class DefaultController extends Controller
             return $this->redirect(['/'.\Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
         }
     	if ( $view !== '' ) {
-    		$invitation = Invitations::find()
+    		$invitation = Invitation::find()
             ->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')
             ->where(['url' => $view])
             ->andWhere(['status' => 1])
@@ -67,8 +67,8 @@ class DefaultController extends Controller
 
         	if ($invitation !== null) {
 
-                $newMessage = new Messages();
-                $messages = Messages::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
+                $newMessage = new Wish();
+                $messages = Wish::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
 
                 Yii::$app->formatter->locale = 'en-US';
                 $this->layout = $invitation->template;
@@ -91,7 +91,7 @@ class DefaultController extends Controller
             return $this->redirect(['/'.\Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
         }
     	if ( $view !== '' ) {
-    		$invitation = Invitations::find()
+    		$invitation = Invitation::find()
             ->with('sections', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')
             ->where(['url' => $view])
             ->one();
@@ -100,8 +100,8 @@ class DefaultController extends Controller
 
         	if ($invitation !== null) {
 
-                $newMessage = new Messages();
-                $messages = Messages::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
+                $newMessage = new Wish();
+                $messages = Wish::find()->where(['invitation_id' => $invitation->id])->orderBy(['date' => SORT_ASC])->all();
 
                 Yii::$app->formatter->locale = 'en-US';
                 $this->layout = $invitation->template;
@@ -118,12 +118,12 @@ class DefaultController extends Controller
 
     public function actionGetMessages($invitation_id = 0)
     {
-        $messages = Messages::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
-        $invitation = Invitations::findOne($invitation_id);
+        $messages = Wish::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
+        $invitation = Invitation::findOne($invitation_id);
 
         if (Yii::$app->request->isAjax) {
 
-            return $this->renderAjax("@app/modules/invitations/views/default/$invitation->template/_messages", [
+            return $this->renderAjax("@app/modules/invitations/views/default/{$invitation->template->slug}/_messages", [
                 'messages' => $messages
             ]);
 
@@ -136,7 +136,7 @@ class DefaultController extends Controller
     {
         if (Yii::$app->request->isAjax) {
 
-            $newMessage = new Messages();
+            $newMessage = new Wish();
             $return = array(
                 'error' => 1,
                 'message' => 'Ошибка. Неверный формат данных!',

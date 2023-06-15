@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "messages".
@@ -13,14 +15,14 @@ use Yii;
  * @property int $date
  * @property int $invitation_id
  */
-class Messages extends \yii\db\ActiveRecord
+class Wish extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'messages';
+        return 'wishes';
     }
 
     /**
@@ -60,8 +62,8 @@ class Messages extends \yii\db\ActiveRecord
         return false;
     }
 
-    public function getInvitation()
+    public function getInvitation(): ActiveQuery
     {
-        return $this->hasOne(Invitations::className(), ['id' => 'invitation_id']);
+        return $this->hasOne(Invitation::class, ['id' => 'invitation_id']);
     }
 }

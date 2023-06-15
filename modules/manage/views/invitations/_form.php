@@ -8,7 +8,7 @@ use app\models\User;
 use mihaildev\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Invitations */
+/* @var $model app\models\Invitation */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

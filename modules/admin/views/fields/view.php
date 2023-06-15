@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\models\SectionTemplates;
+use app\models\Section;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fields */
+/* @var $model app\models\Field */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'section_template_id',
                 'format' => 'raw',
                 'value' => function($data){
-                    return ($data->section_template_id !== null) ? SectionTemplates::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
+                    return ($data->section_template_id !== null) ? Section::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
                 },
             ],
             'type',

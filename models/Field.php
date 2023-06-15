@@ -2,17 +2,21 @@
 
 namespace app\models;
 
-use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "fields".
  *
  * @property int $id
  * @property string $name
- * @property int $section_example_id
+ * @property int $section_id
  * @property string $type
+ * @property string $slug
+ *
+ * @property Section $section
  */
-class Fields extends \yii\db\ActiveRecord
+class Field extends ActiveRecord
 {
 
     const TYPE_TEXT = 'text';
@@ -21,51 +25,44 @@ class Fields extends \yii\db\ActiveRecord
     const TYPE_LINK = 'link';
     const TYPE_YOUTUBE = 'youtube';
     const TYPE_MAP = 'map';
+    const TYPE_CLOUD_LINK = 'cloudLink';
 
-    public $types = [
+    public array $types = [
         self::TYPE_TEXT => 'Текст',
         self::TYPE_TEXTAREA => 'Область текста',
         self::TYPE_IMAGE => 'Сурет',
         self::TYPE_LINK => 'Cілтеме',
         self::TYPE_YOUTUBE => 'Youtube сілтемесі',
         self::TYPE_MAP => 'Карта 2gis',
+        self::TYPE_CLOUD_LINK => 'Бұлтты сервиске сілтеме',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'fields';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['name', 'section_template_id', 'type', 'url'], 'required'],
-            [['section_template_id'], 'integer'],
-            [['name', 'type', 'url'], 'string', 'max' => 255],
+            [['name', 'section_id', 'type', 'slug'], 'required'],
+            [['section_id'], 'integer'],
+            [['name', 'type', 'slug'], 'string', 'max' => 255],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
             'name' => 'Аты',
-            'section_template_id' => 'Секция',
+            'section_id' => 'Секция',
             'type' => 'Түрі',
         ];
     }
 
-    public function getSectionTemplate()
+    public function getSection(): ActiveQuery
     {
-        return $this->hasOne(SectionTemplates::className(), ['id' => 'section_template_id']);
+        return $this->hasOne(Section::class, ['id' => 'section_id']);
     }
 }

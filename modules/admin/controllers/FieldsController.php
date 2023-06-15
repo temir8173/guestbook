@@ -3,8 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Fields;
-use app\models\FieldsSearch;
+use app\models\Field;
+use app\models\FieldSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,7 @@ class FieldsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new FieldsSearch();
+        $searchModel = new FieldSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -64,7 +64,7 @@ class FieldsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Fields();
+        $model = new Field();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -113,12 +113,12 @@ class FieldsController extends Controller
      * Finds the Fields model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Fields the loaded model
+     * @return Field the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Fields::findOne($id)) !== null) {
+        if (($model = Field::findOne($id)) !== null) {
             return $model;
         }
 

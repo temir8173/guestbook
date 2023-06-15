@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Messages */
+/* @var $model app\models\Wish */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];

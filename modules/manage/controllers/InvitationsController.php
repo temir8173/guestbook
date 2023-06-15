@@ -3,12 +3,12 @@
 namespace app\modules\manage\controllers;
 
 use Yii;
-use app\models\Invitations;
-use app\models\InvitationsSearch;
+use app\models\Invitation;
+use app\models\InvitationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\SectionTemplates;
+use app\models\Section;
 use app\models\FieldValues;
 use app\models\Sections;
 use yii\base\Model;
@@ -40,7 +40,8 @@ class InvitationsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new InvitationsSearch();
+        $this->layout = '@app/modules/manage/views/layouts/manage';
+        $searchModel = new InvitationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, Yii::$app->user->identity->id);
 
         return $this->render('index', [
@@ -56,8 +57,8 @@ class InvitationsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Invitations();
-        $sectionTemplates = SectionTemplates::find()->with('fields')->all();
+        $model = new Invitation();
+        $sectionTemplates = Section::find()->with('fields')->all();
 
         // создаем массив моделей секций
         $sections = [new Sections()];
@@ -123,9 +124,9 @@ class InvitationsController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = Invitations::find()->with('sections', 'sections.fieldValues', 'sections.fieldValues.field', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one(); 
+        $model = Invitation::find()->with('sections', 'sections.fieldValues', 'sections.fieldValues.field', 'sections.sectionTemplate', 'sections.sectionTemplate.fields')->where(['id' => $id])->one();
 
-        $sectionTemplates = SectionTemplates::find()
+        $sectionTemplates = Section::find()
         ->with('fields')
         ->joinWith('sections')
         ->where(['sections.invitation_id' => $id])
@@ -206,12 +207,12 @@ class InvitationsController extends Controller
      * Finds the Invitations model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Invitations the loaded model
+     * @return Invitation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Invitations::findOne($id)) !== null) {
+        if (($model = Invitation::findOne($id)) !== null) {
             return $model;
         }
 

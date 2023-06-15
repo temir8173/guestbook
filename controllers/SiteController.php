@@ -11,7 +11,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\SignupForm;
-use app\models\Messages;
+use app\models\Wish;
 use app\models\User;
 use yii\helpers\Json;
 use app\models\ImagesUploadForm;

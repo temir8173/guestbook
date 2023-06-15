@@ -4,21 +4,22 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Messages;
+use app\models\Invitation;
 
 /**
- * MessagesSearch represents the model behind the search form of `app\models\Messages`.
+ * InvitationsSearch represents the model behind the search form of `app\models\Invitations`.
  */
-class MessagesSearch extends Messages
+class InvitationSearch extends Invitation
 {
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['id', 'date', 'invitation_id'], 'integer'],
-            [['name', 'text'], 'safe'],
+            [['id', 'event_date', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'date'],
+            [['url', 'name'], 'safe'],
         ];
     }
 
@@ -38,11 +39,13 @@ class MessagesSearch extends Messages
      *
      * @return ActiveDataProvider
      */
-    public function search($params, int $invitation_id = 0)
+    public function search($params, int $userId = 0)
     {
-        $query = Messages::find();
+        $query = Invitation::find();
 
-        // add conditions that should always apply here
+        if ($userId) {
+            $query->where(['user_id' => $userId]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -59,12 +62,15 @@ class MessagesSearch extends Messages
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
-            'invitation_id' => ($invitation_id === 0) ? $this->invitation_id : $invitation_id,
+            'event_date' => $this->event_date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+//            'user_id' => ($userId === 0) ? $this->user_id : $userId,
+            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'text', $this->text]);
+        $query->andFilterWhere(['like', 'url', $this->url])
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use app\models\SectionTemplates;
+use app\models\Section;
 
 /**
  * Handles the creation of table `{{%section_templates}}`.
@@ -29,7 +29,7 @@ class m210418_094555_create_section_templates_table extends Migration
         ];
 
         foreach ($sections as $view => $section) {
-            $sectionExample = new SectionTemplates();
+            $sectionExample = new Section();
             $sectionExample->view = $view;
             $sectionExample->name = $section;
             $sectionExample->save();

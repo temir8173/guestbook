@@ -36,9 +36,9 @@ class SignupForm extends Model
             ['password', 'validateOwnPassword'],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+//            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
             //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
-            'uncheckedMessage' => Yii::t('common', 'Растаңыз')],
+//            'uncheckedMessage' => Yii::t('common', 'Растаңыз')],
         ];
     }
 
@@ -63,15 +63,16 @@ class SignupForm extends Model
             'reCaptcha' => Yii::t('common', 'Робот емес екендігіңізді растаңыз'),
         ];
     }
- 
+
     /**
      * Signs user up.
      *
      * @return User|null the saved model or null if saving fails
+     * @throws \yii\base\Exception
      */
-    public function signup()
+    public function signup(): ?User
     {
- 
+
         if (!$this->validate()) {
             return null;
         }
@@ -90,6 +91,8 @@ class SignupForm extends Model
         }
 
         $this->sentEmailConfirm($user);
+
+        return $user;
     }
 
     public function sentEmailConfirm(UserIdentity $user)

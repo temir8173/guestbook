@@ -7,16 +7,11 @@ use mihaildev\elfinder\PathController;
 use yii\helpers\ArrayHelper;
 use yii\swiftmailer\Mailer;
 
-$params = ArrayHelper::merge(
-    require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
-);
-$db = ArrayHelper::merge(
-    require __DIR__ . '/db.php',
-    require __DIR__ . '/db-local.php'
-);
+$params = require __DIR__ . '/params.php';
+$db = require __DIR__ . '/db.php';
 $urlManager = require __DIR__ . '/_url-manager.php';
 $i18n = require __DIR__ . '/_i18n.php';
+$di = require __DIR__ . '/di.php';
 
 $config = [
     'id' => 'basic',
@@ -50,14 +45,14 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             //'useFileTransport' => true,
-            'useFileTransport' => false,
+            'useFileTransport' => $_ENV['USEFILETRANSPORT'],
             'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'your-host',
-                'username' => 'username',
-                'password' => 'pwd',
-                'port' => '465',
-                'encryption' => 'ssl',
+                'class' => "Swift_SmtpTransport",
+                'host' => $_ENV['SMTPHOST'],
+                'username' => $_ENV['SMTPUSERNAME'],
+                'password' => $_ENV['SMTPPASSWORD'],
+                'port' => $_ENV['SMTPPORT'],
+                'encryption' => $_ENV['SMTPENCRYPTION'],
             ],
         ],
         'log' => [
@@ -85,10 +80,10 @@ $config = [
        ],
         'reCaptcha' => [
             'class' => ReCaptchaConfig::class,
-            'siteKeyV2' => 'some-siteKey',
-            'secretV2' => 'some-siteKey',
-            'siteKeyV3' => 'your siteKey v3',
-            'secretV3' => 'your secret key v3',
+            'siteKeyV2' => $_ENV['RECAPTCHA_SITEKEY_V2'],
+            'secretV2' => $_ENV['RECAPTCHA_SECRET_V2'],
+//            'siteKeyV3' => $_ENV['RECAPTCHA_SITEKEY_V3'],
+//            'secretV3' => $_ENV['RECAPTCHA_SECRET_V3'],
         ],
     ],
     'modules' => [
@@ -96,16 +91,16 @@ $config = [
             'class' => 'app\modules\admin\Module',
             'layout' => '@app/views/layouts/admin',
         ],
-        'invitations' => [
-            'class' => 'app\modules\invitations\Module',
-            'layout' => '@app/views/layouts/invitation'
-        ],
         'user' => [
             'class' => 'app\modules\user\Module',
         ],
         'manage' => [
             'class' => 'app\modules\manage\Module',
             'layout' => '@app/modules/manage/views/layouts/manage',
+        ],
+        'invitations' => [
+            'class' => 'app\modules\invitations\Module',
+            'layout' => '@app/modules/invitations/views/layouts/manage',
         ],
     ],
     'controllerMap' => [
@@ -119,6 +114,7 @@ $config = [
         ]
     ],
     'params' => $params,
+    'container' => $di,
 ];
 
 if (YII_ENV_DEV) {
@@ -138,7 +134,4 @@ if (YII_ENV_DEV) {
     ];
 }
 
-return ArrayHelper::merge(
-    $config,
-    require __DIR__ . '/web-local.php'
-);
+return $config;

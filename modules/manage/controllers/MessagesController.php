@@ -3,13 +3,13 @@
 namespace app\modules\manage\controllers;
 
 use Yii;
-use app\models\Messages;
-use app\models\MessagesSearch;
+use app\models\Wish;
+use app\models\WishSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
-use app\models\Invitations;
+use app\models\Invitation;
 
 /**
  * MessagesController implements the CRUD actions for Messages model.
@@ -38,8 +38,8 @@ class MessagesController extends Controller
             $invitation_id = -1;
             throw new ForbiddenHttpException('Access denied');
         }
-        $invitation = Invitations::findOne($invitation_id);
-        $searchModel = new MessagesSearch();
+        $invitation = Invitation::findOne($invitation_id);
+        $searchModel = new WishSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $invitation_id);
         $dataProvider->pagination = ['pageSize' => 50];
 
@@ -70,12 +70,12 @@ class MessagesController extends Controller
      * Finds the Messages model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Messages the loaded model
+     * @return Wish the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Messages::find()->where(['id' => $id])->with('invitation')->one()) !== null) {
+        if (($model = Wish::find()->where(['id' => $id])->with('invitation')->one()) !== null) {
             return $model;
         }
 

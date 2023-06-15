@@ -3,7 +3,7 @@ namespace app\rbac;
  
 use yii\rbac\Rule;
 use yii\rbac\Item;
-use app\models\Invitations;
+use app\models\Invitation;
  
 class UserInvitationOwnerRule extends Rule
 {
@@ -24,7 +24,7 @@ class UserInvitationOwnerRule extends Rule
         }
 
         if (isset($params['invitationId']))
-            $invitation = Invitations::findOne($params['invitationId']);
+            $invitation = Invitation::findOne($params['invitationId']);
         
         return ( isset($params['invitationId']) && isset($invitation) ) ? \Yii::$app->user->id == $invitation->user_id : false;
     }

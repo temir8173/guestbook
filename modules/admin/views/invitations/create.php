@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Invitations */
+/* @var $model app\models\Invitation */
 
 $this->title = 'Жаңа шақыру билеті';
 $this->params['breadcrumbs'][] = ['label' => 'Шақыру билеттері', 'url' => ['index']];

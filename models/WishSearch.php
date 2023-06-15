@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\SectionTemplates;
+use app\models\Wish;
 
 /**
- * SectionTemplatesSearch represents the model behind the search form of `app\models\SectionTemplates`.
+ * MessagesSearch represents the model behind the search form of `app\models\Messages`.
  */
-class SectionTemplatesSearch extends SectionTemplates
+class WishSearch extends Wish
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class SectionTemplatesSearch extends SectionTemplates
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'view'], 'safe'],
+            [['id', 'date', 'invitation_id'], 'integer'],
+            [['name', 'text'], 'safe'],
         ];
     }
 
@@ -38,9 +38,9 @@ class SectionTemplatesSearch extends SectionTemplates
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, int $invitation_id = 0)
     {
-        $query = SectionTemplates::find();
+        $query = Wish::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +59,12 @@ class SectionTemplatesSearch extends SectionTemplates
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'date' => $this->date,
+            'invitation_id' => ($invitation_id === 0) ? $this->invitation_id : $invitation_id,
         ]);
 
-        $query->andFilterWhere(['like', 'view', $this->view])
-            ->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
     }

@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\Messages;
+use app\models\Wish;
 use app\models\FieldValues;
 use yii\helpers\Json;
 
@@ -59,7 +59,7 @@ class AjaxController extends Controller
     public function actionGetMessages()
     {
 
-        $messages = Messages::find()->orderBy(['date' => SORT_ASC])->all();
+        $messages = Wish::find()->orderBy(['date' => SORT_ASC])->all();
 
         if (Yii::$app->request->isAjax) {
 
@@ -77,7 +77,7 @@ class AjaxController extends Controller
     {
         if (Yii::$app->request->isAjax) {
 
-            $newMessage = new Messages();
+            $newMessage = new Wish();
             $return = array(
                 'error' => 1,
                 'message' => 'Ошибка. Неверный формат данных!',

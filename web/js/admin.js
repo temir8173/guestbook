@@ -124,7 +124,7 @@ $('document').ready(function(){
 					listItem.append(para);
 
 				} else {
-					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың түрі дұрыс емес немесе өлшемі 5МБ-тан көп. Қайтадан таңдаңыз.';
+					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың кеңейтімі дұрыс емес немесе өлшемі 5МБ-тан көп. Қайтадан таңдаңыз.';
 					listItem.append(para);
 				}
 
@@ -206,14 +206,20 @@ $('document').ready(function(){
 	});
 
 	$(".switch").on('click', function(e) {
-		var section_id = $(this).attr('data-section-id');
+		const section_id = $(this).attr('data-section-id');
 		$(this).toggleClass('active');
 		if ( $(this).hasClass('active') ) {
-			$("#"+section_id).val(1);
+			$("#"+section_id).removeAttr('disabled');
 			$(this).parents(".invitations-form__section").removeClass('inactive');
+			$(this).parents(".invitations-form__section")
+				.find('input')
+				.removeAttr('disabled');
 		} else {
-			$("#"+section_id).val(0);
+			$("#"+section_id).attr('disabled', true);
 			$(this).parents(".invitations-form__section").addClass('inactive');
+			$(this).parents(".invitations-form__section")
+				.find('input')
+				.attr('disabled', true);
 		}
 	});
 })

@@ -57,7 +57,7 @@ class FieldValues extends \yii\db\ActiveRecord
 
     public function getField()
     {
-        return $this->hasOne(Fields::className(), ['id' => 'field_id']);
+        return $this->hasOne(Field::className(), ['id' => 'field_id']);
     }
 
     public function uploadImages()

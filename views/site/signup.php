@@ -26,9 +26,11 @@ $this->title = Yii::t('common', 'Тіркелу');
                             <?= $form->field($model, 'email') ?>
                             <?= $form->field($model, 'password')->passwordInput() ?>
                             <?= $form->field($model, 'password_repeat')->passwordInput() ?>
-                            <?= $form->field($model, 'reCaptcha')->widget(
-                                \himiklab\yii2\recaptcha\ReCaptcha2::className(), []
-                            ) ?>
+                            <?php if (0) { ?>
+                                <?= $form->field($model, 'reCaptcha')->widget(
+                                    \himiklab\yii2\recaptcha\ReCaptcha2::className(), []
+                                ) ?>
+                            <?php } ?>
                             <div class="form-group">
                                 <?= Html::submitButton(Yii::t('common', 'Тіркелу'), ['class' => 'btn btn-primary login-button', 'name' => 'signup-button']) ?>
                             </div>

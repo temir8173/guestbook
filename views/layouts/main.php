@@ -3,17 +3,13 @@
 /* @var $this View */
 /* @var $content string */
 
+use app\assets\AdminAsset;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
-<<<<<<< HEAD
-use app\widgets\multiLang\MultiLang;
-=======
->>>>>>> 37503487fa6defa99d62db44cbee2f13b6493ab2
 
-AppAsset::register($this);
+AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
