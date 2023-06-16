@@ -1,9 +1,15 @@
 <?php
 
+use app\models\Invitation;
+use app\models\Wish;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+
+/**
+ * @var Invitation $invitation
+ * @var Wish $newMessage
+*/
 
 ?>
 <section id="wishes" class="wishes">
@@ -15,10 +21,10 @@ use yii\widgets\ActiveForm;
 				<div class="wishes__messages">
 					<div id="messages-box"
                          data-action-url="<?= Url::to([
-                             '/invitations/default/get-messages',
+                             '/invitation/get-messages',
                              'invitation_id' => $invitation->id
                          ]) ?>">
-						<?= $this->render('_messages', ['messages' => $invitation->wishes]); ?>
+						<?= $this->render('_wishes_box', ['messages' => $invitation->wishes]); ?>
 					</div>
 				</div>
 
@@ -26,7 +32,7 @@ use yii\widgets\ActiveForm;
 			<div class="col-sm-6">
 
 				<?php $form = ActiveForm::begin([
-					'action' => Url::to('/invitations/default/add-message'),
+					'action' => Url::to('/invitation/add-message'),
 	                'enableClientValidation'=>false, 
 	                'options' => [
 	                    'class' => 'wishes__form ajax-form',

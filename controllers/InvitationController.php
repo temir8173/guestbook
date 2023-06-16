@@ -13,6 +13,7 @@ use app\models\Template;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -100,6 +101,42 @@ class InvitationController extends Controller
                     compact('invitation', 'newMessage')
                 );
             }
+        }
+
+        throw new HttpException(404,'Страница не найдена');
+    }
+
+    public function actionGetMessages($invitation_id = 0)
+    {
+        $messages = Wish::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
+        $invitation = Invitation::findOne($invitation_id);
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax("@app/views/invitation/view/{$invitation->template->slug}/_wishes_box", [
+                'messages' => $messages
+            ]);
+        }
+
+        throw new HttpException(404,'Страница не найдена');
+    }
+
+    public function actionAddMessage(): string
+    {
+        if (Yii::$app->request->isAjax) {
+            $newMessage = new Wish();
+            $return = array(
+                'error' => 1,
+                'message' => 'Ошибка. Неверный формат данных!',
+            );
+
+            if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
+                $return = array(
+                    'error' => 0,
+                    'message' => Yii::t('common', 'Рахмет! Сіздің тілегіңіз жіберілді!'),
+                );
+            }
+
+            return Json::encode($return);
         }
 
         throw new HttpException(404,'Страница не найдена');

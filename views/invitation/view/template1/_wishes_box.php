@@ -1,5 +1,12 @@
 <?php
+
+use app\models\Wish;
 use yii\helpers\Html;
+
+/**
+ * @var Wish[] $messages
+ */
+
 ?>
 
 <div class="news__items notif__items" >

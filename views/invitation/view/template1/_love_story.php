@@ -1,3 +1,10 @@
+<?php
+
+/**
+ * @var array $fieldValues
+ */
+
+?>
 <section id="love-story" class="love-story">
 	<div class="container">
 		<div class="row">

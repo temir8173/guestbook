@@ -1,3 +1,10 @@
+<?php
+
+/**
+ * @var array $fieldValues
+ */
+
+?>
 <section id="speech" class="speech">
 	<div class="container">
 		<div class="row">

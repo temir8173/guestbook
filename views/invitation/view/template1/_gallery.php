@@ -2,6 +2,10 @@
 
 use yii\helpers\Json;
 
+/**
+ * @var array $fieldValues
+ */
+
 ?>
 <section id="our-gallery" class="our-gallery">
 	<div class="container my-container">

@@ -1,10 +1,13 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\Invitation;
+use app\models\Wish;
 use yii\helpers\Json;
-use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
+
+/**
+ * @var Invitation $invitation
+ * @var Wish $newMessage
+ */
 
 $this->title = $invitation->name;
 ?>
