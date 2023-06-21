@@ -9,15 +9,16 @@ $('document').ready(function(){
 		        type: "POST",
 		        url: $(this).attr('data-action-url'), //'/ajax/messages',
 		        data: {
-		            id: $(this).attr('data-id'),
-		            index: $(this).attr('data-index'),
+					invitation_id: $(this).attr('data-invitation-id'),
+					field_slug: $(this).attr('data-field-slug'),
+					image_name: $(this).attr('data-image-name'),
 		        },
 		        success: function(data){
-					//$(this).parent().parent().css('display', 'none');
+					// $(this).parent().parent().css('display', 'none');
 		        }
 		    });
-			
-			$(this).parent().parent().css('display', 'none');
+
+			$(this).parent().parent().remove();
 		}
 	        	
 		

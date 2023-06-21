@@ -73,12 +73,12 @@ class Invitation extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['url', 'name', 'template_id', 'event_date', 'status', 'user_id'], 'required'],
+            [['url', 'name', 'template_id', 'event_date'], 'required'],
             [['status', 'user_id'], 'integer'],
             [['url', 'name', 'template_id'], 'string', 'max' => 255],
             [['url'], 'unique'],
-            [['status'], 'default', 'value'=> 0],
-            [['sections', 'field_values'], 'string'],
+            [['status'], 'default', 'value' => 0],
+            [['sections', 'field_values'], 'safe'],
         ];
     }
 
@@ -112,10 +112,11 @@ class Invitation extends ActiveRecord
 
     public function load($data, $formName = null): bool
     {
-        $this->sections = Json::encode($data['Section']['slug'] ?? null);
+        $this->sections = $data['Section']['slug'] ?? [];
 
-        $fields = $this->prepareFields($data['Field'] ?? []);
-        $this->field_values = Json::encode($fields ?? null);
+        if (!empty($data['Field'])) {
+            $this->field_values = $this->prepareFields($data['Field']);
+        }
 
         return parent::load($data, $formName);
     }
@@ -141,23 +142,13 @@ class Invitation extends ActiveRecord
         parent::afterSave($insert, $changedAttributes);
     }
 
-    public function setFieldImageNames(array $fileNamesByField)
-    {
-        $fields = Json::decode($this->field_values);
-        foreach ($fileNamesByField as $fieldSlug => $fileNames) {
-            $fields[$fieldSlug] = Json::encode($fileNames);
-        }
-
-        $this->field_values = Json::encode($fields);
-    }
-
-    private function prepareFields(array $fields): array
+    private function prepareFields(array $formFields): array
     {
         $fieldTypes = Field::find()->select(['slug', 'type'])->all();
         $fieldTypesBySlug = ArrayHelper::map($fieldTypes, 'slug', 'type');
 
         $newFields = [];
-        foreach ($fields as $slug => $fieldValue) {
+        foreach ($formFields as $slug => $fieldValue) {
             if ($fieldTypesBySlug[$slug] === Field::TYPE_YOUTUBE) {
                 $parts = parse_url($fieldValue);
                 if (!empty($parts['query'])) {
@@ -168,6 +159,7 @@ class Invitation extends ActiveRecord
                     : $fieldValue;
             } elseif ($fieldTypesBySlug[$slug] === Field::TYPE_IMAGE) {
                 $this->files[$slug] = UploadedFile::getInstancesByName("Field[$slug]");
+                $fieldValue = $this->field_values[$slug] ?? [];
             }
             $newFields[$slug] = $fieldValue;
         }

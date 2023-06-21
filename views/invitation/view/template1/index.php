@@ -2,7 +2,6 @@
 
 use app\models\Invitation;
 use app\models\Wish;
-use yii\helpers\Json;
 
 /**
  * @var Invitation $invitation
@@ -56,8 +55,8 @@ $this->title = $invitation->name;
 
 <?php
 
-$fieldValues = Json::decode($invitation->field_values);
-foreach (Json::decode($invitation->sections) as $section)
+$fieldValues = $invitation->field_values;
+foreach ($invitation->sections as $section)
 {
     echo $this->render('_'.$section, compact('invitation', 'newMessage', 'fieldValues'));
 //    break;

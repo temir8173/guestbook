@@ -1,9 +1,9 @@
 <?php
 
-use app\services\invitations\InvitationCreateService;
+use app\services\invitations\InvitationService;
 
 return [
     'definitions' => [
-        InvitationCreateService::class => InvitationCreateService::class,
+        InvitationService::class => InvitationService::class,
     ],
 ];

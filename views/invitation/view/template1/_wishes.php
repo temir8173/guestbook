@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 					<div id="messages-box"
                          data-action-url="<?= Url::to([
                              '/invitation/get-messages',
-                             'invitation_id' => $invitation->id
+                             'invitationId' => $invitation->id
                          ]) ?>">
 						<?= $this->render('_wishes_box', ['messages' => $invitation->wishes]); ?>
 					</div>

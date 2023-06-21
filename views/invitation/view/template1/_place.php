@@ -1,7 +1,5 @@
 <?php
 
-use yii\helpers\Json;
-
 /**
  * @var array $fieldValues
  */
@@ -45,10 +43,8 @@ use yii\helpers\Json;
             <div class="row">
                 <div class="col-sm-12">
                     <div class="address__images restaurant-pic">
-                        <?php
-                        $images = Json::decode($fieldValues['place_images'] ?? null);
-                        if (is_array($images)) { ?>
-                            <?php foreach ($images as $key => $imageName) { ?>
+                        <?php if (is_array($fieldValues['place_images'])) { ?>
+                            <?php foreach ($fieldValues['place_images'] as $key => $imageName) { ?>
                                 <a href="/uploads/<?= $imageName ?>" class="col-sm-4" data-caption="">
                                     <div class="address__image image-container">
                                         <div>

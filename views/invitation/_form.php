@@ -11,23 +11,20 @@ use kartik\date\DatePicker;
 /**
  * @var View $this
  * @var ActiveForm $form
- * @var Invitation $model
+ * @var Invitation $invitation
  * @var Section[] $sections
  * @var string[] $templateNames
 */
+
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-
             <div class="invitations-form">
-
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-
-                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($model, 'url', [
+                <?= $form->field($invitation, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($invitation, 'url', [
                     'template' => '
                     <div class="input-group">
                         <span class="input-group-addon">'.Url::base(true).'/</span>
@@ -36,9 +33,9 @@ use kartik\date\DatePicker;
                     {error}',
                 ]); ?>
 
-                <?= $form->field($model, 'event_date')->widget(DatePicker::class, [
+                <?= $form->field($invitation, 'event_date')->widget(DatePicker::class, [
                     'options' => [
-                        'value' => $model->event_date,
+                        'value' => $invitation->event_date,
                     ],
                     'pluginOptions' => [
                         'autoclose' => true,
@@ -47,34 +44,41 @@ use kartik\date\DatePicker;
                     ]
                 ]); ?>
 
-                <?= $form->field($model, 'template_id')->dropDownList($templateNames) ?>
-                <?= $form->field($model, 'status')->hiddenInput(['value' => $model->isNewRecord ? 0 : $model->status])->label(false) ?>
-                <?= $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->id])->label(false) ?>
+                <?= $form->field($invitation, 'template_id')->dropDownList($templateNames) ?>
 
                 <?php foreach ($sections as $index => $section ) : ?>
-
-
-                    <section class="invitations-form__section">
-
+                    <?php
+                    $inputAttributes = [
+                        'id' => "section-{$index}-slug",
+                        'value' => $section->slug
+                    ];
+                    $isSectionActive = true;
+                    if (
+                        is_array($invitation->sections)
+                        && !empty($invitation->sections)
+                        && !in_array($section->slug, $invitation->sections)
+                    ) {
+                        $inputAttributes['disabled'] = true;
+                        $isSectionActive = false;
+                    }
+                    ?>
+                    <section class="invitations-form__section <?= !$isSectionActive ? 'inactive' : '' ?>">
                         <h2><span><?= $index+1 ?></span>. Секция - <?= Yii::t('common', $section->name) ?></h2>
-
                         <?= $form->field($section, "slug[]")
-                            ->textInput([
-                                'id' => "section-{$index}-slug",
-                                'value' => $section->slug
-                            ])
+                            ->hiddenInput($inputAttributes)
                             ->label(false) ?>
-                        <label class="switch active" data-section-id="section-<?= $index ?>-slug">
+                        <label class="switch <?= $isSectionActive ? 'active' : '' ?>" data-section-id="section-<?= $index
+                        ?>-slug">
                             <span class="slider round"></span>
                         </label>
 
                         <?= $this->render('_form_fields', [
                             'form' => $form,
                             'section' => $section,
+                            'invitation' => $invitation,
+                            'isSectionActive' => $isSectionActive,
                         ]); ?>
-
                     </section>
-
                 <?php endforeach; ?>
 
                 <div class="form-group">
@@ -82,7 +86,6 @@ use kartik\date\DatePicker;
                 </div>
 
                 <?php ActiveForm::end(); ?>
-
             </div>
         </div>
     </div>

@@ -2,19 +2,21 @@
 
 use app\models\Invitation;
 use app\models\Section;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\web\View;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
 
 /**
- * @var View $this
  * @var ActiveForm $form
- * @var Invitation $model
+ * @var Invitation $invitation
+ * @var array $fieldValues
  * @var Section $section
- * @var string[] $templateNames
  */
+
+$fieldValues = $invitation->field_values;
+
 ?>
 
 <?php $j = 0; foreach ($section->fields as $fIndex => $field) { ?>
@@ -60,21 +62,20 @@ use mihaildev\ckeditor\CKEditor;
             <div class="row">
                 <h4><?= Yii::t('common', $field->name) ?></h4>
                 <div class="invitations-form__images restaurant-pic">
-                    <?php if (
-                        isset($fieldValues) &&
-                        is_array($fieldValues[$field->slug]?->imagesNames)
-                    ) { ?>
-                        <?php foreach ($fieldValues[$field->slug]->imagesNames as $key => $imageName) { ?>
+                    <?php if (isset($fieldValues[$field->slug])) { ?>
+                        <?php foreach ($fieldValues[$field->slug] as $imageName) { ?>
                             <div class="col-sm-2">
                                 <span class="image-span">
-                                    <span class="image-del" data-action-url="<?= Url::to(['/ajax/delete-image']) ?>" data-id="<?= $fieldValues[$section->id][$j]->id ?>" data-index="<?= $key ?>">x</span>
-
+                                    <span class="image-del" data-action-url="<?= Url::to(['/api/delete-image']) ?>"
+                                          data-invitation-id="<?= $invitation->id ?>"
+                                          data-field-slug="<?= $field->slug ?>"
+                                          data-image-name="<?= $imageName ?>"
+                                    >x</span>
                                     <a href="/uploads/<?= $imageName ?>" class="invitations-form__image-link">
                                         <div class="our-gallery__image image-container gallery-vertical">
                                             <div>
                                                 <img src="/uploads/<?= $imageName ?>" alt="">
                                             </div>
-
                                         </div>
                                     </a>
                                 </span>
@@ -98,11 +99,8 @@ use mihaildev\ckeditor\CKEditor;
                 )->fileInput([
                     'id' => "field-{$field->slug}",
                     'name' => "Field[{$field->slug}][]",
-                    'value' => $fieldValues[$field->slug] ?? '',
                     'multiple' => true
-                ])
-                    ->label(Yii::t('common', 'Файл таңдаңыз')); ?>
-
+                ])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
             </div>
         </div>
         <div class="preview container">
@@ -128,4 +126,4 @@ use mihaildev\ckeditor\CKEditor;
     <?php } ?>
 
 
-    <?php $j++; } ?>
+<?php $j++; } ?>

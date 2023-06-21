@@ -2,18 +2,32 @@
 
 namespace app\controllers;
 
+use app\models\Invitation;
+use app\services\invitations\InvitationService;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
+use yii\rest\Controller;
+use yii\web\HttpException;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\Wish;
-use app\models\FieldValues;
 use yii\helpers\Json;
+use yii\web\Response;
 
-class AjaxController extends Controller
+class ApiController extends Controller
 {
+    public function __construct(
+        $id,
+        $module,
+        private InvitationService $invitationService,
+
+        $config = []
+    ) {
+        $response = Yii::$app->response;
+        $response->format = Response::FORMAT_JSON;
+
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -21,7 +35,7 @@ class AjaxController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -32,26 +46,10 @@ class AjaxController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -68,7 +66,7 @@ class AjaxController extends Controller
             ]);
 
         } else {
-            throw new \yii\web\HttpException(404,'Страница не найдена');
+            throw new HttpException(404,'Страница не найдена');
         }
         
     }
@@ -92,17 +90,30 @@ class AjaxController extends Controller
             return Json::encode($return);
 
         } else {
-            throw new \yii\web\HttpException(404,'Страница не найдена');
+            throw new HttpException(404,'Страница не найдена');
         }
     }
 
-    public function actionDeleteImage()
+    public function actionDeleteImage(): array
     {
-        if (Yii::$app->request->isAjax) {
-            $params = Yii::$app->request->post();
-            $fieldValue = FieldValues::findOne($params['id']);
-            $fieldValue->deleteImage($params['index']);
+        $response = array(
+            'success' => false,
+            'message' => '',
+        );
+        $invitationId = Yii::$app->request->post('invitation_id');
+        $fieldSlug = Yii::$app->request->post('field_slug');
+        $imageName = Yii::$app->request->post('image_name');
+        $invitation = Invitation::findOne($invitationId);
+
+        if (
+            $invitation
+            && Yii::$app->request->isAjax
+            && file_exists(Yii::getAlias('@webroot') . '/uploads/' . $imageName)
+        ) {
+            $this->invitationService->deleteImage($invitation, $fieldSlug, $imageName);
+            $response['success'] = true;
         }
 
+        return $response;
     }
 }

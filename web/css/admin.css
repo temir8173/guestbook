@@ -11,9 +11,12 @@ body {
 }
 .invitations-form .form-control {
 	border-radius: 2px;
+	font-size: 1.3rem;
 }
 .invitations-form .input-group-addon {
 	border-radius: 2px;
+	width: auto;
+	line-height: 20px;
 }
 .invitations-form__section {
 	border: 3px solid #ccc;
@@ -123,6 +126,7 @@ body {
 	display: inline-block;
 	width: 32px;
 	height: 20px;
+	margin-bottom: 15px;
 }
 
 .switch input {display:none;}

@@ -6,7 +6,7 @@ namespace app\controllers;
 
 use app\models\InvitationSearch;
 use app\models\Wish;
-use app\services\invitations\InvitationCreateService;
+use app\services\invitations\InvitationService;
 use app\models\Invitation;
 use app\models\Section;
 use app\models\Template;
@@ -23,7 +23,7 @@ class InvitationController extends Controller
     public function __construct(
         $id,
         $module,
-        private InvitationCreateService $invitationCreateService,
+        private InvitationService $invitationService,
 
         $config = []
     ) {
@@ -55,15 +55,44 @@ class InvitationController extends Controller
             $invitation->load(Yii::$app->request->getBodyParams())
             && $invitation->validate()
         ) {
-//            var_dump($invitation);die;
-            $url = $this->invitationCreateService->process($invitation);
+            $invitation->user_id = Yii::$app->user->id;
+            $url = $this->invitationService->create($invitation);
             return $this->redirect(Url::to([
                 '/invitation/preview',
-                'view' => $url
+                'url' => $url
             ]));
         }
 
         return $this->render('create', [
+            'sections' => $sections,
+            'invitation' => $invitation,
+            'templateNames' => ArrayHelper::map($templates, 'id', 'name'),
+        ]);
+    }
+
+    public function actionUpdate($url = '')
+    {
+        /** @var Invitation $invitation */
+        $invitation = Invitation::find()
+            ->select('*')
+            ->where(['url' => $url])
+            ->one();
+        $templates = Template::find()->select(['id', 'name'])->all();
+        $sections = Section::find()->with('fields')->all();
+
+        if (
+            $invitation->load(Yii::$app->request->getBodyParams())
+            && $invitation->validate()
+        ) {
+//            var_dump($invitation);die;
+            $url = $this->invitationService->update($invitation);
+            return $this->redirect(Url::to([
+                '/invitation/preview',
+                'url' => $url
+            ]));
+        }
+
+        return $this->render('update', [
             'sections' => $sections,
             'invitation' => $invitation,
             'templateNames' => ArrayHelper::map($templates, 'id', 'name'),
@@ -78,17 +107,17 @@ class InvitationController extends Controller
     /**
      * @throws HttpException
      */
-    public function actionPreview($view = '')
+    public function actionPreview($url = '')
     {
         if (Yii::$app->language != 'kk') {
             return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
         }
 
-        if ($view) {
+        if ($url) {
             /** @var Invitation $invitation */
             $invitation = Invitation::find()
                 ->with('template', 'wishes')
-                ->where(['url' => $view])
+                ->where(['url' => $url])
                 ->one();
 
             if ($invitation) {
@@ -106,10 +135,10 @@ class InvitationController extends Controller
         throw new HttpException(404,'Страница не найдена');
     }
 
-    public function actionGetMessages($invitation_id = 0)
+    public function actionGetMessages($invitationId = 0)
     {
-        $messages = Wish::find()->where(['invitation_id' => $invitation_id])->orderBy(['date' => SORT_ASC])->all();
-        $invitation = Invitation::findOne($invitation_id);
+        $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['date' => SORT_ASC])->all();
+        $invitation = Invitation::findOne($invitationId);
 
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax("@app/views/invitation/view/{$invitation->template->slug}/_wishes_box", [

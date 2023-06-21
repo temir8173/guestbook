@@ -16,11 +16,12 @@ return [
         '/signup' => 'site/signup',
         '/signup-confirm' => 'site/signup-confirm',
         '/login' => 'site/login',
-        '/invitation-create' => 'invitation/create',
+        '/create-invitation' => 'invitation/create',
+        '/edit-invitation/<url:[\w-]+>' => 'invitation/update',
         '/invitations' => 'invitation/index',
-        '/<view:[\w-]+>' => '/invitation/view',
-        '/preview/<view:[\w-]+>' => '/invitation/preview',
-        '/ru/<view:[\w-]+>' => '/<view:[\w-]+>',
+        '/<url:[\w-]+>' => '/invitation/view',
+        '/preview/<url:[\w-]+>' => '/invitation/preview',
+        '/ru/<url:[\w-]+>' => '/<url:[\w-]+>',
 
 
         '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
