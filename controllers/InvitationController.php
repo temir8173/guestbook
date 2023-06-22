@@ -17,6 +17,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
 
 class InvitationController extends Controller
 {
@@ -70,6 +71,10 @@ class InvitationController extends Controller
         ]);
     }
 
+    /**
+     * @throws NotFoundHttpException
+     * @throws InvalidConfigException
+     */
     public function actionUpdate($url = '')
     {
         /** @var Invitation $invitation */
@@ -77,6 +82,11 @@ class InvitationController extends Controller
             ->select('*')
             ->where(['url' => $url])
             ->one();
+
+        if (!$invitation) {
+            throw new NotFoundHttpException();
+        }
+
         $templates = Template::find()->select(['id', 'name'])->all();
         $sections = Section::find()->with('fields')->all();
 
@@ -84,7 +94,6 @@ class InvitationController extends Controller
             $invitation->load(Yii::$app->request->getBodyParams())
             && $invitation->validate()
         ) {
-//            var_dump($invitation);die;
             $url = $this->invitationService->update($invitation);
             return $this->redirect(Url::to([
                 '/invitation/preview',

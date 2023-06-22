@@ -59,7 +59,6 @@ $fieldValues = $invitation->field_values;
 foreach ($invitation->sections as $section)
 {
     echo $this->render('_'.$section, compact('invitation', 'newMessage', 'fieldValues'));
-//    break;
 }
 
 ?>

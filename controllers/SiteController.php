@@ -55,14 +55,22 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => ErrorAction::class,
-            ],
             'captcha' => [
                 'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionError(): bool|string
+    {
+        $this->layout = 'empty';
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('error', ['exception' => $exception]);
+        }
+
+        return $this->render('error');
     }
 
     /**
