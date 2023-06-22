@@ -45,18 +45,27 @@ class InvitationController extends Controller
 
     /**
      * @throws InvalidConfigException
+     * @throws NotFoundHttpException
      */
-    public function actionCreate()
+    public function actionCreate($template = '')
     {
         $invitation = new Invitation();
-        $templates = Template::find()->select(['id', 'name'])->all();
-        $sections = Section::find()->with('fields')->all();
+        $template = Template::findOne(['slug' => $template]);
+
+        if (!$template) {
+            throw new NotFoundHttpException();
+        }
+
+        $sections = Section::find()
+            ->where(['in', 'slug', $template->sections])
+            ->with('fields')->all();
 
         if (
             $invitation->load(Yii::$app->request->getBodyParams())
             && $invitation->validate()
         ) {
             $invitation->user_id = Yii::$app->user->id;
+            $invitation->template_id = $template->id;
             $url = $this->invitationService->create($invitation);
             return $this->redirect(Url::to([
                 '/invitation/preview',
@@ -67,7 +76,6 @@ class InvitationController extends Controller
         return $this->render('create', [
             'sections' => $sections,
             'invitation' => $invitation,
-            'templateNames' => ArrayHelper::map($templates, 'id', 'name'),
         ]);
     }
 
@@ -87,8 +95,9 @@ class InvitationController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $templates = Template::find()->select(['id', 'name'])->all();
-        $sections = Section::find()->with('fields')->all();
+        $sections = Section::find()
+            ->where(['in', 'slug', $invitation->template->sections])
+            ->with('fields')->all();
 
         if (
             $invitation->load(Yii::$app->request->getBodyParams())
@@ -104,7 +113,6 @@ class InvitationController extends Controller
         return $this->render('update', [
             'sections' => $sections,
             'invitation' => $invitation,
-            'templateNames' => ArrayHelper::map($templates, 'id', 'name'),
         ]);
     }
 

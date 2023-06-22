@@ -13,7 +13,6 @@ use kartik\date\DatePicker;
  * @var ActiveForm $form
  * @var Invitation $invitation
  * @var Section[] $sections
- * @var string[] $templateNames
 */
 
 ?>
@@ -43,8 +42,6 @@ use kartik\date\DatePicker;
                         'todayHighlight' => true,
                     ]
                 ]); ?>
-
-                <?= $form->field($invitation, 'template_id')->dropDownList($templateNames) ?>
 
                 <?php foreach ($sections as $index => $section ) : ?>
                     <?php

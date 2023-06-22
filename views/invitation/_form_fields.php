@@ -2,7 +2,6 @@
 
 use app\models\Invitation;
 use app\models\Section;
-use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -20,14 +19,14 @@ $fieldValues = $invitation->field_values;
 ?>
 
 <?php $j = 0; foreach ($section->fields as $fIndex => $field) { ?>
-
     <?php
     if (in_array($field->type, ['text', 'link', 'youtube'])) {
         echo $form->field($field, 'slug', ['enableClientValidation' => false])
             ->textInput([
                 'id' => "field-{$field->slug}",
                 'name' => "Field[{$field->slug}]",
-                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? ''
+                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
+                'placeholder' => $field->hint ?? '',
             ])
             ->label(Yii::t('common', $field->name));
     } elseif ($field->type == 'textarea') {
@@ -94,7 +93,7 @@ $fieldValues = $invitation->field_values;
                     'slug',
                     [
                         'enableClientValidation' => false,
-                        'template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйреп алып келіңіз')."</span>\n{input}"
+                        'template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйретіп алып келіңіз')."</span>\n{input}"
                     ]
                 )->fileInput([
                     'id' => "field-{$field->slug}",

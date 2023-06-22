@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 ?>
 
-<header>
+<header class="header">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

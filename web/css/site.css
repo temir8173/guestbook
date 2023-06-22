@@ -35,14 +35,14 @@ body a:hover {
 
 
 
-/* header */
+/* .header */
 
-header {
-    height: 15vh;
-    padding-top: 30px;
+.header {
+    padding-top: 0;
+    margin: 15px 0;
 }
 
-header:before {
+.header:before {
     content: '';
     display:  block;
     position: absolute;
@@ -56,15 +56,15 @@ header:before {
     z-index: -1;
 }
 
-header nav ul {
+.header nav ul {
     display: flex;
     margin-bottom: 5px;
 }
 
-header a {
+.header a {
     color: #e91643;
 }
-header nav ul>li {
+.header nav ul>li {
     font-family: Montserrat, Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -78,7 +78,7 @@ header nav ul>li {
     padding: 20px 30px;
 }
 
-header .top-phone {
+.header .top-phone {
     font-family: Montserrat,Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -87,7 +87,7 @@ header .top-phone {
     color: #333;
 }
 
-header .lang-switcher {
+.header .lang-switcher {
     font-family: Montserrat,Arial, sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -259,11 +259,10 @@ section {
     height: auto;
     margin: 0 auto;
     padding: 0 0;
-    padding-top: 50px;
 }
 
-.wrap > .container {
-    padding: 20px 15px 5px;
+.breadcrumb {
+    margin-bottom: 20px!important;
 }
 
 .jumbotron {
@@ -522,7 +521,7 @@ body {
 #notfound {
     position: relative;
     height: 100vh;
-    background-color: #b41f84;
+    background-color: #fff;
 }
 
 #notfound .notfound {
@@ -553,7 +552,7 @@ body {
     letter-spacing: 10px;
     margin: 0px;
     font-weight: 700;
-    text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #c9c9c9;
+    text-shadow: 2px 2px 0px #c9c9c9, -2px -2px 0px #777;
 }
 
 .notfound .notfound-404 h1>span {
@@ -562,7 +561,7 @@ body {
 
 .notfound p {
     font-family: 'Josefin Sans', sans-serif;
-    color: #c9c9c9;
+    color: #777;
     font-size: 16px;
     font-weight: 400;
     margin-top: 0px;
@@ -575,8 +574,8 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     background: transparent;
-    color: #c9c9c9;
-    border: 2px solid #c9c9c9;
+    color: #f14baa;
+    border: 2px solid #f14baa;
     display: inline-block;
     padding: 10px 25px;
     font-weight: 700;

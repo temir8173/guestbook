@@ -9,7 +9,6 @@ use yii\web\View;
  * @var View $this
  * @var Invitation $invitation
  * @var Section[] $sections
- * @var string[] $templateNames
  */
 
 $this->title = Yii::t('common', 'Жаңа шақыру билеті');
@@ -29,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
             'invitation' => $invitation,
             'sections' => $sections,
-            'templateNames' => $templateNames,
     ]); ?>
 
 </div>

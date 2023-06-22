@@ -105,7 +105,7 @@ use mihaildev\ckeditor\CKEditor;
                             <div id="upload-container-<?= $fieldValues[$sectionTemplate->id][$j]->id ?>" class="upload-container" data-action="">
                                 <img id="upload-image" src="/images/upload.svg">
                                 <div>
-                                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]imageFiles[]", ['template' => "{label}<span> немесе мұнда сүйреп алып келіңіз</span>\n{input}"])->fileInput(['multiple' => true])->label('Файл таңдаңыз'); ?>
+                                    <?= $form->field($fieldValues[$sectionTemplate->id][$j], "[$sectionTemplate->id][$j]imageFiles[]", ['template' => "{label}<span> немесе мұнда сүйретіп алып келіңіз</span>\n{input}"])->fileInput(['multiple' => true])->label('Файл таңдаңыз'); ?>
                                     
                                 </div>
                             </div>

@@ -7,9 +7,12 @@ namespace app\models;
 use yii\db\ActiveRecord;
 
 /**
+ * @property int $id
  * @property string $slug
  * @property string $name
- * @property string $preview
+ * @property string $preview_img
+ * @property array $sections
+ * @property int $price
 */
 class Template extends ActiveRecord
 {

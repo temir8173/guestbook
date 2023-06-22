@@ -18,6 +18,8 @@ class m230622_063749_add_fields_to_section_and_fields extends Migration
         $this->addColumn('templates', 'sections', 'JSON');
         $this->renameColumn('templates', 'preview', 'preview_img');
         $this->addColumn('templates', 'price', $this->integer()->defaultValue(5000));
+        $this->addColumn('templates', 'type', $this->string(32)->defaultValue('marriage'));
+        $this->addColumn('templates', 'is_demo', $this->boolean()->defaultValue(false));
     }
 
     /**
