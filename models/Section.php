@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $slug
  * @property string $name
+ * @property bool $is_optional
  *
  * @property Field[] $fields
  */

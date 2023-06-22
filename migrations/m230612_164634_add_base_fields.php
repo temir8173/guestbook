@@ -64,12 +64,6 @@ class m230612_164634_add_base_fields extends Migration
                 'slug' => 'place_map_widget',
             ],
             [
-                'name' => 'Өткізілетін орын фотолары',
-                'section_id' => 3,
-                'type' => Field::TYPE_IMAGE,
-                'slug' => 'place_images',
-            ],
-            [
                 'name' => 'Тойдан естелік',
                 'section_id' => 4,
                 'type' => Field::TYPE_CLOUD_LINK,

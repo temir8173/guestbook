@@ -8,7 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 
-class PaymentsController extends Controller
+class OrderController extends Controller
 {
     /**
      * {@inheritdoc}

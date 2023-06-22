@@ -13,6 +13,8 @@ use yii\db\ActiveRecord;
  * @property int $section_id
  * @property string $type
  * @property string $slug
+ * @property string $hint
+ * @property string $default_value
  *
  * @property Section $section
  */

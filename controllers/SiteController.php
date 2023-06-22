@@ -11,14 +11,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\SignupForm;
-use app\models\Wish;
-use app\models\User;
-use yii\helpers\Json;
-use app\models\ImagesUploadForm;
-use yii\web\UploadedFile;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
-use yii\web\ErrorAction;
 use yii\captcha\CaptchaAction;
 
 class SiteController extends Controller

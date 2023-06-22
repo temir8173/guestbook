@@ -2,6 +2,7 @@
 
 use app\models\Invitation;
 use app\models\Wish;
+use yii\helpers\Html;
 
 /**
  * @var Invitation $invitation
@@ -62,3 +63,24 @@ foreach ($invitation->sections as $section)
 }
 
 ?>
+
+<?php if (isset($isPreview) && $isPreview) { ?>
+
+    <div class="preview-edit-toolbar">
+        <div class="container">
+            <div class="row">
+                <div class="toolbar-links">
+                    <?= Html::a(
+                        Yii::t('common', 'Өзгерту'),
+                        ['/invitation/update', 'url' => $invitation->url],
+                    ) ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Төлем жасау'),
+                        ['/order/pay', 'url' => $invitation->url],
+                    ) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php } ?>

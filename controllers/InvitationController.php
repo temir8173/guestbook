@@ -134,17 +134,25 @@ class InvitationController extends Controller
 
                 Yii::$app->formatter->locale = 'en-US';
                 $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
+
                 return $this->render(
                     "@app/views/invitation/view/{$invitation->template->slug}/index",
-                    compact('invitation', 'newMessage')
+                    [
+                        'invitation' => $invitation,
+                        'newMessage' => $newMessage,
+                        'isPreview' => true,
+                    ]
                 );
             }
         }
 
-        throw new HttpException(404,'Страница не найдена');
+        throw new NotFoundHttpException();
     }
 
-    public function actionGetMessages($invitationId = 0)
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionGetMessages($invitationId = 0): string
     {
         $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['date' => SORT_ASC])->all();
         $invitation = Invitation::findOne($invitationId);
@@ -155,9 +163,12 @@ class InvitationController extends Controller
             ]);
         }
 
-        throw new HttpException(404,'Страница не найдена');
+        throw new NotFoundHttpException();
     }
 
+    /**
+     * @throws HttpException
+     */
     public function actionAddMessage(): string
     {
         if (Yii::$app->request->isAjax) {
@@ -177,6 +188,6 @@ class InvitationController extends Controller
             return Json::encode($return);
         }
 
-        throw new HttpException(404,'Страница не найдена');
+        throw new NotFoundHttpException();
     }
 }

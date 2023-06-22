@@ -27,7 +27,7 @@ $fieldValues = $invitation->field_values;
             ->textInput([
                 'id' => "field-{$field->slug}",
                 'name' => "Field[{$field->slug}]",
-                'value' => $fieldValues[$field->slug] ?? ''
+                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? ''
             ])
             ->label(Yii::t('common', $field->name));
     } elseif ($field->type == 'textarea') {
@@ -35,7 +35,7 @@ $fieldValues = $invitation->field_values;
         echo Html::label($field->name, "field-{$field->slug}");
         echo CKEditor::widget([
             'name' => "Field[{$field->slug}]",
-            'value' => $fieldValues[$field->slug] ?? '',
+            'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
             'editorOptions' => [
                 'preset' => 'standard', //basic, standard, full
                 'inline' => false,

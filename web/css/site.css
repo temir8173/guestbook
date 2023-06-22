@@ -599,3 +599,28 @@ body {
         font-size: 122px;
     }
 }
+
+.preview-edit-toolbar {
+    position: fixed;
+    background: rgba(0,0,0,.3);
+    backdrop-filter: blur(10px);
+    padding: 30px 0;
+    width: 100%;
+    bottom: 0;
+    z-index: 999;
+    color: #fff;
+    box-shadow: 0px -5px 97px 6px rgba(0,0,0,0.36);
+    -webkit-box-shadow: 0px -5px 97px 6px rgba(0,0,0,0.36);
+    -moz-box-shadow: 0px -5px 97px 6px rgba(0,0,0,0.36);
+}
+
+.toolbar-links a {
+    text-transform: uppercase;
+    margin: 0 15px;
+    transition: all .2s;
+}
+
+.toolbar-links a:hover {
+    text-decoration: none;
+    color: #FF5C7F;
+}

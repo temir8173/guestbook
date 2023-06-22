@@ -63,14 +63,18 @@ use kartik\date\DatePicker;
                     }
                     ?>
                     <section class="invitations-form__section <?= !$isSectionActive ? 'inactive' : '' ?>">
-                        <h2><span><?= $index+1 ?></span>. Секция - <?= Yii::t('common', $section->name) ?></h2>
+                        <h2>
+                            <span><?= $index + 1 ?></span>. Секция - <?= Yii::t('common', $section->name) ?>
+                        </h2>
                         <?= $form->field($section, "slug[]")
-                            ->hiddenInput($inputAttributes)
-                            ->label(false) ?>
-                        <label class="switch <?= $isSectionActive ? 'active' : '' ?>" data-section-id="section-<?= $index
-                        ?>-slug">
-                            <span class="slider round"></span>
-                        </label>
+                            ->hiddenInput($inputAttributes)->label(false) ?>
+
+                        <?php if ($section->is_optional) { ?>
+                            <label class="switch <?= $isSectionActive ? 'active' : '' ?>"
+                                   data-section-id="section-<?= $index ?>-slug">
+                                <span class="slider round"></span>
+                            </label>
+                        <?php } ?>
 
                         <?= $this->render('_form_fields', [
                             'form' => $form,
