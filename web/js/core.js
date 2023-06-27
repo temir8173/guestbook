@@ -1,5 +1,4 @@
 $('document').ready(function(){
-
 	console.log('asdasd');
 
     $('body').on('submit', '.ajax-form', function(e){
@@ -100,11 +99,10 @@ $('document').ready(function(){
     	$('.notif__items').scrollTop($('.notif__items')[0].scrollHeight);
 	}
 
-    var deadline = $('#countdown').attr('data-event-date'); //"June 19 2021 19:00:00 GMT+0500"; //new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000); // for endless timer
+	const deadline = $('#countdown').attr('data-event-date'); //"June 19 2021 19:00:00 GMT+0500"; //new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000); // for endless timer
     if ( deadline ) {
     	initializeClock('countdown', deadline);
 	}
-
 })
 
 function DefaultCheckForm(from) {

@@ -12,14 +12,12 @@ use app\models\Section;
 use app\models\Template;
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
-class InvitationController extends Controller
+class InvitationController extends BaseController
 {
     public function __construct(
         $id,

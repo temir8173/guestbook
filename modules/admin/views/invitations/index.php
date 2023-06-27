@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->created_date);
+                    return Yii::$app->formatter->asDate($data->created_at);
                 },
                 'filter' => false,
             ],
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->updated_date);
+                    return Yii::$app->formatter->asDate($data->updated_at);
                 },
                 'filter' => false,
             ],

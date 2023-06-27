@@ -41,7 +41,11 @@ AdminAsset::register($this);
     <?= $content ?>
 </div>
 
-<?= $this->render('@app/views/layouts/main/_footer.php') ?>
+<?= $this->render('main/_footer.php') ?>
+
+<?= $this->render('modals/_login'); ?>
+<?= $this->render('modals/_signup'); ?>
+<?= $this->render('modals/_recover'); ?>
 
 <?php $this->endBody() ?>
 </body>

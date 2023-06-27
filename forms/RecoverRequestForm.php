@@ -1,6 +1,6 @@
 <?php
  
-namespace app\models;
+namespace app\forms;
  
 use Yii;
 use yii\base\Model;
@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * Password reset request form
  */
-class PasswordResetRequestForm extends Model
+class RecoverRequestForm extends Model
 {
     public $email;
     public $reCaptcha;

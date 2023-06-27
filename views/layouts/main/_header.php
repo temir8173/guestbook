@@ -40,6 +40,11 @@ use yii\helpers\Html;
                     ?>
                 </div>
                 <div class="top-phone"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
+                <div class="top-phone">
+                    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-login">
+                        <?= Yii::t('common', 'Кіру') ?>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

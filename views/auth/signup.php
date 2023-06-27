@@ -1,8 +1,8 @@
 <?php
- 
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
- 
+
 $this->title = Yii::t('common', 'Тіркелу');
 ?>
 <div class="login-section signup-section">

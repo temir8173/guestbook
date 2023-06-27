@@ -30,6 +30,7 @@ class AppAsset extends AssetBundle
         'js/baguettebox/baguetteBox.min.js',
         'js/jqueryForm.js',
         'js/simply-toast.min.js',
+        'js/bootstrap.min.js',
         'js/core.js',
     ];
     public $depends = [

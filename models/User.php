@@ -31,23 +31,13 @@ class User extends ActiveRecord
     public const STATUS_WAIT = 5;
     public const STATUS_ACTIVE = 10;
 
-    public $roles;
+    public array $roles;
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'user';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
     }
 
     /**

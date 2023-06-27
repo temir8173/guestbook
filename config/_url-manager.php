@@ -11,11 +11,15 @@ return [
     'rules' => [
         '/' => 'site/index',
         '/templates' => 'site/templates',
-        '/reset-password' => 'site/reset-password',
-        '/request-password-reset' => 'site/request-password-reset',
-        '/signup' => 'site/signup',
-        '/signup-confirm' => 'site/signup-confirm',
-        '/login' => 'site/login',
+
+        // auth routes
+        '/reset-password' => 'auth/reset-password',
+        '/request-password-reset' => 'auth/request-password-reset',
+        '/signup' => 'auth/signup',
+        '/signup-confirm' => 'auth/signup-confirm',
+        '/login' => 'auth/login',
+
+        // invitations
         '/create-invitation' => 'invitation/create',
         '/edit-invitation/<url:[\w-]+>' => 'invitation/update',
         '/invitations' => 'invitation/index',
