@@ -2,6 +2,9 @@
  
 namespace app\forms;
  
+use app\models\User;
+use app\models\UserIdentity;
+use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 use Yii;
 use yii\base\Model;
  
@@ -12,19 +15,20 @@ class RecoverRequestForm extends Model
 {
     public $email;
     public $reCaptcha;
- 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+
+    private ?User $_user = null;
+
+    public function rules(): array
     {
         return [
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'validateUserExist'],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
-            //'secret' => 'your secret key', // unnecessary if reСaptcha is already configured
-            'uncheckedMessage' => Yii::t('common', 'Растаңыз')],
+            [
+                ['reCaptcha'],
+                ReCaptchaValidator2::class,
+                'uncheckedMessage' => Yii::t('common', 'Растаңыз')
+            ],
         ];
     }
 
@@ -38,9 +42,6 @@ class RecoverRequestForm extends Model
         }
     }
 
-    /**
-     * @return array customized attribute labels
-     */
     public function attributeLabels()
     {
         return [
@@ -49,47 +50,9 @@ class RecoverRequestForm extends Model
         ];
     }
 
-    /**
-     * Finds user by [[username]]
-     *
-     * @return User|null
-     */
-    public function getUser()
+    public function getUser(): ?UserIdentity
     {
-        return UserIdentity::findByUsername($this->email);
+        $this->_user ??= UserIdentity::findByUsername($this->email);
+        return $this->_user;
     }
- 
-    /**
-     * Sends an email with a link, for resetting the password.
-     *
-     * @return bool whether the email was send
-     */
-    public function sendEmail()
-    {
-        /* @var $user User */
-        $user = $this->getUser();
- 
-        if (!$user) {
-            return false;
-        }
- 
-        if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
-            $user->generatePasswordResetToken();
-            if (!$user->save()) {
-                return false;
-            }
-        }
- 
-        return Yii::$app
-            ->mailer
-            ->compose(
-                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
-                ['user' => $user]
-            )
-            ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($user->email)
-            ->setSubject('Password reset for ' . Yii::$app->name)
-            ->send();
-    }
- 
 }

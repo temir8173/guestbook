@@ -18,6 +18,7 @@ return [
         '/signup' => 'auth/signup',
         '/signup-confirm' => 'auth/signup-confirm',
         '/login' => 'auth/login',
+        '/logout' => 'auth/logout',
 
         // invitations
         '/create-invitation' => 'invitation/create',

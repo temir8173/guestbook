@@ -23,13 +23,14 @@ $loginForm = $this->params['loginForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'login-form',
-                            'action' => 'auth/login',
+                            'action' => 'auth/do-login',
                             'fieldConfig' => [
                                 'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-12\">{error}</div>",
                                 'labelOptions' => ['class' => 'col-lg-12 '],
                             ],
                             'options' => [
-                                'class' => 'login-form app-modal-connect-form',
+                                'class' => 'login-form app-modal-connect-form async-form',
+//                                'data-redirect' => '/'
                             ]
                         ]); ?>
 

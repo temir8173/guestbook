@@ -4,7 +4,6 @@ use app\components\AuthManager;
 use app\models\UserIdentity;
 use himiklab\yii2\recaptcha\ReCaptchaConfig;
 use mihaildev\elfinder\PathController;
-use yii\helpers\ArrayHelper;
 use yii\swiftmailer\Mailer;
 
 $params = require __DIR__ . '/params.php';

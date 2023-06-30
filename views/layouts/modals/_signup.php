@@ -1,6 +1,7 @@
 <?php
 
 use app\forms\SignupForm;
+use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -24,18 +25,19 @@ $signupForm = $this->params['signupForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'form-signup',
+                            'action' => 'auth/signup',
                             'options' => [
-                                'class' => 'login-form',
+                                'class' => 'login-form  async-form',
+                                'data-reload' => 1
                             ]
                         ]); ?>
                         <?= $form->field($signupForm, 'username')->textInput(['autofocus' => true]) ?>
                         <?= $form->field($signupForm, 'email') ?>
                         <?= $form->field($signupForm, 'password')->passwordInput() ?>
                         <?= $form->field($signupForm, 'password_repeat')->passwordInput() ?>
-                        <?php if (0) { ?>
-                            <?= $form->field($signupForm, 'reCaptcha')->widget(
-                                \himiklab\yii2\recaptcha\ReCaptcha2::className(), []
-                            ) ?>
+                        <?php if (!YII_DEBUG) { ?>
+                            <?= $form->field($signupForm, 'reCaptcha')
+                                ->widget(ReCaptcha2::className(), []) ?>
                         <?php } ?>
                         <div class="form-group">
                             <?= Html::submitButton(Yii::t('common', 'Тіркелу'), ['class' => 'btn btn-primary login-button', 'name' => 'signup-button']) ?>

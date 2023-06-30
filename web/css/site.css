@@ -451,7 +451,6 @@ form textarea.error {border: 1px solid rgba(204,0,0,0.3) !important;}
   border: 1px solid #165FAA;
   color: #fff;
   line-height: 1em;
-  height: 34px;
   padding: 10px 0;
   -webkit-transition: all 0.25s;
   transition: all 0.25s;

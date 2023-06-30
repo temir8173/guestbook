@@ -1,6 +1,7 @@
 <?php
 
 use app\forms\RecoverRequestForm;
+use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -24,14 +25,16 @@ $recoverRequestForm = $this->params['recoverRequestForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'request-password-reset-form',
+                            'action' => 'auth/recover-request',
                             'options' => [
-                                'class' => 'login-form',
+                                'class' => 'login-form async-form',
                             ]
                         ]); ?>
                         <?= $form->field($recoverRequestForm, 'email')->textInput(['autofocus' => true]) ?>
-                        <?= $form->field($recoverRequestForm, 'reCaptcha')->widget(
-                            \himiklab\yii2\recaptcha\ReCaptcha2::className(), []
-                        ) ?>
+                        <?php if (!YII_DEBUG) { ?>
+                            <?= $form->field($recoverRequestForm, 'reCaptcha')
+                                ->widget(ReCaptcha2::class, []) ?>
+                        <?php } ?>
                         <div class="form-group">
                             <?= Html::submitButton(Yii::t('common', 'Жіберу'), ['class' => 'btn btn-primary login-button']) ?>
                         </div>

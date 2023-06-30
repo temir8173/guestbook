@@ -23,6 +23,7 @@ use yii\helpers\Html;
                 </nav>
             </div>
             <div class="col-md-6 d-flex justify-content-between justify-content-md-end">
+                <div class="top-phone"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
                 <div class="lang-switcher">
                     <?php
                     if(Yii::$app->language === 'ru') {
@@ -39,11 +40,19 @@ use yii\helpers\Html;
                     }
                     ?>
                 </div>
-                <div class="top-phone"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
                 <div class="top-phone">
-                    <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-login">
-                        <?= Yii::t('common', 'Кіру') ?>
-                    </a>
+                    <?php if (!Yii::$app->user->identity) { ?>
+                        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-login">
+                            <?= Yii::t('common', 'Кіру') ?>
+                        </a>
+                    <?php } else { ?>
+                        <?= Yii::$app->user->identity?->username ?>,
+                        <?= Html::a(
+                            Yii::t('common', 'шығу'),
+                            ['auth/logout'],
+                        )
+                        ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

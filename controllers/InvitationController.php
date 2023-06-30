@@ -114,9 +114,12 @@ class InvitationController extends BaseController
         ]);
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionView()
     {
-
+        throw new NotFoundHttpException();
     }
 
     /**

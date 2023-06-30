@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 class UserIdentity extends User implements IdentityInterface
@@ -18,11 +19,11 @@ class UserIdentity extends User implements IdentityInterface
         return static::findOne(['access_token' => $token]);
     }
 
-    public static function findByUsername(string $username): array|ActiveRecord|self
+    public static function findByUsername(string $username): ActiveRecord|self|null
     {
         return static::find()
-            ->where(['username' => $username])
-            ->orWhere(['email' => $username])
+            ->where(new Expression('BINARY `username` = :value', [':value' => $username]))
+            ->orWhere(new Expression('BINARY `email` = :value', [':value' => $username]))
             ->andWhere(['>', 'status', self::STATUS_DELETED])
             ->one();
     }

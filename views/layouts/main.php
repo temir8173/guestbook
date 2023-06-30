@@ -29,7 +29,7 @@ AdminAsset::register($this);
 <div class="wrap">
     <?= $this->render('@app/views/layouts/main/_header.php') ?>
 
-    <?php if (isset($this->params['breadcrumbs'])) : ?>
+    <?php if (0 && isset($this->params['breadcrumbs'])) : ?>
         <div class="container">
             <?= Breadcrumbs::widget([
                 'links' => $this->params['breadcrumbs'] ?? [],

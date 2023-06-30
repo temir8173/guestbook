@@ -3,9 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "user".
@@ -17,6 +17,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $auth_key
  * @property string|null $access_token
  * @property string $password_reset_token
+ * @property string $email_confirm_token
  * @property string $email
  * @property integer $status
  * @property integer $created_at
@@ -105,10 +106,7 @@ class User extends ActiveRecord
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -117,7 +115,7 @@ class User extends ActiveRecord
      * Get user roles from RBAC
      * @return array
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         $roles = Yii::$app->authManager->getRolesByUser($this->getId());
         return ArrayHelper::getColumn($roles, 'name', false);
@@ -128,14 +126,10 @@ class User extends ActiveRecord
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthKey()
+    public function getAuthKey(): ?string
     {
         return $this->auth_key;
     }
-
 
     public function getRolesDropdown()
     {
@@ -145,22 +139,20 @@ class User extends ActiveRecord
         ];
     }
 
-    public static function findByPasswordResetToken($token)
+    public static function findByPasswordResetToken($token): UserIdentity|ActiveRecord|null
     {
-     
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
-        
-        return static::find()
+
+        return UserIdentity::find()
         ->where(['password_reset_token' => $token])
         ->andWhere(['>', 'status', self::STATUS_DELETED])
         ->one();
     }
      
-    public static function isPasswordResetTokenValid($token)
+    public static function isPasswordResetTokenValid($token): bool
     {
-     
         if (empty($token)) {
             return false;
         }
@@ -169,14 +161,12 @@ class User extends ActiveRecord
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
- 
+
+    /**
+     * @throws Exception
+     */
     public function generatePasswordResetToken()
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-    }
- 
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
     }
 }

@@ -16,6 +16,10 @@ $('document').ready(function(){
 			$(form).ajaxSubmit({
 				dataType: 'json',
 				success: function(data){
+					if (data.success !== undefined && data.message !== undefined) {
+						form.removeClass('sending');
+						setNotice(data.message, (data.success === true) ? 'success' : 'warning');
+					}
 
 					if (data.error !== undefined){
 						if (data.message !== undefined) {
@@ -46,12 +50,10 @@ $('document').ready(function(){
 							}
 							setTimeout(function(){
 								form.removeClass('sending');
-
 							}, 1000);
-							//setTimestamp(form.find('#messages-date'));
+							// setTimestamp(form.find('#messages-date'));
 						}
 					}
-
 				},
 				complete: function(response){
 
@@ -74,6 +76,47 @@ $('document').ready(function(){
 
 
         }
+	});
+
+	$('.auth-modal').on('submit', '.async-form', function(e) {
+		const form = $(this);
+		const redirect = form.data('redirect')
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (!form.hasClass('sending') && DefaultCheckForm(form)) {
+			form.addClass('sending');
+			$(form).ajaxSubmit({
+				dataType: 'json',
+				success: function(data){
+					if (data.success !== undefined && data.message !== undefined) {
+						form.removeClass('sending');
+						setNotice(data.message, (data.success === true) ? 'success' : 'warning');
+
+						if (data.success) {
+							if (redirect !== undefined) {
+								setTimeout(function(){
+									location.href = redirect;
+								}, 2000);
+							} else {
+								setTimeout(function(){
+									location.reload();
+								}, 1500);
+							}
+						}
+					}
+				},
+				complete: function(response){
+					setTimeout(function(){
+						form.removeClass('sending');
+					}, 1000);
+				},
+				error: function(requestObject, error, errorThrown){
+					setNotice('Системная ошибка', 'warning');
+				}
+			})
+		}
 	});
 
     $('a.scrollto').on('click', function() {

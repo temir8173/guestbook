@@ -2,7 +2,7 @@
 
 return [
     'adminEmail' => 'admin@shaqiru.kz',
-    'senderEmail' => 'shaqirukz@mail.ru',
+    'senderEmail' => $_ENV['SMTPUSERNAME'],
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
 ];
