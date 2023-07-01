@@ -2,26 +2,26 @@
 
 namespace app\modules\admin\controllers;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use app\models\Section;
 use app\models\SectionSearch;
+use yii\db\StaleObjectException;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * SectionsController implements the CRUD actions for SectionTemplates model.
  */
 class SectionsController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    #[ArrayShape(['verbs' => "array"])] public function behaviors(): array
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -29,11 +29,7 @@ class SectionsController extends Controller
         ];
     }
 
-    /**
-     * Lists all SectionTemplates models.
-     * @return mixed
-     */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new SectionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -44,30 +40,12 @@ class SectionsController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single SectionTemplates model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new SectionTemplates model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
+    public function actionCreate(): Response|string
     {
         $model = new Section();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -76,18 +54,14 @@ class SectionsController extends Controller
     }
 
     /**
-     * Updates an existing SectionTemplates model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id): Response|string
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -96,13 +70,11 @@ class SectionsController extends Controller
     }
 
     /**
-     * Deletes an existing SectionTemplates model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
      */
-    public function actionDelete($id)
+    public function actionDelete($id): Response
     {
         $this->findModel($id)->delete();
 
@@ -110,13 +82,9 @@ class SectionsController extends Controller
     }
 
     /**
-     * Finds the SectionTemplates model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Section the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException
      */
-    protected function findModel($id)
+    protected function findModel($id): ?Section
     {
         if (($model = Section::findOne($id)) !== null) {
             return $model;

@@ -11,39 +11,19 @@ use app\models\Section;
  */
 class SectionSearch extends Section
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id'], 'integer'],
-            [['name', 'view'], 'safe'],
+            [['name', 'slug'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params)
+    public function search(array $params): ActiveDataProvider
     {
         $query = Section::find();
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -61,7 +41,7 @@ class SectionSearch extends Section
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'view', $this->view])
+        $query->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;

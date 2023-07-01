@@ -1,12 +1,15 @@
 <?php
 
+use app\models\FieldSearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Section;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\FieldSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var yii\web\View $this
+ * @var FieldSearch $searchModel
+ * @var yii\data\ActiveDataProvider $dataProvider
+ */
 
 $this->title = 'Fields';
 $this->params['breadcrumbs'][] = $this->title;
@@ -18,8 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Fields', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -37,27 +38,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 25%'],
             ],
             [
-                'attribute'=>'section_template_id',
+                'attribute'=>'section_id',
                 'headerOptions' => ['style' => 'width: 25%'],
                 'format' => 'raw',
                 'value' => function($data){
-                    return ($data->section_template_id !== null) ? Section::findOne($data->section_template_id)->name : $data->section_template_id; //Yii::$app->formatter->asDate($data->event_date);
+                    return ($data->section_id !== null) ? Section::findOne($data->section_id)->name : $data->section_id; //Yii::$app->formatter->asDate($data->event_date);
                 },
                 'filter' => Section::find()->select(['name', 'id'])->indexBy('id')->column(),
             ],
             [
-                'attribute' => 'url',
+                'attribute' => 'slug',
+                'filter' => false,
                 'headerOptions' => ['style' => 'width: 20%'],
             ],
             [
                 'attribute' => 'type',
+                'filter' => false,
                 'headerOptions' => ['style' => 'width: 20%'],
             ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header'=>'Действия', 
-                'headerOptions' => ['style' => 'width: 7%'],
+                'headerOptions' => ['style' => 'width: 5%'],
+                'template' => '{update} {delete}',
             ],
         ],
     ]); ?>

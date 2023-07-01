@@ -2,8 +2,10 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Field */
+/**
+ * @var yii\web\View $this
+ * @var app\models\Field $model
+ */
 
 $this->title = 'Update Fields: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];

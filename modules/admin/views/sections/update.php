@@ -1,12 +1,15 @@
 <?php
 
+use app\models\Section;
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\SectionExamples */
+/**
+ * @var yii\web\View $this
+ * @var Section $model
+ */
 
-$this->title = 'Update Section Examples: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Section Examples', 'url' => ['index']];
+$this->title = 'Update Section: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Секциялар'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

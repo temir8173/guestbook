@@ -93,7 +93,7 @@ class Invitation extends ActiveRecord
             'name' => Yii::t('common', 'Аты'),
             'event_date' => Yii::t('common', 'Өткізілетін уақыты'),
             'created_at' => 'Created Date',
-            'updated_date' => 'Updated Date',
+            'updated_at' => 'Updated Date',
             'template_id' => 'Шаблон',
             'status' => Yii::t('common', 'Төлем'),
             'user_id' => Yii::t('common', 'Пайдаланушы'),

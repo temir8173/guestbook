@@ -1,13 +1,17 @@
 <?php
 
+use app\models\SectionSearch;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\SectionExamplesSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/**
+ * @var yii\web\View  $this
+ * @var ActiveDataProvider $dataProvider
+ * @var SectionSearch $searchModel
+ */
 
-$this->title = 'Section Examples';
+$this->title = Yii::t('common', 'Секциялар');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="section-examples-index">
@@ -15,21 +19,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Section Examples', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Section', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            [
+                'attribute'=>'id',
+                'headerOptions' => ['style' => 'width: 3%'],
+                'filter' => false,
+            ],
             'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'slug',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'headerOptions' => ['style' => 'width: 5%'],
+                'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 

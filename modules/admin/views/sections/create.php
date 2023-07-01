@@ -1,12 +1,15 @@
 <?php
 
+use app\models\Section;
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\SectionExamples */
+/**
+ * @var yii\web\View $this
+ * @var Section $model
+ */
 
-$this->title = 'Create Section Examples';
-$this->params['breadcrumbs'][] = ['label' => 'Section Examples', 'url' => ['index']];
+$this->title = 'Create Section';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Секциялар'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="section-examples-create">

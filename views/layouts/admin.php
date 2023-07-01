@@ -41,10 +41,11 @@ echo MultiLang::widget(['cssClass'=>'pull-right language']);
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right ml-auto'],
     'items' => [
-        ['label' => 'Барлық шақырулар', 'url' => ['/admin/invitations']],
-        ['label' => 'Тілектер', 'url' => ['/admin/wishes']],
-        ['label' => 'Секциялар', 'url' => ['/admin/sections']],
-        ['label' => 'Өрістер', 'url' => ['/admin/fields']],
+        ['label' => Yii::t('common', 'Барлық шақырулар'), 'url' => ['/admin/invitations']],
+        ['label' => Yii::t('common', 'Тілектер'), 'url' => ['/admin/wishes']],
+        ['label' => Yii::t('common', 'Үлгілер'), 'url' => ['/admin/templates']],
+        ['label' => Yii::t('common', 'Секциялар'), 'url' => ['/admin/sections']],
+        ['label' => Yii::t('common', 'Өрістер'), 'url' => ['/admin/fields']],
         Yii::$app->user->isGuest ? (
             ['label' => 'Кіру', 'url' => ['/site/login']]
         ) : (

@@ -1,5 +1,6 @@
 <?php
 
+use app\helpers\InvitationsHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -17,10 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Жаңа', ['create'], ['class' => 'btn btn-success create-invitation-btn']) ?>
+        <?= Html::a(
+            Yii::t('common', 'Жаңа шақыру билеті'),
+            ['create' , 'template' => 'template1'],
+            ['class' => 'btn btn-success create-invitation-btn']
+        ) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -60,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
             ],
             [
-                'attribute'=>'created_date',
+                'attribute'=>'created_at',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
@@ -68,17 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => false,
             ],
-            /*[
-                'attribute'=>'fields',
-                'filter' => false,
-                'format' => 'raw',
-                'value' => function($data){
-                    return "<a href=".Url::to(['/admin/field-values/index', 'invitation_id' => 1]).">fields</a>";
-                },
-            ],*/
-            //'updated_date',
             [
-                'attribute'=>'updated_date',
+                'attribute'=>'updated_at',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
                 'value' => function($data){
@@ -90,17 +84,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'status',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
-                'value' => function (\app\models\Invitation $model) {
-                    return \app\helpers\InvitationsHelper::statusLabel($model->status);
+                'value' => function (Invitation $model) {
+                    return InvitationsHelper::statusLabel($model->status);
                 },
                 'filter' => Invitation::getStatusLabels(),
             ],
-            //'status',
 
+            // Customize the action column
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template'=>'{update} {delete}',
                 'headerOptions' => ['style' => 'width: 5%'],
+                'template' => '{update} {delete}',
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-pencil"></span>',
+                            ['/invitation/update', 'url' => $model->url],
+                            ['target' => '_blank']
+                        );
+                    },
+                ],
             ],
         ],
     ]); ?>

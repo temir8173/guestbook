@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -25,8 +26,8 @@ class Section extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'view'], 'required'],
-            [['name', 'view'], 'string', 'max' => 255],
+            [['name', 'slug'], 'required'],
+            [['name', 'slug'], 'string', 'max' => 255],
         ];
     }
 
@@ -34,8 +35,8 @@ class Section extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'view' => 'Вид',
-            'name' => 'Name',
+            'slug' => 'Slug',
+            'name' => Yii::t('common', 'Аты'),
         ];
     }
 

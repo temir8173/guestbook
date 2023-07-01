@@ -16,6 +16,7 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class InvitationController extends BaseController
 {
@@ -45,7 +46,7 @@ class InvitationController extends BaseController
      * @throws InvalidConfigException
      * @throws NotFoundHttpException
      */
-    public function actionCreate($template = '')
+    public function actionCreate($template = ''): Response|string
     {
         $invitation = new Invitation();
         $template = Template::findOne(['slug' => $template]);

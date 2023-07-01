@@ -50,6 +50,7 @@ class Field extends ActiveRecord
             [['name', 'section_id', 'type', 'slug'], 'required'],
             [['section_id'], 'integer'],
             [['name', 'type', 'slug'], 'string', 'max' => 255],
+            [['slug'], 'unique'],
         ];
     }
 
