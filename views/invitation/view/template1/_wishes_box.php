@@ -20,7 +20,8 @@ use yii\helpers\Html;
                     <div class="post-info__text" ><span><?= Html::encode($message->text) ?></span></div>
                     <div class="post-info__meta">
                         <span class="post-info__meta-item">
-                            <span class="post-info__meta-counter post-info__meta-counter_small" ><?= Yii::$app->formatter->asDate($message->date, 'php:d.m.Y'); ?></span>
+                            <span class="post-info__meta-counter post-info__meta-counter_small" ><?=
+                                Yii::$app->formatter->asDate($message->created_at, 'php:d.m.Y'); ?></span>
                         </span>
                     </div>
                 </li>

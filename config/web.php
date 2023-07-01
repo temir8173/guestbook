@@ -90,9 +90,6 @@ $config = [
             'class' => 'app\modules\admin\Module',
             'layout' => '@app/views/layouts/admin',
         ],
-        'user' => [
-            'class' => 'app\modules\user\Module',
-        ],
         'manage' => [
             'class' => 'app\modules\manage\Module',
             'layout' => '@app/modules/manage/views/layouts/manage',

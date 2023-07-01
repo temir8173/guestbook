@@ -11,39 +11,19 @@ use app\models\Wish;
  */
 class WishSearch extends Wish
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            [['id', 'date', 'invitation_id'], 'integer'],
+            [['id', 'created_at', 'invitation_id'], 'integer'],
             [['name', 'text'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
-    }
-
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params, int $invitation_id = 0)
+    public function search(array $params, int $invitation_id = 0): ActiveDataProvider
     {
         $query = Wish::find();
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -59,7 +39,7 @@ class WishSearch extends Wish
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
+            'created_at' => $this->created_at,
             'invitation_id' => ($invitation_id === 0) ? $this->invitation_id : $invitation_id,
         ]);
 

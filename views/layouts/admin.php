@@ -34,15 +34,15 @@ NavBar::begin([
     'brandLabel' => Yii::$app->name,
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
-        'class' => 'navbar-inverse navbar-fixed-top',
+        'class' => 'navbar-inverse navbar navbar-expand-lg navbar-light',
     ],
 ]);
 echo MultiLang::widget(['cssClass'=>'pull-right language']);
 echo Nav::widget([
-    'options' => ['class' => 'navbar-nav navbar-right'],
+    'options' => ['class' => 'navbar-nav navbar-right ml-auto'],
     'items' => [
         ['label' => 'Барлық шақырулар', 'url' => ['/admin/invitations']],
-        ['label' => 'Тілектер', 'url' => ['/admin/messages']],
+        ['label' => 'Тілектер', 'url' => ['/admin/wishes']],
         ['label' => 'Секциялар', 'url' => ['/admin/sections']],
         ['label' => 'Өрістер', 'url' => ['/admin/fields']],
         Yii::$app->user->isGuest ? (

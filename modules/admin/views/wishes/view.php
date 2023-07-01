@@ -7,7 +7,10 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Wish */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
+$this->params['breadcrumbs'][] = [
+    'label' => Yii::t('common', 'Тілектер'),
+    'url' => ['index']
+];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -33,10 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'text',
             [
-                'attribute'=>'date',
+                'attribute'=>'created_at',
                 'format' => 'raw',
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');;
+                    return Yii::$app->formatter->asDate($data->created_at, 'php:Y.m.d H:i:s');;
                 },
             ],
         ],

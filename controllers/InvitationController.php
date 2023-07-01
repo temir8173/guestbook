@@ -128,7 +128,7 @@ class InvitationController extends BaseController
     public function actionPreview($url = '')
     {
         if (Yii::$app->language != 'kk') {
-            return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'view' => $view]);
+            return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
         }
 
         if ($url) {
@@ -163,7 +163,7 @@ class InvitationController extends BaseController
      */
     public function actionGetMessages($invitationId = 0): string
     {
-        $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['date' => SORT_ASC])->all();
+        $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['created_at' => SORT_ASC])->all();
         $invitation = Invitation::findOne($invitationId);
 
         if (Yii::$app->request->isAjax) {

@@ -5,8 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Wish */
 
-$this->title = 'Update Messages: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
+$this->title = 'Update wish: ' . $model->id;
+$this->params['breadcrumbs'][] = [
+    'label' => Yii::t('common', 'Тілектер'),
+    'url' => ['index']
+];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

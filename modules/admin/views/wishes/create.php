@@ -5,8 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Wish */
 
-$this->title = 'Create Messages';
-$this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
+$this->title = 'Create wish';
+$this->params['breadcrumbs'][] = [
+    'label' => Yii::t('common', 'Тілектер'),
+    'url' => ['index']
+];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="messages-create">

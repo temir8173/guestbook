@@ -2,9 +2,11 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Invitation;
 use Yii;
 use app\models\Wish;
 use app\models\WishSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -12,13 +14,13 @@ use yii\filters\VerbFilter;
 /**
  * MessagesController implements the CRUD actions for Messages model.
  */
-class MessagesController extends Controller
+class WishesController extends Controller
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -26,18 +28,18 @@ class MessagesController extends Controller
         ];
     }
 
-    /**
-     * Lists all Messages models.
-     * @return mixed
-     */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new WishSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $invitations = Invitation::find()->select(['id', 'status', 'url', 'name'])->all();
+        $invitationsByIds = ArrayHelper::index($invitations, 'id');
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'invitationsByIds' => $invitationsByIds,
         ]);
     }
 

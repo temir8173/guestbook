@@ -30,24 +30,26 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             [
-                'class' => 'yii\grid\SerialColumn',
-                'headerOptions' => ['style' => 'width: 3%'],
-            ],
-
-            [
                 'attribute'=>'id',
                 'headerOptions' => ['style' => 'width: 3%'],
                 'filter' => false,
             ],
             [
-                'attribute'=>'url',
+                'attribute'=>'name',
                 'headerOptions' => ['style' => 'width: 20%'],
                 'format' => 'raw',
-                'value' => function($data){
-                    return "<a href=\"" . Url::base(true) . "/$data->url\" target=\"_blank\">" . Url::base(true) . "/$data->url</a>";
+//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
+                'value' => function($data) {
+                    $route = (int)$data->status === 0 ? '/invitation/preview' : '/invitation/view';
+
+                    return Html::a(
+                        $data->name,
+                        [$route, 'url' => $data->url],
+                        ['class' => 'profile-link', 'data-pjax' => '0', 'target' => '_blank']
+                    );
                 },
             ],
-            'name',
+            'template_id',
             [
                 'attribute'=>'event_date',
                 'headerOptions' => ['style' => 'width: 10%'],

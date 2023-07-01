@@ -12,54 +12,35 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name
  * @property string $text
- * @property int $date
+ * @property string $created_at
  * @property int $invitation_id
  */
 class Wish extends ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'wishes';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['name', 'text', 'invitation_id'], 'required'],
             [['text'], 'string'],
             ['invitation_id', 'integer'],
             [['name'], 'string', 'max' => 255],
-            ['date', 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'name' => Yii::t('common', 'Тілек білдіруші'),
             'text' => Yii::t('common', 'Мәтіні'),
-            'date' => Yii::t('common', 'Уақыты'),
-            'invitation_id' => 'invitation_id',
+            'created_at' => Yii::t('common', 'Уақыты'),
+            'invitation_id' => Yii::t('common', 'Шақыру билеті'),
         ];
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) $this->date = time();
-            return true;
-        }
-        return false;
     }
 
     public function getInvitation(): ActiveQuery
