@@ -173,6 +173,10 @@ body {
   border-radius: 50%;
 }
 
+.custom-dropdown-height {
+	min-height: 200px;
+}
+
 @media only screen and (max-width: 768px) {
 	.custom-grid>table>thead>tr>th {
 		min-width: 50px;

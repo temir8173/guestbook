@@ -5,7 +5,7 @@ use Yii;
 ?>
 
 <div class="btn-group <?= $cssClass; ?>">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <a class="btn" data-toggle="dropdown" href="#">
         <span class="uppercase"><?= Yii::$app->language; ?></span>
         <span class="caret"></span>
     </a>

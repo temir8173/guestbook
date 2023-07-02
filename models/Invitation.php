@@ -57,6 +57,9 @@ class Invitation extends ActiveRecord
         ];
     }
 
+    /**
+     * @var UploadedFile[][] $files
+    */
     public array $files = [];
 
     /**

@@ -4,12 +4,12 @@ use yii\helpers\Html;
 
 /**
  * @var yii\web\View $this
- * @var app\models\Wish $model
+ * @var app\models\Template $model
  */
 
-$this->title = 'Update wish: ' . $model->id;
+$this->title = 'Update template: ' . $model->id;
 $this->params['breadcrumbs'][] = [
-    'label' => Yii::t('common', 'Тілектер'),
+    'label' => Yii::t('common', 'Үлгілер'),
     'url' => ['index']
 ];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];

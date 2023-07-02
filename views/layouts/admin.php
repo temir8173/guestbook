@@ -47,10 +47,10 @@ echo Nav::widget([
         ['label' => Yii::t('common', 'Секциялар'), 'url' => ['/admin/sections']],
         ['label' => Yii::t('common', 'Өрістер'), 'url' => ['/admin/fields']],
         Yii::$app->user->isGuest ? (
-            ['label' => 'Кіру', 'url' => ['/site/login']]
+            ['label' => 'Кіру', 'url' => ['/auth/login']]
         ) : (
             '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
+            . Html::beginForm(['/auth/logout'], 'post')
             . Html::submitButton(
                 'Шығу (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']

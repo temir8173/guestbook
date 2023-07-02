@@ -6,7 +6,7 @@ use yii\bootstrap\Widget;
 
 class MultiLang extends Widget
 {
-    public $cssClass;
+    public string $cssClass;
     public function init(){}
 
     public function run() {

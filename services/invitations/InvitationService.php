@@ -48,7 +48,6 @@ class InvitationService
         foreach ($invitation->files as $fieldSlug => $filesByField) {
             $names = [];
             foreach ($filesByField as $file) {
-                /** @var UploadedFile $file */
                 $name = preg_replace("/\s+/", "_", $file->baseName)
                     . '_' . time()
                     . '.' . $file->extension;
