@@ -26,8 +26,9 @@ class Section extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['name', 'slug'], 'required'],
+            [['name', 'slug', 'is_optional'], 'required'],
             [['name', 'slug'], 'string', 'max' => 255],
+            [['is_optional'], 'boolean'],
         ];
     }
 

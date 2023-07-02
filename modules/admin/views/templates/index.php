@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
             ],
             [
-                'attribute'=>'preview_img',
+                'attribute' => 'preview_img',
                 'format' => 'raw',
                 'filter' => false,
                 'value' => function ($data){

@@ -34,6 +34,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'slug',
             [
+                'attribute' => 'is_optional',
+                'header' => Yii::t('common', 'Міндетті емес(қосымша)'),
+                'headerOptions' => ['style' => 'width: 15%'],
+                'format' => 'raw',
+                'filter' => false,
+                'value' => function ($data){
+                    return $data->is_optional
+                        ? Yii::t('common', 'Иә')
+                        : Yii::t('common', 'Жоқ');
+                },
+            ],
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'headerOptions' => ['style' => 'width: 5%'],
                 'template' => '{update} {delete}',
