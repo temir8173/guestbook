@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Template;
 use Yii;
 use yii\captcha\CaptchaAction;
+use yii\helpers\ArrayHelper;
 
 class SiteController extends BaseController
 {
@@ -41,10 +43,20 @@ class SiteController extends BaseController
             //$this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
             var_dump('sdafsdfsdf');die;
         }
-        
+
+        /** @var Template[] $templates */
+        $templates = Template::find()
+            ->select(['name', 'price', 'slug', 'type', 'preview_img', 'discount_price'])
+            ->all();
+
+        $groupedTemplates = [];
+        foreach ($templates as $template) {
+            $groupedTemplates[$template->type][] = $template;
+        }
+
         $this->layout = 'front-page';
 
-        return $this->render('index');
+        return $this->render('index', ['templates' => $groupedTemplates]);
     }
 
     public function actionTemplates(): string

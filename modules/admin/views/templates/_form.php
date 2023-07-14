@@ -2,6 +2,7 @@
 
 use app\lists\TemplateTypesList;
 use app\models\Section;
+use app\models\Template;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -19,7 +20,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'preview_img')->fileInput(['maxlength' => true]) ?>
+
+    <?php
+    // Fetch the existing value of preview_img from the database
+    $model->preview_img = Yii::getAlias('@webroot') . '/' . Template::PREVIEW_IMAGE_PATH . $model->preview_img;
+
+    ?>
+
+    <?= $form->field($model, 'preview_img')->fileInput() ?>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'discount_price')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'sections')

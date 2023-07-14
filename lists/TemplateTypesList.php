@@ -13,7 +13,7 @@ class TemplateTypesList
     {
         return [
             self::MARRIAGE => Yii::t('common', 'Үйлену тойы'),
-            self::GIRL_MARRIAGE => Yii::t('common', 'Ұзату тойы'),
+            self::GIRL_MARRIAGE => Yii::t('common', 'Ұзату той'),
         ];
     }
 

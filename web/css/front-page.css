@@ -72,7 +72,7 @@ section h2:after {
 }
 
 #top h1 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Merriweather", sans-serif;
     margin-bottom: 30px;
     font-size: 80px;
     font-weight: 300;
@@ -114,7 +114,7 @@ section h2:after {
 }
 
 #about-product h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Merriweather", sans-serif;
     font-size: 66px;
     font-weight: 300;
     text-transform: uppercase;
@@ -158,7 +158,7 @@ section h2:after {
 }
 
 #about-product .about-title {
-    font-family: "Oswald", sans-serif;
+    font-family: "Merriweather", sans-serif;
     font-size: 36px;
     font-style: normal;
     color: #545454;
@@ -289,7 +289,7 @@ section h2:after {
     padding-top: 0;
 }
 #contacts h2 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Merriweather", sans-serif;
     font-size: 72px;
     margin-bottom: 50px;
 }

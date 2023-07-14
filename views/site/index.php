@@ -1,6 +1,11 @@
 <?php
 
+use app\models\Template;
 use yii\helpers\Html;
+
+/**
+ * @var Template[] $templates
+*/
 
 ?>
 <header class="header">
@@ -210,6 +215,8 @@ use yii\helpers\Html;
     </div>
 
 </section>
+
+<?= $this->render('_templates_section', ['templates' => $templates]) ?>
 
 <section id="contacts">
     <div class="container">
