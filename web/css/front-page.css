@@ -280,8 +280,7 @@ section h2:after {
 #contacts {
     background-size: cover;
     background-color: #fff;
-    padding: 0;
-    padding-bottom: 100px;
+    padding: 100px 0 50px;
     margin-top: -75px;
 }
 

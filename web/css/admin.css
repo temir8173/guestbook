@@ -222,3 +222,7 @@ body {
 		padding: 6px 6px;
 	}
 }
+
+.invitations-form section h2 {
+	font-size: 24px;
+}

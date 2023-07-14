@@ -67,7 +67,7 @@ class InvitationController extends BaseController
             $invitation->template_id = $template->id;
             $url = $this->invitationService->create($invitation);
             return $this->redirect(Url::to([
-                '/invitation/preview',
+                '/invitation/view',
                 'url' => $url
             ]));
         }
@@ -104,7 +104,7 @@ class InvitationController extends BaseController
         ) {
             $url = $this->invitationService->update($invitation);
             return $this->redirect(Url::to([
-                '/invitation/preview',
+                '/invitation/view',
                 'url' => $url
             ]));
         }
@@ -118,8 +118,36 @@ class InvitationController extends BaseController
     /**
      * @throws NotFoundHttpException
      */
-    public function actionView()
+    public function actionView($url = '')
     {
+        if (Yii::$app->language != 'kk') {
+            return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
+        }
+
+        if ($url) {
+            /** @var Invitation $invitation */
+            $invitation = Invitation::find()
+                ->with('template', 'wishes')
+                ->where(['url' => $url])
+                ->one();
+
+            if ($invitation) {
+                $newMessage = new Wish();
+
+                Yii::$app->formatter->locale = 'en-US';
+                $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
+
+                return $this->render(
+                    "@app/views/invitation/view/{$invitation->template->slug}/index",
+                    [
+                        'invitation' => $invitation,
+                        'newMessage' => $newMessage,
+                        'isPreview' => true,
+                    ]
+                );
+            }
+        }
+
         throw new NotFoundHttpException();
     }
 

@@ -2,6 +2,7 @@
 
 use app\lists\TemplateTypesList;
 use app\models\Template;
+use yii\helpers\Url;
 
 $templateTypes = TemplateTypesList::getAll();
 
@@ -51,7 +52,8 @@ $templateTypes = TemplateTypesList::getAll();
                                         <?php foreach ($templatesBySpecificType as $template) { ?>
                                             <div class="col-12 col-sm-6 col-lg-4">
                                                 <div class="product-details">
-                                                    <a href="#" class="product-img">
+                                                    <a href="<?= Url::to(['/invitation/view', 'url' => $template->slug]) ?>"
+                                                       class="product-img">
                                                         <?php if ($template->discount_price) { ?>
                                                             <div class="label-offer bg-red">Sale</div>
                                                         <?php } ?>

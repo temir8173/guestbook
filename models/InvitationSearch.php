@@ -19,7 +19,7 @@ class InvitationSearch extends Invitation
         return [
             [['id', 'event_date', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'date'],
-            [['url', 'name'], 'safe'],
+            [['url', 'name', 'is_demo'], 'safe'],
         ];
     }
 
@@ -67,6 +67,7 @@ class InvitationSearch extends Invitation
             'updated_at' => $this->updated_at,
 //            'user_id' => ($userId === 0) ? $this->user_id : $userId,
             'status' => $this->status,
+            'is_demo' => $this->is_demo,
         ]);
 
         $query->andFilterWhere(['like', 'url', $this->url])

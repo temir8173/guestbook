@@ -25,7 +25,6 @@ return [
         '/edit-invitation/<url:[\w-]+>' => 'invitation/update',
         '/invitations' => 'invitation/index',
         '/<url:[\w-]+>' => '/invitation/view',
-        '/preview/<url:[\w-]+>' => '/invitation/preview',
         '/ru/<url:[\w-]+>' => '/<url:[\w-]+>',
 
 

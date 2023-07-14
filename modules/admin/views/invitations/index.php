@@ -41,9 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'name',
                 'headerOptions' => ['style' => 'width: 20%'],
                 'format' => 'raw',
-//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
                 'value' => function($data) {
-                    $route = (int)$data->status === 0 ? '/invitation/preview' : '/invitation/view';
+                    $route = '/invitation/view';
 
                     return Html::a(
                         $data->name,
@@ -52,7 +51,25 @@ $this->params['breadcrumbs'][] = $this->title;
                     );
                 },
             ],
-            'template_id',
+            [
+                'attribute'=>'template_id',
+                'headerOptions' => ['style' => 'width: 10%'],
+                'format' => 'raw',
+//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
+                'value' => function($data) {
+                    return $data->template->name;
+                },
+            ],
+            'url',
+            [
+                'attribute'=>'is_demo',
+                'headerOptions' => ['style' => 'width: 10%'],
+                'format' => 'raw',
+                'filter' => [0 => 'No', 1 => 'Yes'],
+                'value' => function($data) {
+                    return $data->is_demo ? 'Yes' : 'No';
+                },
+            ],
             [
                 'attribute'=>'event_date',
                 'headerOptions' => ['style' => 'width: 10%'],
