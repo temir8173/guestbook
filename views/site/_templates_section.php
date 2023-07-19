@@ -20,20 +20,22 @@ $templateTypes = TemplateTypesList::getAll();
                 <div class="container">
 
                     <div class="row">
-                        <h2><?= Yii::t('common', 'Үлгілер') ?></h2>
+                        <div class="col-12">
+                            <h2><?= Yii::t('common', 'Үлгілер') ?></h2>
 
-                        <ul class="nav nav-tabs" id="templates-tab" role="tablist">
-                            <?php foreach ($templateTypes as $slug => $templateType) { ?>
-                            <li class="nav-item service-tag" role="presentation">
-                                <button class="nav-link <?= ($slug === TemplateTypesList::MARRIAGE) ? 'active' : '' ?>"
-                                        id="service-cat-<?= $slug ?>-tab" data-bs-toggle="tab"
-                                        data-bs-target="#service-cat-<?= $slug ?>" type="button" role="tab" aria-controls="home" aria-selected="false">
+                            <ul class="nav nav-tabs" id="templates-tab" role="tablist">
+                                <?php foreach ($templateTypes as $slug => $templateType) { ?>
+                                    <li class="nav-item service-tag" role="presentation">
+                                        <button class="nav-link <?= ($slug === TemplateTypesList::MARRIAGE) ? 'active' : '' ?>"
+                                                id="service-cat-<?= $slug ?>-tab" data-bs-toggle="tab"
+                                                data-bs-target="#service-cat-<?= $slug ?>" type="button" role="tab" aria-controls="home" aria-selected="false">
 
-                                    <?= $templateType ?>
-                                </button>
-                            </li>
-                            <?php } ?>
-                        </ul>
+                                            <?= $templateType ?>
+                                        </button>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
 
 
                         <div class="tab-content">

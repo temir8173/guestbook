@@ -54,7 +54,7 @@ class SiteController extends BaseController
             $groupedTemplates[$template->type][] = $template;
         }
 
-        $this->layout = 'front-page';
+//        $this->layout = 'front-page';
 
         return $this->render('index', ['templates' => $groupedTemplates]);
     }
@@ -62,5 +62,10 @@ class SiteController extends BaseController
     public function actionTemplates(): string
     {
         return $this->render('templates');
+    }
+
+    public function actionRules(): string
+    {
+        return $this->render('rules');
     }
 }

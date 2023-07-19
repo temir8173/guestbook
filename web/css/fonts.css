@@ -124,3 +124,14 @@
     font-style: normal;
     font-weight: 900;
 }
+
+/* Tilda Font */
+
+@font-face {
+    font-family: 'TildaSansWebVF';
+    src:
+            url(/fonts/Tilda-Sans_VF.woff2) format('woff2'),
+            url(/fonts/Tilda-Sans_VF.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

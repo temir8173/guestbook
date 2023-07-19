@@ -11,6 +11,7 @@ return [
     'rules' => [
         '/' => 'site/index',
         '/templates' => 'site/templates',
+        '/rules' => 'site/rules',
 
         // auth routes
         '/reset-password' => 'auth/reset-password',

@@ -10,15 +10,20 @@ use yii\helpers\Html;
             <div class="col-md-6">
                 <nav class="header-menu">
                     <ul>
-                        <li>
-                            <?= Html::a(
-                                Yii::t('common', 'Басты бет'),
-                                '/',
-                                [
-                                    'class' => 'pink-button',
-                                ]
-                            ) ?>
-                        </li>
+                        <?php if (Yii::$app->request->url !== '/') { ?>
+                            <li>
+                                <?= Html::a(
+                                    Yii::t('common', 'Басты бет'),
+                                    '/',
+                                    [
+                                        'class' => 'pink-button',
+                                    ]
+                                ) ?>
+                            </li>
+                        <?php } else { ?>
+                            <li><a href="#templates"><?= Yii::t('common', 'Үлгілер') ?></a></li>
+                            <li><a href="#contacts"><?= Yii::t('common', 'Байланыс') ?></a></li>
+                        <?php } ?>
                     </ul>
                 </nav>
             </div>

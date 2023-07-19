@@ -4,12 +4,14 @@
 /* @var $content string */
 
 use app\assets\AdminAsset;
+use app\assets\FrontPageAsset;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 AdminAsset::register($this);
+FrontPageAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
