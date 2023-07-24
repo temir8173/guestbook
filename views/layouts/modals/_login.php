@@ -30,7 +30,7 @@ $loginForm = $this->params['loginForm'] ?? null;
                             ],
                             'options' => [
                                 'class' => 'login-form app-modal-connect-form async-form',
-//                                'data-redirect' => '/'
+                                'data-redirect' => '/'
                             ]
                         ]); ?>
 

@@ -1,5 +1,4 @@
 $('document').ready(function(){
-	console.log('asdasd');
 
     $('body').on('submit', '.ajax-form', function(e){
 
@@ -117,6 +116,11 @@ $('document').ready(function(){
 				}
 			})
 		}
+	});
+
+    $('a.create-invitation-login').on('click', function() {
+		const form = $('#login-form');
+		form.attr('data-redirect', $(this).attr('data-redirect'));
 	});
 
     $('a.scrollto').on('click', function() {

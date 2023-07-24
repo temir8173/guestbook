@@ -78,8 +78,8 @@ class Invitation extends ActiveRecord
     {
         return [
             [['url', 'name', 'template_id', 'event_date'], 'required'],
-            [['status', 'user_id'], 'integer'],
-            [['url', 'name', 'template_id'], 'string', 'max' => 255],
+            [['status', 'user_id', 'template_id'], 'integer'],
+            [['url', 'name'], 'string', 'max' => 255],
             [['url'], 'unique'],
             [['status'], 'default', 'value' => 0],
             [['sections', 'field_values', 'is_demo'], 'safe'],

@@ -10,8 +10,10 @@ use app\services\invitations\InvitationService;
 use app\models\Invitation;
 use app\models\Section;
 use app\models\Template;
+use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\filters\AccessControl;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\HttpException;
@@ -30,6 +32,24 @@ class InvitationController extends BaseController
 
         parent::__construct($id, $module, $config);
     }
+
+    #[ArrayShape(['access' => "array"])]
+    public function behaviors(): array
+    {
+    return [
+        'access' => [
+            'class' => AccessControl::class,
+            'only' => ['index', 'create', 'update'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'actions' => ['index', 'create', 'update'],
+                    'roles' => ['@'],
+                ],
+            ],
+        ],
+    ];
+}
 
     public function actionIndex()
     {
@@ -59,12 +79,12 @@ class InvitationController extends BaseController
             ->where(['in', 'slug', $template->sections])
             ->with('fields')->all();
 
+        $invitation->user_id = Yii::$app->user->id;
+        $invitation->template_id = $template->id;
         if (
             $invitation->load(Yii::$app->request->getBodyParams())
             && $invitation->validate()
         ) {
-            $invitation->user_id = Yii::$app->user->id;
-            $invitation->template_id = $template->id;
             $url = $this->invitationService->create($invitation);
             return $this->redirect(Url::to([
                 '/invitation/view',
@@ -85,10 +105,15 @@ class InvitationController extends BaseController
     public function actionUpdate($url = '')
     {
         /** @var Invitation $invitation */
-        $invitation = Invitation::find()
+        $invitationQuery = Invitation::find()
             ->select('*')
-            ->where(['url' => $url])
-            ->one();
+            ->where(['url' => $url]);
+
+        if (Yii::$app->user->identity->role !== 'admin') {
+            $invitationQuery->andWhere(['user_id' => Yii::$app->user->id]);
+        }
+
+        $invitation = $invitationQuery->one();
 
         if (!$invitation) {
             throw new NotFoundHttpException();
@@ -118,7 +143,7 @@ class InvitationController extends BaseController
     /**
      * @throws NotFoundHttpException
      */
-    public function actionView($url = '')
+    public function actionView($url = ''): Response|string
     {
         if (Yii::$app->language != 'kk') {
             return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
@@ -131,41 +156,9 @@ class InvitationController extends BaseController
                 ->where(['url' => $url])
                 ->one();
 
-            if ($invitation) {
-                $newMessage = new Wish();
-
-                Yii::$app->formatter->locale = 'en-US';
-                $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
-
-                return $this->render(
-                    "@app/views/invitation/view/{$invitation->template->slug}/index",
-                    [
-                        'invitation' => $invitation,
-                        'newMessage' => $newMessage,
-                        'isPreview' => true,
-                    ]
-                );
+            if (!Yii::$app->user->id && !$invitation->is_demo) {
+                throw new NotFoundHttpException();
             }
-        }
-
-        throw new NotFoundHttpException();
-    }
-
-    /**
-     * @throws HttpException
-     */
-    public function actionPreview($url = '')
-    {
-        if (Yii::$app->language != 'kk') {
-            return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
-        }
-
-        if ($url) {
-            /** @var Invitation $invitation */
-            $invitation = Invitation::find()
-                ->with('template', 'wishes')
-                ->where(['url' => $url])
-                ->one();
 
             if ($invitation) {
                 $newMessage = new Wish();
@@ -174,7 +167,7 @@ class InvitationController extends BaseController
                 $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
 
                 return $this->render(
-                    "@app/views/invitation/view/{$invitation->template->slug}/index",
+                    "view",
                     [
                         'invitation' => $invitation,
                         'newMessage' => $newMessage,
