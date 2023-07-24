@@ -91,6 +91,10 @@ foreach ($invitation->sections as $section)
 
                 <?php if (Yii::$app->user->identity?->role === 'admin') { ?>
                     <?= Html::a(
+                        Yii::t('common', 'Басты бет'),
+                        '/',
+                    ) ?>
+                    <?= Html::a(
                         Yii::t('common', 'Өзгерту'),
                         ['/invitation/update', 'url' => $invitation->url],
                     ) ?>
@@ -100,6 +104,10 @@ foreach ($invitation->sections as $section)
                     Yii::$app->user->id === $invitation->user_id
                     && Yii::$app->user->identity?->role !== 'admin'
                 ) { ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Басты бет'),
+                        '/',
+                    ) ?>
                     <?= Html::a(
                         Yii::t('common', 'Өзгерту'),
                         ['/invitation/update', 'url' => $invitation->url],

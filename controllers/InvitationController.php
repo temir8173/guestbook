@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\models\InvitationSearch;
 use app\models\Wish;
+use app\models\WishSearch;
 use app\services\invitations\InvitationService;
 use app\models\Invitation;
 use app\models\Section;
@@ -14,6 +15,7 @@ use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\HttpException;
@@ -33,25 +35,30 @@ class InvitationController extends BaseController
         parent::__construct($id, $module, $config);
     }
 
-    #[ArrayShape(['access' => "array"])]
     public function behaviors(): array
     {
-    return [
-        'access' => [
-            'class' => AccessControl::class,
-            'only' => ['index', 'create', 'update'],
-            'rules' => [
-                [
-                    'allow' => true,
-                    'actions' => ['index', 'create', 'update'],
-                    'roles' => ['@'],
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'create', 'update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'create', 'update'],
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
-        ],
-    ];
-}
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new InvitationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, Yii::$app->user->id);
@@ -220,5 +227,45 @@ class InvitationController extends BaseController
         }
 
         throw new NotFoundHttpException();
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionMessages($invitation_id = -1): string
+    {
+        $invitation = Invitation::findOne($invitation_id);
+
+        if (Yii::$app->user->id !== (int)$invitation->user_id) {
+            throw new NotFoundHttpException();
+        }
+
+        $searchModel = new WishSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $invitation_id);
+        $dataProvider->pagination = ['pageSize' => 50];
+
+        return $this->render('messages', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'invitation' => $invitation,
+        ]);
+    }
+
+    /**
+     * @throws \Throwable
+     * @throws NotFoundHttpException
+     */
+    public function actionDelete($id): Response
+    {
+        /** @var Wish $model */
+        $model = Wish::find()->where(['id' => $id])->with('invitation')->one();
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
+
+        $invitation_id = $model->invitation->id;
+        $model->delete();
+
+        return $this->redirect(['index', 'invitation_id' => $invitation_id]);
     }
 }

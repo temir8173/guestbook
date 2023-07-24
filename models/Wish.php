@@ -14,6 +14,8 @@ use yii\db\ActiveRecord;
  * @property string $text
  * @property string $created_at
  * @property int $invitation_id
+ *
+ * @property Invitation $invitation
  */
 class Wish extends ActiveRecord
 {

@@ -24,6 +24,11 @@ use yii\helpers\Html;
                             <li><a href="#templates"><?= Yii::t('common', 'Үлгілер') ?></a></li>
                             <li><a href="#contacts"><?= Yii::t('common', 'Байланыс') ?></a></li>
                         <?php } ?>
+                        <?php if (!Yii::$app->user->isGuest) { ?>
+                            <li>
+                                <?= Html::a(Yii::t('common', 'Менің шақыруларым'), '/invitations') ?>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </nav>
             </div>

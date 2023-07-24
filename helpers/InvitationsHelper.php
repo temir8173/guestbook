@@ -3,6 +3,7 @@
 namespace app\helpers;
 
 use app\models\Invitation;
+use Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -16,6 +17,9 @@ class InvitationsHelper
         ];
     }
 
+    /**
+     * @throws Exception
+     */
     public static function statusName($status): string
     {
         return ArrayHelper::getValue(self::statusList(), $status);
@@ -23,16 +27,11 @@ class InvitationsHelper
 
     public static function statusLabel($status): string
     {
-        switch ($status) {
-            case Invitation::STATUS_UNPAID:
-                $class = 'label label-danger';
-                break;
-            case Invitation::STATUS_PAID:
-                $class = 'label label-success';
-                break;
-            default:
-                $class = 'label label-default';
-        }
+        $class = match ($status) {
+            Invitation::STATUS_UNPAID => 'label label-danger',
+            Invitation::STATUS_PAID => 'label label-success',
+            default => 'label label-default',
+        };
 
         return Html::tag('span', ArrayHelper::getValue(self::statusList(), $status), [
             'class' => $class,

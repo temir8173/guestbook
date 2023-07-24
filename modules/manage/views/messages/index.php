@@ -26,13 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'columns' => [
             [
+                'header' => '№',
                 'class' => 'yii\grid\SerialColumn',
-                'headerOptions' => ['style' => 'width: 5%'],
-            ],
-
-            [
-                'attribute'=>'id',
-                'headerOptions' => ['style' => 'width: 5%'],
+                'headerOptions' => ['style' => 'width: 3%'],
             ],
             [
                 'attribute'=>'name',
@@ -43,11 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 47%'],
             ],
             [
-                'attribute'=>'date',
+                'attribute'=>'created_at',
                 'headerOptions' => ['style' => 'width: 15%'],
                 'format' => 'raw',
+                'filter' => false,
                 'value' => function($data){
-                    return Yii::$app->formatter->asDate($data->date, 'php:Y.m.d H:i:s');
+                    return Yii::$app->formatter->asDate($data->created_at, 'php:Y.m.d H:i:s');
                 },
             ],
 

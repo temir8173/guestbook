@@ -1,5 +1,7 @@
 <?php
 
+use app\helpers\InvitationsHelper;
+use app\models\Invitation;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -40,36 +42,41 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'columns' => [
                     [
+                        'header' => '№',
                         'class' => 'yii\grid\SerialColumn',
                         'headerOptions' => ['style' => 'width: 3%'],
                     ],
 
                     [
                         'attribute'=>'name',
-                        'headerOptions' => ['style' => 'width: 20%'],
+                        'headerOptions' => ['style' => 'width: 15%'],
+                    ],
+                    [
+                        'attribute'=>'template_id',
+                        'headerOptions' => ['style' => 'width: 10%'],
+                        'format' => 'raw',
+//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
+                        'value' => function($data) {
+                            return $data->template->name;
+                        },
                     ],
                     [
                         'attribute'=>'url',
                         'headerOptions' => ['style' => 'width: 25%'],
                         'format' => 'raw',
-                        'value' => function($data){
-                            if ($data->status === 0)
-                                return Html::a(
-                                        Url::base(true) . "/preview/$data->url",
-                                        ['/invitation/preview', 'url' => $data->url],
-                                        ['class' => 'profile-link', 'data-pjax' => '0', 'target' => '_blank']
-                                );
-                            else
-                                return Html::a(
-                                        Url::base(true) . "/$data->url",
-                                        ['/invitation/view', 'url' => $data->url],
-                                        ['class' => 'profile-link', 'data-pjax' => '0', 'target' => '_blank']
-                                );
+                        'value' => function($data) {
+                            return Html::a(
+                                Url::base(true) . "/$data->url",
+                                ['/invitation/view', 'url' => $data->url],
+                                ['class' => 'invitation-link', 'data-pjax' => '0', 'target' => '_blank']
+                            ) . ' <button class="copy-link">'
+                                . Yii::t('common', 'көшіру')
+                                 . '</button>';
                         },
                     ],
                     [
                         'attribute'=>'event_date',
-                        'headerOptions' => ['style' => 'width: 25%'],
+                        'headerOptions' => ['style' => 'width: 10%'],
                         'format' => 'raw',
                         'value' => function($data){
                             return Yii::$app->formatter->asDate($data->event_date);
@@ -77,18 +84,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute'=>'status',
-                        'headerOptions' => ['style' => 'width: 7%'],
+                        'headerOptions' => ['style' => 'width: 10%'],
                         'format' => 'raw',
-                        'value' => function($data){
-                            return ($data->status) ? Yii::t('common', 'Иә') : Yii::t('common', 'Жоқ');
+                        'value' => function (Invitation $model) {
+                            return InvitationsHelper::statusLabel($model->status);
                         },
+                        'filter' => Invitation::getStatusLabels(),
                     ],
                     [
                         'attribute' => Yii::t('common', 'Тілектер'),
                         'headerOptions' => ['style' => 'width: 7%'],
                         'format' => 'raw',
                         'value' => function($data){
-                            return Html::a(Yii::t('common', 'Басқару'), ['/manage/messages/index', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
+                            return Html::a(Yii::t('common', 'Басқару'), ['messages', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
                         },
                     ],
 
