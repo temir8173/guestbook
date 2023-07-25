@@ -27,6 +27,7 @@ use yii\web\UploadedFile;
  *
  * @property Wish[] $wishes
  * @property Template $template
+ * @property User $user
  */
 class Invitation extends ActiveRecord
 {
@@ -107,6 +108,11 @@ class Invitation extends ActiveRecord
     public function getWishes(): ActiveQuery
     {
         return $this->hasMany(Wish::class, ['invitation_id' => 'id']);
+    }
+
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function getTemplate(): ActiveQuery

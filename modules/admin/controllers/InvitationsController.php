@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\User;
 use Throwable;
 use Yii;
 use app\models\Invitation;
@@ -34,6 +35,7 @@ class InvitationsController extends Controller
         $searchModel = new InvitationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+//        var_dump(User::find()->select(['username', 'id'])->indexBy('id')->column());die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

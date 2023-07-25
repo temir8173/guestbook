@@ -17,7 +17,7 @@ class InvitationSearch extends Invitation
     public function rules(): array
     {
         return [
-            [['id', 'event_date', 'status'], 'integer'],
+            [['id', 'event_date', 'status', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'date'],
             [['url', 'name', 'is_demo'], 'safe'],
         ];
@@ -32,19 +32,14 @@ class InvitationSearch extends Invitation
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params, int $userId = 0)
+    public function search(array $params, ?int $userId = null): ActiveDataProvider
     {
         $query = Invitation::find();
 
         if ($userId) {
-            $query->where(['user_id' => $userId]);
+            $query
+                ->where(['user_id' => $userId])
+                ->with('user');
         }
 
         $dataProvider = new ActiveDataProvider([
@@ -65,7 +60,7 @@ class InvitationSearch extends Invitation
             'event_date' => $this->event_date,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-//            'user_id' => ($userId === 0) ? $this->user_id : $userId,
+            'user_id' => $userId ?? $this->user_id,
             'status' => $this->status,
             'is_demo' => $this->is_demo,
         ]);

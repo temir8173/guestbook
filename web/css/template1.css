@@ -521,7 +521,11 @@ body {
 
 .wishes__form {
 	width: 80%;
-	margin: 100px auto;
+	margin: 70px auto;
+}
+
+.wishes__form .form-group label {
+	margin-bottom: 3px;
 }
 
 .wishes__form .form-group {

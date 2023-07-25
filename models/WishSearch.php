@@ -15,11 +15,11 @@ class WishSearch extends Wish
     {
         return [
             [['id', 'created_at', 'invitation_id'], 'integer'],
-            [['name', 'text'], 'safe'],
+            [['name', 'text', 'answer'], 'safe'],
         ];
     }
 
-    public function search(array $params, int $invitation_id = 0): ActiveDataProvider
+    public function search(array $params, ?int $invitation_id = null): ActiveDataProvider
     {
         $query = Wish::find();
 
@@ -40,7 +40,8 @@ class WishSearch extends Wish
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
-            'invitation_id' => ($invitation_id === 0) ? $this->invitation_id : $invitation_id,
+            'invitation_id' => $invitation_id ?? $this->invitation_id,
+            'answer' => $this->answer,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

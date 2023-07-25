@@ -1,6 +1,7 @@
 <?php
 
 use app\helpers\InvitationsHelper;
+use app\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ) ?>
     </p>
 
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -39,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'name',
-                'headerOptions' => ['style' => 'width: 20%'],
+                'headerOptions' => ['style' => 'width: 17%'],
                 'format' => 'raw',
                 'value' => function($data) {
                     $route = '/invitation/view';
@@ -52,18 +54,35 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute' => 'user_id',
+                'headerOptions' => ['style' => 'width: 10%'],
+                'format' => 'raw',
+                'filter' => User::find()->select(['username', 'id'])->indexBy('id')->column(),
+                'value' => function(Invitation $model) {
+                    return $model->user->username;
+                },
+            ],
+            [
                 'attribute'=>'template_id',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
 //                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
-                'value' => function($data) {
+                'value' => function(Invitation $data) {
                     return $data->template->name;
                 },
             ],
-            'url',
+            [
+                'attribute'=>'url',
+                'headerOptions' => ['style' => 'width: 10%'],
+                'format' => 'raw',
+//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
+                'value' => function(Invitation $data) {
+                    return "../$data->url";
+                },
+            ],
             [
                 'attribute'=>'is_demo',
-                'headerOptions' => ['style' => 'width: 10%'],
+                'headerOptions' => ['style' => 'width: 5%'],
                 'format' => 'raw',
                 'filter' => [0 => 'No', 1 => 'Yes'],
                 'value' => function($data) {
@@ -72,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'event_date',
-                'headerOptions' => ['style' => 'width: 10%'],
+                'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->event_date);
@@ -81,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'created_at',
-                'headerOptions' => ['style' => 'width: 10%'],
+                'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->created_at);
@@ -90,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'updated_at',
-                'headerOptions' => ['style' => 'width: 10%'],
+                'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return Yii::$app->formatter->asDate($data->updated_at);
@@ -99,7 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'status',
-                'headerOptions' => ['style' => 'width: 10%'],
+                'headerOptions' => ['style' => 'width: 7%'],
                 'format' => 'raw',
                 'value' => function (Invitation $model) {
                     return InvitationsHelper::statusLabel($model->status);
@@ -124,6 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
+    <?php \yii\widgets\Pjax::end(); ?>
 
 
 </div>

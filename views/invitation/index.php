@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style' => 'width: 7%'],
                         'format' => 'raw',
                         'value' => function($data){
-                            return Html::a(Yii::t('common', 'Басқару'), ['messages', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
+                            return Html::a(Yii::t('common', 'Басқару'), ['wishes', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
                         },
                     ],
 

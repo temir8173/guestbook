@@ -1,6 +1,8 @@
 <?php
 
+use app\lists\GuestAnswersList;
 use app\models\Invitation;
+use app\models\Wish;
 use app\models\WishSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
@@ -49,13 +51,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'answer',
                         'headerOptions' => ['style' => 'width: 10%'],
+                        'filter' => GuestAnswersList::getAll(),
+                        'value' => function(Wish $data){
+                            return $data->answer ? GuestAnswersList::getShortTranslation($data->answer) : $data->answer;
+                        },
                     ],
                     [
                         'attribute'=>'created_at',
                         'headerOptions' => ['style' => 'width: 15%'],
                         'format' => 'raw',
                         'filter' => false,
-                        'value' => function($data){
+                        'value' => function(Wish $data){
                             return Yii::$app->formatter->asDate($data->created_at, 'php:Y.m.d H:i:s');
                         },
                     ],

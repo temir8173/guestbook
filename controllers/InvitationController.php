@@ -190,7 +190,7 @@ class InvitationController extends BaseController
     /**
      * @throws NotFoundHttpException
      */
-    public function actionGetMessages($invitationId = 0): string
+    public function actionGetWishes($invitationId = 0): string
     {
         $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['created_at' => SORT_ASC])->all();
         $invitation = Invitation::findOne($invitationId);
@@ -207,7 +207,7 @@ class InvitationController extends BaseController
     /**
      * @throws HttpException
      */
-    public function actionAddMessage(): string
+    public function actionAddWish(): string
     {
         if (Yii::$app->request->isAjax) {
             $newMessage = new Wish();
@@ -232,7 +232,7 @@ class InvitationController extends BaseController
     /**
      * @throws NotFoundHttpException
      */
-    public function actionMessages($invitation_id = -1): string
+    public function actionWishes($invitation_id = -1): string
     {
         $invitation = Invitation::findOne($invitation_id);
 
@@ -244,7 +244,7 @@ class InvitationController extends BaseController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $invitation_id);
         $dataProvider->pagination = ['pageSize' => 50];
 
-        return $this->render('messages', [
+        return $this->render('wishes', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'invitation' => $invitation,

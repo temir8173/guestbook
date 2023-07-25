@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name
  * @property string $text
+ * @property string $answer
  * @property string $created_at
  * @property int $invitation_id
  *
@@ -28,7 +29,7 @@ class Wish extends ActiveRecord
     {
         return [
             [['name', 'text', 'invitation_id'], 'required'],
-            [['text'], 'string'],
+            [['text', 'answer'], 'string'],
             ['invitation_id', 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -40,6 +41,7 @@ class Wish extends ActiveRecord
             'id' => 'ID',
             'name' => Yii::t('common', 'Тілек білдіруші'),
             'text' => Yii::t('common', 'Мәтіні'),
+            'answer' => Yii::t('common', 'Жауабы (келеді ме?)'),
             'created_at' => Yii::t('common', 'Уақыты'),
             'invitation_id' => Yii::t('common', 'Шақыру билеті'),
         ];
