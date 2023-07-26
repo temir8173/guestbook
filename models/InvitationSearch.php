@@ -19,7 +19,7 @@ class InvitationSearch extends Invitation
         return [
             [['id', 'event_date', 'status', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'date'],
-            [['url', 'name', 'is_demo'], 'safe'],
+            [['url', 'name', 'is_demo', 'is_deleted'], 'safe'],
         ];
     }
 
@@ -39,6 +39,7 @@ class InvitationSearch extends Invitation
         if ($userId) {
             $query
                 ->where(['user_id' => $userId])
+                ->andWhere(['is_deleted' => false])
                 ->with('user');
         }
 
@@ -63,6 +64,7 @@ class InvitationSearch extends Invitation
             'user_id' => $userId ?? $this->user_id,
             'status' => $this->status,
             'is_demo' => $this->is_demo,
+            'is_deleted' => $this->is_deleted,
         ]);
 
         $query->andFilterWhere(['like', 'url', $this->url])

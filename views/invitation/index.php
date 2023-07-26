@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p>
                 <?= Html::a(Yii::t('common', 'Жаңа шақыру билеті'), ['create'], ['class' => 'btn btn-info create-invitation-btn']) ?>
             </p>
+            <p id="text-to-copy">Copy this text to clipboard</p>
 
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php \yii\widgets\Pjax::begin(); ?>
@@ -69,7 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 Url::base(true) . "/$data->url",
                                 ['/invitation/view', 'url' => $data->url],
                                 ['class' => 'invitation-link', 'data-pjax' => '0', 'target' => '_blank']
-                            ) . ' <button class="copy-link">'
+                            ) . ' <button
+                                 class="copy-button"
+                                 data-message="' . Yii::t('common', 'Cілтеме көшірілді!') . '"
+                             >'
                                 . Yii::t('common', 'көшіру')
                                  . '</button>';
                         },
@@ -96,13 +100,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style' => 'width: 7%'],
                         'format' => 'raw',
                         'value' => function($data){
-                            return Html::a(Yii::t('common', 'Басқару'), ['wishes', 'invitation_id' => $data->id], ['class' => 'profile-link', 'data-pjax' => '0']);
+                            return Html::a(Yii::t('common', 'басқару'), ['wishes', 'invitation_id' => $data->id], ['class' => 'wishes-link', 'data-pjax' => '0']);
                         },
                     ],
 
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template'=>'{update} {delete}',
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'update') {
+                                return ['/invitation/update', 'url' => $model->url];
+                            }
+
+                            return \yii\helpers\Url::toRoute([$action, 'id' => $model->id]);
+                        },
                         'headerOptions' => ['style' => 'width: 5%'],
                     ],
                 ],

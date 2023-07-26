@@ -1001,11 +1001,47 @@ section h2 {
     text-decoration-style: dotted;
 }
 
-.copy-link {
+.copy-button {
     border-radius: 15px;
     background-color: #f1a417;
     color: #fff;
     border: none;
     font-size: 12px;
     padding: 2px 8px;
+}
+
+.wishes-link {
+    border-radius: 15px;
+    background-color: #19a13a;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    padding: 3px 8px;
+}
+
+.wishes-link:hover {
+    color: #fff;
+}
+
+.cstm_notice {
+    font-family: "Merriweather", sans-serif;
+    font-size: 15px;
+    padding-right: 40px!important;
+    min-width: unset!important;
+    max-width: unset!important;
+}
+
+.cstm_notice span {
+    position: absolute;
+    right: 18px;
+}
+
+.cstm_notice span:hover {
+    cursor: pointer;
+}
+
+body .alert-success {
+    color: #fff;
+    background-color: #1eaf56;
+    border-color: #badbcc;
 }

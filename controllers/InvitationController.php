@@ -11,7 +11,6 @@ use app\services\invitations\InvitationService;
 use app\models\Invitation;
 use app\models\Section;
 use app\models\Template;
-use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\filters\AccessControl;
@@ -40,11 +39,11 @@ class InvitationController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'create', 'update'],
+                'only' => ['index', 'create', 'update', 'wishes', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'update'],
+                        'actions' => ['index', 'create', 'update', 'wishes', 'delete'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -117,7 +116,9 @@ class InvitationController extends BaseController
             ->where(['url' => $url]);
 
         if (Yii::$app->user->identity->role !== 'admin') {
-            $invitationQuery->andWhere(['user_id' => Yii::$app->user->id]);
+            $invitationQuery
+                ->andWhere(['user_id' => Yii::$app->user->id])
+                ->andWhere(['is_deleted' => false]);
         }
 
         $invitation = $invitationQuery->one();
@@ -161,6 +162,7 @@ class InvitationController extends BaseController
             $invitation = Invitation::find()
                 ->with('template', 'wishes')
                 ->where(['url' => $url])
+                ->andWhere(['is_deleted' => false])
                 ->one();
 
             if (!Yii::$app->user->id && !$invitation->is_demo) {
@@ -185,6 +187,23 @@ class InvitationController extends BaseController
         }
 
         throw new NotFoundHttpException();
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionDelete($id)
+    {
+        $invitation = Invitation::findOne($id);
+
+        if (!$invitation) {
+            throw new NotFoundHttpException();
+        }
+
+        $invitation->is_deleted = true;
+        $invitation->save(false);
+
+        $this->redirect('/invitations');
     }
 
     /**
@@ -234,7 +253,11 @@ class InvitationController extends BaseController
      */
     public function actionWishes($invitation_id = -1): string
     {
-        $invitation = Invitation::findOne($invitation_id);
+        /** @var Invitation $invitation */
+        $invitation = Invitation::find()
+            ->where(['is_deleted' => false])
+            ->andWhere(['id' => $invitation_id])
+            ->one();
 
         if (Yii::$app->user->id !== (int)$invitation->user_id) {
             throw new NotFoundHttpException();
@@ -255,7 +278,7 @@ class InvitationController extends BaseController
      * @throws \Throwable
      * @throws NotFoundHttpException
      */
-    public function actionDelete($id): Response
+    public function actionDeleteWish($id): Response
     {
         /** @var Wish $model */
         $model = Wish::find()->where(['id' => $id])->with('invitation')->one();
@@ -266,6 +289,6 @@ class InvitationController extends BaseController
         $invitation_id = $model->invitation->id;
         $model->delete();
 
-        return $this->redirect(['index', 'invitation_id' => $invitation_id]);
+        return $this->redirect(['wishes', 'invitation_id' => $invitation_id]);
     }
 }

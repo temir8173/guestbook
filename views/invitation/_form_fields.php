@@ -42,19 +42,19 @@ $fieldValues = $invitation->field_values;
             'options' => ['id' => "field-{$field->slug}"],
         ]);
         echo '</div>';
-//                                echo $form->field(
-//                                        $field,
-//                                        'slug',
-//                                        ['enableClientValidation' => false]
-//                                )
-//                                    ->widget(CKEditor::class, [
-//                                        'name' => "Field[]{$field->slug}",
-//                                        'value' => $fieldValues[$field->slug] ?? '',
-//                                        'editorOptions' => [
-//                                            'preset' => 'standart', //basic, standard, full
-//                                            'inline' => false,
-//                                        ],
-//                                    ])->label(Yii::t('common', $field->name));
+//            echo $form->field(
+//                    $field,
+//                    'slug',
+//                    ['enableClientValidation' => false]
+//            )
+//                ->widget(CKEditor::class, [
+//                    'name' => "Field[]{$field->slug}",
+//                    'value' => $fieldValues[$field->slug] ?? '',
+//                    'editorOptions' => [
+//                        'preset' => 'standart', //basic, standard, full
+//                        'inline' => false,
+//                    ],
+//                ])->label(Yii::t('common', $field->name));
     } elseif ($field->type === 'image') {
         ?>
         <div class="container">

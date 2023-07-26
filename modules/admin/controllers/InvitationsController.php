@@ -30,12 +30,11 @@ class InvitationsController extends Controller
         ];
     }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new InvitationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-//        var_dump(User::find()->select(['username', 'id'])->indexBy('id')->column());die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

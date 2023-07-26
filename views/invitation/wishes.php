@@ -68,6 +68,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\ActionColumn',
+                        'urlCreator' => function ($action, $model, $key, $index) {
+                            if ($action === 'delete') {
+                                // Modify the URL here as per your requirement
+                                return ['delete-wish', 'id' => $model->id];
+                            }
+
+                            // For other actions, use the default URL generation
+                            return \yii\helpers\Url::toRoute([$action, 'id' => $model->id]);
+                        },
                         'template'=>'{delete}',
                         'headerOptions' => ['style' => 'width: 7%'],
                     ],

@@ -3,7 +3,6 @@
 use app\helpers\InvitationsHelper;
 use app\models\User;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\GridView;
 use app\models\Invitation;
 
@@ -75,7 +74,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'url',
                 'headerOptions' => ['style' => 'width: 10%'],
                 'format' => 'raw',
-//                'filter' => ArrayHelper::map($invitationsByIds, 'id', 'name'),
                 'value' => function(Invitation $data) {
                     return "../$data->url";
                 },
@@ -85,8 +83,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 5%'],
                 'format' => 'raw',
                 'filter' => [0 => 'No', 1 => 'Yes'],
-                'value' => function($data) {
+                'value' => function(Invitation $data) {
                     return $data->is_demo ? 'Yes' : 'No';
+                },
+            ],
+            [
+                'attribute'=>'is_deleted',
+                'headerOptions' => ['style' => 'width: 5%'],
+                'format' => 'raw',
+                'filter' => [0 => 'No', 1 => 'Yes'],
+                'value' => function(Invitation $data) {
+                    return $data->is_deleted ? 'Yes' : 'No';
                 },
             ],
             [

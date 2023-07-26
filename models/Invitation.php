@@ -24,6 +24,7 @@ use yii\web\UploadedFile;
  * @property string $sections
  * @property string $field_values
  * @property boolean $is_demo
+ * @property boolean $is_deleted
  *
  * @property Wish[] $wishes
  * @property Template $template
@@ -83,7 +84,7 @@ class Invitation extends ActiveRecord
             [['url', 'name'], 'string', 'max' => 255],
             [['url'], 'unique'],
             [['status'], 'default', 'value' => 0],
-            [['sections', 'field_values', 'is_demo'], 'safe'],
+            [['sections', 'field_values', 'is_demo', 'is_deleted'], 'safe'],
         ];
     }
 

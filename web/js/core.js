@@ -118,6 +118,17 @@ $('document').ready(function(){
 		}
 	});
 
+	$('.copy-button').click(function() {
+		let textToCopy = $(this).closest('td').find('.invitation-link').text();
+		let tempTextarea = $('<textarea>');
+		const message = $(this).data('message');
+		$('body').append(tempTextarea);
+		tempTextarea.val(textToCopy).select();
+		document.execCommand('copy');
+		tempTextarea.remove();
+		setNotice(message, 'success');
+	});
+
     $('a.create-invitation-login').on('click', function() {
 		const form = $('#login-form');
 		form.attr('data-redirect', $(this).attr('data-redirect'));
@@ -245,8 +256,6 @@ function setNotice(mess, theme, delay, position) {
 		   amount: 30
 		},
 		align: "right",
-		minWidth: 250,
-		maxWidth: 400,
 		delay: delay,
 		allowDismiss: true,
 		spacing: 10

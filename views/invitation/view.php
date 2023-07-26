@@ -90,10 +90,12 @@ foreach ($invitation->sections as $section)
                 <?php } ?>
 
                 <?php if (Yii::$app->user->identity?->role === 'admin') { ?>
-                    <?= Html::a(
-                        Yii::t('common', 'Басты бет'),
-                        '/',
-                    ) ?>
+                    <?php if (!$invitation->is_demo) { ?>
+                        <?= Html::a(
+                            Yii::t('common', 'Басты бет'),
+                            '/',
+                        ) ?>
+                    <?php } ?>
                     <?= Html::a(
                         Yii::t('common', 'Өзгерту'),
                         ['/invitation/update', 'url' => $invitation->url],
