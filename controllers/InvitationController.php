@@ -230,19 +230,21 @@ class InvitationController extends BaseController
     {
         if (Yii::$app->request->isAjax) {
             $newMessage = new Wish();
-            $return = array(
+            $response = array(
                 'error' => 1,
                 'message' => 'Ошибка. Неверный формат данных!',
             );
 
             if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
-                $return = array(
+                $response = array(
                     'error' => 0,
                     'message' => Yii::t('common', 'Рахмет! Сіздің тілегіңіз жіберілді!'),
                 );
+            } else {
+                $response['message'] = $newMessage->getFirstError('reCaptcha');
             }
 
-            return Json::encode($return);
+            return Json::encode($response);
         }
 
         throw new NotFoundHttpException();

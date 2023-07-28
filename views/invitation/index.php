@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1><?= Html::encode($this->title) ?></h1>
 
             <p>
-                <?= Html::a(Yii::t('common', 'Жаңа шақыру билеті'), ['create'], ['class' => 'btn btn-info create-invitation-btn']) ?>
+                <?= Html::a(Yii::t('common', 'Жаңа шақыру билеті'), ['/templates'], ['class' => 'btn btn-info create-invitation-btn']) ?>
             </p>
             <p id="text-to-copy">Copy this text to clipboard</p>
 

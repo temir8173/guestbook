@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -20,6 +21,8 @@ use yii\db\ActiveRecord;
  */
 class Wish extends ActiveRecord
 {
+    public $reCaptcha;
+
     public static function tableName(): string
     {
         return 'wishes';
@@ -32,6 +35,11 @@ class Wish extends ActiveRecord
             [['text', 'answer'], 'string'],
             ['invitation_id', 'integer'],
             [['name'], 'string', 'max' => 255],
+            [
+                ['reCaptcha'],
+                ReCaptchaValidator2::class,
+                'message' => Yii::t('common', 'Робот емес екендігіңізді растаңыз')
+            ],
         ];
     }
 

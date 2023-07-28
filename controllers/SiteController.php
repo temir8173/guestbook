@@ -54,14 +54,22 @@ class SiteController extends BaseController
             $groupedTemplates[$template->type][] = $template;
         }
 
-//        $this->layout = 'front-page';
-
         return $this->render('index', ['templates' => $groupedTemplates]);
     }
 
     public function actionTemplates(): string
     {
-        return $this->render('templates');
+        /** @var Template[] $templates */
+        $templates = Template::find()
+            ->select(['name', 'price', 'slug', 'type', 'preview_img', 'discount_price'])
+            ->all();
+
+        $groupedTemplates = [];
+        foreach ($templates as $template) {
+            $groupedTemplates[$template->type][] = $template;
+        }
+
+        return $this->render('templates', ['templates' => $groupedTemplates]);
     }
 
     public function actionRules(): string
