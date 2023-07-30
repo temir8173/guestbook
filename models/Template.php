@@ -20,7 +20,8 @@ use yii\web\UploadedFile;
 */
 class Template extends ActiveRecord
 {
-    public const PREVIEW_IMAGE_PATH = 'uploads/template_previews/';
+    public const PREVIEW_IMAGE_PATH = '/uploads/template_previews/';
+    public const PREVIEW_IMAGE_REL_PATH = 'uploads/template_previews/';
 
     public static function tableName(): string
     {
@@ -53,7 +54,7 @@ class Template extends ActiveRecord
             $name = 'preview_' . $this->slug
                 . '_' . preg_replace("/\s+/", "_", $previewImageFile->baseName)
                 . '.' . $previewImageFile->extension;
-            $previewImageFile->saveAs(self::PREVIEW_IMAGE_PATH . $name);
+            $previewImageFile->saveAs(self::PREVIEW_IMAGE_REL_PATH . $name);
         }
         $this->preview_img = $name ?? $this->oldAttributes['preview_img'];
 

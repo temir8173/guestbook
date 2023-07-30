@@ -50,6 +50,7 @@ class Field extends ActiveRecord
             [['name', 'section_id', 'type', 'slug'], 'required'],
             [['section_id'], 'integer'],
             [['name', 'type', 'slug'], 'string', 'max' => 255],
+            [['hint', 'default_value'], 'string'],
             [['slug'], 'unique'],
         ];
     }
@@ -61,6 +62,8 @@ class Field extends ActiveRecord
             'name' => 'Аты',
             'section_id' => 'Секция',
             'type' => 'Түрі',
+            'hint' => 'Подсказка',
+            'default_value' => 'По умолчанию',
         ];
     }
 

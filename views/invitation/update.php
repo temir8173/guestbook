@@ -1,6 +1,5 @@
 <?php
 
-use app\models\FieldValues;
 use app\models\Invitation;
 use app\models\Section;
 use yii\helpers\Html;

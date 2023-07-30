@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Field;
 use app\models\FieldSearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -26,8 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             [
                 'attribute' => 'id',
                 'headerOptions' => ['style' => 'width: 3%'],
@@ -35,11 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'name',
-                'headerOptions' => ['style' => 'width: 25%'],
+                'headerOptions' => ['style' => 'width: 20%'],
             ],
             [
                 'attribute'=>'section_id',
-                'headerOptions' => ['style' => 'width: 25%'],
+                'headerOptions' => ['style' => 'width: 17%'],
                 'format' => 'raw',
                 'value' => function($data){
                     return ($data->section_id !== null) ? Section::findOne($data->section_id)->name : $data->section_id; //Yii::$app->formatter->asDate($data->event_date);
@@ -49,17 +48,27 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'slug',
                 'filter' => false,
-                'headerOptions' => ['style' => 'width: 20%'],
+                'headerOptions' => ['style' => 'width: 10%'],
             ],
             [
                 'attribute' => 'type',
                 'filter' => false,
-                'headerOptions' => ['style' => 'width: 20%'],
+                'headerOptions' => ['style' => 'width: 10%'],
+            ],
+            [
+                'attribute' => 'hint',
+                'filter' => false,
+                'headerOptions' => ['style' => 'width: 10%'],
+            ],
+            [
+                'attribute' => 'default_value',
+                'filter' => false,
+                'headerOptions' => ['style' => 'width: 10%'],
             ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'headerOptions' => ['style' => 'width: 5%'],
+                'headerOptions' => ['style' => 'width: 7%'],
                 'template' => '{update} {delete}',
             ],
         ],

@@ -122,7 +122,16 @@ $fieldValues = $invitation->field_values;
             ])
             ->label(false); ?>
 
-    <?php } ?>
+    <?php } elseif ($field->type == 'cloudLink') {
+        echo $form->field($field, 'slug', ['enableClientValidation' => false])
+            ->textInput([
+                'id' => "field-{$field->slug}",
+                'name' => "Field[{$field->slug}]",
+                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
+                'placeholder' => $field->hint ?? '',
+            ])
+            ->label(Yii::t('common', $field->name));
+    } ?>
 
 
 <?php $j++; } ?>

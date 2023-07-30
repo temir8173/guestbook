@@ -1,40 +1,28 @@
 <?php
 
-use app\lists\GuestAnswersList;
-use app\models\Invitation;
-use app\models\Wish;
-use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
-/**
- * @var Invitation $invitation
- * @var Wish $newMessage
-*/
-
 ?>
-<section id="wishes" class="wishes">
+<section id="wishes" class="wishes  wishes-bottom-none">
 	<div class="container">
 		<div class="row">
-			<h2 class="wishes__title section-title"><?= $fieldValues['wishes_name'] ?? null ?></h2>
-			<div class="col-lg-7 wish-first-col">
+			<h2 class="wishes__title section-title section-wish title"><?= $section->getFieldValueByUrl('wishes-name') ?></h2>
+			<div class="col-sm-6">
 
 				<div class="wishes__messages">
-					<div id="messages-box"
-                         data-action-url="<?= Url::to([
-                             '/invitation/get-wishes',
-                             'invitationId' => $invitation->id
-                         ]) ?>">
-						<?= $this->render('_wishes_box', ['messages' => $invitation->wishes]); ?>
+					<div id="messages-box" data-action-url="<?= Url::to(['/invitations/default/get-messages', 'invitation_id' => $invitation->id]) ?>">
+						<?= $this->render('_messages', ['messages' => $messages]); ?>
 					</div>
 				</div>
 
 			</div>
-			<div class="col-lg-5">
+			<div class="col-sm-6">
 
 				<?php $form = ActiveForm::begin([
-					'action' => Url::to('/invitation/add-wish'),
+					'action' => Url::to('/invitations/default/add-message'),
 	                'enableClientValidation'=>false, 
 	                'options' => [
 	                    'class' => 'wishes__form ajax-form',
@@ -56,16 +44,6 @@ use yii\widgets\ActiveForm;
 	            			'error-msg' => Yii::t('common', 'Міндетті түрде тотыру қажет'),
 	            		],
 	            	])->label(false) ?>
-	            	<?= $form->field($newMessage, "answer")->dropDownList(GuestAnswersList::getAll(), [
-	            		'class' => 'form-control text required',
-	            		'data' => [
-	            			'error-msg' => Yii::t('common', 'Міндетті түрде тотыру қажет'),
-	            		],
-	            	])->label(Yii::t('common', 'Тойға келесіз бе?')) ?>
-                    <?php if (YII_DEBUG) { ?>
-                        <?= $form->field($newMessage, 'reCaptcha')
-                            ->widget(ReCaptcha2::class, []) ?>
-                    <?php } ?>
 	            	<?= $form->field($newMessage, "date")->hiddenInput(['value' => ''])->label(false) ?>
 	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => $invitation->id])->label(false) ?>
 

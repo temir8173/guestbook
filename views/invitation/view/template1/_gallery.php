@@ -13,7 +13,7 @@
 
 				<?php if (is_array($fieldValues['gallery_images'])) { ?>
 					<?php foreach ($fieldValues['gallery_images'] as $key => $imageName) { ?>
-						<div class="col-md-3 col-xs-6">
+						<div class="col-md-4 col-12">
 							<a href="/uploads/<?= $imageName ?>">
 						    	<div class="our-gallery__image image-container gallery-horizontal">
 					                <div>
