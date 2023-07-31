@@ -27,7 +27,7 @@ class m230614_071556_alter_invitations_date_fields extends Migration
         $this->alterColumn(
             'invitations',
             'event_date',
-            $this->date()
+            $this->dateTime()
         );
     }
 

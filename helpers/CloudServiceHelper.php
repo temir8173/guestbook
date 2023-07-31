@@ -14,9 +14,9 @@ class CloudServiceHelper
     {
         if (preg_match('#https://drive\.google\.com/#', $url)) {
             $type = self::GOOGLE_DRIVE;
-        } elseif (preg_match('#yandex#', $url)) {
+        } elseif (preg_match('#https://disk\.yandex#', $url)) {
             $type = self::YANDEX_DISK;
-        } elseif (preg_match('#mail\.ru#', $url)) {
+        } elseif (preg_match('#https://cloud\.mail\.ru#', $url)) {
             $type = self::MAILRU;
         }
 

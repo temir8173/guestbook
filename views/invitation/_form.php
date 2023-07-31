@@ -2,11 +2,11 @@
 
 use app\models\Invitation;
 use app\models\Section;
+use kartik\datetime\DateTimePicker;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
 
 /**
  * @var View $this
@@ -32,13 +32,13 @@ use kartik\date\DatePicker;
                     {error}',
                 ]); ?>
 
-                <?= $form->field($invitation, 'event_date')->widget(DatePicker::class, [
+                <?= $form->field($invitation, 'event_date')->widget(DateTimePicker::class, [
                     'options' => [
                         'value' => $invitation->event_date,
                     ],
                     'pluginOptions' => [
                         'autoclose' => true,
-                        'format' => 'yyyy-mm-dd',
+                        'format' => 'yyyy-mm-dd h:i:s',
                         'todayHighlight' => true,
                     ]
                 ]); ?>

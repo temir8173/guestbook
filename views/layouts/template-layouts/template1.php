@@ -33,14 +33,6 @@ TemplatesAsset::register($this);
    
 <?= $content ?>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left"></p>
-
-        <p class="pull-right footer__title">&copy; ShaqiruKZ <?= date('Y') ?></p>
-    </div>
-</footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

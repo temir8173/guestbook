@@ -4,8 +4,6 @@
  * @var array $fieldValues
  */
 
-use app\helpers\CloudServiceHelper;
-
 ?>
 <section id="afterwards" class="afterwards">
     <div class="container">
@@ -19,7 +17,6 @@ use app\helpers\CloudServiceHelper;
                         <?= $this->render('_memory_item', ['url' => $fieldValues['memory_link3'] ?? null]); ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

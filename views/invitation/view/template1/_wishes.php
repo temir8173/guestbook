@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
                              '/invitation/get-wishes',
                              'invitationId' => $invitation->id
                          ]) ?>">
-						<?= $this->render('_wishes_box', ['messages' => $invitation->wishes]); ?>
+                        <?= $this->render('_wishes_box', ['wishes' => $invitation->wishes]); ?>
 					</div>
 				</div>
 

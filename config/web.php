@@ -14,6 +14,7 @@ $di = require __DIR__ . '/di.php';
 
 $config = [
     'id' => 'basic',
+    'timeZone' => 'Asia/Almaty',
     'name' => 'Шақыру KZ',
     'language' => 'kk',
     'sourceLanguage' => 'kk',
@@ -73,6 +74,7 @@ $config = [
         'formatter' => [
             'dateFormat' => 'dd.MM.yyyy',
             'datetimeFormat' => 'dd.MM.yyyy h:i:s',
+            'timeZone' => 'Asia/Almaty',
             'decimalSeparator' => '.',
             'thousandSeparator' => ' ',
             'currencyCode' => 'KZT',

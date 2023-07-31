@@ -172,7 +172,7 @@ class InvitationController extends BaseController
             if ($invitation) {
                 $newMessage = new Wish();
 
-                Yii::$app->formatter->locale = 'en-US';
+//                Yii::$app->formatter->locale = $invitation->locale;
                 $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
 
                 return $this->render(
@@ -211,12 +211,12 @@ class InvitationController extends BaseController
      */
     public function actionGetWishes($invitationId = 0): string
     {
-        $messages = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['created_at' => SORT_ASC])->all();
+        $wishes = Wish::find()->where(['invitation_id' => $invitationId])->orderBy(['created_at' => SORT_ASC])->all();
         $invitation = Invitation::findOne($invitationId);
 
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax("@app/views/invitation/view/{$invitation->template->slug}/_wishes_box", [
-                'messages' => $messages
+                'wishes' => $wishes
             ]);
         }
 
