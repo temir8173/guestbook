@@ -54,46 +54,6 @@ class ApiController extends Controller
         ];
     }
 
-    public function actionGetMessages()
-    {
-
-        $messages = Wish::find()->orderBy(['date' => SORT_ASC])->all();
-
-        if (Yii::$app->request->isAjax) {
-
-            return $this->renderAjax('@app/modules/invitations/views/default/_messages.php', [
-                'messages' => $messages
-            ]);
-
-        } else {
-            throw new HttpException(404,'Страница не найдена');
-        }
-        
-    }
-
-    public function actionAddMessage()
-    {
-        if (Yii::$app->request->isAjax) {
-
-            $newMessage = new Wish();
-            $return = array(
-                'error' => 1,
-                'message' => 'Ошибка. Неверный формат данных!',
-            );
-
-            if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
-                $return = array(
-                    'error' => 0,
-                    'message' => 'Ваше сообщение было успешно добавлено!',
-                );
-            }
-            return Json::encode($return);
-
-        } else {
-            throw new HttpException(404,'Страница не найдена');
-        }
-    }
-
     public function actionDeleteImage(): array
     {
         $response = array(
@@ -108,7 +68,6 @@ class ApiController extends Controller
         if (
             $invitation
             && Yii::$app->request->isAjax
-            && file_exists(Yii::getAlias('@webroot') . '/uploads/' . $imageName)
         ) {
             $this->invitationService->deleteImage($invitation, $fieldSlug, $imageName);
             $response['success'] = true;

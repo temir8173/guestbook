@@ -31,7 +31,9 @@ class InvitationService
 
     public function deleteImage(Invitation $invitation, string $fieldSlug, string $imageName)
     {
-        unlink(Yii::getAlias('@webroot') . '/uploads/' . $imageName);
+        if (file_exists(Yii::getAlias('@webroot') . '/uploads/' . $imageName)) {
+            unlink(Yii::getAlias('@webroot') . '/uploads/' . $imageName);
+        }
 
         if (isset($invitation->field_values[$fieldSlug])) {
             $imageNames = $invitation->field_values[$fieldSlug];

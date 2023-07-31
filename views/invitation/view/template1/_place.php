@@ -8,14 +8,15 @@
 <section id="address" class="address">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-md-5">
 				<h2 class="address__title section-title"><?= $fieldValues['place_section_name'] ?? null ?></h2>
 				<p class="address__place">
                     <?= $fieldValues['place_restaurant'] ?? null ?> <br>
-                    <span><?= $fieldValues['place_address'] ?? null ?></span>
+                    <a target="_blank"
+                       href="<?= $fieldValues['place_link'] ?? null ?>"><?= $fieldValues['place_address'] ?? null ?></a>
                 </p>
 			</div>
-			<div class="col-sm-6 d-flex align-items-end">
+			<div class="col-md-7 d-flex align-items-end">
 			<div id="map" class="address__map-container iframe-container"
                  data-coors='<?= $fieldValues['place_map_widget'] ?? null ?>'></div>
 			<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>

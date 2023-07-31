@@ -55,7 +55,6 @@ use yii\helpers\Html;
                             <ul>
                                 <li><?= Yii::t('common', 'Заманауи') ?></li>
                                 <li><?= Yii::t('common', 'Әдемі дизайн') ?></li>
-                                <li><?= Yii::t('common', 'Заманауи') ?></li>
                                 <li><?= Yii::t('common', 'Қолжетімді баға') ?></li>
                                 <li><?= Yii::t('common', 'Wow-эффект') ?></li>
                                 <li><?= Yii::t('common', 'Қонақтармен интерактивті әрекеттесу мүмкіндігі') ?></li>

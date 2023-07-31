@@ -21,8 +21,8 @@ use yii\web\UploadedFile;
  * @property int $updated_at
  * @property int $status
  * @property int $user_id
- * @property string $sections
- * @property string $field_values
+ * @property array $sections
+ * @property array $field_values
  * @property boolean $is_demo
  * @property boolean $is_deleted
  *

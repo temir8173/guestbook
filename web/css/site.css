@@ -173,7 +173,7 @@ textarea {
 
 .image-container {
   width: 100%;
-  padding-top: 65%;
+  padding-top: 100%;
   background-color: #ccc;
   position: relative;
 }
@@ -186,6 +186,8 @@ textarea {
   bottom: 0;
   overflow: hidden;
   background-color: #ccc;
+    display: flex;
+    align-items: center;
 }
 
 .image-container img {
