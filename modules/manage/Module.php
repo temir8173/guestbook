@@ -6,6 +6,7 @@ use yii\filters\AccessControl;
 
 /**
  * manage module definition class
+ * @deprecated
  */
 class Module extends \yii\base\Module
 {

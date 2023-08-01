@@ -43,6 +43,45 @@ use yii\widgets\ActiveForm;
                     ]
                 ]); ?>
 
+                <?= $form->field($invitation, 'locale')->dropDownList([
+                    'kk' => 'қазақ',
+                    'ru' => 'русский',
+                ], [
+                    'class' => 'form-control text required'
+                ]) ?>
+
+                <div class="invitations-form__images restaurant-pic">
+                    <span class="image-span">
+                            <div class="invitation-image-preview">
+                                <img src="/uploads/<?= $invitation->image ?>" alt="">
+                            </div>
+                    </span>
+                </div>
+                <div class="upload-box">
+                    <div id="upload-container-inv" class="upload-container" data-action="">
+                        <img id="upload-image" src="/images/upload.svg">
+                        <div>
+                            <?= $form->field(
+                                $invitation,
+                                'image',
+                                [
+                                    'enableClientValidation' => false,
+                                    'template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйретіп алып келіңіз')."</span>\n{input}"
+                                ]
+                            )->fileInput([
+                                'id' => "invitation-image",
+//                            'name' => "Invitation[]",
+                                'multiple' => false
+                            ])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
+                        </div>
+                    </div>
+                    <div class="preview inv-preview container">
+                        <p><?= Yii::t('common', 'Файлдар таңдалмаған') ?></p>
+                    </div>
+                </div>
+
+
+
                 <?php foreach ($sections as $index => $section ) : ?>
                     <?php
                     $inputAttributes = [

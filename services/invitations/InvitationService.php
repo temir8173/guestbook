@@ -13,20 +13,13 @@ class InvitationService
 {
     public function create(Invitation $invitation): string
     {
-        $fileNamesByField = $this->saveFiles($invitation);
-        $invitation->field_values = array_merge($invitation->field_values, $fileNamesByField);
-        $invitation->save(false);
 
-        return $invitation->url;
+        return $this->save($invitation);
     }
 
     public function update(Invitation $invitation): string
     {
-        $fileNamesByField = $this->saveFiles($invitation);
-        $invitation->field_values = array_merge_recursive($invitation->field_values, $fileNamesByField);
-        $invitation->save(false);
-
-        return $invitation->url;
+        return $this->save($invitation, true);
     }
 
     public function deleteImage(Invitation $invitation, string $fieldSlug, string $imageName)
@@ -42,6 +35,27 @@ class InvitationService
             $invitation->field_values = array_merge($invitation->field_values, [$fieldSlug => $imageNames]);
             $invitation->save(false);
         }
+    }
+
+    private function save(Invitation $invitation, bool $isUpdate = false): string
+    {
+        if ($invitation->imageFile) {
+            $name = 'invitation-image-' . $invitation->id
+                . '.' . $invitation->imageFile->extension;
+            if (file_exists(Yii::getAlias('@webroot') . '/uploads/' . $name)) {
+                unlink(Yii::getAlias('@webroot') . '/uploads/' . $name);
+            }
+            $invitation->imageFile->saveAs('uploads/' . $name);
+            $invitation->image = $name;
+        }
+
+        $fileNamesByField = $this->saveFiles($invitation);
+        $invitation->field_values = $isUpdate
+            ? array_merge_recursive($invitation->field_values, $fileNamesByField)
+            : array_merge($invitation->field_values, $fileNamesByField);
+        $invitation->save(false);
+
+        return $invitation->url;
     }
 
     private function saveFiles(Invitation $invitation): array

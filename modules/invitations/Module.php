@@ -4,6 +4,7 @@ namespace app\modules\invitations;
 
 /**
  * Invitations module definition class
+ * @deprecated
  */
 class Module extends \yii\base\Module
 {

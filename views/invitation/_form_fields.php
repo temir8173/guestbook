@@ -85,25 +85,27 @@ $fieldValues = $invitation->field_values;
             </div>
 
         </div>
-        <div id="upload-container-<?= $section->id ?>-<?= $j ?>" class="upload-container" data-action="">
-            <img id="upload-image" src="/images/upload.svg">
-            <div>
-                <?= $form->field(
-                    $field,
-                    'slug',
-                    [
-                        'enableClientValidation' => false,
-                        'template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйретіп алып келіңіз')."</span>\n{input}"
-                    ]
-                )->fileInput([
-                    'id' => "field-{$field->slug}",
-                    'name' => "Field[{$field->slug}][]",
-                    'multiple' => true
-                ])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
+        <div class="upload-box">
+            <div id="upload-container-<?= $section->id ?>-<?= $j ?>" class="upload-container" data-action="">
+                <img id="upload-image" src="/images/upload.svg">
+                <div>
+                    <?= $form->field(
+                        $field,
+                        'slug',
+                        [
+                            'enableClientValidation' => false,
+                            'template' => "{label}<span> ".Yii::t('common', 'немесе мұнда сүйретіп алып келіңіз')."</span>\n{input}"
+                        ]
+                    )->fileInput([
+                        'id' => "field-{$field->slug}",
+                        'name' => "Field[{$field->slug}][]",
+                        'multiple' => true
+                    ])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
+                </div>
             </div>
-        </div>
-        <div class="preview container">
-            <p><?= Yii::t('common', 'Файлдар таңдалмаған') ?></p>
+            <div class="preview container">
+                <p><?= Yii::t('common', 'Файлдар таңдалмаған') ?></p>
+            </div>
         </div>
     <?php } elseif ($field->type == 'map') { ?>
 

@@ -2,10 +2,8 @@
 
 namespace app\controllers;
 
-use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
 
 class OrderController extends Controller
@@ -17,7 +15,7 @@ class OrderController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -28,7 +26,7 @@ class OrderController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
                 ],
@@ -36,9 +34,6 @@ class OrderController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -52,16 +47,14 @@ class OrderController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $this->layout = 'front-page';
         return $this->render('index');
     }
 
-    
+    public function pay()
+    {
+        echo 'ok';
+    }
 }

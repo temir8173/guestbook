@@ -9,7 +9,10 @@ use app\models\Invitation;
 $names = explode(' ', $invitation->name);
 
 $boyName = $names[0];
-$girlName = $names[1] === '-' ? $names[2] : $names[1];
+$girlName = '';
+if (isset($names[1]) && isset($names[2])) {
+    $girlName = $names[1] === '-' ? $names[2] : $names[1] ?? '';
+}
 
 $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app->getTimeZone()));
 $day = Yii::$app->formatter->asDate($eventDate, 'php:j');

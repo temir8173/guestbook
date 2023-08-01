@@ -2,7 +2,10 @@
 
 /**
  * @var array $fieldValues
+ * @var Invitation $invitation
  */
+
+use app\models\Invitation;
 
 ?>
 <section class="invitation">
@@ -19,7 +22,7 @@
                 </div>
 
                 <div class="invitation-photo">
-                    <img class="invitation-photo-img w-100" src="./images/1-15.jpg" alt="">
+                    <img class="invitation-photo-img w-100" src="/uploads/<?= $invitation->image ?>" alt="">
                 </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ body {
 .invitations-form__section.inactive {
 	opacity: 0.3;
 }
-.invitations-form__section img {
+.invitations-form img {
 	width: 100%;
 }
 .invitations-form__section .container {
@@ -66,6 +66,14 @@ body {
 }
 .preview {
 	margin-top: 20px;
+}
+
+.invitation-image-preview {
+	width: 250px;
+}
+
+.inv-preview {
+	margin-bottom: 30px;
 }
 
 .custom-grid {

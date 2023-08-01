@@ -6,7 +6,6 @@ use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 use yii\web\UploadedFile;
 
 /**
@@ -15,6 +14,8 @@ use yii\web\UploadedFile;
  * @property int $id
  * @property string $url
  * @property string $name
+ * @property string $locale
+ * @property string $image
  * @property int $template_id
  * @property int $event_date
  * @property int $created_at
@@ -37,22 +38,9 @@ class Invitation extends ActiveRecord
     public const STATUS_UNPAID = 0;
     public const STATUS_PAID = 1;
 
-    public const TEMPLATE_1 = 'template1';
-    public const TEMPLATE_2 = 'template2';
-    public const TEMPLATE_RUSLAN = 'template-ruslan';
-    public const TEMPLATE_NABAT = 'template-nabat';
+    public const MAX_FILES_COUNT = 3;
 
-    public static function getTemplates()
-    {
-        return [
-            self::TEMPLATE_1 => 'template1', 
-            self::TEMPLATE_2 => 'template2',
-            self::TEMPLATE_RUSLAN => 'Шаблон - Руслан',
-            self::TEMPLATE_NABAT => 'Шаблон - Набат',
-        ];
-    }
-
-    public static function getStatusLabels()
+    public static function getStatusLabels(): array
     {
         return [
             self::STATUS_UNPAID => 'Төленбеген',
@@ -66,37 +54,35 @@ class Invitation extends ActiveRecord
     public array $files = [];
 
     /**
-     * {@inheritdoc}
-     */
+     * @var ?UploadedFile $imageFile
+    */
+    public ?UploadedFile $imageFile = null;
+
     public static function tableName(): string
     {
         return 'invitations';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules(): array
     {
         return [
-            [['url', 'name', 'template_id', 'event_date'], 'required'],
+            [['url', 'name', 'template_id', 'event_date', 'locale'], 'required'],
             [['status', 'user_id', 'template_id'], 'integer'],
-            [['url', 'name'], 'string', 'max' => 255],
+            [['url', 'name', 'image'], 'string', 'max' => 255],
             [['url'], 'unique'],
             [['status'], 'default', 'value' => 0],
             [['sections', 'field_values', 'is_demo', 'is_deleted'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'url' => 'Url',
             'name' => Yii::t('common', 'Аты'),
+            'locale' => Yii::t('common', 'Тіл'),
+            'image' => Yii::t('common', 'Сурет'),
             'event_date' => Yii::t('common', 'Өткізілетін уақыты'),
             'created_at' => 'Created Date',
             'updated_at' => 'Updated Date',
@@ -123,6 +109,8 @@ class Invitation extends ActiveRecord
 
     public function load($data, $formName = null): bool
     {
+        $this->imageFile = UploadedFile::getInstancesByName("Invitation[image]")[0] ?? null;
+
         $this->sections = $data['Section']['slug'] ?? [];
 
         if (!empty($data['Field'])) {
@@ -169,7 +157,19 @@ class Invitation extends ActiveRecord
                     ? 'https://www.youtube.com/embed/'.$query['v']
                     : $fieldValue;
             } elseif ($fieldTypesBySlug[$slug] === Field::TYPE_IMAGE) {
-                $this->files[$slug] = UploadedFile::getInstancesByName("Field[$slug]");
+                $filesCount = count($this->field_values[$slug] ?? []);
+                $count = 0;
+                $uploadFiles = UploadedFile::getInstancesByName("Field[$slug]");
+
+                while (
+                    $filesCount + $count < self::MAX_FILES_COUNT
+                    && isset($uploadFiles[$count])
+                    && $uploadFiles[$count]->size < 2 * 1024 * 1024
+                ) {
+                    $this->files[$slug][] = $uploadFiles[$count];
+                    $count++;
+                }
+
                 $fieldValue = $this->field_values[$slug] ?? [];
             }
             $newFields[$slug] = $fieldValue;

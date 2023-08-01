@@ -27,8 +27,8 @@ $('document').ready(function(){
 
 	/* drop upload images */
 
-	var dropZone = $('.upload-container');
-	var inputDrop = dropZone.find('input[type=file]');
+	const dropZone = $('.upload-container');
+	const inputDrop = dropZone.find('input[type=file]');
 
 	inputDrop.focus(function() {
 		$('label').addClass('focus');
@@ -57,29 +57,40 @@ $('document').ready(function(){
 	dropZone.on('drop', function(e) {
 		$(this).removeClass('dragover');
 		let files = e.originalEvent.dataTransfer.files;
-		$(this).find('input[type=file]')[0].files = files;
-		var preview = $(this).parent().find('.preview');
-		getPreview(preview, files);
+		const fileInput = $(this).find('input[type=file]')[0];
+		const newFileList = new DataTransfer();
+		newFileList.items.add(files[0]);
+		if ($(fileInput).attr('multiple')) {
+			let count = 1;
+			while (count < 3 && files[count]) {
+				newFileList.items.add(files[count]);
+				count++;
+			}
+		}
+		console.log(newFileList.files)
+		fileInput.files = newFileList.files;
+		const preview = $(this).parent().find('.preview');
+		getPreview(preview, newFileList.files);
 		//sendFiles(files);
 	});
 
 	inputDrop.change(function() {
 		let files = this.files;
-		var preview = $(this).parents('.invitations-form__section').find('.preview');
+		const preview = $(this).parents('.upload-box').find('.preview');
 		getPreview(preview, files);
 		//sendFiles(files);
 	});
 
-	var fileTypes = [
+	const fileTypes = [
 		'image/jpeg',
 		'image/jpg',
 		'image/png',
 		'image/gif',
-	]
+	];
 
 	function validFileType(file) {
-		for(var i = 0; i < fileTypes.length; i++) {
-			if(file.type === fileTypes[i] && file.size < 1048576*5) {
+		for(let i = 0; i < fileTypes.length; i++) {
+			if(file.type === fileTypes[i] && file.size < 1048576*2) {
 				return true;
 			}
 		}
@@ -125,7 +136,8 @@ $('document').ready(function(){
 					listItem.append(para);
 
 				} else {
-					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың кеңейтімі дұрыс емес немесе өлшемі 5МБ-тан көп. Қайтадан таңдаңыз.';
+					para.textContent = 'File name ' + curFiles[i].name + ': Файлдың кеңейтімі дұрыс емес немесе' +
+						' өлшемі 2МБ-тан көп. Қайтадан таңдаңыз.';
 					listItem.append(para);
 				}
 
@@ -157,8 +169,8 @@ $('document').ready(function(){
 
 	// 
 
-	var locationInfo = document.getElementById('location'),
-	    coorsInput = document.getElementById('coorsInput'),
+	const locationInfo = document.getElementById('location'),
+		coorsInput = document.getElementById('coorsInput'),
 		defaultCoors = [51.23, 51.38];
 
 	DG.then(function () {
@@ -190,10 +202,10 @@ $('document').ready(function(){
 	            draggable: true
 	        }).addTo(map);
 	        marker.on('drag', function(e) {
-	            var lat = e.target._latlng.lat.toFixed(3),
-	                lng = e.target._latlng.lng.toFixed(3);
+				const lat = e.target._latlng.lat.toFixed(3),
+					lng = e.target._latlng.lng.toFixed(3);
 
-	            locationInfo.innerHTML = lat + ', ' + lng;
+				locationInfo.innerHTML = lat + ', ' + lng;
 		        coorsInput.value = JSON.stringify({lat: e.latlng.lat,  lng: e.latlng.lng});
 	        });
 
