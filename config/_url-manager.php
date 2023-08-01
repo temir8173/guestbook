@@ -12,6 +12,7 @@ return [
         '/' => 'site/index',
         '/templates' => 'site/templates',
         '/rules' => 'site/rules',
+        '/privacy' => 'site/privacy-policy',
 
         // auth routes
         '/reset-password' => 'auth/reset-password',

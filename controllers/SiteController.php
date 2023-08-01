@@ -74,6 +74,15 @@ class SiteController extends BaseController
 
     public function actionRules(): string
     {
-        return $this->render('rules');
+        $locale = Yii::$app->formatter->locale;
+
+        return ($locale === 'ru') ? $this->render('rules_ru') : $this->render('rules');
+    }
+
+    public function actionPrivacyPolicy(): string
+    {
+        $locale = Yii::$app->formatter->locale;
+
+        return ($locale === 'ru') ? $this->render('privacy_ru') : $this->render('privacy');
     }
 }

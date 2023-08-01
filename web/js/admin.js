@@ -75,9 +75,17 @@ $('document').ready(function(){
 	});
 
 	inputDrop.change(function() {
-		let files = this.files;
+		const newFileList = new DataTransfer();
+		newFileList.items.add(this.files[0]);
+		if ($(this).attr('multiple')) {
+			let count = 1;
+			while (count < 3 && this.files[count]) {
+				newFileList.items.add(this.files[count]);
+				count++;
+			}
+		}
 		const preview = $(this).parents('.upload-box').find('.preview');
-		getPreview(preview, files);
+		getPreview(preview, newFileList.files);
 		//sendFiles(files);
 	});
 

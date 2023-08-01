@@ -112,6 +112,29 @@ body a:hover {
     margin-bottom: 0;
 }
 
+.agreement h2 {
+    font-family: "Merriweather", sans-serif;
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #545454;
+}
+
+.agreement h5 {
+    font-family: "Merriweather", sans-serif;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #545454;
+}
+
+.agreement p {
+    font-size: 14px;
+    color: #333;
+}
+
+.agreement p a {
+    border-bottom: 1px solid #777;
+}
+
 .has-error .form-control {
   border-color: rgba(240,0,0,0.4);
 }
