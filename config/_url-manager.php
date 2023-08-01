@@ -32,11 +32,5 @@ return [
 
 
         '/admin/field-values/<invitation_id:\d+>' => '/admin/field-values/index',
-//        '/<view:[\w-]+>' => '/invitations/default/index',
-//        '/preview/<view:\w+>' => '/invitations/default/preview',
-//        '/ru/<view:[\w-]+>' => '/<view:[\w-]+>',
-        '/manage/messages/<invitation_id:\d+>' => '/manage/messages/index',
-        '/manage/invitations' => '/manage/invitations/index',
-        //'/manage/' => '/manage/invitations/index',
     ],
 ];

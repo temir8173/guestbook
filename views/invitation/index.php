@@ -23,9 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p>
                 <?= Html::a(Yii::t('common', 'Жаңа шақыру билеті'), ['/templates'], ['class' => 'btn btn-info create-invitation-btn']) ?>
             </p>
-            <p id="text-to-copy">Copy this text to clipboard</p>
 
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
             <?php \yii\widgets\Pjax::begin(); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,

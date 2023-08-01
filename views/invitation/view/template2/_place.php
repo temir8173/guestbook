@@ -13,8 +13,13 @@
                     <?= $fieldValues['place_section_name'] ?? null ?>
 				</h2>
 				<p class="address__place"><?= $fieldValues['place_restaurant'] ?? null ?> <br>
-                <a target="_blank"
-                    href="<?= $fieldValues['place_link'] ?? null ?>"><?= $fieldValues['place_address'] ?? null ?></a>
+                <?php if(isset($fieldValues['place_link']) && $fieldValues['place_link']) { ?>
+                    <a target="_blank"
+                       href="<?= $fieldValues['place_link'] ?? null ?>"><?= $fieldValues['place_address'] ?? null ?>
+                    </a>
+                <?php } else { ?>
+                    <span><?= $fieldValues['place_address'] ?? null ?></span>
+                <?php } ?>
 			</div>
 			<div class="col-md-7">
 			<div id="map" class="address__map-container iframe-container"

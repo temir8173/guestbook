@@ -7,6 +7,7 @@ use yii\helpers\Html;
  * @var Template[] $templates
 */
 
+$this->title = 'ShaqiruKZ';
 ?>
 
 <section id="top">
@@ -54,6 +55,7 @@ use yii\helpers\Html;
                                 ?></h2>
                             <ul>
                                 <li><?= Yii::t('common', 'Заманауи') ?></li>
+                                <li><?= Yii::t('common', 'Жастар талабына сай') ?></li>
                                 <li><?= Yii::t('common', 'Әдемі дизайн') ?></li>
                                 <li><?= Yii::t('common', 'Қолжетімді баға') ?></li>
                                 <li><?= Yii::t('common', 'Wow-эффект') ?></li>
@@ -105,7 +107,11 @@ use yii\helpers\Html;
                         <i class="icon-whatsapp"></i></a>
                     <a target="_blank" rel="noopener noreferrer" href="https://t.me/temir95"><i class="icon-telegram-plane"></i></a>
                 </div>
-                <?= Html::a('Қолдану ережелері', '/rules', ['class' => 'bottom-rules']) ?>
+                <?= Html::a(
+                        Yii::t('common', 'Қолдану ережелері'),
+                        '/rules',
+                        ['class' => 'bottom-rules']
+                ) ?>
             </div>
         </div>
     </div>

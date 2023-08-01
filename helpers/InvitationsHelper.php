@@ -4,6 +4,7 @@ namespace app\helpers;
 
 use app\models\Invitation;
 use Exception;
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -12,8 +13,8 @@ class InvitationsHelper
     public static function statusList(): array
     {
         return [
-            Invitation::STATUS_UNPAID => 'Төленбеді',
-            Invitation::STATUS_PAID => 'Төленді',
+            Invitation::STATUS_UNPAID => Yii::t('common', 'Төленбеді'),
+            Invitation::STATUS_PAID => Yii::t('common', 'Төленді'),
         ];
     }
 

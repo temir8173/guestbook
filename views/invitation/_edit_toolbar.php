@@ -17,7 +17,7 @@ $this->title = $invitation->name;
                 <?php if ($invitation->is_demo) { ?>
                     <?= Html::a(
                         Yii::t('common', 'Басты бет'),
-                        '/',
+                        ['/'],
                     ) ?>
                     <?php if (Yii::$app->user->isGuest) { ?>
                         <a href="#" class="create-invitation-login" data-bs-toggle="modal" data-bs-target="#modal-login"
@@ -35,7 +35,7 @@ $this->title = $invitation->name;
                     <?php if (!$invitation->is_demo) { ?>
                         <?= Html::a(
                             Yii::t('common', 'Басты бет'),
-                            '/',
+                            ['/'],
                         ) ?>
                     <?php } ?>
                     <?= Html::a(
@@ -50,7 +50,7 @@ $this->title = $invitation->name;
                 ) { ?>
                     <?= Html::a(
                         Yii::t('common', 'Басты бет'),
-                        '/',
+                        ['/'],
                     ) ?>
                     <?= Html::a(
                         Yii::t('common', 'Өзгерту'),

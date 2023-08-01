@@ -92,14 +92,6 @@ $config = [
             'class' => 'app\modules\admin\Module',
             'layout' => '@app/views/layouts/admin',
         ],
-        'manage' => [
-            'class' => 'app\modules\manage\Module',
-            'layout' => '@app/modules/manage/views/layouts/manage',
-        ],
-        'invitations' => [
-            'class' => 'app\modules\invitations\Module',
-            'layout' => '@app/modules/invitations/views/layouts/manage',
-        ],
     ],
     'controllerMap' => [
         'elfinder' => [

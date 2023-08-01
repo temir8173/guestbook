@@ -12,8 +12,13 @@
 				<h2 class="address__title section-title"><?= $fieldValues['place_section_name'] ?? null ?></h2>
 				<p class="address__place">
                     <?= $fieldValues['place_restaurant'] ?? null ?> <br>
-                    <a target="_blank"
-                       href="<?= $fieldValues['place_link'] ?? null ?>"><?= $fieldValues['place_address'] ?? null ?></a>
+                    <?php if(isset($fieldValues['place_link']) && $fieldValues['place_link']) { ?>
+                        <a target="_blank"
+                           href="<?= $fieldValues['place_link'] ?? null ?>"><?= $fieldValues['place_address'] ?? null ?>
+                        </a>
+                    <?php } else { ?>
+                        <span><?= $fieldValues['place_address'] ?? null ?></span>
+                    <?php } ?>
                 </p>
 			</div>
 			<div class="col-md-7 d-flex align-items-end">

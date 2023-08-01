@@ -154,8 +154,10 @@ class InvitationController extends BaseController
     public function actionView($url = ''): Response|string
     {
         if (Yii::$app->language != 'kk') {
+            Yii::$app->session->set('tempLocale', Yii::$app->language);
             return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
         }
+        Yii::$app->language = Yii::$app->session->get('tempLocale', 'kk');
 
         if ($url) {
             /** @var Invitation $invitation */
@@ -170,9 +172,12 @@ class InvitationController extends BaseController
             }
 
             if ($invitation) {
+                if (!$invitation->is_demo) {
+                    Yii::$app->language = $invitation->locale;
+//                Yii::$app->formatter->locale = $invitation->locale;
+                }
                 $newMessage = new Wish();
 
-//                Yii::$app->formatter->locale = $invitation->locale;
                 $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
 
                 return $this->render(
@@ -236,6 +241,7 @@ class InvitationController extends BaseController
             );
 
             if ($newMessage->load(Yii::$app->request->post()) && $newMessage->save()) {
+                Yii::$app->language = Yii::$app->session->get('tempLocale');
                 $response = array(
                     'error' => 0,
                     'message' => Yii::t('common', 'Рахмет! Сіздің тілегіңіз жіберілді!'),

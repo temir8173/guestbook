@@ -22,19 +22,19 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                              ?>">
                             <div class="countdown-number">
                                 <span class="days countdown-time"></span>
-                                <span class="countdown-text">Күн</span>
+                                <span class="countdown-text"><?= Yii::t('common', 'Күн') ?></span>
                             </div>
                             <div class="countdown-number">
                                 <span class="hours countdown-time"></span>
-                                <span class="countdown-text">Сағат</span>
+                                <span class="countdown-text"><?= Yii::t('common', 'Сағат') ?></span>
                             </div>
                             <div class="countdown-number">
                                 <span class="minutes countdown-time"></span>
-                                <span class="countdown-text">Минут</span>
+                                <span class="countdown-text"><?= Yii::t('common', 'Минут') ?></span>
                             </div>
                             <div class="countdown-number">
                                 <span class="seconds countdown-time"></span>
-                                <span class="countdown-text">Секунд</span>
+                                <span class="countdown-text"><?= Yii::t('common', 'Секунд') ?></span>
                             </div>
                         </div>
                         <div id="deadline-message" class="deadline-message">

@@ -70,7 +70,10 @@ use yii\widgets\ActiveForm;
 	            	<?= $form->field($newMessage, "invitation_id")->hiddenInput(['value' => $invitation->id])->label(false) ?>
 
 	            	<div class="wishes__form-btn">
-	                    <?= Html::submitInput('Құттықтау', ['name' => 'submit', 'class' => 'btn']) ?>
+	                    <?= Html::submitInput(
+                            Yii::t('common', 'Құттықтау'),
+                            ['name' => 'submit', 'class' => 'btn']
+                        ) ?>
 	                </div>
 
 	            <?php ActiveForm::end(); ?>

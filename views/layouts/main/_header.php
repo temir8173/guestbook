@@ -10,7 +10,7 @@ use yii\helpers\Html;
             <div class="col-md-6">
                 <nav class="header-menu">
                     <ul>
-                        <?php if (Yii::$app->request->url !== '/') { ?>
+                        <?php if (!in_array(Yii::$app->request->url, ['/', '/ru'])) { ?>
                             <li>
                                 <?= Html::a(
                                     Yii::t('common', 'Басты бет'),
@@ -36,6 +36,7 @@ use yii\helpers\Html;
                 <div class="top-phone"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
                 <div class="lang-switcher">
                     <?php
+                    Yii::$app->session->set('tempLocale', Yii::$app->language);
                     if(Yii::$app->language === 'ru') {
                         echo Html::a('Қазақша', array_merge(
                             \Yii::$app->request->get(),
