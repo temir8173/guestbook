@@ -70,7 +70,6 @@ use yii\widgets\ActiveForm;
                                 ]
                             )->fileInput([
                                 'id' => "invitation-image",
-//                            'name' => "Invitation[]",
                                 'multiple' => false
                             ])->label(Yii::t('common', 'Файл таңдаңыз')); ?>
                         </div>
@@ -100,7 +99,7 @@ use yii\widgets\ActiveForm;
                     ?>
                     <section class="invitations-form__section <?= !$isSectionActive ? 'inactive' : '' ?>">
                         <h2>
-                            <span><?= $index + 1 ?></span>. Секция - <?= Yii::t('common', $section->name) ?>
+                            <span><?= $index + 1 ?></span>. Секция - <?= $section->localeName ?>
                         </h2>
                         <?= $form->field($section, "slug[]")
                             ->hiddenInput($inputAttributes)->label(false) ?>

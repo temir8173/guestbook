@@ -28,10 +28,10 @@ $fieldValues = $invitation->field_values;
                 'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
                 'placeholder' => $field->hint ?? '',
             ])
-            ->label(Yii::t('common', $field->name));
+            ->label(Yii::t('common', $field->localeName));
     } elseif ($field->type == 'textarea') {
         echo '<div class="form-group">';
-        echo Html::label($field->name, "field-{$field->slug}");
+        echo Html::label($field->localeName, "field-{$field->slug}");
         echo CKEditor::widget([
             'name' => "Field[{$field->slug}]",
             'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
@@ -54,12 +54,12 @@ $fieldValues = $invitation->field_values;
 //                        'preset' => 'standart', //basic, standard, full
 //                        'inline' => false,
 //                    ],
-//                ])->label(Yii::t('common', $field->name));
+//                ])->label(Yii::t('common', $field->localeName));
     } elseif ($field->type === 'image') {
         ?>
         <div class="container">
             <div class="row">
-                <h4><?= Yii::t('common', $field->name) ?></h4>
+                <h4><?= Yii::t('common', $field->localeName) ?></h4>
                 <div class="invitations-form__images restaurant-pic">
                     <?php if (isset($fieldValues[$field->slug])) { ?>
                         <?php foreach ($fieldValues[$field->slug] as $imageName) { ?>
@@ -132,7 +132,7 @@ $fieldValues = $invitation->field_values;
                 'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
                 'placeholder' => $field->hint ?? '',
             ])
-            ->label(Yii::t('common', $field->name));
+            ->label(Yii::t('common', $field->localeName));
     } ?>
 
 

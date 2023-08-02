@@ -123,8 +123,3 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<script>
-    $('.carousel').carousel({
-        interval: 2000
-    })
-</script>

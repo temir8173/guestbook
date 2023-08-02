@@ -107,11 +107,16 @@ $this->title = 'ShaqiruKZ';
                         <i class="icon-whatsapp"></i></a>
                     <a target="_blank" rel="noopener noreferrer" href="https://t.me/temir95"><i class="icon-telegram-plane"></i></a>
                 </div>
-                <?= Html::a(
+                <div class="bottom-rules">
+                    <?= Html::a(
                         Yii::t('common', 'Қолдану ережелері'),
                         '/rules',
-                        ['class' => 'bottom-rules']
-                ) ?>
+                    ) ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Құпиялық саясат'),
+                        '/privacy',
+                    ) ?>
+                </div>
             </div>
         </div>
     </div>

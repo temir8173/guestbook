@@ -12,9 +12,11 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $slug
  * @property string $name
+ * @property string $name_rus
  * @property bool $is_optional
  *
  * @property Field[] $fields
+ * @property string $localeName
  */
 class Section extends ActiveRecord
 {
@@ -27,7 +29,7 @@ class Section extends ActiveRecord
     {
         return [
             [['name', 'slug', 'is_optional'], 'required'],
-            [['name', 'slug'], 'string', 'max' => 255],
+            [['name', 'name_rus', 'slug'], 'string', 'max' => 255],
             [['is_optional'], 'boolean'],
         ];
     }
@@ -38,11 +40,17 @@ class Section extends ActiveRecord
             'id' => 'ID',
             'slug' => 'Slug',
             'name' => Yii::t('common', 'Аты'),
+            'name_rus' => Yii::t('common', 'Орысша атауы'),
         ];
     }
 
     public function getFields(): ActiveQuery
     {
         return $this->hasMany(Field::class, ['section_id' => 'id']);
+    }
+
+    public function getLocaleName(): string
+    {
+        return (\Yii::$app->language = 'ru') && $this->name_rus ? $this->name_rus : $this->name;
     }
 }

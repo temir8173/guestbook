@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => false,
             ],
             'name',
+            'name_rus',
             'slug',
             [
                 'attribute' => 'is_optional',

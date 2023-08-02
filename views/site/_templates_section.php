@@ -52,7 +52,7 @@ $templateTypes = TemplateTypesList::getAll();
                                         $templatesBySpecificType = $templates[$typeSlug] ?? [];
                                         ?>
                                         <?php foreach ($templatesBySpecificType as $template) { ?>
-                                            <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="col-12 col-md-6 col-lg-4">
                                                 <div class="product-details">
                                                     <a href="<?= Url::to(['/invitation/view', 'url' => $template->slug]) ?>"
                                                        class="product-img">

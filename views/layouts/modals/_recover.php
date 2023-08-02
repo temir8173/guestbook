@@ -25,7 +25,7 @@ $recoverRequestForm = $this->params['recoverRequestForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'request-password-reset-form',
-                            'action' => 'auth/recover-request',
+                            'action' => Yii::$app->language === 'kk' ? 'auth/recover-request' : 'ru/auth/recover-request',
                             'options' => [
                                 'class' => 'login-form async-form',
                             ]

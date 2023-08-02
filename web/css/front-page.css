@@ -321,6 +321,11 @@ section h2:after {
     margin-top: 50px;
 }
 
+.bottom-rules a {
+    display: block;
+    margin-bottom: 8px;
+}
+
 .social-box a {
     margin-right: 50px;
     opacity: .6;

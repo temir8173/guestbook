@@ -34,7 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'name',
-                'headerOptions' => ['style' => 'width: 20%'],
+                'headerOptions' => ['style' => 'width: 10%'],
+            ],
+            [
+                'attribute' => 'name_rus',
+                'headerOptions' => ['style' => 'width: 10%'],
             ],
             [
                 'attribute'=>'section_id',

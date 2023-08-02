@@ -10,6 +10,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $name
+ * @property string $name_rus
  * @property int $section_id
  * @property string $type
  * @property string $slug
@@ -17,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property string $default_value
  *
  * @property Section $section
+ * @property string $localeName
  */
 class Field extends ActiveRecord
 {
@@ -49,7 +51,7 @@ class Field extends ActiveRecord
         return [
             [['name', 'section_id', 'type', 'slug'], 'required'],
             [['section_id'], 'integer'],
-            [['name', 'type', 'slug'], 'string', 'max' => 255],
+            [['name', 'name_rus', 'type', 'slug'], 'string', 'max' => 255],
             [['hint', 'default_value'], 'string'],
             [['slug'], 'unique'],
         ];
@@ -60,6 +62,7 @@ class Field extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Аты',
+            'name_rus' => 'Орысша атауы',
             'section_id' => 'Секция',
             'type' => 'Түрі',
             'hint' => 'Подсказка',
@@ -70,5 +73,10 @@ class Field extends ActiveRecord
     public function getSection(): ActiveQuery
     {
         return $this->hasOne(Section::class, ['id' => 'section_id']);
+    }
+
+    public function getLocaleName(): string
+    {
+        return (\Yii::$app->language = 'ru') && $this->name_rus ? $this->name_rus : $this->name;
     }
 }

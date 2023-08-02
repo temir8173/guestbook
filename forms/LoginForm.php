@@ -40,7 +40,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, Yii::t('common', 'Құпия сөз дұрыс емес немесе бұндай пайдаланушы тіркелмеген'));
+                $this->addError($attribute, Yii::t('common', 'Құпия сөз дұрыс емес немесе мұндай пайдаланушы тіркелмеген'));
             }
         }
     }

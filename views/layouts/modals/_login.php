@@ -2,6 +2,7 @@
 
 use app\forms\LoginForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /**
@@ -23,7 +24,7 @@ $loginForm = $this->params['loginForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'login-form',
-                            'action' => 'auth/do-login',
+                            'action' => Yii::$app->language === 'kk' ? 'auth/do-login' : 'ru/auth/do-login',
                             'fieldConfig' => [
                                 'template' => "{label}\n<div class=\"col-lg-12\">{input}</div>\n<div class=\"col-lg-12\">{error}</div>",
                                 'labelOptions' => ['class' => 'col-lg-12 '],

@@ -4,12 +4,12 @@ use yii\helpers\Html;
 
 ?>
 
-<header class="header">
+<header class="header header-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <nav class="header-menu">
-                    <ul>
+            <div class="col-3 col-md-4 col-lg-6 d-flex align-items-center">
+                <nav class="header-menu main-nav">
+                    <ul class="nav">
                         <?php if (!in_array(Yii::$app->request->url, ['/', '/ru'])) { ?>
                             <li>
                                 <?= Html::a(
@@ -30,10 +30,14 @@ use yii\helpers\Html;
                             </li>
                         <?php } ?>
                     </ul>
+                    <a class="menu-trigger">
+                        <span>Menu</span>
+                    </a>
+
                 </nav>
             </div>
-            <div class="col-md-6 d-flex justify-content-between justify-content-md-end">
-                <div class="top-phone"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
+            <div class="col-9 col-md-8 col-lg-6 d-flex justify-content-end">
+                <div class="top-phone d-md-block d-none"><a href="tel:+77773919513">+7 (777) 391-95-13</a></div>
                 <div class="lang-switcher">
                     <?php
                     Yii::$app->session->set('tempLocale', Yii::$app->language);

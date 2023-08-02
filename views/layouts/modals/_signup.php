@@ -25,7 +25,7 @@ $signupForm = $this->params['signupForm'] ?? null;
                     <div class="modal-form-box">
                         <?php $form = ActiveForm::begin([
                             'id' => 'form-signup',
-                            'action' => 'auth/signup',
+                            'action' => Yii::$app->language === 'kk' ? 'auth/signup' : 'ru/auth/signup',
                             'options' => [
                                 'class' => 'login-form  async-form',
                                 'data-reload' => 1

@@ -118,6 +118,14 @@ $('document').ready(function(){
 		}
 	});
 
+	// Menu Dropdown Toggle
+	if($('.menu-trigger').length){
+		$(".menu-trigger").on('click', function() {
+			$(this).toggleClass('active');
+			$('.header-area .nav').slideToggle(200);
+		});
+	}
+
 	$('.copy-button').click(function() {
 		let textToCopy = $(this).closest('td').find('.invitation-link').text();
 		let tempTextarea = $('<textarea>');
