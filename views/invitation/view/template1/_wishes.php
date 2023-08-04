@@ -62,7 +62,7 @@ use yii\widgets\ActiveForm;
 	            			'error-msg' => Yii::t('common', 'Міндетті түрде тотыру қажет'),
 	            		],
 	            	])->label(Yii::t('common', 'Тойға келесіз бе?')) ?>
-                    <?php if (YII_DEBUG) { ?>
+                    <?php if (!YII_DEBUG) { ?>
                         <?= $form->field($newMessage, 'reCaptcha')
                             ->widget(ReCaptcha2::class, []) ?>
                     <?php } ?>
