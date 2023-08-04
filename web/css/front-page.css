@@ -319,6 +319,7 @@ section h2:after {
     display: inline-block;
     color: #545454;
     margin-top: 50px;
+    text-align: center;
 }
 
 .bottom-rules a {
@@ -464,7 +465,7 @@ section h2:after {
         padding-top: 0;
     }
     #about-product h2 {
-        font-size: 36px;
+        font-size: 32px;
     }
     .about-row {
         margin: 50px 0;

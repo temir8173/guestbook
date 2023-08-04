@@ -890,6 +890,13 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
   
 }
 
+@media (max-width: 430px) {
+	.wishes__messages:before {
+		width: 112%;
+		height: 113%;
+	}
+}
+
 @import url(./fonts.css);
 
 

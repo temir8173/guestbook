@@ -1128,7 +1128,7 @@ body {
         padding: 1.5rem
     }
     .header-area .main-nav .nav {
-        width: 93%;
+        width: 93vw;
     }
 }
 
@@ -1286,4 +1286,8 @@ body .alert-success {
     color: #fff;
     background-color: #1eaf56;
     border-color: #badbcc;
+}
+
+.header-menu .nav > li > a:hover, .header-menu .nav > li > a:focus {
+    background-color: unset ;
 }
