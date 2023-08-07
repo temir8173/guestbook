@@ -39,3 +39,14 @@ foreach ($invitation->sections as $section)
     'view/' . $invitation->template->slug . '/_footer',
     ['invitation' => $invitation]
 ); ?>
+
+<div class="audio" data-audio-src="/uploads/audio/toi_zhyry.mp3">
+
+    <div class="play-button">
+        <img src="/images/play.gif">
+    </div>
+    <div class="stop-button">
+        <img class="sound-off-gif" src="/images/on-progress.gif">
+    </div>
+
+</div>

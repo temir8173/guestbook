@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -53,8 +53,8 @@ class OrderController extends Controller
         return $this->render('index');
     }
 
-    public function pay()
+    public function actionPay(): string
     {
-        echo 'ok';
+        return $this->render('payment');
     }
 }

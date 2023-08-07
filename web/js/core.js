@@ -169,6 +169,32 @@ $('document').ready(function(){
     if ( deadline ) {
     	initializeClock('countdown', deadline);
 	}
+
+	const playButton = $('.play-button');
+	const stopButton = $('.stop-button');
+	const audioSrc = $('.audio').data('audio-src');
+
+	const audio = new Audio();
+
+	playButton.on('click', function () {
+		$(this).hide();
+		stopButton.show();
+		audio.src = audioSrc;
+		audio.volume = 1.0;
+		audio.play();
+	})
+
+	stopButton.on('click', function () {
+		$(this).hide();
+		playButton.show();
+		audio.pause();
+	})
+
+	audio.addEventListener("ended", function() {
+		stopButton.hide();
+		playButton.show();
+		audio.pause();
+	});
 })
 
 function DefaultCheckForm(from) {
@@ -295,4 +321,3 @@ function setTimestamp(el) {
 	const timestamp = currentDate.getTime();
 	el.attr('value', Math.floor(timestamp / 1000));
 }
-

@@ -37,13 +37,6 @@ class SiteController extends BaseController
      */
     public function actionIndex(): string
     {
-        //"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-        //preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', '21184@Ss', $matches);
-        if ( !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', '21184@Ss') ) {
-            //$this->addError($attribute, 'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек');
-            var_dump('sdafsdfsdf');die;
-        }
-
         /** @var Template[] $templates */
         $templates = Template::find()
             ->select(['name', 'price', 'slug', 'type', 'preview_img', 'discount_price'])

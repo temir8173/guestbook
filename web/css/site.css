@@ -1291,3 +1291,38 @@ body .alert-success {
 .header-menu .nav > li > a:hover, .header-menu .nav > li > a:focus {
     background-color: unset ;
 }
+
+.audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    width: 60px;
+    height: 60px;
+    background: #e8f4e3;
+    border-radius: 35px;
+    box-shadow: 0 2px 9px rgba(0,0,0,.2);
+    z-index: 99;
+}
+
+.play-button img {
+    max-height: 62px;
+    position: relative;
+    right: 0.6px;
+    top: 0.6px;
+}
+
+.play-button span {
+    color: #fff;
+    margin-left: 2px;
+}
+
+.stop-button {
+    display: none;
+}
+
+.stop-button img {
+    max-height: 28px;
+}
