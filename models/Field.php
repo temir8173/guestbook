@@ -77,6 +77,6 @@ class Field extends ActiveRecord
 
     public function getLocaleName(): string
     {
-        return (\Yii::$app->language = 'ru') && $this->name_rus ? $this->name_rus : $this->name;
+        return (\Yii::$app->language === 'ru') && $this->name_rus ? $this->name_rus : $this->name;
     }
 }
