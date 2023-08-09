@@ -46,6 +46,7 @@ echo Nav::widget([
         ['label' => Yii::t('common', 'Үлгілер'), 'url' => ['/admin/templates']],
         ['label' => Yii::t('common', 'Секциялар'), 'url' => ['/admin/sections']],
         ['label' => Yii::t('common', 'Өрістер'), 'url' => ['/admin/fields']],
+        ['label' => Yii::t('common', 'Аудио'), 'url' => ['/admin/audio']],
         Yii::$app->user->isGuest ? (
             ['label' => 'Кіру', 'url' => ['/auth/login']]
         ) : (

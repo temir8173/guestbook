@@ -39,6 +39,7 @@ class InvitationService
 
     private function save(Invitation $invitation, bool $isUpdate = false): string
     {
+        $invitation->image = $invitation->image ?: $invitation->oldAttributes['image'];
         if ($invitation->imageFile) {
             $name = 'invitation-image-' . $invitation->id
                 . '.' . $invitation->imageFile->extension;

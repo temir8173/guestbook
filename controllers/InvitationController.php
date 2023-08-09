@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\models\Audio;
 use app\models\InvitationSearch;
 use app\models\Wish;
 use app\models\WishSearch;
@@ -15,6 +16,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\HttpException;
@@ -84,6 +86,7 @@ class InvitationController extends BaseController
         $sections = Section::find()
             ->where(['in', 'slug', $template->sections])
             ->with('fields')->all();
+        $audioItems = Audio::find()->all();
 
         $invitation->user_id = Yii::$app->user->id;
         $invitation->template_id = $template->id;
@@ -101,6 +104,7 @@ class InvitationController extends BaseController
         return $this->render('create', [
             'sections' => $sections,
             'invitation' => $invitation,
+            'audioItems' => $audioItems,
         ]);
     }
 
@@ -130,6 +134,8 @@ class InvitationController extends BaseController
         $sections = Section::find()
             ->where(['in', 'slug', $invitation->template->sections])
             ->with('fields')->all();
+        $audio = Audio::find()->select(['name', 'path'])->all();
+        $audioItems = ArrayHelper::map($audio,'path','name');
 
         if (
             $invitation->load(Yii::$app->request->getBodyParams())
@@ -145,6 +151,7 @@ class InvitationController extends BaseController
         return $this->render('update', [
             'sections' => $sections,
             'invitation' => $invitation,
+            'audioItems' => $audioItems,
         ]);
     }
 

@@ -56,7 +56,7 @@ class Template extends ActiveRecord
                 . '.' . $previewImageFile->extension;
             $previewImageFile->saveAs(self::PREVIEW_IMAGE_REL_PATH . $name);
         }
-        $this->preview_img = $name ?? $this->oldAttributes['preview_img'];
+        $this->preview_img = $name ?? $this->oldAttributes['preview_img'] ?? '';
 
         return parent::save($runValidation, $attributeNames);
     }

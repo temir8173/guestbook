@@ -195,6 +195,14 @@ $('document').ready(function(){
 		playButton.show();
 		audio.pause();
 	});
+
+	$('.app-audio-dropdown').on('change', function () {
+		const player = $('#app-audio-dropdown-player');
+		const pathPre = player.data('path-pre')
+		player[0].load();
+		player[0].play()
+		$('#app-audio-dropdown-player source').attr('src', pathPre + $(this).val());
+	})
 })
 
 function DefaultCheckForm(from) {

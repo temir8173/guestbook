@@ -1326,3 +1326,7 @@ body .alert-success {
 .stop-button img {
     max-height: 28px;
 }
+
+#app-audio-dropdown-player {
+    margin-bottom: 15px;
+}

@@ -9,6 +9,7 @@ use yii\web\View;
  * @var View $this
  * @var Invitation $invitation
  * @var Section[] $sections
+ * @var array $audioItems
  */
 
 $this->title = Yii::t('common', 'Шақыру билетін өзгерту');
@@ -28,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'invitation' => $invitation,
         'sections' => $sections,
+        'audioItems' => $audioItems,
     ]); ?>
 
 </div>

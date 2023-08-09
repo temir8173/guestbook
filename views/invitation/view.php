@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Audio;
 use app\models\Invitation;
 use app\models\Wish;
 
@@ -40,7 +41,7 @@ foreach ($invitation->sections as $section)
     ['invitation' => $invitation]
 ); ?>
 
-<div class="audio" data-audio-src="/uploads/audio/toi_zhyry.mp3">
+<div class="audio" data-audio-src="<?= '/' . Audio::AUDIO_PATH . $invitation->audio ?>">
 
     <div class="play-button">
         <img src="/images/play.gif">

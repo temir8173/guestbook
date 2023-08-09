@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Audio;
 use app\models\Invitation;
 use app\models\Section;
 use kartik\datetime\DateTimePicker;
@@ -13,6 +14,7 @@ use yii\widgets\ActiveForm;
  * @var ActiveForm $form
  * @var Invitation $invitation
  * @var Section[] $sections
+ * @var array $audioItems
 */
 
 ?>
@@ -50,6 +52,15 @@ use yii\widgets\ActiveForm;
                     'class' => 'form-control text required'
                 ]) ?>
 
+                <?= $form->field($invitation, 'audio')->dropDownList($audioItems, [
+                    'class' => 'form-control text required app-audio-dropdown',
+                    'prompt' => Yii::t('common', '-- Таңдаңыз --')
+                ]) ?>
+
+                <audio controls id="app-audio-dropdown-player" data-path-pre="<?= '/' . Audio::AUDIO_PATH ?>">
+                    <source src="<?= '/' . Audio::AUDIO_PATH . $invitation->audio ?>" type="audio/mp3">
+                </audio>
+
                 <div class="invitations-form__images restaurant-pic">
                     <span class="image-span">
                             <div class="invitation-image-preview">
@@ -78,7 +89,6 @@ use yii\widgets\ActiveForm;
                         <p><?= Yii::t('common', 'Файлдар таңдалмаған') ?></p>
                     </div>
                 </div>
-
 
 
                 <?php foreach ($sections as $index => $section ) : ?>
