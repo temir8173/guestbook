@@ -24,6 +24,7 @@ FrontPageAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
     <?php $this->head() ?>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
