@@ -1330,3 +1330,10 @@ body .alert-success {
 #app-audio-dropdown-player {
     margin-bottom: 15px;
 }
+
+.ck-editor__editable {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 15px;
+    min-height: 200px;
+}

@@ -30,18 +30,40 @@ $fieldValues = $invitation->field_values;
             ])
             ->label(Yii::t('common', $field->localeName));
     } elseif ($field->type == 'textarea') {
-        echo '<div class="form-group">';
-        echo Html::label($field->localeName, "field-{$field->slug}");
-        echo CKEditor::widget([
-            'name' => "Field[{$field->slug}]",
-            'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
-            'editorOptions' => [
-                'preset' => 'standard', //basic, standard, full
-                'inline' => false,
-            ],
-            'options' => ['id' => "field-{$field->slug}"],
-        ]);
-        echo '</div>';
+//        echo '<div class="form-group">';
+//        echo Html::label($field->localeName, "field-{$field->slug}");
+//        echo CKEditor::widget([
+//            'name' => "Field[{$field->slug}]",
+//            'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
+//            'editorOptions' => [
+//                'preset' => 'standard', //basic, standard, full
+//                'inline' => false,
+//            ],
+//            'options' => ['id' => "field-{$field->slug}"],
+//        ]);
+//        echo '</div>';
+
+        echo $form->field($field, 'slug', ['enableClientValidation' => false])
+            ->textInput([
+                'id' => "field-{$field->slug}",
+                'name' => "Field[{$field->slug}]",
+                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
+                'placeholder' => $field->hint ?? '',
+            ])
+            ->label(Yii::t('common', $field->localeName));
+        ?>
+        <div id="<?= "field-{$field->slug}-editor" ?>">
+            <?= $fieldValues[$field->slug] ?? $field->default_value ?? '' ?>
+        </div>
+        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#<?= "field-{$field->slug}-editor" ?>' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+        <?php
 //            echo $form->field(
 //                    $field,
 //                    'slug',
