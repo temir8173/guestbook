@@ -130,6 +130,9 @@ $this->title = 'ShaqiruKZ';
                 </div>
                 <a class="bottom-phone" href="tel:+77773919513">+7 (777) 391-95-13</a><br>
                 <a class="bottom-phone" href="mailto:shaqirukz@gmail.com">shaqirukz@gmail.com</a><br>
+                <div class="mastercard-logo">
+                    <img src="images/visa-mastercard-logo.png" alt="">
+                </div>
             </div>
         </div>
     </div>

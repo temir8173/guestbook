@@ -1344,3 +1344,7 @@ body .alert-success {
     font-style: italic;
     font-weight: 300;
 }
+
+.mastercard-logo img {
+    width: 120px;
+}
