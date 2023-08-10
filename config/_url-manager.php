@@ -13,6 +13,7 @@ return [
         '/templates' => 'site/templates',
         '/rules' => 'site/rules',
         '/privacy' => 'site/privacy-policy',
+        '/online-payment' => 'site/online-payment',
 
         // auth routes
         '/reset-password' => 'auth/reset-password',
