@@ -78,4 +78,12 @@ class SiteController extends BaseController
 
         return ($locale === 'ru') ? $this->render('privacy_ru') : $this->render('privacy');
     }
+
+    public function actionOnlinePayment(): string
+    {
+        $locale = Yii::$app->formatter->locale;
+
+        return $this->render('payment');
+//        return ($locale === 'ru') ? $this->render('payment_ru') : $this->render('payment');
+    }
 }

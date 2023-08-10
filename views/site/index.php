@@ -108,6 +108,10 @@ $this->title = 'ShaqiruKZ';
                         Yii::t('common', 'Құпиялық саясат'),
                         '/privacy',
                     ) ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Онлайн төлем'),
+                        '/online-payment',
+                    ) ?>
                 </div>
                 <div class="social-box">
                     <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqiru.kz/"><i class="icon-instagram"></i></a>
