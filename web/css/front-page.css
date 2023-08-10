@@ -310,15 +310,19 @@ section h2:after {
 .bottom-phone {
     font-size: 24px;
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: #545454;
+}
+
+.social-box {
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 
 .bottom-rules {
     font-size: 21px;
     display: inline-block;
     color: #545454;
-    margin-top: 50px;
 }
 
 .bottom-rules a {
@@ -527,5 +531,8 @@ section h2:after {
     }
     .bottom-rules {
         text-align: center;
+    }
+    .bottom-phone {
+        line-height: 1;
     }
 }

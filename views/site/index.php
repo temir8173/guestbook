@@ -99,14 +99,6 @@ $this->title = 'ShaqiruKZ';
         <div class="row">
             <div class="col-12 contacts-box">
                 <h2><?= Yii::t('common', 'Байланыс') ?></h2>
-                <a class="bottom-phone" href="tel:+77773919513">+7 (777) 391-95-13</a>
-                <div class="social-box">
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqiru.kz/"><i class="icon-instagram"></i></a>
-                    <a target="_blank" rel="noopener noreferrer"
-                       href="https://wa.me/77773919513?text=<?= Yii::t('common', 'Сәлеметсізбе!%20Шақыру%20парағы%20бойынша%20сұрағым%20бар%20еді') ?>">
-                        <i class="icon-whatsapp"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://t.me/temir95"><i class="icon-telegram-plane"></i></a>
-                </div>
                 <div class="bottom-rules">
                     <?= Html::a(
                         Yii::t('common', 'Қолдану ережелері'),
@@ -117,6 +109,21 @@ $this->title = 'ShaqiruKZ';
                         '/privacy',
                     ) ?>
                 </div>
+                <div class="social-box">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqiru.kz/"><i class="icon-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer"
+                       href="https://wa.me/77773919513?text=<?= Yii::t('common', 'Сәлеметсізбе!%20Шақыру%20парағы%20бойынша%20сұрағым%20бар%20еді') ?>">
+                        <i class="icon-whatsapp"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://t.me/temir95"><i class="icon-telegram-plane"></i></a>
+                </div>
+                <a class="bottom-phone" href="tel:+77773919513">+7 (777) 391-95-13</a><br>
+                <a class="bottom-phone" href="mailto:shaqirukz@gmail.com">shaqirukz@gmail.com</a><br>
+                <span class="bottom-phone">
+                    <?= Yii::t(
+                        'common',
+                        'Орал, Мөңкеұлы 101'
+                    ); ?>
+                </span>
             </div>
         </div>
     </div>
