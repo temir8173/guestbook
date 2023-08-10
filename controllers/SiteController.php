@@ -86,4 +86,20 @@ class SiteController extends BaseController
         return $this->render('payment');
 //        return ($locale === 'ru') ? $this->render('payment_ru') : $this->render('payment');
     }
+
+    public function actionWarranty(): string
+    {
+        $locale = Yii::$app->formatter->locale;
+
+        return $this->render('warranty');
+//        return ($locale === 'ru') ? $this->render('payment_ru') : $this->render('payment');
+    }
+
+    public function actionContractOffer(): string
+    {
+        $locale = Yii::$app->formatter->locale;
+
+        return $this->render('contract_offer');
+//        return ($locale === 'ru') ? $this->render('payment_ru') : $this->render('payment');
+    }
 }

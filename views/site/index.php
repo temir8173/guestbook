@@ -112,6 +112,14 @@ $this->title = 'ShaqiruKZ';
                         Yii::t('common', 'Онлайн төлем'),
                         '/online-payment',
                     ) ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Кепілдік міндеттемелері'),
+                        '/warranty',
+                    ) ?>
+                    <?= Html::a(
+                        Yii::t('common', 'Келісім-шарт бойынша ұсыныс'),
+                        '/contract-offer',
+                    ) ?>
                 </div>
                 <div class="social-box">
                     <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqiru.kz/"><i class="icon-instagram"></i></a>
@@ -122,12 +130,6 @@ $this->title = 'ShaqiruKZ';
                 </div>
                 <a class="bottom-phone" href="tel:+77773919513">+7 (777) 391-95-13</a><br>
                 <a class="bottom-phone" href="mailto:shaqirukz@gmail.com">shaqirukz@gmail.com</a><br>
-                <span class="bottom-phone">
-                    <?= Yii::t(
-                        'common',
-                        'Орал, Мөңкеұлы 101'
-                    ); ?>
-                </span>
             </div>
         </div>
     </div>

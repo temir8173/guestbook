@@ -14,6 +14,8 @@ return [
         '/rules' => 'site/rules',
         '/privacy' => 'site/privacy-policy',
         '/online-payment' => 'site/online-payment',
+        '/warranty' => 'site/warranty',
+        '/contract-offer' => 'site/contract-offer',
 
         // auth routes
         '/reset-password' => 'auth/reset-password',
