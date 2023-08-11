@@ -15,7 +15,7 @@ use yii\helpers\Json;
 class Kassa24PaymentService
 {
     public const PAYMENT_CREATE_URL = 'https://ecommerce.pult24.kz/payment/create';
-    public const REMOTE_IP = '172.20.0.1';
+    public const REMOTE_IP = '35.157.105.64';
 
     public function __construct(
         private PaymentRepository $paymentRepository,
