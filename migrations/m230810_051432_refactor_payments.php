@@ -27,7 +27,7 @@ class m230810_051432_refactor_payments extends Migration
 
         $this->createTable('payments', [
             'id' => $this->primaryKey(),
-            'payment_id' => $this->integer(),
+            'payment_id' => $this->bigInteger(),
             'user_id' => $this->integer()->notNull(),
             'order_id' => $this->integer()->notNull(),
             'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP'),
