@@ -59,7 +59,7 @@ $this->title = $invitation->name;
                     <?php if ($invitation->status === Invitation::STATUS_UNPAID) { ?>
                         <?= Html::a(
                             Yii::t('common', 'Төлем жасау'),
-                            ['/order/pay', 'url' => $invitation->url],
+                            ['/payment/pay', 'orderId' => $invitation->order->id, 'returnUrl' => "/{$invitation->url}"],
                         ) ?>
                     <?php } ?>
                 <?php } ?>

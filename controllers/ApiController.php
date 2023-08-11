@@ -7,10 +7,7 @@ use app\services\invitations\InvitationService;
 use Yii;
 use yii\filters\AccessControl;
 use yii\rest\Controller;
-use yii\web\HttpException;
 use yii\filters\VerbFilter;
-use app\models\Wish;
-use yii\helpers\Json;
 use yii\web\Response;
 
 class ApiController extends Controller

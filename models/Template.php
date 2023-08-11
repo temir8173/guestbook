@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
  * @property int $price
  * @property int $discount_price
  * @property string $type
+ * @property int $actualPrice
 */
 class Template extends ActiveRecord
 {
@@ -43,6 +44,11 @@ class Template extends ActiveRecord
     public function getPreviewImage(): string
     {
         return self::PREVIEW_IMAGE_PATH . $this->preview_img;
+    }
+
+    public function getActualPrice(): string
+    {
+        return $this->discount_price ?: $this->price;
     }
 
     public function save($runValidation = true, $attributeNames = null): bool

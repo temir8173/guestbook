@@ -26,6 +26,9 @@ return [
         '/site/login' => 'auth/login',
         '/logout' => 'auth/logout',
 
+        // payment
+        '/payment/<orderId:\d+>' => 'payment/pay',
+
         // invitations
         '/create-invitation' => 'invitation/create',
         '/edit-invitation/<url:[\w-]+>' => 'invitation/update',

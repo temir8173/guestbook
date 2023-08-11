@@ -30,6 +30,7 @@ use yii\web\UploadedFile;
  *
  * @property Wish[] $wishes
  * @property Template $template
+ * @property Orders $order
  * @property User $user
  */
 class Invitation extends ActiveRecord
@@ -109,6 +110,11 @@ class Invitation extends ActiveRecord
         return $this->hasOne(Template::class, ['id' => 'template_id']);
     }
 
+    public function getOrder(): ActiveQuery
+    {
+        return $this->hasOne(Orders::class, ['invitation_id' => 'id']);
+    }
+
     public function load($data, $formName = null): bool
     {
         $this->imageFile = UploadedFile::getInstancesByName("Invitation[image]")[0] ?? null;
@@ -120,27 +126,6 @@ class Invitation extends ActiveRecord
         }
 
         return parent::load($data, $formName);
-    }
-
-    /**
-     * todo: перенести в сервис
-    */
-    public function afterSave($insert, $changedAttributes)
-    {
-        if ($insert) {
-            $order = new Orders();
-            $order->user_id = Yii::$app->user->id;
-            $order->invitation_id = $this->id;
-            $order->price = self::PRICE;
-            $order->create_time = time();
-            $order->paid_time = '';
-            $order->status = 0;
-            $order->save();
-        } else {
-            // var_dump('expression');die;
-            // Нет, старая (update)
-        }
-        parent::afterSave($insert, $changedAttributes);
     }
 
     private function prepareFields(array $formFields): array

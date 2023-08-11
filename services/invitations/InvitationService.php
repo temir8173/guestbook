@@ -5,16 +5,26 @@ namespace app\services\invitations;
 
 
 use app\models\Invitation;
+use app\services\OrderService;
 use Yii;
-use yii\helpers\Json;
-use yii\web\UploadedFile;
 
 class InvitationService
 {
+    public function __construct(
+        private OrderService $orderService,
+    ) {}
+
     public function create(Invitation $invitation): string
     {
+        $invitationUrl = $this->save($invitation);
 
-        return $this->save($invitation);
+        $this->orderService->create(
+            $invitation->id,
+            $invitation->user_id,
+            (int)$invitation->template->actualPrice
+        );
+
+        return $invitationUrl;
     }
 
     public function update(Invitation $invitation): string
@@ -39,7 +49,7 @@ class InvitationService
 
     private function save(Invitation $invitation, bool $isUpdate = false): string
     {
-        $invitation->image = $invitation->image ?: $invitation->oldAttributes['image'];
+        $invitation->image = $invitation->image ?: ($invitation->oldAttributes['image'] ?? null);
         if ($invitation->imageFile) {
             $name = 'invitation-image-' . $invitation->id
                 . '.' . $invitation->imageFile->extension;
