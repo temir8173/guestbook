@@ -77,6 +77,18 @@ class PaymentController extends Controller
             throw new NotFoundHttpException();
         }
 
+        // если была попытка оплатить создаем новый заказ, так как касса24 выдает ошибку при повторной отправке с
+        // одинаковым orderId
+        if ($this->paymentRepository->exist($order->id)) {
+            $newOrder = new Orders();
+
+            $attributesToCopy = $order->getAttributes();
+            unset($attributesToCopy['id']);
+            $newOrder->setAttributes($attributesToCopy);
+            $newOrder->save(false);
+            $order = $newOrder;
+        }
+
         $login = Yii::$app->params['kassa24Login'];
         $password = Yii::$app->params['kassa24Password'];
         $callbackUrl = Url::base(true) . '/payment/callback';
@@ -101,7 +113,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException|\yii\db\Exception
      */
     public function actionCallback(): array
     {

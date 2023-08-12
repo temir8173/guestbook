@@ -51,4 +51,12 @@ class PaymentRepository
             ->orderBy('id DESC')
             ->scalar();
     }
+
+    public function exist(int $orderId): bool
+    {
+        return (new Query())->select('id')
+            ->from('payments')
+            ->where(['order_id' => $orderId])
+            ->exists();
+    }
 }
