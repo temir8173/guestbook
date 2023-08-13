@@ -151,7 +151,7 @@ class Invitation extends ActiveRecord
                 while (
                     $filesCount + $count < self::MAX_FILES_COUNT
                     && isset($uploadFiles[$count])
-                    && $uploadFiles[$count]->size < 2 * 1024 * 1024
+                    && $uploadFiles[$count]->size < 5 * 1024 * 1024
                 ) {
                     $this->files[$slug][] = $uploadFiles[$count];
                     $count++;
