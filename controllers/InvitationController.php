@@ -175,7 +175,11 @@ class InvitationController extends BaseController
                 ->andWhere(['is_deleted' => false])
                 ->one();
 
-            if (!Yii::$app->user->id && !$invitation->is_demo) {
+            if (
+                !Yii::$app->user->id
+                && !$invitation->is_demo
+                && $invitation->status === Invitation::STATUS_UNPAID
+            ) {
                 throw new NotFoundHttpException();
             }
 
