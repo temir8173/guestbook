@@ -13,16 +13,14 @@ $this->title = 'ShaqiruKZ';
 <section id="top">
     <div class="container">
         <div class="row">
-            <div class="col-md-7 order-2 order-md-1 align-self-end d-flex justify-content-center">
+            <div class="col-md-6 order-2 order-md-1 align-self-end d-flex justify-content-center">
                 <div class="top-left-box">
                     <h1>ShaqiruKZ</h1>
                     <p><?= Yii::t('common', 'Интерактивті веб шақыру парақшалары') ?></p>
                     <a class="pink-button" href="#about-product"><?= Yii::t('common', 'Толығырақ') ?></a>
                 </div>
             </div>
-            <div class="col-md-1 col-0 order-md-2">
-            </div>
-            <div class="col-md-4 order-1 order-md-3 front-main-image">
+            <div class="col-md-6 order-1 order-md-3 front-main-image">
                 <div class="img-container">
                     <img src="images/front-top.png" alt="">
                 </div>

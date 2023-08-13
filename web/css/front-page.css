@@ -25,7 +25,7 @@ section h2:after {
 /* Top section */
 
 #top {
-    padding-top: 45px;
+    padding-top: 25px;
 }
 
 #top .container:after {
@@ -73,7 +73,7 @@ section h2:after {
 #top h1 {
     font-family: "Merriweather", sans-serif;
     margin-bottom: 20px;
-    font-size: 80px;
+    font-size: 72px;
     font-weight: 700;
     color: #428cc5;
     background: linear-gradient(to right, #1e80c3, #0889c7, #0093c9, #009bca, #13a4cb, #13a4cb, #13a4cb, #13a4cb, #009bca, #0093c9, #0889c7, #1e80c3);
@@ -84,11 +84,16 @@ section h2:after {
 #top p {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
-    margin-bottom: 70px;
+    margin-bottom: 65px;
     font-size: 32px;
     line-height: 1.2;
     color: #545454;
     font-style: italic;
+}
+
+.front-main-image .img-container {
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .img-container {
@@ -439,6 +444,27 @@ section h2:after {
     border-radius: 50%;
 }
 
+@media only screen and (min-width: 992px) {
+    #top .container {
+        max-width: 940px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #top h1 {
+        font-size: 60px;
+    }
+    #top p {
+        margin-bottom: 55px;
+        font-size: 28px;
+    }
+    .top-left-box a {
+        padding: 12px 20px;
+    }
+    .front-main-image .img-container {
+        max-width: 260px;
+    }
+}
 @media only screen and (max-width: 768px) {
     header nav ul>li {
         padding: 10px;
