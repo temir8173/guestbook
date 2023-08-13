@@ -22,7 +22,7 @@ $this->title = 'ShaqiruKZ';
             </div>
             <div class="col-md-6 order-1 order-md-3 front-main-image">
                 <div class="img-container">
-                    <img src="images/front-top.png" alt="">
+                    <img src="images/front-top.jpg" alt="">
                 </div>
             </div>
         </div>
