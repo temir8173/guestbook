@@ -974,7 +974,8 @@ body {
     transition: all 0.5s;
     opacity: 0;
     padding: 15px;
-    background-color: #efefef;
+    background-color: rgba(255,255,255,.6);
+    backdrop-filter: blur(1px);
 }
 
 .product-details .product-cart a:last-child {
@@ -1125,7 +1126,6 @@ body {
     .product-details .product-info {
         visibility: visible;
         opacity: 1;
-        background-color: rgba(255,255,255,.6);
     }
 }
 
