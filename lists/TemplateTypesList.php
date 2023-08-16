@@ -17,8 +17,8 @@ class TemplateTypesList
         ];
     }
 
-    public static function getName(string $key): ?string
+    public static function getName(string $key): string
     {
-        return self::getAll()[$key] ?? null;
+        return self::getAll()[$key] ?? $key;
     }
 }

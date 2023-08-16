@@ -86,8 +86,8 @@ class InvitationController extends BaseController
         $sections = Section::find()
             ->where(['in', 'slug', $template->sections])
             ->with('fields')->all();
-        $audio = Audio::find()->select(['name', 'path'])->all();
-        $audioItems = ArrayHelper::map($audio,'path','name');
+        $audio = Audio::find()->select(['name', 'path', 'type'])->all();
+        $audioItems = ArrayHelper::map($audio,'path','name', 'translatedType');
 
         $invitation->user_id = Yii::$app->user->id;
         $invitation->template_id = $template->id;

@@ -4,6 +4,7 @@
 namespace app\models;
 
 
+use app\lists\TemplateTypesList;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 
@@ -13,6 +14,7 @@ use yii\web\UploadedFile;
  * @property string $name
  * @property string $path
  * @property string $type
+ * @property string $translatedType
  * @property string $audio
 */
 class Audio extends ActiveRecord
@@ -31,6 +33,11 @@ class Audio extends ActiveRecord
             [['type'], 'string', 'max' => 32],
             [['path', 'name'], 'string', 'max' => 255],
         ];
+    }
+
+    public function getTranslatedType(): string
+    {
+        return TemplateTypesList::getName($this->type);
     }
 
     public function getAudio(): string
