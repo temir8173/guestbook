@@ -99,7 +99,7 @@ class PaymentController extends Controller
             amount: $order->price * 100, // в тиынах
             callbackUrl: $callbackUrl,
             returnUrl: $callbackUrl,
-            demo: YII_DEBUG || Yii::$app->params['kassa24DemoPayment'],
+            demo: Yii::$app->params['kassa24DemoPayment'],
         );
 
         $result = $this->paymentService->generateRequest($entity, $login, $password);

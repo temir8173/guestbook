@@ -37,7 +37,7 @@ class Kassa24PaymentService
             'amount' => $entity->amount,
             'callbackUrl' => $entity->callbackUrl,
             'description' => $entity->description,
-            'demo' => true, //$entity->demo,
+            'demo' => $entity->demo,
             'returnUrl' => $entity->returnUrl,
         ];
 
