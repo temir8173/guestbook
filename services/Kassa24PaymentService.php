@@ -25,7 +25,7 @@ class Kassa24PaymentService
     /**
      * @throws Exception
      */
-    public function create(Kassa24PaymentEntity $entity, string $login, string $password)
+    public function generateRequest(Kassa24PaymentEntity $entity, string $login, string $password)
     {
         if ($entity->amount <= 0){
             throw new Exception('цена не указана или меньше 0');
@@ -70,9 +70,6 @@ class Kassa24PaymentService
         return JSON::decode($result);
     }
 
-    /**
-     * @throws \yii\db\Exception
-     */
     public function processResponse(array $response): bool
     {
         if ((int)$response['status'] === 1) {
