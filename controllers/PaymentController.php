@@ -92,14 +92,16 @@ class PaymentController extends Controller
         $login = Yii::$app->params['kassa24Login'];
         $password = Yii::$app->params['kassa24Password'];
         $callbackUrl = Url::base(true) . '/payment/callback';
+        $returnUrl = Url::base(true) . '/invitations';
+        $isDemo = Yii::$app->params['kassa24DemoPayment'];
 
         $entity = new Kassa24PaymentEntity(
             orderId: $order->id,
             userId: Yii::$app->user->id,
             amount: $order->price * 100, // в тиынах
             callbackUrl: $callbackUrl,
-            returnUrl: $callbackUrl,
-            demo: Yii::$app->params['kassa24DemoPayment'],
+            returnUrl: $returnUrl,
+            demo: $isDemo,
         );
 
         $result = $this->paymentService->generateRequest($entity, $login, $password);
