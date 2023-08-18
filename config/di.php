@@ -1,5 +1,6 @@
 <?php
 
+use app\repositories\InvitationRepository;
 use app\repositories\PaymentRepository;
 use app\services\auth\RecoverService;
 use app\services\auth\SignupService;
@@ -15,5 +16,6 @@ return [
         OrderService::class => OrderService::class,
         Kassa24PaymentService::class => Kassa24PaymentService::class,
         PaymentRepository::class => PaymentRepository::class,
+        InvitationRepository::class => InvitationRepository::class,
     ],
 ];
