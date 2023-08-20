@@ -192,6 +192,7 @@ class InvitationController extends BaseController
 
                 $this->layout = "@app/views/layouts/template-layouts/{$invitation->template->slug}";
 
+                $this->view->params['invitation'] = $invitation;
                 return $this->render(
                     "view",
                     [
