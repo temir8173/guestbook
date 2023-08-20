@@ -334,7 +334,6 @@ section .container {
 .address__images a {
     display: inline-block;
     width: 65%;
-    margin-bottom: 15px;
 }
 
 
