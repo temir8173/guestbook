@@ -34,7 +34,7 @@ class Template extends ActiveRecord
         return [
             [['slug', 'name', 'price', 'sections'], 'required'],
             [['price', 'discount_price'], 'integer'],
-            [['slug', 'name'], 'string', 'max' => 64],
+            [['slug', 'name', 'type'], 'string', 'max' => 64],
             [['preview_img'], 'string', 'max' => 255],
             [['slug'], 'unique'],
             [['preview_img'], 'safe'],

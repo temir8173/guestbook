@@ -132,7 +132,7 @@ body {
 #header .top-box::before {
 	content: '';
 	display: block;
-	background-image: url('../images/template1/header-ukrashen.png');
+	background-image: url('../../images/template1/header-ukrashen.png');
 	background-position: 50% 40%;
 	background-repeat: no-repeat;
 	background-size: 95% 85%;
@@ -283,7 +283,7 @@ body {
 	position: relative;
 }
 .speech .container:before {
-    background: url(../images/template1/top-flower.png);
+    background: url(../../images/template1/top-flower.png);
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -295,7 +295,7 @@ body {
 }
 .speech .container:after {
 	content: '';
-	background-image: url('../images/template1/couple.png');
+	background-image: url('../../images/template1/couple.png');
     background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
@@ -536,7 +536,7 @@ body {
 	left: -70px;
 	width: 119%;
 	height: 115%;
-	background-image: url('../images/template1/wishes-outline.png');
+	background-image: url('../../images/template1/wishes-outline.png');
 	background-size: cover;
 	z-index: 2
 }
@@ -841,7 +841,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 	#header .top-box::after {
 		content: '';
     	display: block;
-	    background-image: url(../images/template1/header-ukrashen1.png);
+	    background-image: url(../../images/template1/header-ukrashen1.png);
 	    background-position: 50% 50%;
 	    background-repeat: no-repeat;
 	    background-size: 100% 70%;

@@ -1,12 +1,13 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 /* @var $content string */
 
-use app\assets\templates\NabatAsset;
+use app\assets\templates\Uzatu1Asset;
 use yii\helpers\Html;
+use yii\web\View;
 
-NabatAsset::register($this);
+Uzatu1Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -18,11 +19,6 @@ NabatAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-
     <?php $this->head() ?>
     <?php 
         $variables = array (

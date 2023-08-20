@@ -1015,7 +1015,7 @@ body {
     font-weight: 600;
     font-size: 15px;
     margin-right: 20px;
-    color: #F7B34F;
+    color: #b1357d;
 }
 
 .product-grid-style .price {
@@ -1192,10 +1192,11 @@ body {
     width: 100%;
     height: auto;
     min-height: 100%;
+    position: relative;
 }
 
 .product-img .img-box {
-    padding-top: 60%;
+    padding-top: 100%;
 }
 
 .product-details .img-container:before {

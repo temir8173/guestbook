@@ -1,15 +1,15 @@
 <?php
 
-namespace app\assets;
+namespace app\assets\templates;
 
 use yii\web\AssetBundle;
 
-class TemplatesAsset extends AssetBundle
+class Template1Asset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/template1.css',
+        'css/templates/template1.css',
     ];
     public $js = [
     ];

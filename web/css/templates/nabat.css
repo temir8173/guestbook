@@ -135,7 +135,7 @@ body {
 #header .top-box::before {
 	content: '';
 	display: block;
-	background-image: url('../images/template1/header-ukrashen.png');
+	background-image: url('../../images/template1/header-ukrashen.png');
 	background-position: 50% 40%;
 	background-repeat: no-repeat;
 	background-size: 95% 85%;
@@ -285,7 +285,7 @@ body {
 	position: relative;
 }
 .speech .container:before {
-    background: url(../images/template1/top-flower.png);
+    background: url(../../images/template1/top-flower.png);
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -297,7 +297,7 @@ body {
 }
 .speech .container:after {
 	content: '';
-	background-image: url('../images/template1/couple.png');
+	background-image: url('../../images/template1/couple.png');
     background-size: contain;
     background-repeat: no-repeat;
     height: 100%;
@@ -399,7 +399,7 @@ body {
 
 .section-photo {
 	font-size: 30px;
-	background: url(../images/pic-photo.png) top center no-repeat;
+	background: url(../../images/pic-photo.png) top center no-repeat;
 	padding-top: 81px;
 }
 
@@ -552,7 +552,7 @@ body {
 	left: -70px;
 	width: 119%;
 	height: 115%;
-	background-image: url('../images/template1/wishes-outline-2.png');
+	background-image: url('../../images/template1/wishes-outline-2.png');
 	background-size: cover;
 	z-index: 2;
 }
@@ -654,7 +654,7 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 .footer {
 	height: 140px;
 	padding-top: 50px;
-	background: #f5f5f5 url(../images/bg-header-rose-footer.png) repeat-x bottom;
+	background: #f5f5f5 url(../../images/bg-header-rose-footer.png) repeat-x bottom;
 }
 
 .footer__title {
@@ -860,7 +860,7 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 	#header .top-box::after {
 		content: '';
     	display: block;
-	    background-image: url(../images/template1/header-ukrashen1.png);
+	    background-image: url(../../images/template1/header-ukrashen1.png);
 	    background-position: 50% 50%;
 	    background-repeat: no-repeat;
 	    background-size: 100% 70%;
@@ -897,23 +897,23 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 	}
 }
 
-@import url(./fonts.css);
+@import url(../fonts.css);
 
 
 @font-face {
 	font-family: Decor KZ;
-	src: url(../fonts/KZDecor.ttf) format('truetype');
+	src: url(../../fonts/KZDecor.ttf) format('truetype');
 }
 
 
 
 @font-face {
   font-family: 'AsylbekM13Vivantekz';
-  src: url('../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot');
-  src: url('../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot?#iefix') format('embedded-opentype'),
-      url('../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff2') format('woff2'),
-      url('../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff') format('woff'),
-      url('../fonts/Asylbek/subset-AsylbekM13Vivantekz.ttf') format('truetype');
+  src: url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot');
+  src: url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot?#iefix') format('embedded-opentype'),
+      url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff2') format('woff2'),
+      url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff') format('woff'),
+      url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -981,7 +981,7 @@ a{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: url(../images/flowers.png);
+    background-image: url(../../images/flowers.png);
     
 }
 
@@ -1034,7 +1034,7 @@ section{
   /* background: url(../images/pic-invite-h2.png) top center no-repeat; */
   padding-top: 99px;
   background-position: top center;
-  background-image: url(../images/pic-invite-h2.png);
+  background-image: url(../../images/pic-invite-h2.png);
   background-repeat: no-repeat;
 }
 
@@ -1124,12 +1124,12 @@ a{
 
 .section-story {
   font-size: 30px;
-  background: url(../images/pic-story-h2.png) top center no-repeat;
+  background: url(../../images/pic-story-h2.png) top center no-repeat;
   padding-top: 80px;
 }
 
 .section-rest{
-  background-image: url(../images/pic-rest-h2.png),url(../images/pic-rest-h2-bottom.png);
+  background-image: url(../../images/pic-rest-h2.png),url(../../images/pic-rest-h2-bottom.png);
   background-position: top center,bottom center;
   background-repeat: no-repeat,no-repeat;
   padding-top: 108px;
@@ -1139,7 +1139,7 @@ a{
 }
 
 .section-wish {
-  background-image: url(../images/pic-register-h2.png),url(../images/pic-rest-h2-bottom.png);
+  background-image: url(../../images/pic-register-h2.png),url(../../images/pic-rest-h2-bottom.png);
   background-position: top center,bottom center;
   background-repeat: no-repeat,no-repeat;
   padding-top: 139px;
@@ -1328,7 +1328,7 @@ section {
 	  /* background: url(../images/pic-invite-h2.png) top center no-repeat; */
 	  padding-top: 57px;
 	  background-position: top center;
-	  background-image: url(../images/pic-invite-h2.png);
+	  background-image: url(../../images/pic-invite-h2.png);
 	  background-repeat: no-repeat;
 	  background-size: 60px;
 	}

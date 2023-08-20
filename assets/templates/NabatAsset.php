@@ -1,6 +1,6 @@
 <?php
 
-namespace app\assets;
+namespace app\assets\templates;
 
 use yii\web\AssetBundle;
 
@@ -10,7 +10,7 @@ class NabatAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/bootstrap.min.css',
-        'css/nabat.css',
+        'css/templates/nabat.css',
     ];
     public $js = [
     ];
