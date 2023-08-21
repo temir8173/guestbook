@@ -535,7 +535,7 @@ body {
 	right: 0;
 	bottom: 0;
 	overflow: hidden;
-	padding: 30px 30px 100px 90px;
+	padding: 30px 120px 100px 90px;
 }
 
 .wishes__messages img {
@@ -751,7 +751,7 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 	    height: 120%;
 	}
 	.wishes__messages>div {
-	    padding: 35px 0px 50px 59px;
+	    padding: 35px 70px 50px 59px;
 	}
 	.content-list__item .post-info__title {
 	    font-size: 17px;
@@ -760,6 +760,7 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 	.content-list__item .post-info__text {
 	    font-size: 13px;
 	    line-height: 1.2;
+		margin: 5px 0;
 	}
 	.post-info__meta {
 		font-size: 10px;
@@ -830,7 +831,7 @@ form textarea.error {border: 2px solid rgba(228, 185, 26, 1) !important}
 	    padding-bottom: 20px;
 	}
 	.wishes__messages>div {
-	    padding: 11% 35px 90px 18%;
+	    padding: 11% 70px 90px 18%;
 	}
 	.speech__text {
 		min-height: unset;
