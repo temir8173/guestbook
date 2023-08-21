@@ -19,7 +19,10 @@ $config = [
     'language' => 'kk',
     'sourceLanguage' => 'kk',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\components\DisableLanguageMiddleware'
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
