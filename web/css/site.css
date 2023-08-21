@@ -1358,5 +1358,6 @@ body .alert-success {
 }
 
 .mastercard-logo img {
+    max-width: 100%;
     width: 120px;
 }
