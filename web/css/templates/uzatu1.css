@@ -34,7 +34,7 @@ section:nth-child(odd) .container {
 }
 
 section:nth-child(even) .container {
-    color: #fff;
+    color: #898989;
 }
 
 section:nth-child(even) .container::before {
@@ -68,7 +68,7 @@ section h2 {
 }
 
 section .container {
-    background-color: #ff84bd;
+    background-color: #efede5;
     padding: 70px 0;
 }
 
@@ -256,6 +256,7 @@ section .container {
     padding: 10px 25px;
     background-color: #09b11c;
     border-radius: 30px;
+    color: #fff;
 }
 
 
