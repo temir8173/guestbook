@@ -1353,6 +1353,10 @@ body .alert-success {
     font-weight: 300;
 }
 
+.mastercard-logo {
+    max-width: 130px;
+}
+
 .mastercard-logo img {
     width: 120px;
 }
