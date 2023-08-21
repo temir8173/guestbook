@@ -485,9 +485,6 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
     opacity: 0.8;
 }
 
-.wishes__form-btn {
-    text-align: right;
-}
 .wishes__form-btn input {
     border-radius: 0!important;
     background-color: #ed959f;
