@@ -6,6 +6,7 @@ use app\models\Template;
 use Yii;
 use yii\captcha\CaptchaAction;
 use yii\helpers\ArrayHelper;
+use yii\web\Response;
 
 class SiteController extends BaseController
 {
@@ -30,13 +31,13 @@ class SiteController extends BaseController
         return $this->render('error');
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex(): string
+    public function actionIndex(): Response|string
     {
+        if (!Yii::$app->session->get('userVisitedBefore')) {
+            Yii::$app->session->set('userVisitedBefore', true);
+            return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk']);
+        }
+
         /** @var Template[] $templates */
         $templates = Template::find()
             ->select(['name', 'price', 'slug', 'type', 'preview_img', 'discount_price'])

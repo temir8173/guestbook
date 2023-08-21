@@ -21,7 +21,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
-        'app\components\DisableLanguageMiddleware'
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
