@@ -5,7 +5,7 @@ return [
     'dsn'      => $_ENV['DBDSN'],
     'username' => $_ENV['DBUSERNAME'],
     'password' => $_ENV['DBPASSWORD'],
-    'charset'  => "utf8",
+    'charset'=>'utf8mb4'
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,
