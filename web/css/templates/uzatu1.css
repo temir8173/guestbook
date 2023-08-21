@@ -461,7 +461,7 @@ section .container {
 .wishes__form input[type=email],
 .wishes__form select,
 .wishes__form textarea {
-    border: 2px solid #ff84bd !important;
+    border: 2px solid #ed959f !important;
     border-radius: 0;
     background-color: unset;
     box-shadow: none;
@@ -470,7 +470,7 @@ section .container {
 .wishes__form input[type=password],
 .wishes__form input[type=email] {
     border: none!important;
-    border-bottom: 2px solid #ff84bd!important;
+    border-bottom: 2px solid #ed959f!important;
 }
 form input[type=text].error,
 form input[type=password].error,
@@ -490,7 +490,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 }
 .wishes__form-btn input {
     border-radius: 0!important;
-    background-color: #ff84bd;
+    background-color: #ed959f;
     color: #fff;
     padding: 6px 20px;
     font-family: 'Open Sans', sans-serif;
