@@ -1342,6 +1342,10 @@ section {
 		justify-content: center;
 	}
 
+	.invitation-photo::after {
+		height: 130px;
+	}
+
 	.invitation-photo img {
 		width: 60%!important;
 	}

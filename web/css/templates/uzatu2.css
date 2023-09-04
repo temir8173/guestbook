@@ -10,9 +10,17 @@
 
 .container {
     max-width: 540px;
+}
+
+section .container, header .container {
     position: relative;
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.preview-edit-toolbar .container::before,
+.preview-edit-toolbar .container::after {
+    display: none;
 }
 
 section:nth-child(odd) .container {
@@ -67,11 +75,6 @@ section h2 {
 
 section p {
     color: #333;
-}
-
-/* tmp */
-.preview-edit-toolbar {
-    display: none;
 }
 
 .invitation-photo img {

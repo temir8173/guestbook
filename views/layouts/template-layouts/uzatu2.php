@@ -32,7 +32,7 @@ $invitation = $this->context->view->params['invitation'] ?? null;
     <meta property="og:title" content="<?= $invitation?->name ?> - <?=
     TemplateTypesList::getName($invitation?->template?->type) ?? '' ?>">
     <meta property="og:description" content="<?= Yii::t('common', 'Шақыру парақшасы') ?>">
-    <meta property="og:image" content="<?= Url::base(true) ?>/images/favicon1.png">
+    <meta property="og:image" content="<?= Url::base(true) ?>/images/logo.jpg">
     <meta property="og:image:width" content="300" />
     <meta property="og:image:height" content="300" />
     <?php $this->head() ?>
