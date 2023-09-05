@@ -3,6 +3,7 @@
 use app\forms\SignupForm;
 use himiklab\yii2\recaptcha\ReCaptcha2;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /**
@@ -67,9 +68,6 @@ $signupForm = $this->params['signupForm'] ?? null;
                         )
                         ?>
                     </div>
-
-                    <div class="login-forgot">
-                        </div>
                 </div>
             </div>
         </div>

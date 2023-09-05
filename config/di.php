@@ -6,6 +6,7 @@ use app\services\auth\RecoverService;
 use app\services\auth\SignupService;
 use app\services\invitations\InvitationService;
 use app\services\Kassa24PaymentService;
+use app\services\OauthGoogleService;
 use app\services\OrderService;
 
 return [
@@ -15,6 +16,8 @@ return [
         RecoverService::class => RecoverService::class,
         OrderService::class => OrderService::class,
         Kassa24PaymentService::class => Kassa24PaymentService::class,
+        OauthGoogleService::class => OauthGoogleService::class,
+
         PaymentRepository::class => PaymentRepository::class,
         InvitationRepository::class => InvitationRepository::class,
     ],

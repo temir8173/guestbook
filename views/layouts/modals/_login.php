@@ -46,6 +46,13 @@ $loginForm = $this->params['loginForm'] ?? null;
 
                         <?php ActiveForm::end(); ?>
                     </div>
+                    <div class="oauth-services">
+                        <?php $returnUrl = Yii::$app->session->get('oauthReturnUrl') ?? Url::current() ?>
+                        <a class="app-google-oauth-btn"
+                           href="<?= Url::to(['/auth/google-login', 'returnUrl' => $returnUrl]) ?>">
+                            <img src="/images/google_icon.png" alt="">
+                        </a>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div class="login-forgot">
@@ -69,9 +76,6 @@ $loginForm = $this->params['loginForm'] ?? null;
                         )
                         ?>
                     </div>
-
-                    <div class="login-forgot">
-                        </div>
                 </div>
             </div>
         </div>

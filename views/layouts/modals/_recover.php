@@ -63,9 +63,6 @@ $recoverRequestForm = $this->params['recoverRequestForm'] ?? null;
                         )
                         ?>
                     </div>
-
-                    <div class="login-forgot">
-                    </div>
                 </div>
             </div>
         </div>

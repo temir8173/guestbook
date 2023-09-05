@@ -23,6 +23,10 @@ $this->title = $invitation->name;
                         <a href="#" class="create-invitation-login" data-bs-toggle="modal" data-bs-target="#modal-login"
                            data-redirect="<?= Url::to(['/invitation/create', 'template' => $invitation->template->slug]) ?>">
                             <?= Yii::t('common', 'Жаңа шақырту') ?></a>
+                        <?php Yii::$app->session->set(
+                            'oauthReturnUrl',
+                            Url::to(['/invitation/create', 'template' => $invitation->template->slug])
+                        ) ?>
                     <?php } else { ?>
                         <?= Html::a(
                             Yii::t('common', 'Жаңа шақырту'),

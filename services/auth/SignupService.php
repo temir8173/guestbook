@@ -11,20 +11,23 @@ class SignupService
     /**
      * @throws Exception
      */
-    public function process(array $userData): UserIdentity
+    public function process(array $userData, $isConfirmRequired = true): UserIdentity
     {
         $user = new UserIdentity();
         $user->username = $userData['username'];
         $user->email = $userData['email'];
-        $user->password = $userData['password'];
+        $user->password = $userData['password'] ?? Yii::$app->security->generateRandomString(16);
         $user->role = 'user';
         $user->generateAuthKey();
-        $user->email_confirm_token = Yii::$app->security->generateRandomString();
-        $user->status = UserIdentity::STATUS_WAIT;
+        $user->email_confirm_token = $isConfirmRequired ? Yii::$app->security->generateRandomString() : '';
+        $user->status = $isConfirmRequired ? UserIdentity::STATUS_WAIT : UserIdentity::STATUS_ACTIVE;
         if(!$user->save()){
             throw new \RuntimeException('Saving error.');
         }
-        $this->sendEmailConfirm($user);
+
+        if ($isConfirmRequired) {
+            $this->sendEmailConfirm($user);
+        }
 
         return $user;
     }

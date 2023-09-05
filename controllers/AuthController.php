@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\forms\LoginForm;
+use app\forms\OauthCallbackForm;
 use app\forms\RecoverRequestForm;
 use app\forms\SignupForm;
 use app\forms\ResetPasswordForm;
@@ -12,7 +13,9 @@ use app\models\User;
 use app\models\UserIdentity;
 use app\services\auth\RecoverService;
 use app\services\auth\SignupService;
+use app\services\OauthGoogleService;
 use Exception;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
@@ -27,6 +30,7 @@ class AuthController extends Controller
         $module,
         private SignupService $signupService,
         private RecoverService $recoverService,
+        private OauthGoogleService $oauthGoogleService,
 
         $config = []
     ) {
@@ -245,5 +249,41 @@ class AuthController extends Controller
         return $this->render('resetPassword', [
             'model' => $form,
         ]);
+    }
+
+    public function actionGoogleLogin($returnUrl): Response
+    {
+        try {
+            return $this->redirect($this->oauthGoogleService->getAuthorizationUrl($returnUrl));
+        } catch (Exception $e) {
+            Yii::$app->session->setFlash('error', $e->getMessage());
+            return $this->redirect('/');
+        }
+    }
+
+    public function actionGoogleCallback(): Response
+    {
+        $form = new OauthCallbackForm();
+
+        if ($form->load(Yii::$app->request->getQueryParams(), '') && $form->validate()) {
+            try {
+                $authInfo = $this->oauthGoogleService->getAuthorizationData($form->code);
+                $user = UserIdentity::findOne(['email' => $authInfo['email']]);
+                if (!$user) {
+                    $user = $this->signupService->process([
+                        'username' => $authInfo['email'],
+                        'email' => $authInfo['email']
+                    ], false);
+                }
+                Yii::$app->user->login($user);
+
+                $returnUrl = Yii::$app->session->get("oauthReturnUrl");
+                return $this->redirect($returnUrl);
+            } catch (Exception $e) {
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->redirect('/');
     }
 }
