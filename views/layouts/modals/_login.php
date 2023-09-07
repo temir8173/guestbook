@@ -14,11 +14,15 @@ $loginForm = $this->params['loginForm'] ?? null;
 <div class="modal fade modal-login app-login-modal auth-modal" id="modal-login" tabindex="-1"
      aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content wrapper">
             <div class="site-login">
+                <button type="button" class="icon-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                </button>
                 <div class="modal-header">
-                    <?= Html::encode($this->title) ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <?= Yii::t('common', 'Кіру') ?>
                 </div>
                 <div class="modal-body pt-0">
                     <div class="modal-form-box">
@@ -35,13 +39,15 @@ $loginForm = $this->params['loginForm'] ?? null;
                             ]
                         ]); ?>
 
-                        <?= $form->field($loginForm, 'username')->textInput(['autofocus' => true]) ?>
-                        <?= $form->field($loginForm, 'password')->passwordInput() ?>
+                        <?= $form->field($loginForm, 'username', [
+                            'template' => "<span class='icon'><ion-icon name='mail'></ion-icon></span>{input}{label}{error}",
+                        ])->textInput(['autofocus' => true, 'required' => true]) ?>
+                        <?= $form->field($loginForm, 'password', [
+                            'template' => "<span class='icon'><ion-icon name='lock-closed'></ion-icon></span>{input}{label}{error}",
+                        ])->passwordInput(['required' => true]) ?>
 
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <?= Html::submitButton(Yii::t('common', 'Кіру'), ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
-                            </div>
+                        <div class="col-lg-12">
+                            <?= Html::submitButton(Yii::t('common', 'Кіру'), ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
                         </div>
 
                         <?php ActiveForm::end(); ?>

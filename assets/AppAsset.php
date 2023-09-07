@@ -20,8 +20,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
         'css/bootstrap.min.css',
+        'css/site.css',
         'css/fonts.css',
         'js/baguettebox/baguetteBox.min.css',
     ];
@@ -32,6 +32,8 @@ class AppAsset extends AssetBundle
         'js/simply-toast.min.js',
         'js/bootstrap.min.js',
         'js/core.js',
+        "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js",
+        "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',

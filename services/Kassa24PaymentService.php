@@ -52,15 +52,15 @@ class Kassa24PaymentService
             $dataArray['metadata'] = $entity->metadata;
         }
 
-        $data_string = JSON::encode($dataArray, JSON_UNESCAPED_UNICODE);
+        $dataString = JSON::encode($dataArray, JSON_UNESCAPED_UNICODE);
         $curl = curl_init( self::PAYMENT_CREATE_URL);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
         $headers = [
             'Content-Type: application/json',
             'Authorization: Basic ' . base64_encode($login . ':' . $password),
-            'Content-Length: ' . strlen($data_string)
+            'Content-Length: ' . strlen($dataString)
         ];
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $dataString);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 

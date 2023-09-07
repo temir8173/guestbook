@@ -15,7 +15,7 @@ $recoverRequestForm = $this->params['recoverRequestForm'] ?? null;
 <div class="modal fade modal-login app-login-modal auth-modal" id="modal-recover" tabindex="-1"
      aria-labelledby="modal-login-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content wrapper">
             <div class="site-login">
                 <div class="modal-header">
                     <?= Html::encode($this->title) ?>
@@ -30,14 +30,12 @@ $recoverRequestForm = $this->params['recoverRequestForm'] ?? null;
                                 'class' => 'login-form async-form',
                             ]
                         ]); ?>
-                        <?= $form->field($recoverRequestForm, 'email')->textInput(['autofocus' => true]) ?>
-                        <?php if (!YII_DEBUG) { ?>
-                            <?= $form->field($recoverRequestForm, 'reCaptcha')
-                                ->widget(ReCaptcha2::class, []) ?>
-                        <?php } ?>
-                        <div class="form-group">
-                            <?= Html::submitButton(Yii::t('common', 'Жіберу'), ['class' => 'btn btn-primary login-button']) ?>
-                        </div>
+                        <?= $form->field($recoverRequestForm, 'email', [
+                            'template' => "<span class='icon'><ion-icon name='mail'></ion-icon></span>{input}{label}{error}",
+                        ])->textInput(['autofocus' => true, 'required' => true]) ?>
+                        <?= $form->field($recoverRequestForm, 'reCaptcha', ['options' => ['class' => 'recaptcha-input']])
+                            ->widget(ReCaptcha2::class, []) ?>
+                        <?= Html::submitButton(Yii::t('common', 'Жіберу'), ['class' => 'btn btn-primary login-button mt-1']) ?>
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>
