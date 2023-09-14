@@ -34,9 +34,7 @@ foreach ($invitation->sections as $section)
     echo $this->render('_edit_toolbar', ['invitation' => $invitation]);
 } ?>
 
-<?= $this->render('@app/views/layouts/modals/_login'); ?>
-<?= $this->render('@app/views/layouts/modals/_signup'); ?>
-<?= $this->render('@app/views/layouts/modals/_recover'); ?>
+<?= $this->render('@app/views/layouts/modals/_auth_modal'); ?>
 
 <?= $this->render(
     'view/' . $invitation->template->slug . '/_footer',

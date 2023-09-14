@@ -50,10 +50,7 @@ FrontPageAsset::register($this);
 </div>
 
 <?= $this->render('main/_footer.php') ?>
-
-<?= $this->render('modals/_login'); ?>
-<?= $this->render('modals/_signup'); ?>
-<?= $this->render('modals/_recover'); ?>
+<?= $this->render('modals/_auth_modal'); ?>
 
 <?php $this->endBody() ?>
 </body>

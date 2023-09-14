@@ -15,7 +15,6 @@ use app\services\auth\RecoverService;
 use app\services\auth\SignupService;
 use app\services\OauthGoogleService;
 use Exception;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
@@ -55,8 +54,15 @@ class AuthController extends Controller
         ];
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionLogin(): string
     {
+        if (!Yii::$app->request->isAjax) {
+            throw new NotFoundHttpException();
+        }
+
         $form = new LoginForm();
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
@@ -80,7 +86,7 @@ class AuthController extends Controller
         $form->password = '';
         $this->layout = 'front-page';
 
-        return $this->render('login', [
+        return $this->renderAjax('login', [
             'model' => $form,
         ]);
     }
@@ -123,46 +129,37 @@ class AuthController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionSignup(): Response|string
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-        ];
+        if (!Yii::$app->request->isAjax) {
+            throw new NotFoundHttpException();
+        }
 
         $form = new SignupForm();
         if ($form->load(Yii::$app->request->post())) {
-            if ($form->validate()) {
-                try {
+            $response = [
+                'success' => false,
+                'message' => null,
+            ];
+            try {
+                if ($form->validate()) {
                     $this->signupService->process($form->getData());
                     $response['success'] = true;
-                    $response['message'] = Yii::t(
-                        'common',
-                        'Поштаңызға сілтеме жіберілді, поштаңызды растаңыз'
-                    );
-                } catch (Exception $e){
-                    $response['message'] = $e->getMessage();
+                    $response['message'] = Yii::t('common', 'Поштаңызға сілтеме жіберілді, поштаңызды растаңыз');
+                } else {
+                    $response['message'] = $form->getErrorSummary(false)[0];
                 }
-            } else {
-                $response['message'] = $form->getErrorSummary(false)[0];
+            } catch (Exception $e){
+                $response['message'] = $e->getMessage();
             }
-        }
-
-        if (Yii::$app->request->isAjax) {
             echo Json::encode($response);
             exit();
         }
 
-        Yii::$app->session->setFlash(
-            $response['success'] ? 'success' : 'error',
-            $response['message']
-        );
-        if ($response['success']) {
-            return $this->goHome();
-        }
-
-        $this->layout = 'front-page';
-        return $this->render('signup', [
+        return $this->renderAjax('signup', [
             'model' => $form,
         ]);
     }
@@ -188,38 +185,34 @@ class AuthController extends Controller
      */
     public function actionRecoverRequest(): Response|string
     {
-        $response = [
-            'success' => false,
-            'message' =>
-                Yii::t('common', 'Өкінішке орай аккаунтты қалпына келтіре алмаймыз.'),
-        ];
+
+        if (!Yii::$app->request->isAjax) {
+            throw new NotFoundHttpException();
+        }
 
         $form = new RecoverRequestForm();
         if ($form->load(Yii::$app->request->post())) {
-            if ($form->validate()) {
-                $this->recoverService->sendEmail($form->getUser());
-                $response['success'] = true;
-                $response['message'] = Yii::t('common', 'Келесі нұсқаулар алу үшін электрондық поштаны тексеріңіз.');
-            } else {
-                $response['message'] = $form->getErrorSummary(false)[0];
+            $response = [
+                'success' => false,
+                'message' =>
+                    Yii::t('common', 'Өкінішке орай аккаунтты қалпына келтіре алмаймыз.'),
+            ];
+            try {
+                if ($form->validate()) {
+                    $this->recoverService->sendEmail($form->getUser());
+                    $response['success'] = true;
+                    $response['message'] = Yii::t('common', 'Келесі нұсқаулар алу үшін электрондық поштаны тексеріңіз.');
+                } else {
+                    $response['message'] = $form->getErrorSummary(false)[0];
+                }
+            } catch (Exception $e) {
+                $response['message'] = $e->getMessage();
             }
-        }
-
-        if (Yii::$app->request->isAjax) {
             echo Json::encode($response);
             exit();
         }
 
-        Yii::$app->session->setFlash(
-            $response['success'] ? 'success' : 'error',
-            $response['message']
-        );
-        if ($response['success']) {
-            return $this->goHome();
-        }
-
-        $this->layout = 'front-page';
-        return $this->render('recoverRequest', [
+        return $this->renderAjax('recoverRequest', [
             'model' => $form,
         ]);
     }

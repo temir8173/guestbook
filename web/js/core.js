@@ -75,11 +75,27 @@ $('document').ready(function(){
 
 
         }
+	}).on('click', '.app-open-auth-modal', function (e) {
+		e.preventDefault();
+		const url = $(this).attr('href');
+		const modal = $(this).attr('data-bs-target');
+		const redirectUrl = $(this).attr('data-redirect');
+
+		$.ajax({
+			type: "GET",
+			url: url,
+			success: function(data){
+				$(modal).find('.modal-content').html(data);
+				if (redirectUrl) {
+					$(modal).attr('data-redirect', redirectUrl);
+				}
+			}
+		});
 	});
 
 	$('.auth-modal').on('submit', '.async-form', function(e) {
 		const form = $(this);
-		const redirect = form.data('redirect')
+		const redirect = form.closest('.auth-modal').data('redirect')
 
 		e.preventDefault();
 		e.stopPropagation();
@@ -135,11 +151,6 @@ $('document').ready(function(){
 		document.execCommand('copy');
 		tempTextarea.remove();
 		setNotice(message, 'success');
-	});
-
-    $('a.create-invitation-login').on('click', function() {
-		const form = $('#login-form');
-		form.attr('data-redirect', $(this).attr('data-redirect'));
 	});
 
     $('a.scrollto').on('click', function() {

@@ -61,7 +61,7 @@ $templateTypes = TemplateTypesList::getAll();
                                                         <?php } ?>
                                                         <div class="img-box img-container">
                                                             <div>
-                                                                <img src="<?= $template->previewImage ?>" alt="...">
+                                                                <img src="<?= $template->previewImage ?>" loading="lazy" alt="...">
                                                             </div>
                                                         </div>
                                                         <div href="#" class="product-info">

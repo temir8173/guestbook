@@ -19,7 +19,7 @@ return [
 
         // auth routes
         '/reset-password' => 'auth/reset-password',
-        '/request-password-reset' => 'auth/request-password-reset',
+        '/recover-request' => 'auth/recover-request',
         '/signup' => 'auth/signup',
         '/signup-confirm' => 'auth/signup-confirm',
         '/login' => 'auth/login',

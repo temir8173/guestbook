@@ -13,7 +13,7 @@
                 <div class="col-md-7">
                     <div class="img-box img-container">
                         <div>
-                            <img src="images/about1.jpg" alt="">
+                            <img src="images/about1.jpg" loading="lazy" alt="">
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="col-md-7">
                     <div class="img-box img-container">
                         <div>
-                            <img src="images/about2.png" alt="">
+                            <img src="images/about2.png" loading="lazy" alt="">
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="col-md-7">
                     <div class="img-box img-container">
                         <div>
-                            <img src="images/about3.jpg" alt="">
+                            <img src="images/about3.jpg" loading="lazy" alt="">
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="col-md-7">
                     <div class="img-box img-container">
                         <div>
-                            <img src="images/about4.jpg" alt="">
+                            <img src="images/about4.jpg" loading="lazy" alt="">
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ $this->title = $invitation->name;
                         ['/'],
                     ) ?>
                     <?php if (Yii::$app->user->isGuest) { ?>
-                        <a href="#" class="create-invitation-login" data-bs-toggle="modal" data-bs-target="#modal-login"
+                        <a href="<?= Url::to('/auth/login') ?>" class="app-open-auth-modal" data-bs-toggle="modal" data-bs-target="#auth-modal"
                            data-redirect="<?= Url::to(['/invitation/create', 'template' => $invitation->template->slug]) ?>">
                             <?= Yii::t('common', 'Жаңа шақырту') ?></a>
                         <?php Yii::$app->session->set(

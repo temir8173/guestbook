@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 
@@ -57,7 +58,8 @@ use yii\helpers\Html;
                 </div>
                 <div class="top-phone">
                     <?php if (!Yii::$app->user->identity) { ?>
-                        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#modal-login">
+                        <a href="<?= Url::to('/auth/login') ?>" class="app-open-auth-modal" data-bs-toggle="modal"
+                           data-bs-target="#auth-modal">
                             <?= Yii::t('common', 'Кіру') ?>
                         </a>
                     <?php } else { ?>
