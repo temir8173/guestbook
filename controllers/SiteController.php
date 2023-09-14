@@ -37,6 +37,7 @@ class SiteController extends BaseController
             Yii::$app->session->set('userVisitedBefore', true);
             return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk']);
         }
+        $this->layout = 'front-page';
 
         /** @var Template[] $templates */
         $templates = Template::find()
