@@ -50,7 +50,7 @@ use yii\widgets\ActiveForm;
             <?php ActiveForm::end(); ?>
         </div>
         <div class="oauth-services">
-            <?php $returnUrl = Yii::$app->session->get('oauthReturnUrl') ?? Url::current() ?>
+            <?php $returnUrl = Yii::$app->session->get('oauthReturnUrl') ?? '/' ?>
             <a class="app-google-oauth-btn"
                href="<?= Url::to(['/auth/google-login', 'returnUrl' => $returnUrl]) ?>">
                 <img src="/images/google_icon.png" alt="">
