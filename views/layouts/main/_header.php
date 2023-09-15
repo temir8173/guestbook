@@ -57,8 +57,9 @@ use yii\helpers\Url;
                     ?>
                 </div>
                 <div class="top-phone">
-                    <?php if (!Yii::$app->user->identity) { ?>
-                        <a href="<?= Url::to('/auth/login') ?>" class="app-open-auth-modal" data-bs-toggle="modal"
+                    <?php if (!Yii::$app->user->identity) {
+                        $authLink = Yii::$app->language === 'ru' ? '/ru/auth/login' : '/auth/login'; ?>
+                        <a href="<?= Url::to($authLink) ?>" class="app-open-auth-modal" data-bs-toggle="modal"
                            data-bs-target="#auth-modal">
                             <?= Yii::t('common', 'Кіру') ?>
                         </a>

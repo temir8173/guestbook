@@ -19,8 +19,10 @@ $this->title = $invitation->name;
                         Yii::t('common', 'Басты бет'),
                         ['/'],
                     ) ?>
-                    <?php if (Yii::$app->user->isGuest) { ?>
-                        <a href="<?= Url::to('/auth/login') ?>" class="app-open-auth-modal" data-bs-toggle="modal" data-bs-target="#auth-modal"
+                    <?php if (Yii::$app->user->isGuest) {
+                        $authLink = Yii::$app->language === 'ru' ? '/ru/auth/login' : '/auth/login'; ?>
+                        <a href="<?= $authLink ?>" class="app-open-auth-modal" data-bs-toggle="modal"
+                           data-bs-target="#auth-modal"
                            data-redirect="<?= Url::to(['/invitation/create', 'template' => $invitation->template->slug]) ?>">
                             <?= Yii::t('common', 'Жаңа шақырту') ?></a>
                         <?php Yii::$app->session->set(
