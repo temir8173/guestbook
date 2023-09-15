@@ -17,7 +17,8 @@ $this->title = Yii::t('common', 'Тойға шақықыру үлгілері') 
                 <div class="top-left-box">
                     <h1>ShaqiruKZ</h1>
                     <p><?= Yii::t('common', 'Интерактивті веб шақыру парақшалары') ?></p>
-                    <a class="pink-button" href="#about-product"><?= Yii::t('common', 'Толығырақ') ?></a>
+                    <a class="pink-button" href="https://api.whatsapp.com/send?phone=77773919513"><?= Yii::t('common',
+                            'Тапсырыс беру') ?></a>
                 </div>
             </div>
             <div class="col-md-6 order-1 order-md-3 front-main-image">
@@ -120,7 +121,7 @@ $this->title = Yii::t('common', 'Тойға шақықыру үлгілері') 
                     ) ?>
                 </div>
                 <div class="social-box">
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqiru.kz/"><i class="icon-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/shaqirukz/"><i class="icon-instagram"></i></a>
                     <a target="_blank" rel="noopener noreferrer"
                        href="https://wa.me/77773919513?text=<?= Yii::t('common', 'Сәлеметсізбе!%20Шақыру%20парағы%20бойынша%20сұрағым%20бар%20еді') ?>">
                         <i class="icon-whatsapp"></i></a>
