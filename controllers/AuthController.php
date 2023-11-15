@@ -130,6 +130,8 @@ class AuthController extends Controller
                 $response['success'] = true;
                 $response['code'] = $code;
                 $response['message'] = Yii::t('common', 'Жіберілген смс арқылы кіріңіз');
+            } else {
+                $response['message'] = Yii::t('common', 'Смс жіберілмеді');
             }
         }
 
