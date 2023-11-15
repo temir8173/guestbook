@@ -46,7 +46,7 @@ use yii\widgets\ActiveForm;
             <div class="col-lg-12">
                 <?= Html::submitButton(Yii::t('common', 'Кіру'), ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
                 <?= Html::a(
-                    'Смс-код алу',
+                    Yii::t('common', 'Смс-код алу'),
                     Url::to(['/auth/send-code']),
                     ['class' => 'app-send-sms',]
                 ) ?>

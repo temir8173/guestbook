@@ -30,13 +30,24 @@ class SignupForm extends Model
 //            ['username', 'required'],
 //            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Логин бос емес!'],
 //            ['username', 'string', 'min' => 3, 'max' => 255],
-            [['phoneNumber'], 'required', 'when' => function ($model) {
-                return empty($model->email);
-            }, 'enableClientValidation' => false],
-
-            [['email'], 'required', 'when' => function ($model) {
-                return empty($model->phoneNumber);
-            }, 'enableClientValidation' => false],
+            [
+                ['phoneNumber'],
+                'required',
+                'when' => function ($model) {
+                    return empty($model->email);
+                },
+                'enableClientValidation' => false,
+                'message' => Yii::t('common', 'Нөмір немесе email біреуін толтырыңыз')
+            ],
+            [
+                ['email'],
+                'required',
+                'when' => function ($model) {
+                    return empty($model->phoneNumber);
+                },
+                'enableClientValidation' => false,
+                'message' => Yii::t('common', 'Нөмір немесе email біреуін толтырыңыз')
+            ],
             ['phoneNumber', 'trim'],
             ['phoneNumber', 'match', 'pattern' => '/^87\d{9}$/', 'message' => Yii::t('common', 'Телефон нөмірі форматы дұрыс емес')],
             [
@@ -55,11 +66,11 @@ class SignupForm extends Model
 //            ['password', 'validateOwnPassword'],
             ['password_repeat', 'required'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('common', 'Құпия сөздер сәйкес келмейді')],
-//            [
-//                ['reCaptcha'],
-//                ReCaptchaValidator2::class,
-//                'uncheckedMessage' => Yii::t('common', 'Растаңыз')
-//            ],
+            [
+                ['reCaptcha'],
+                ReCaptchaValidator2::class,
+                'uncheckedMessage' => Yii::t('common', 'Растаңыз')
+            ],
         ];
     }
 

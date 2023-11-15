@@ -86,6 +86,7 @@ $('document').ready(function(){
 			url: url,
 			success: function(data){
 				$(modal).find('.modal-content').html(data);
+				$(modal).attr('data-url', url);
 				if (redirectUrl) {
 					$(modal).attr('data-redirect', redirectUrl);
 				}
@@ -114,6 +115,14 @@ $('document').ready(function(){
 	$('.auth-modal').on('submit', '.async-form', function(e) {
 		const form = $(this);
 		const redirect = form.closest('.auth-modal').data('redirect')
+		const modal = $('#auth-modal');
+		const url = modal.attr('data-url');
+		const formData = form.serializeArray();
+
+		const formattedData = {};
+		formData.forEach(item => {
+			formattedData[item.name] = item.value;
+		});
 
 		e.preventDefault();
 		e.stopPropagation();
@@ -126,6 +135,18 @@ $('document').ready(function(){
 					if (data.success !== undefined && data.message !== undefined) {
 						form.removeClass('sending');
 						setNotice(data.message, (data.success === true) ? 'success' : 'warning');
+
+						if (data.success !== true) {
+							formattedData.only_render = 1;
+							$.ajax({
+								type: "POST",
+								data: formattedData,
+								url: url,
+								success: function(data){
+									$(modal).find('.modal-content').html(data);
+								}
+							});
+						}
 
 						if (data.success) {
 							if (redirect !== undefined) {

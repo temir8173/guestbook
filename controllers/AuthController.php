@@ -124,7 +124,7 @@ class AuthController extends Controller
             $user->sms_code = $code;
             $user->save(false);
 
-            $sms = Yii::t('common', 'Kelesi kod arqyly kiriniz - ') . $code;
+            $sms = Yii::t('common', 'Kelesi kod arqyly kiriniz - ') . $code . '. ShaqiruKZ';
             $isCodeSent = $this->smsService->send($user->phone_number, $sms);
             if ($isCodeSent) {
                 $response['success'] = true;
@@ -184,7 +184,7 @@ class AuthController extends Controller
         }
 
         $form = new SignupForm();
-        if ($form->load(Yii::$app->request->post())) {
+        if ($form->load(Yii::$app->request->post()) && !Yii::$app->request->getBodyParam('only_render')) {
             $response = [
                 'success' => false,
                 'message' => null,
@@ -236,7 +236,7 @@ class AuthController extends Controller
         }
 
         $form = new RecoverRequestForm();
-        if ($form->load(Yii::$app->request->post())) {
+        if ($form->load(Yii::$app->request->post()) && !Yii::$app->request->getBodyParam('only_render')) {
             $response = [
                 'success' => false,
                 'message' =>
