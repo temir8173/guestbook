@@ -28,12 +28,12 @@ use yii\widgets\ActiveForm;
                     'data-reload' => 1
                 ]
             ]); ?>
-            <?= $form->field($model, 'username', [
+            <?= $form->field($model, 'phoneNumber', [
                 'template' => "<span class='icon'><ion-icon name='person'></ion-icon></span>{input}{label}{error}",
-            ])->textInput(['autofocus' => true, 'required' => true]) ?>
+            ])->textInput(['autofocus' => true]) ?>
             <?= $form->field($model, 'email', [
                 'template' => "<span class='icon'><ion-icon name='mail'></ion-icon></span>{input}{label}{error}",
-            ])->textInput(['required' => true]) ?>
+            ])->textInput() ?>
             <?= $form->field($model, 'password', [
                 'template' => "<span class='icon'><ion-icon name='lock-closed'></ion-icon></span>{input}{label}{error}",
             ])->passwordInput(['required' => true]) ?>

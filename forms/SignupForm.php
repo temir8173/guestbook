@@ -5,13 +5,15 @@ namespace app\forms;
 use himiklab\yii2\recaptcha\ReCaptchaValidator2;
 use Yii;
 use yii\base\Model;
- 
+use yii\validators\RequiredValidator;
+
 /**
  * Signup form
  */
 class SignupForm extends Model
 {
  
+    public $phoneNumber;
     public $username;
     public $email;
     public $password;
@@ -24,24 +26,40 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Логин бос емес!'],
-            ['username', 'string', 'min' => 3, 'max' => 255],
+//            ['username', 'trim'],
+//            ['username', 'required'],
+//            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Логин бос емес!'],
+//            ['username', 'string', 'min' => 3, 'max' => 255],
+            [['phoneNumber'], 'required', 'when' => function ($model) {
+                return empty($model->email);
+            }, 'enableClientValidation' => false],
+
+            [['email'], 'required', 'when' => function ($model) {
+                return empty($model->phoneNumber);
+            }, 'enableClientValidation' => false],
+            ['phoneNumber', 'trim'],
+            ['phoneNumber', 'match', 'pattern' => '/^87\d{9}$/', 'message' => Yii::t('common', 'Телефон нөмірі форматы дұрыс емес')],
+            [
+                'phoneNumber',
+                'unique',
+                'targetClass' => '\app\models\User',
+                'targetAttribute' => 'phone_number',
+                'message' => Yii::t('common', 'Бұндай нөмір тіркелген')
+            ],
+            ['phoneNumber', 'string', 'min' => 3, 'max' => 255],
             ['email', 'trim'],
-            ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Бұл email бос емес!'],
+            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => Yii::t('common', 'Бұл email бос емес!')],
             [['password', 'password_repeat'], 'required'],
-            ['password', 'validateOwnPassword'],
+//            ['password', 'validateOwnPassword'],
             ['password_repeat', 'required'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => 'Құпия сөздер сәйкес келмейді' ],
-            [
-                ['reCaptcha'],
-                ReCaptchaValidator2::class,
-                'uncheckedMessage' => Yii::t('common', 'Растаңыз')
-            ],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('common', 'Құпия сөздер сәйкес келмейді')],
+//            [
+//                ['reCaptcha'],
+//                ReCaptchaValidator2::class,
+//                'uncheckedMessage' => Yii::t('common', 'Растаңыз')
+//            ],
         ];
     }
 
@@ -59,6 +77,7 @@ class SignupForm extends Model
     {
         return [
             'username' => Yii::t('common', 'Логин'),
+            'phoneNumber' => Yii::t('common', 'Телефон нөмірі (87775553355)'),
             'email' => 'Email',
             'password' => Yii::t('common', 'Құпия сөз'),
             'password_repeat' => Yii::t('common', 'Құпия сөзді растау'),
@@ -70,7 +89,8 @@ class SignupForm extends Model
     public function getData(): array
     {
         return [
-            'username' => $this->username,
+            'phoneNumber' => $this->phoneNumber,
+            'username' => $this->phoneNumber ?? $this->email,
             'email' => $this->email,
             'password' => $this->password,
         ];

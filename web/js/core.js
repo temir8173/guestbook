@@ -91,6 +91,24 @@ $('document').ready(function(){
 				}
 			}
 		});
+	}).on('click', '.app-send-sms', function (e) {
+		e.preventDefault();
+		const url = $(this).attr('href');
+		const phone = $('#loginform-phoneoremail').val();
+
+		console.log(phone)
+		$.ajax({
+			type: "POST",
+			data: {
+				phone: phone,
+			},
+			url: url,
+			dataType: 'json',
+			success: function(data){
+				console.log(data)
+				setNotice(data.message, (data.success === true) ? 'success' : 'warning');
+			}
+		});
 	});
 
 	$('.auth-modal').on('submit', '.async-form', function(e) {

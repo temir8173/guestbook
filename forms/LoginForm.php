@@ -9,8 +9,8 @@ use yii\base\Model;
 
 class LoginForm extends Model
 {
-    public $username;
-    public $password;
+    public $phoneOrEmail;
+    public $passwordOrCode;
     public $rememberMe = true;
 
     private ?User $_user = null;
@@ -19,17 +19,17 @@ class LoginForm extends Model
     public function rules(): array
     {
         return [
-            [['username', 'password'], 'required'],
+            [['phoneOrEmail', 'passwordOrCode'], 'required'],
             ['rememberMe', 'boolean'],
-            ['password', 'validatePassword'],
+            ['passwordOrCode', 'validatePassword'],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('common', 'Логин немесе email'),
-            'password' => Yii::t('common', 'Құпия сөз'),
+            'phoneOrEmail' => Yii::t('common', 'Телефон нөмірі немесе email'),
+            'passwordOrCode' => Yii::t('common', 'Құпия сөз немесе смс-код'),
             'rememberMe' => 'Мені жүйеде сақтау',
         ];
     }
@@ -39,7 +39,12 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (
+                !$user || (
+                    !$user->validatePassword($this->passwordOrCode)
+                    && !$user->validateCode($this->passwordOrCode)
+                )
+            ) {
                 $this->addError($attribute, Yii::t('common', 'Құпия сөз дұрыс емес немесе мұндай пайдаланушы тіркелмеген'));
             }
         }
@@ -47,7 +52,7 @@ class LoginForm extends Model
 
     public function getUser(): ?UserIdentity
     {
-        $this->_user ??= UserIdentity::findByUsername($this->username);
+        $this->_user ??= UserIdentity::findByPhoneOrEmail($this->phoneOrEmail);
         return $this->_user;
     }
 }

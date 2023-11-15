@@ -32,15 +32,15 @@ class ResetPasswordForm extends Model
         return [
             ['password', 'required'],
             ['password', 'validatePrevPassword'],
-            [
-                'password',
-                'match',
-                'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                'message' => Yii::t(
-                    'common',
-                    'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек.(әріптер латын қарпімен)'
-                )
-            ],
+//            [
+//                'password',
+//                'match',
+//                'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+//                'message' => Yii::t(
+//                    'common',
+//                    'Құпия сөз кем дегенде 8 таңбадан, 1 бас әріптен, 1 кіші әріптен, 1 цифрадан және 1 арнайы таңбадан тұруы керек.(әріптер латын қарпімен)'
+//                )
+//            ],
             ['password_repeat', 'required'],
             [
                 'password_repeat',

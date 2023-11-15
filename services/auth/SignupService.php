@@ -14,6 +14,7 @@ class SignupService
     public function process(array $userData, $isConfirmRequired = true): UserIdentity
     {
         $user = new UserIdentity();
+        $user->phone_number = $userData['phoneNumber'];
         $user->username = $userData['username'];
         $user->email = $userData['email'];
         $user->password = $userData['password'] ?? Yii::$app->security->generateRandomString(16);

@@ -19,10 +19,10 @@ class UserIdentity extends User implements IdentityInterface
         return static::findOne(['access_token' => $token]);
     }
 
-    public static function findByUsername(string $username): ActiveRecord|self|null
+    public static function findByPhoneOrEmail(string $username): ActiveRecord|self|null
     {
         return static::find()
-            ->where(new Expression('BINARY `username` = :value', [':value' => $username]))
+            ->where(new Expression('BINARY `phone_number` = :value', [':value' => $username]))
             ->orWhere(new Expression('BINARY `email` = :value', [':value' => $username]))
             ->andWhere(['>', 'status', self::STATUS_DELETED])
             ->one();
@@ -36,5 +36,10 @@ class UserIdentity extends User implements IdentityInterface
     public function validatePassword(string $password): bool
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+
+    public function validateCode(string $code): bool
+    {
+        return $this->sms_code === $code;
     }
 }

@@ -36,15 +36,20 @@ use yii\widgets\ActiveForm;
                 ]
             ]); ?>
 
-            <?= $form->field($model, 'username', [
+            <?= $form->field($model, 'phoneOrEmail', [
                 'template' => "<span class='icon'><ion-icon name='mail'></ion-icon></span>{input}{label}{error}",
             ])->textInput(['autofocus' => true, 'required' => true]) ?>
-            <?= $form->field($model, 'password', [
+            <?= $form->field($model, 'passwordOrCode', [
                 'template' => "<span class='icon'><ion-icon name='lock-closed'></ion-icon></span>{input}{label}{error}",
             ])->passwordInput(['required' => true]) ?>
 
             <div class="col-lg-12">
                 <?= Html::submitButton(Yii::t('common', 'Кіру'), ['class' => 'btn btn-primary login-button', 'name' => 'login-button']) ?>
+                <?= Html::a(
+                    'Смс-код алу',
+                    Url::to(['/auth/send-code']),
+                    ['class' => 'app-send-sms',]
+                ) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

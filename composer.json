@@ -14,7 +14,8 @@
         "himiklab/yii2-recaptcha-widget": "*",
         "vlucas/phpdotenv": "^5.5",
         "ext-curl": "*",
-        "league/oauth2-google": "^4.0"
+        "league/oauth2-google": "^4.0",
+        "yiisoft/yii2-httpclient": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

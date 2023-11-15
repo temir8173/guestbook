@@ -12,6 +12,8 @@ use yii\helpers\ArrayHelper;
  *
  * @property int $id
  * @property string $username
+ * @property string $phone_number
+ * @property string $sms_code
  * @property string $password
  * @property string $role
  * @property string|null $auth_key
@@ -47,11 +49,11 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            [['roles'], 'safe'],
-            [['username', 'password'], 'required'],
-            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            [['roles', 'sms_code'], 'safe'],
+            [['username', 'phone_number', 'password'], 'required'],
+            [['username', 'phone_number', 'email', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
             [['role'], 'string', 'max' => 64],
-            [['username'], 'unique'],
+            [['username', 'phone_number', 'email'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_WAIT, self::STATUS_DELETED]],
         ];
@@ -65,6 +67,8 @@ class User extends ActiveRecord
         return [
             'id' => 'ID',
             'username' => 'Имя',
+            'phoneNumber' => 'Номер телефона',
+            'email' => 'Email',
             'password' => 'Пароль',
             'role' => 'Роль',
             'roles' => 'Роли',

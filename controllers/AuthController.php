@@ -14,6 +14,7 @@ use app\models\UserIdentity;
 use app\services\auth\RecoverService;
 use app\services\auth\SignupService;
 use app\services\OauthGoogleService;
+use app\services\SmsService;
 use Exception;
 use Yii;
 use yii\filters\AccessControl;
@@ -30,6 +31,7 @@ class AuthController extends Controller
         private SignupService $signupService,
         private RecoverService $recoverService,
         private OauthGoogleService $oauthGoogleService,
+        private SmsService $smsService,
 
         $config = []
     ) {
@@ -83,12 +85,55 @@ class AuthController extends Controller
             }
         }
 
-        $form->password = '';
+        $form->passwordOrCode = '';
         $this->layout = 'front-page';
 
         return $this->renderAjax('login', [
             'model' => $form,
         ]);
+    }
+
+    /**
+     * @throws \yii\httpclient\Exception
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionSendCode()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new NotFoundHttpException();
+        }
+
+        $response = [
+            'success' => false,
+            'code' => null,
+            'message' => Yii::t('common', 'Нөмір тіркелмеген')
+        ];
+
+        $phoneNumber = Yii::$app->request->getBodyParam('phone');
+
+        if (!$phoneNumber) {
+            $response['message'] = Yii::t('common', 'Нөмір енгізіңіз');
+            echo Json::encode($response);
+            exit();
+        }
+
+        $user = UserIdentity::findByPhoneOrEmail($phoneNumber);
+
+        if ($user && $user->phone_number) {
+            $code = sprintf("%04d", rand(0, 9999));
+            $user->sms_code = $code;
+            $user->save(false);
+
+            $sms = Yii::t('common', 'Kelesi kod arqyly kiriniz - ') . $code;
+            $isCodeSent = $this->smsService->send($user->phone_number, $sms);
+            if ($isCodeSent) {
+                $response['success'] = true;
+                $response['code'] = $code;
+                $response['message'] = Yii::t('common', 'Жіберілген смс арқылы кіріңіз');
+            }
+        }
+
+        echo Json::encode($response);
     }
 
     /**
@@ -146,9 +191,10 @@ class AuthController extends Controller
             ];
             try {
                 if ($form->validate()) {
-                    $this->signupService->process($form->getData());
+                    $user = $this->signupService->process($form->getData(), false);
+                    Yii::$app->user->login($user);
                     $response['success'] = true;
-                    $response['message'] = Yii::t('common', 'Поштаңызға сілтеме жіберілді, поштаңызды растаңыз');
+                    $response['message'] = Yii::t('common', 'Сіз сәтті тіркелдіңіз');
                 } else {
                     $response['message'] = $form->getErrorSummary(false)[0];
                 }
@@ -185,7 +231,6 @@ class AuthController extends Controller
      */
     public function actionRecoverRequest(): Response|string
     {
-
         if (!Yii::$app->request->isAjax) {
             throw new NotFoundHttpException();
         }

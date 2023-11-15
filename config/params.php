@@ -13,4 +13,7 @@ return [
     'googleClientId' => $_ENV['GOOGLECLIENTID'],
     'googleClientSecret' => $_ENV['GOOGLECLIENTSECRET'],
     'googleRedirectUri' => $_ENV['GOOGLEREDIRECTURI'],
+
+    'smscLogin' => $_ENV['SMSC_LOGIN'],
+    'smscPassword' => $_ENV['SMSC_PASSWORD'],
 ];

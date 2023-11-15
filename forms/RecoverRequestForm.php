@@ -45,14 +45,14 @@ class RecoverRequestForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => Yii::t('common', 'Логин немесе email'),
+            'email' => Yii::t('common', 'Нөмір немесе email'),
             'reCaptcha' => Yii::t('common', 'Робот емес екендігіңізді растаңыз'),
         ];
     }
 
     public function getUser(): ?UserIdentity
     {
-        $this->_user ??= UserIdentity::findByUsername($this->email);
+        $this->_user ??= UserIdentity::findByPhoneOrEmail($this->email);
         return $this->_user;
     }
 }
