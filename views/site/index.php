@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var Template[] $templates
 */
 
-$this->title = Yii::t('common', 'Тойға шақықыру үлгілері') . ' | ShaqiruKZ';
+$this->title = Yii::t('common', 'Онлайн шақыру билеттері') . ' | ShaqiruKZ';
 ?>
 
 <section id="top">
