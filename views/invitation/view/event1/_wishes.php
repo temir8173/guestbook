@@ -39,8 +39,7 @@ use yii\widgets\ActiveForm;
 					'action' => Url::to('/invitation/add-wish'),
 	                'enableClientValidation'=>false,
 	                'options' => [
-	                    'class' => 'wishes__form ajax-form animate animate-up',
-                        'data-offset' => "0"
+	                    'class' => 'wishes__form ajax-form',
 	                ],
 	            ]); ?>
 
