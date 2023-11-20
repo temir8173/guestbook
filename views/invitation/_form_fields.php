@@ -124,6 +124,16 @@ $fieldValues = $invitation->field_values;
                 'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
                 'placeholder' => $field->hint ?? '',
             ])
+            ->label(Yii::t('common', $field->localeName)); ?>
+
+    <?php } elseif ($field->type == 'json') {
+        echo $form->field($field, 'slug', ['enableClientValidation' => false])
+            ->textInput([
+                'id' => "field-{$field->slug}",
+                'name' => "Field[{$field->slug}]",
+                'value' => $fieldValues[$field->slug] ?? $field->default_value ?? '',
+                'placeholder' => $field->hint ?? '',
+            ])
             ->label(Yii::t('common', $field->localeName));
     } ?>
 

@@ -14,6 +14,7 @@ use app\models\Section;
 use app\models\Template;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -132,9 +133,14 @@ class InvitationController extends BaseController
             throw new NotFoundHttpException();
         }
 
-        $sections = Section::find()
-            ->where(['in', 'slug', $invitation->template->sections])
-            ->with('fields')->all();
+        $sections = [];
+        foreach ($invitation->template->sections as $sectionSlug) {
+            $sections[] = Section::find()
+                ->where(['slug' => $sectionSlug])
+                ->with('fields')
+                ->one();
+        }
+
         $audio = Audio::find()->select(['name', 'path', 'type'])->all();
         $audioItems = ArrayHelper::map($audio,'path','name', 'translatedType');
 

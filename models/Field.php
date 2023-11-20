@@ -30,6 +30,7 @@ class Field extends ActiveRecord
     const TYPE_YOUTUBE = 'youtube';
     const TYPE_MAP = 'map';
     const TYPE_CLOUD_LINK = 'cloudLink';
+    const JSON = 'json';
 
     public array $types = [
         self::TYPE_TEXT => 'Текст',
@@ -39,6 +40,7 @@ class Field extends ActiveRecord
         self::TYPE_YOUTUBE => 'Youtube сілтемесі',
         self::TYPE_MAP => 'Карта 2gis',
         self::TYPE_CLOUD_LINK => 'Бұлтты сервиске сілтеме',
+        self::JSON => 'json(массив, объект)',
     ];
 
     public static function tableName(): string

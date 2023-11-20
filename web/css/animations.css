@@ -1,0 +1,85 @@
+/* Animations */
+
+.animate-in {
+    transform: scale3d(120%, 120%, 120%);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-in.visible {
+    transform: scale3d(100%, 100%, 100%);
+}
+
+
+.animate-out {
+    transform: scale3d(80%, 80%, 80%);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-out.visible {
+    transform: scale3d(100%, 100%, 100%);
+}
+
+
+.animate-rotate {
+    transform: rotate3d(6,0,0,120deg);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-rotate.visible {
+    transform: rotate3d(0,0,0,0deg);
+}
+
+
+.animate-up {
+    transform: translateY(25px);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-up.visible {
+    transform: translateY(0);
+}
+
+
+.animate-down {
+    transform: translateY(-25px);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-down.visible {
+    transform: translateY(0);
+}
+
+
+.animate-left {
+    transform: translateX(20px);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-left.visible {
+    transform: translateX(0);
+}
+
+
+.animate-right {
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-right.visible {
+    transform: translateX(0);
+}
+
+
+.animate-long_right {
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.8s ease 0.5s;
+}
+.animate-long_right.visible {
+    transform: none;
+}
+
+
+.visible {
+    opacity: 1;
+}

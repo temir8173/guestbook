@@ -100,7 +100,6 @@ use yii\widgets\ActiveForm;
                     $isSectionActive = true;
                     if (
                         is_array($invitation->sections)
-                        && !empty($invitation->sections)
                         && !in_array($section->slug, $invitation->sections)
                     ) {
                         $inputAttributes['disabled'] = true;

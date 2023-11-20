@@ -119,7 +119,9 @@ class Invitation extends ActiveRecord
     {
         $this->imageFile = UploadedFile::getInstancesByName("Invitation[image]")[0] ?? null;
 
-        $this->sections = $data['Section']['slug'] ?? [];
+        if (!empty($data['Section']['slug'])) {
+            $this->sections = $data['Section']['slug'];
+        }
 
         if (!empty($data['Field'])) {
             $this->field_values = $this->prepareFields($data['Field']);
