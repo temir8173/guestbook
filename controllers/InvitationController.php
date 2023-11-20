@@ -84,9 +84,14 @@ class InvitationController extends BaseController
             throw new NotFoundHttpException();
         }
 
-        $sections = Section::find()
-            ->where(['in', 'slug', $template->sections])
-            ->with('fields')->all();
+        $sections = [];
+        foreach ($template->sections as $sectionSlug) {
+            $sections[] = Section::find()
+                ->where(['slug' => $sectionSlug])
+                ->with('fields')
+                ->one();
+        }
+
         $audio = Audio::find()->select(['name', 'path', 'type'])->all();
         $audioItems = ArrayHelper::map($audio,'path','name', 'translatedType');
 
