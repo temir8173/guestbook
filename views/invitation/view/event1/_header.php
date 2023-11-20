@@ -21,7 +21,7 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
 
 
                     <h1 class="top-box__title animate animate-in"><?= $invitation->name ?></h1>
-                    <p class="uzatu_p animate animate-up">шығармашылық кеші</p>
+                    <p class="uzatu_p animate animate-up" data-offset="0">шығармашылық кеші</p>
                 </div>
             </div>
         </div>

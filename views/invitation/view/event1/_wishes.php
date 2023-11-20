@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
             </h2>
 			<div class="col-md-9 wish-first-col">
 
-				<div class="wishes__messages animate animate-in">
+				<div class="wishes__messages animate animate-in" data-offset="0">
 					<div id="messages-box"
                          data-action-url="<?= Url::to([
                              '/invitation/get-wishes',
@@ -40,6 +40,7 @@ use yii\widgets\ActiveForm;
 	                'enableClientValidation'=>false,
 	                'options' => [
 	                    'class' => 'wishes__form ajax-form animate animate-up',
+                        'data-offset' => "0"
 	                ],
 	            ]); ?>
 
