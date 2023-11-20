@@ -36,7 +36,7 @@ $invitation = $this->context->view->params['invitation'] ?? null;
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
 
-    <meta property="og:url" content="<?= Url::base(true) ?>">
+    <meta property="og:url" content="<?= Url::current([], true) ?>">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<?= $invitation?->name ?> - <?=
     TemplateTypesList::getName($invitation?->template?->type) ?? '' ?>">

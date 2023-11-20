@@ -172,7 +172,10 @@ class InvitationController extends BaseController
      */
     public function actionView($url = ''): Response|string
     {
-        if (Yii::$app->language != 'kk') {
+        if (
+            Yii::$app->language != 'kk'
+            && !str_contains(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot")
+        ) {
             Yii::$app->session->set('tempLocale', Yii::$app->language);
             return $this->redirect(['/'. Yii::$app->controller->route, 'language' => 'kk', 'url' => $url]);
         }
