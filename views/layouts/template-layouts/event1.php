@@ -36,14 +36,22 @@ $invitation = $this->context->view->params['invitation'] ?? null;
     <title><?= Html::encode($this->title) ?></title>
     <link rel="shortcut icon" type="image/png" href="/images/favicon1.png"/>
 
+    <!-- Facebook Meta Tags -->
     <meta property="og:url" content="<?= Url::current([], true) ?>">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<?= $invitation?->name ?> - <?=
-    TemplateTypesList::getName($invitation?->template?->type) ?? '' ?>">
+    <meta property="og:title" content="<?= $invitation?->name ?> - <?= TemplateTypesList::getName($invitation?->template?->type) ?? '' ?>">
     <meta property="og:description" content="<?= Yii::t('common', 'Шақыру парақшасы') ?>">
     <meta property="og:image" content="<?= Url::base(true) ?>/images/logo.jpg">
     <meta property="og:image:width" content="300" />
     <meta property="og:image:height" content="300" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="shaqiru.kz">
+    <meta property="twitter:url" content="<?= Url::current([], true) ?>">
+    <meta name="twitter:title" content="<?= $invitation?->name ?> - <?= TemplateTypesList::getName($invitation?->template?->type) ?? '' ?>">
+    <meta name="twitter:description" content="<?= Yii::t('common', 'Шақыру парақшасы') ?>">
+    <meta name="twitter:image" content="<?= Url::base(true) ?>/images/logo.jpg">
     <?php $this->head() ?>
     <?php
         $variables = array (
