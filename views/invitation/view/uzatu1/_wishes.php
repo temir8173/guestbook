@@ -17,10 +17,10 @@ use yii\widgets\ActiveForm;
 <section id="wishes" class="wishes">
 	<div class="container">
 		<div class="row  justify-content-center">
-			<h2 class="wishes__title section-title"><?= $fieldValues['wishes_name'] ?? null ?></h2>
+			<h2 class="wishes__title section-title animate animate-up"><?= $fieldValues['wishes_name'] ?? null ?></h2>
 			<div class="col-md-9 wish-first-col">
 
-				<div class="wishes__messages">
+				<div class="wishes__messages animate animate-out" data-offset="-300">
 					<div id="messages-box"
                          data-action-url="<?= Url::to([
                              '/invitation/get-wishes',

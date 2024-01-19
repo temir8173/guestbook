@@ -14,9 +14,9 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
         <div class="row">
             <div class="col-sm-12">
                 <div class="top-box">
-                    <h1 class="top-box__title"><?= $invitation->name ?></h1>
-                    <p>Қыз Ұзату</p>
-                    <div class="top-box__row">
+                    <h1 class="top-box__title animate animate-in"><?= $invitation->name ?></h1>
+                    <p class="animate animate-in">Қыз Ұзату</p>
+                    <div class="top-box__row animate animate-up">
 
                         <?php if (0) { ?>
 
@@ -56,5 +56,6 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                 </div>
             </div>
         </div>
+        <span class="wedding-girl animate animate-left" data-offset="-20"></span>
     </div>
 </header>

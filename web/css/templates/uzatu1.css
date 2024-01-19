@@ -90,7 +90,7 @@ section .container {
     overflow: hidden;
 }
 
-#header .container::after {
+#header .container .wedding-girl {
     background: url(/images/uzatu1/girl1.png);
     background-size: contain;
     background-repeat: no-repeat;

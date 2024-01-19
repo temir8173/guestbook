@@ -10,8 +10,10 @@ class Uzatu1Asset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/templates/uzatu1.css',
+        'css/animations.css',
     ];
     public $js = [
+        'js/animations.js',
     ];
     public $depends = [
         'app\assets\AppAsset',

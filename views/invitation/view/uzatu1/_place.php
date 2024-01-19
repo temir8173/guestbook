@@ -9,8 +9,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="address__title section-title"><?= $fieldValues['place_section_name'] ?? null ?></h2>
-				<div class="address__place">
+				<h2 class="address__title section-title animate animate-up"><?= $fieldValues['place_section_name'] ?? null
+                    ?></h2>
+				<div class="address__place animate animate-up">
                     <p><?= $fieldValues['place_restaurant'] ?? null ?></p>
                     <p><?= $fieldValues['place_address'] ?? null ?></p>
                     <?php if(isset($fieldValues['place_link']) && $fieldValues['place_link']) { ?>
@@ -21,7 +22,8 @@
                 </div>
 			</div>
 			<div class="col-12 d-flex align-items-end">
-			<div id="map" class="address__map-container iframe-container"
+			<div id="map" class="address__map-container iframe-container animate animate-out"
+                 data-offset="-200"
                  data-coors='<?= $fieldValues['place_map_widget'] ?? null ?>'></div>
 			<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
 			<script type="text/javascript">

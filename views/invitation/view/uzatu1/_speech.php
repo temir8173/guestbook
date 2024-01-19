@@ -14,13 +14,13 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-10 col-md-8" style="position:relative;">
-                <div class="invitation-photo">
+                <div class="invitation-photo animate animate-out" data-offset="0">
                     <img class="invitation-photo-img" src="/uploads/<?= $invitation->image ?>" alt="">
                 </div>
-				<div class="speech__text">
+				<div class="speech__text animate animate-right">
 					<?= $fieldValues['invite_words'] ?? null ?>
 				</div>
-				<p class="speech__owners">
+				<p class="speech__owners animate animate-left">
                     <?= Yii::t('common', 'Той иелері: ') ?>
                     <?= $fieldValues['wedding_owners'] ?? null ?></p>
 			</div>
