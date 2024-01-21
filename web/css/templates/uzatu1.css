@@ -82,12 +82,15 @@ section .container {
     align-items: center;
     padding: 70px 0;
     height: 100vh;
-    background: url(/images/uzatu1/header-bg.jpg);
+    /*background: url(/images/uzatu1/header-bg.jpg);*/
+    background: url(/images/uzatu1/wedding-background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #fff;
     position: relative;
     overflow: hidden;
+    padding-top: 250px;
+    background-position-y: 50%;
 }
 
 #header .container .wedding-girl {
@@ -123,7 +126,7 @@ section .container {
 }
 
 .top-box__row {
-    margin-top: 50px;
+    margin-top: 35px;
 }
 
 
@@ -141,7 +144,7 @@ section .container {
 }
 
 .invitation-photo-img {
-    max-width: 200px;
+    max-width: 85%;
 }
 
 .speech__text {

@@ -56,6 +56,9 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                 </div>
             </div>
         </div>
-        <span class="wedding-girl animate animate-left" data-offset="-100"></span>
+        <?php if (0) { ?>
+            <span class="wedding-girl animate animate-left" data-offset="-100"></span>
+            <span class="wedding-background" data-offset="-100"></span>
+        <?php } ?>
     </div>
 </header>
