@@ -17,7 +17,7 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                 <div class="invitation-photo animate animate-out" data-offset="0">
                     <img class="invitation-photo-img" src="/uploads/<?= $invitation->image ?>" alt="">
                 </div>
-				<div class="speech__text animate animate-right">
+				<div class="speech__text animate animate-right" data-offset="-100">
 					<?= $fieldValues['invite_words'] ?? null ?>
 				</div>
 				<p class="speech__owners animate animate-left">
