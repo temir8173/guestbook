@@ -80,17 +80,31 @@ section .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 70px 0;
     height: 100vh;
     /*background: url(/images/uzatu1/header-bg.jpg);*/
-    background: url(/images/uzatu1/wedding-background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #fff;
+    background: #fff url(/images/uzatu1/wedding-background-top.jpg) no-repeat;
+    background-size: contain;
     position: relative;
     overflow: hidden;
-    padding-top: 250px;
-    background-position-y: 50%;
+    padding: 250px 0 70px;
+    background-position-y: -10%;
+}
+
+@media only screen and (min-width: 768px) {
+    #header .container {
+        background-position-y: -100%;
+    }
+}
+
+#header .container .wedding-background-bottom {
+    background: url(/images/uzatu1/wedding-background-bottom.jpg) no-repeat;
+    background-size: contain;
+    background-position-y: center;
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: 70%;
+    height: 100px;
 }
 
 #header .container .wedding-girl {
@@ -134,7 +148,7 @@ section .container {
 /* Speech section */
 
 #speech .container {
-    padding: 70px 0 0;
+    padding: 50px 0 0;
     background-color: #fff;
     color: #777;
 }
