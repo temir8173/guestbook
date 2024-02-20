@@ -82,7 +82,7 @@ section p {
 }
 
 .invitation-photo {
-    height: 67vh;
+    height: 64vh;
     overflow: hidden;
     position: relative;
 }
@@ -96,7 +96,7 @@ section p {
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 30px;
+    bottom: -42px;
 }
 
 .top-box__title {
@@ -569,10 +569,12 @@ ul.event-program li + li {
 @media only screen and (max-width: 540px) {
     .invitation-photo::after {
         position: relative;
-        bottom: 24vw;
+        bottom: 76vw;
     }
     .invitation-photo {
-        height: 120vw;
+        width: 100%;
+        height: 134vw;
+        margin-bottom: 50px;
     }
     #speech p {
         font-size: 21px;
