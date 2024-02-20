@@ -33,7 +33,7 @@
                 DG.then(function () {
 					map = DG.map('map', {
 						center: [JSON.parse(coors).lat + 0.001, JSON.parse(coors).lng],
-						zoom: 16,
+						zoom: 14,
 						fullscreenControl: false,
 	                    zoomControl: false
 					});
