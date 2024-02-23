@@ -568,12 +568,12 @@ ul.event-program li + li {
 
 @media only screen and (max-width: 540px) {
     .invitation-photo::after {
-        position: relative;
-        bottom: 76vw;
+        position: absolute;
+        bottom: -45px;
     }
     .invitation-photo {
         width: 100%;
-        height: 134vw;
+        height: max-content;
         margin-bottom: 50px;
     }
     #speech p {
