@@ -569,7 +569,7 @@ ul.event-program li + li {
 @media only screen and (max-width: 540px) {
     .invitation-photo::after {
         position: absolute;
-        bottom: -45px;
+        bottom: -70px;
     }
     .invitation-photo {
         width: 100%;
