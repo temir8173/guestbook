@@ -25,6 +25,7 @@ use yii\widgets\ActiveForm;
             <div class="invitations-form">
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
                 <?= $form->field($invitation, 'name')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($invitation, 'event_name')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($invitation, 'url', [
                     'template' => '
                     <div class="input-group">

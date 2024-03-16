@@ -14,6 +14,7 @@ use yii\web\UploadedFile;
  * @property int $id
  * @property string $url
  * @property string $name
+ * @property string $event_name
  * @property string $locale
  * @property string $image
  * @property string $audio
@@ -68,7 +69,7 @@ class Invitation extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['url', 'name', 'template_id', 'event_date', 'locale'], 'required'],
+            [['url', 'name', 'event_name', 'template_id', 'event_date', 'locale'], 'required'],
             [['status', 'user_id', 'template_id'], 'integer'],
             [['url', 'name', 'image', 'audio'], 'string', 'max' => 255],
             [['url'], 'unique'],
@@ -83,6 +84,7 @@ class Invitation extends ActiveRecord
             'id' => 'ID',
             'url' => 'Url',
             'name' => Yii::t('common', 'Аты'),
+            'event_name' => Yii::t('common', 'Жиын атауы'),
             'locale' => Yii::t('common', 'Тіл'),
             'image' => Yii::t('common', 'Сурет'),
             'audio' => Yii::t('common', 'Әуен'),

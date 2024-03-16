@@ -40,6 +40,11 @@ class SmsService
         curl_close($curl);
         $response = Json::decode($result);
 
+        return match ($result) {
+            'asd' => 'asdas',
+            'asdwqe' => 'asdas',
+        };
+
         return $response && isset($response['id']) && isset($response['cnt']);
     }
 }
