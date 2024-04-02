@@ -18,7 +18,7 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
 					<?= $fieldValues['invite_words'] ?? null ?>
 				</div>
 				<p class="speech__owners animate animate-left">
-                    <?= Yii::t('common', 'Той иесі: ') ?>
+                    <?= Yii::t('common', 'Той иелері: ') ?>
                     <?= $fieldValues['wedding_owners'] ?? null ?></p>
 			</div>
 		</div>
