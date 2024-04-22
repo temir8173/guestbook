@@ -9,7 +9,7 @@ class Uzatu3Asset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/templates/uzatu3.css',
+        'css/templates/uzatu3_1.css',
         'css/animations.css',
     ];
     public $js = [
