@@ -13,9 +13,11 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
 <section id="speech" class="speech">
 	<div class="container">
 
-        <div class="invitation-photo animate animate-out" data-offset="-400">
-            <img class="invitation-photo-img" src="/uploads/<?= $invitation->image ?>" alt="">
-        </div>
+        <?php if ($invitation->image) { ?>
+            <div class="invitation-photo animate animate-out" data-offset="-400">
+                <img class="invitation-photo-img" src="/uploads/<?= $invitation->image ?>" alt="">
+            </div>
+        <?php } ?>
 		<div class="row justify-content-center">
 			<div class="col-10 col-md-8" style="position:relative;">
 				<div class="speech__text animate animate-right" data-offset="-100">
