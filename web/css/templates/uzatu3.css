@@ -29,7 +29,7 @@ section {
 }
 
 section:nth-child(odd) .container {
-    background-color: #fff;
+    /*background-color: #fff;*/
     color: #333;
 }
 
@@ -580,7 +580,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 
 .footer .container {
     padding: 30px 0;
-    background-color: #fff!important;
+    background-color: #efede5!important;
     background: url(../../images/bg-header-rose-footer.png) bottom repeat-x;
     background-position-y: -15%;
 }
