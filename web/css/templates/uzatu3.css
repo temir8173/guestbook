@@ -102,7 +102,6 @@ section .container {
 
 @media only screen and (max-width: 768px) {
     #header .container {
-        height: 70vh;
         background-position-y: 0;
     }
 
@@ -126,7 +125,7 @@ section .container {
 
 .top-box__title {
     font-size: 60px;
-    color: #dfa014;
+    color: #cc7a1b;
     font-family: 'Decor KZ', sans-serif;
 }
 
@@ -134,7 +133,7 @@ section .container {
     font-family: "Merriweather", sans-serif;
     font-size: 18px;
     text-transform: uppercase;
-    color: #ea4b4b;
+    color: #555555;
     text-align: center;
     margin-top: 15px;
 }
@@ -172,6 +171,11 @@ section .container {
     font-size: 21px;
 }
 
+.speech__date {
+    text-align: right;
+    margin-top: 25px;
+}
+
 .invitation-photo {
     text-align: center;
     margin: 0 30px 35px;
@@ -191,7 +195,7 @@ section .container {
 
 .speech__owners {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 700;
     font-size: 21px;
@@ -473,7 +477,7 @@ section .container {
     left: -40px;
     width: 119%;
     height: 123%;
-    background-image: url(../../images/uzatu1/wishes-outline2.png);
+    background-image: url(../../images/uzatu3/wishes-outline.jpg);
     background-size: cover;
     z-index: 2;
 }
@@ -600,23 +604,24 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 
     .wishes__messages:before {
         top: 0;
-        left: 20px;
-        width: 90%;
-        height: 93%;
+        left: 0;
+        width: 100%;
+        height: 108%;
     }
 
     .wishes__messages>div {
-        padding: 93px 95px 94px 90px;
+        padding: 165px 95px 94px 90px;
     }
 
     .wishes__form {
-        margin: 30px auto 20px;
+        margin: 60px auto 20px;
     }
 }
 
 
 @media only screen and (max-width: 540px) {
     #header .container {
+        height: 100vw;
         background-position-x: 13%;
     }
     #header .container::after {

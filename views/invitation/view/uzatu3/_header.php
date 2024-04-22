@@ -19,8 +19,6 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                     <div class="top-box__row animate animate-up">
 
                         <?php if (0) { ?>
-
-
                             <div id="countdown" class="top-box__time countdown"
                                  data-event-date="<?= Yii::$app->formatter->asDate($eventDate, 'php:Y-m-j H:i:s')
                                  ?>">
@@ -44,14 +42,14 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
                             <div id="deadline-message" class="deadline-message">
 
                             </div>
-                        <?php } ?>
 
-                        <span class="top-box__date">
-                            <?= Yii::$app->formatter->asDate($eventDate) ?>
-                        </span>
-                        <span class="top-box__date">
-                            <?= Yii::$app->formatter->asDatetime($eventDate, 'php:H:i') ?>
-                        </span>
+                            <span class="top-box__date">
+                                <?= Yii::$app->formatter->asDate($eventDate) ?>
+                            </span>
+                            <span class="top-box__date">
+                                <?= Yii::$app->formatter->asDatetime($eventDate, 'php:H:i') ?>
+                            </span>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,14 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
 				<div class="speech__text animate animate-right" data-offset="-100">
 					<?= $fieldValues['invite_words'] ?? null ?>
 				</div>
+                <div class="speech__date animate animate-left">
+                    <span class="top-box__date">
+                        <?= Yii::$app->formatter->asDate($eventDate) ?>
+                    </span>
+                        <span class="top-box__date">
+                        <?= Yii::$app->formatter->asDatetime($eventDate, 'php:H:i') ?>
+                    </span>
+                </div>
 				<p class="speech__owners animate animate-left">
                     <?= Yii::t('common', 'Той иелері: ') ?>
                     <?= $fieldValues['wedding_owners'] ?? null ?></p>
