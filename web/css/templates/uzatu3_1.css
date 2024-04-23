@@ -820,7 +820,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
     }
 
     .wishes__messages>div {
-        padding: 165px 95px 94px 90px;
+        padding: 0 50px 100px 50px;
     }
 
     .wishes__form {
