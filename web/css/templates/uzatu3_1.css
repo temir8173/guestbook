@@ -17,15 +17,22 @@
     font-family: Decor KZ;
     src: url(/fonts/KZDecor.ttf);
 }
+@font-face {
+    font-family: Assylbek Shelley;
+    src: url(/fonts/vAsylm02.ttf);
+}
 
 body {
-    background-color: #f8f8f8;
+    /*background-color: #f8f8f8;*/
+}
+
+.common-box {
+    overflow: hidden;
 }
 
 section {
     padding: 0;
     text-align: center;
-    overflow: hidden;
 }
 
 section:nth-child(odd) .container {
@@ -34,14 +41,14 @@ section:nth-child(odd) .container {
 }
 
 section:nth-child(even) .container {
-    color: #898989;
+    color: #333;
 }
 
 section:nth-child(even) .container::before {
+    display: none;
     content: '';
     width: 200px;
     height: 45px;
-    display: flex;
     background-image: url(../../images/uzatu1/flower.png);
     background-repeat: no-repeat;
     background-position: 50%;
@@ -53,7 +60,7 @@ section:nth-child(odd) .container::before {
     content: '';
     width: 200px;
     height: 40px;
-    display: flex;
+    display: none;
     background-image: url(../../images/uzatu1/flower2.png);
     background-repeat: no-repeat;
     background-position: 50%;
@@ -62,14 +69,15 @@ section:nth-child(odd) .container::before {
 }
 
 section h2 {
-    font-size: 42px;
-    font-family: 'Decor KZ', sans-serif;
-    margin-bottom: 40px;
+    font-size: 46px;
+    font-family: 'Assylbek Shelley', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 section .container {
-    background-color: #efede5;
-    padding: 70px 0;
+    /*background-color: #efede5;*/
+    padding: 50px 0;
 }
 
 .container {
@@ -114,28 +122,29 @@ section .container {
     background: url(/images/uzatu1/girl1.png) no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 0;
-    right: -30px;
+    bottom: -18px;
+    right: -38px;
     content: '';
-    width: 235px;
-    height: 400px;
+    width: 218px;
+    height: 302px;
 }
 
 
 
 .top-box__title {
-    font-size: 60px;
-    color: #cc7a1b;
-    font-family: 'Decor KZ', sans-serif;
+    font-size: 96px;
+    color: #2a5328;
+    font-family: 'Assylbek Shelley', sans-serif;
+    line-height: 1;
 }
 
 .top-box p {
-    font-family: "Merriweather", sans-serif;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #555555;
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 50px;
+    color: #2a5328;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 0;
+    line-height: 1;
 }
 
 .top-box__date {
@@ -152,13 +161,40 @@ section .container {
 /* Speech section */
 
 #speech .container {
-    padding: 50px 0 0;
-    background-color: #fff;
     color: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vw;
+    background: #fff url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0;
 }
 
 #speech .container::before {
-    display: none;
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 140vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 120%;
+    position: absolute;
+}
+
+#speech .container::after {
+    content: '';
+    display: block;
+    opacity: 0.8;
+    width: 52vw;
+    height: 55vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 76%;
+    position: absolute;
+    top: -80px;
+    right: -36px;
+    rotate: 208deg;
 }
 
 .invitation-photo-img {
@@ -167,8 +203,9 @@ section .container {
 
 .speech__text {
     text-align: center;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 21px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: #333;
 }
 
 .speech__date {
@@ -195,19 +232,126 @@ section .container {
 
 .speech__owners {
     text-align: center;
-    margin-top: 20px;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 21px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    font-family: 'Merriweather', sans-serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: #0866b7;
 }
 
+.speech__owners span {
+    display: block;
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 60px;
+    color: #333;
+}
+
+
+/* Calendar section */
+
+.calendar_h {
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 45px;
+    color: #000000;
+    margin-bottom: 2px;
+}
+
+.calendar_p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.calendar_img img {
+    width: 100%;
+}
+
+#calendar .container {
+    color: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vw;
+    background: #fff url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding: 0 0;
+}
+
+#calendar .container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    left: -50%;
+    top: -10%;
+    rotate: 90deg;
+}
+
+#calendar .container::after {
+    content: '';
+    display: block;
+    opacity: 0.3;
+    width: 72vw;
+    height: 87vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 22px;
+    right: -50px;
+    rotate: 337deg;
+}
 
 
 /* Countdown styles */
 
 #countdown-section .container {
+    display: flex;
+    justify-content: center;
+    position: relative;
     padding-top: 40px;
+    padding-bottom: 0;
     background-color: #fff;
+}
+
+#countdown-section .container::before {
+    content: '';
+    display: block;
+    opacity: 0.8;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    rotate: 90deg;
+}
+
+#countdown-section .container::after {
+    content: '';
+    display: block;
+    opacity: 0.7;
+    width: 72vw;
+    height: 87vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: -116px;
+    right: -120px;
+    rotate: 249deg;
+    transform: scaleX(-1);
+}
+
+.countdown-section__title {
+    color: #333;
+    margin-bottom: 10px;
+    z-index: 999;
 }
 
 .countdown-title {
@@ -226,6 +370,7 @@ section .container {
 .countdown-number {
     display: inline-block;
     position: relative;
+    z-index: 999;
 }
 
 .countdown-number:after {
@@ -272,8 +417,27 @@ section .container {
 
 /* Address section */
 
+#address .container {
+    position: relative;
+    padding: 0 0;
+}
+
+#address .container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: -71%;
+    top: 0;
+    rotate: 90deg;
+}
+
 .address__map-container {
     margin: 0 15px;
+    z-index: 9999;
     -webkit-box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
     -moz-box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
     box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
@@ -387,6 +551,7 @@ section .container {
 /* Wishes section */
 
 .wishes .container {
+    padding-top: 0;
     padding-bottom: 50px;
 }
 
@@ -472,7 +637,7 @@ section .container {
 
 .wishes__messages:before {
     content: '';
-    display: block;
+    display: none;
     position: absolute;
     top: -50px;
     left: -40px;
@@ -481,6 +646,50 @@ section .container {
     background-image: url(../../images/uzatu3/wishes-outline.jpg);
     background-size: cover;
     z-index: 2;
+}
+
+
+
+#wishes .wishes-box-container {
+    color: #777;
+    display: flex;
+    justify-content: center;
+    height: 150vw;
+    background: url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding: 70px 0;
+}
+
+#wishes .wishes-box-container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: -76%;
+    top: 30%;
+    rotate: 90deg;
+}
+
+#wishes .wishes-box-container::after {
+    content: '';
+    display: block;
+    opacity: 0.3;
+    width: 92vw;
+    height: 99vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 59px;
+    left: -85px;
+    rotate: 35deg;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .wishes__form {
@@ -622,7 +831,7 @@ form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
 
 @media only screen and (max-width: 540px) {
     #header .container {
-        height: 100vw;
+        height: 150vw;
         background-position-x: 13%;
     }
     #header .container::after {

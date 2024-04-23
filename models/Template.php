@@ -18,6 +18,7 @@ use yii\web\UploadedFile;
  * @property int $discount_price
  * @property string $type
  * @property int $actualPrice
+ * @property bool $is_deprecated
 */
 class Template extends ActiveRecord
 {

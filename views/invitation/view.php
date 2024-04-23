@@ -12,18 +12,31 @@ use app\models\Wish;
 $this->title = $invitation->name;
 ?>
 
-<?= $this->render(
-    'view/' . $invitation->template->slug . '/_header',
-    ['invitation' => $invitation]
-); ?>
-
 <?php
 
-$fieldValues = $invitation->field_values;
-foreach ($invitation->sections as $section)
-{
+if ($invitation->template->is_deprecated) {
     echo $this->render(
-        'view/' . $invitation->template->slug . '/_' . $section,
+        'view/' . $invitation->template->slug . '/_header',
+        ['invitation' => $invitation]
+    );
+
+    $fieldValues = $invitation->field_values;
+    foreach ($invitation->sections as $section)
+    {
+        echo $this->render(
+            'view/' . $invitation->template->slug . '/_' . $section,
+            compact('invitation', 'newMessage', 'fieldValues')
+        );
+    }
+
+    echo $this->render(
+        'view/' . $invitation->template->slug . '/_footer',
+        ['invitation' => $invitation]
+    );
+} else {
+    $fieldValues = $invitation->field_values;
+    echo $this->render(
+        'templates/' . $invitation->template->slug,
         compact('invitation', 'newMessage', 'fieldValues')
     );
 }
@@ -35,11 +48,6 @@ foreach ($invitation->sections as $section)
 } ?>
 
 <?= $this->render('@app/views/layouts/modals/_auth_modal'); ?>
-
-<?= $this->render(
-    'view/' . $invitation->template->slug . '/_footer',
-    ['invitation' => $invitation]
-); ?>
 
 <?php if (
         $invitation->audio
