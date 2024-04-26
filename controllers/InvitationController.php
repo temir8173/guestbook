@@ -247,7 +247,8 @@ class InvitationController extends BaseController
         $invitation = Invitation::findOne($invitationId);
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax("@app/views/invitation/view/{$invitation->template->slug}/_wishes_box", [
+            $folder = $invitation->template->is_deprecated ? "view/{$invitation->template->slug}" : 'templates';
+            return $this->renderAjax("@app/views/invitation/{$folder}/_wishes_box", [
                 'wishes' => $wishes
             ]);
         }
