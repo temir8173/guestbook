@@ -1,0 +1,842 @@
+
+
+
+
+@font-face {
+    font-family: 'AsylbekM13Vivantekz';
+    src: url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot');
+    src: url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff2') format('woff2'),
+    url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.woff') format('woff'),
+    url('../../fonts/Asylbek/subset-AsylbekM13Vivantekz.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: Decor KZ;
+    src: url(/fonts/KZDecor.ttf);
+}
+@font-face {
+    font-family: Assylbek Shelley;
+    src: url(/fonts/vAsylm02.ttf);
+}
+
+body {
+    /*background-color: #f8f8f8;*/
+}
+
+.common-box {
+    overflow: hidden;
+}
+
+section {
+    padding: 0;
+    text-align: center;
+}
+
+section:nth-child(odd) .container {
+    /*background-color: #fff;*/
+    color: #333;
+}
+
+section:nth-child(even) .container {
+    color: #333;
+}
+
+section:nth-child(even) .container::before {
+    display: none;
+    content: '';
+    width: 200px;
+    height: 45px;
+    background-image: url(../../images/uzatu1/flower.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    margin: 0 auto 10px;
+}
+
+section:nth-child(odd) .container::before {
+    content: '';
+    width: 200px;
+    height: 40px;
+    display: none;
+    background-image: url(../../images/uzatu1/flower2.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    margin: 0 auto 10px;
+}
+
+section h2 {
+    font-size: 46px;
+    font-family: 'Assylbek Shelley', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+section .container {
+    /*background-color: #efede5;*/
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 540px;
+}
+
+#header .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /*background: url(/images/uzatu1/header-bg.jpg);*/
+    background: #fff url(/images/uzatu3/header-bg3.jpg) no-repeat;
+    background-size: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 70px 0 70px;
+}
+
+#header .container::after {
+    content: '';
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+#header .container .wedding-background-bottom {
+    background: url(/images/uzatu1/wedding-background-bottom.jpg) no-repeat;
+    background-size: contain;
+    background-position-y: center;
+    position: absolute;
+    bottom: -80px;
+    content: '';
+    width: 70%;
+    height: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    #header .container {
+        background-position-y: 0;
+    }
+
+    #header .container .wedding-background-bottom {
+        width: 100%;
+    }
+}
+
+
+
+.top-box__title {
+    font-size: 56px;
+    color: #2a5328;
+    font-family: 'Assylbek Shelley', sans-serif;
+    line-height: 1;
+}
+
+.top-box p {
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 50px;
+    color: #2a5328;
+    text-align: center;
+    margin-top: 0;
+    line-height: 1;
+}
+
+.top-box__date {
+    color: #2a8acd;
+    font-weight: 300;
+}
+
+.top-box__row {
+    margin-top: 35px;
+}
+
+
+
+/* Speech section */
+
+#speech .container {
+    color: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vw;
+    background: #fff url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0;
+}
+
+#speech .container::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 140vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 120%;
+    position: absolute;
+}
+
+#speech .container::after {
+    content: '';
+    display: block;
+    opacity: 0.8;
+    width: 52vw;
+    height: 55vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 76%;
+    position: absolute;
+    top: -80px;
+    right: -36px;
+    rotate: 208deg;
+}
+
+.invitation-photo-img {
+    max-width: 100%;
+}
+
+.speech__text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.speech__date {
+    text-align: right;
+    margin-top: 25px;
+}
+
+.invitation-photo {
+    text-align: center;
+    margin: 0 30px 35px;
+    position: relative;
+}
+
+.invitation-photo:before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: 1px solid rgb(206 167 92 / 50%);
+    top: -10px;
+    left: -10px;
+    box-shadow: 0 0 10px rgb(206 167 92 / 40%), inset 0 0 10px rgb(206 167 92 / 40%);
+}
+
+.speech__owners {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    font-family: 'Merriweather', sans-serif;
+    font-weight: 400;
+    font-size: 38px;
+    color: #0866b7;
+}
+
+.speech__owners span {
+    display: block;
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 60px;
+    color: #333;
+}
+
+
+/* Calendar section */
+
+.calendar_h {
+    font-family: 'Assylbek Shelley', sans-serif;
+    font-size: 45px;
+    color: #000000;
+    margin-bottom: 2px;
+}
+
+.calendar_p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.calendar_img img {
+    width: 100%;
+}
+
+#calendar .container {
+    color: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150vw;
+    background: #fff url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding: 0 0;
+}
+
+#calendar .container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    left: -50%;
+    top: -10%;
+    rotate: 90deg;
+}
+
+#calendar .container::after {
+    content: '';
+    display: block;
+    opacity: 0.3;
+    width: 72vw;
+    height: 87vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 22px;
+    right: -50px;
+    rotate: 337deg;
+}
+
+
+/* Countdown styles */
+
+#countdown-section .container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 0;
+    background-color: #fff;
+}
+
+#countdown-section .container::before {
+    content: '';
+    display: block;
+    opacity: 0.8;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    rotate: 90deg;
+}
+
+#countdown-section .container::after {
+    content: '';
+    display: block;
+    opacity: 0.7;
+    width: 72vw;
+    height: 87vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: -116px;
+    right: -120px;
+    rotate: 249deg;
+    transform: scaleX(-1);
+}
+
+.countdown-section__title {
+    color: #333;
+    margin-bottom: 10px;
+    z-index: 999;
+}
+
+.countdown-title {
+    color: #396;
+    font-weight: 100;
+    font-size: 40px;
+    margin: 40px 0px 20px;
+}
+
+.countdown {
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+}
+
+.countdown-number {
+    display: inline-block;
+    position: relative;
+    z-index: 999;
+}
+
+.countdown-number:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.05);
+    position: absolute;
+    top: 14px;
+    right: -4px;
+}
+.countdown-number:last-child:after {
+    display: none;
+}
+
+.countdown-time {
+    padding: 0 12px;
+    font-size: 24px;
+    display: inline-block;
+    color: #0866b7;
+}
+
+.countdown-text {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+}
+
+.deadline-message{
+    display: none;
+    font-size: 24px;
+    font-style: italic;
+}
+
+.visible{
+    display: block;
+}
+
+.hidden{
+    display: none;
+}
+
+/* Address section */
+
+#address .container {
+    position: relative;
+    padding: 0 0;
+}
+
+#address .container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: -71%;
+    top: 0;
+    rotate: 90deg;
+}
+
+.address__map-container {
+    margin: 0 15px;
+    z-index: 9999;
+    -webkit-box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
+    -moz-box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
+    box-shadow: 0px 0px 14px 6px rgba(34, 60, 80, 0.18);
+}
+
+.address__place {
+    font-family: "Merriweather", sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.address__place p:first-child {
+    font-size: 28px;
+}
+
+.address__place p {
+    font-weight: 300;
+}
+
+.address__place a {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #09b11c;
+    border-radius: 30px;
+    color: #fff;
+}
+
+.address__place a:hover {
+    color: #fff;
+}
+
+
+/* Memory section */
+
+.download-img img{
+    width: 60px;
+}
+
+.download-card{
+    margin-top: 70px;
+}
+
+.download-title{
+    margin-top: 10px;
+    color: #333;
+}
+
+.download-warning{
+    color: #777;
+    margin-top: 50px;
+}
+
+
+/* Gallery section */
+
+.address__images {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-vertical {
+    padding-top: 100%;
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
+}
+
+.gallery-horizontal {
+    padding-top: 66.6%;
+    box-shadow: inset 0px 0px 20px 10px rgba(0,0,0,0.5);
+}
+
+.my-container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.my-container>.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.my-container>.row>div>div {
+    padding: 0;
+}
+
+.our-gallery .image-container div:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    box-shadow: inset 0px 0px 20px rgb(0 0 0 / 50%);
+}
+
+.our-gallery .image-container div {
+    transition: all 0.3s;
+}
+
+.our-gallery .image-container div:hover {
+    opacity: 0.8;
+}
+
+.address__images a {
+    display: inline-block;
+    width: 65%;
+}
+
+
+
+/* Wishes section */
+
+.wishes .container {
+    padding-top: 0;
+    padding-bottom: 50px;
+}
+
+.wishes__title {
+    margin-bottom: 50px;
+}
+
+.content-list__item {
+    margin-bottom: 15px;
+}
+
+.content-list__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-list__item .post-info__meta-item {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    color: #82a3b1;
+}
+
+.content-list__item .post-info__title {
+    font-size: 18px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.content-list__item .post-info__text {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
+    line-height: 1.4;
+}
+
+.notif__items {
+    position: relative;
+    border-radius: 4px;
+    max-height: 100%;
+    overflow: auto;
+    z-index: 3;
+}
+
+.notif__items::-webkit-scrollbar {
+    width: 5px;
+    background-color: #eee;
+}
+
+.notif__items::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
+
+.notif__items::-webkit-scrollbar-track {
+    height: 50%;
+}
+
+.notif__items::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+}
+
+.wishes__messages {
+    width: 100%;
+    padding: 100% 30px 100px 40px;
+    position: relative;
+}
+
+.wishes__messages>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    padding: 100px 60px 50px 60px;
+}
+
+.wishes__messages img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+.wishes__messages:before {
+    content: '';
+    display: none;
+    position: absolute;
+    top: -50px;
+    left: -40px;
+    width: 119%;
+    height: 123%;
+    background-image: url(../../images/uzatu3/wishes-outline.jpg);
+    background-size: cover;
+    z-index: 2;
+}
+
+
+
+#wishes .wishes-box-container {
+    color: #777;
+    display: flex;
+    justify-content: center;
+    height: 150vw;
+    background: url(/images/uzatu3/gold_frame.png) no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding: 70px 0;
+}
+
+#wishes .wishes-box-container::before {
+    content: '';
+    display: block;
+    width: 123vw;
+    height: 144vw;
+    background: url(/images/uzatu3/bg-container.png) no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: -76%;
+    top: 30%;
+    rotate: 90deg;
+}
+
+#wishes .wishes-box-container::after {
+    content: '';
+    display: block;
+    opacity: 0.3;
+    width: 92vw;
+    height: 99vw;
+    background: url(/images/uzatu3/bg-flower.png) no-repeat;
+    background-size: 100%;
+    position: absolute;
+    bottom: 59px;
+    left: -85px;
+    rotate: 35deg;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.wishes__form {
+    width: 80%;
+    margin: 120px auto 50px;
+}
+
+.wishes__form .form-group label {
+    margin-bottom: 3px;
+}
+
+.wishes__form .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.wishes__form .form-group.field-messages-name {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.wishes__form input[type=text],
+.wishes__form input[type=password],
+.wishes__form input[type=email],
+.wishes__form select,
+.wishes__form textarea {
+    border: 2px solid #ed959f !important;
+    border-radius: 0;
+    background-color: unset;
+    box-shadow: none;
+}
+.wishes__form input[type=text],
+.wishes__form input[type=password],
+.wishes__form input[type=email] {
+    border: none!important;
+    border-bottom: 2px solid #ed959f!important;
+}
+form input[type=text].error,
+form input[type=password].error,
+form input[type=email].error {
+    border: none!important;
+    border-bottom: 2px solid rgba(204,0,0,0.4)!important;
+}
+form select.error,
+form textarea.error {border: 2px solid rgba(204,0,0,0.4) !important;}
+.wishes__form input[type=text]:focus, .wishes__form textarea:focus {
+    box-shadow: none;
+    opacity: 0.8;
+}
+
+.wishes__form-btn input {
+    border-radius: 0!important;
+    background-color: #ed959f;
+    color: #fff;
+    padding: 6px 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.wishes__form-btn input:hover {
+    color: #fff!important;
+    opacity: 0.8;
+}
+.wishes__form-btn .btn:hover, .wishes__form-btn .btn:focus, .wishes__form-btn .btn:active:focus {
+    color: #fff;
+    text-decoration: none;
+    outline: unset;
+    outline-offset: unset;
+}
+
+.wishes__form textarea {
+    resize: vertical;
+}
+
+.err_msg {
+    display: block;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(204,0,0,0.4);
+    position: absolute;
+    bottom: -17px;
+    z-index: 99;
+}
+
+#messages-box ul {
+    padding: 0;
+    text-align: left;
+}
+
+
+/* Footer */
+
+.footer .container::before {
+    display: none!important;
+}
+
+.footer .container {
+    padding: 30px 0;
+    background-color: #efede5!important;
+    background: url(../../images/bg-header-rose-footer.png) bottom repeat-x;
+    background-position-y: -15%;
+}
+
+.footer p {
+    margin-bottom: 0;
+    color: #555;
+}
+
+.footer {
+    background-color: unset!important;
+    background: unset;
+    height: unset;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .wishes__title {
+        margin-bottom: 30px;
+    }
+
+    .wishes__messages:before {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 108%;
+    }
+
+    .wishes__messages>div {
+        padding: 0 50px 100px 50px;
+    }
+
+    .wishes__form {
+        margin: 60px auto 20px;
+    }
+}
+
+
+@media only screen and (max-width: 540px) {
+    #header .container {
+        height: 150vw;
+        background-position-x: 13%;
+    }
+    .top-box__row {
+        text-align: center;
+        margin-top: 30px;
+    }
+}
