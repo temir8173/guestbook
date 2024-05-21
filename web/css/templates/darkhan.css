@@ -133,10 +133,11 @@ section .container {
 
 
 .top-box__title {
-    font-size: 56px;
+    font-size: 70px;
     color: #2a5328;
     font-family: 'Assylbek Shelley', sans-serif;
     line-height: 1;
+    text-align: center;
 }
 
 .top-box p {
