@@ -66,7 +66,7 @@ $eventDate = new \DateTime($invitation->event_date, new \DateTimeZone(Yii::$app-
             <div class="row justify-content-center">
                 <div class="col-12">
                     <p class="calendar_h animate animate-left">Той салтанаты</p>
-                    <p class="calendar_p animate animate-left">5 шілде 2024 жылы <br> сағат 19:00</p>
+                    <p class="calendar_p animate animate-left">14 шілде 2024 жылы <br> сағат 17:00</p>
                     <div class="calendar_img animate animate-left">
                         <img src="/images/uzatu3/calendar.png" alt="">
                     </div>

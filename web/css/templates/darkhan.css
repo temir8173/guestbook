@@ -207,6 +207,8 @@ section .container {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #333;
+    line-height: 2;
+    padding: 0 30px;
 }
 
 .speech__date {
