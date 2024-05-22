@@ -672,6 +672,7 @@ section .container {
     right: -76%;
     top: 30%;
     rotate: 90deg;
+    z-index: -1;
 }
 
 #wishes .wishes-box-container::after {
@@ -690,6 +691,7 @@ section .container {
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    z-index: -1;
 }
 
 .wishes__form {
